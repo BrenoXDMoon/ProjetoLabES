@@ -19,5 +19,5 @@ public class Documento extends EntidadeDominio{
     private Integer id;
     private TipoDocumento tipoDocumento;
     private String codigo;
-    private Date validade;
+    private Date validade; 
 }
