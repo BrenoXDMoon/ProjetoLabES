@@ -1,10 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<head th:replace="~{base :: head}"></head>
 <body>
-  formulario
+    <header th:replace="~{base :: header}"></header>
+
+    <div class="container perfil mt-5">
+        <form th:object="${clienteDTO}" action="/cliente/salvar" method="post">
+            <h4 class="py-4">Dados de Cliente</h4>
+            <div class="border">
+                <div class="row justify-content-center">
+                    <div class="col-10">
+                        <div class="form-group">
+                            <label>Nome Completo</label> <br />
+                            <input class="form-control" th:field="*{nomeCompleto}" required/>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Gênero</label> <br />
+                            <select th:field="*{genero}" class="form-select">
+                                <option th:each="gen : ${T(br.com.fatec.chopperhouse.models.Genero).values()}" th:value="${gen}" th:text="${gen}"></option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Documento</label> <br />
+                            <select class="form-select" th:field="*{documento.TipoDocumento}">
+                                <option th:each="tpDoc : ${T(br.com.fatec.chopperhouse.models.TipoDocumento).values()}" th:value="${tpDoc}" th:text="${tpDoc}"></option>
+                            </select>
+                            <br />
+
+                            <label>Código</label> <br />
+                            <input th:field="*{documento.codigo}" class="form-control"/>
+
+                            <br />
+                            <label>Validade</label> <br />
+                            <input th:field="*{documento.validade}" type="date" class="form-control"/>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Data de Nascimento</label> <br />
+                            <input th:field="*{dataNascimento}" type="date" class="form-control"/>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label>E-mail</label> <br />
+                            <input th:field="*{email}" type="email" class="form-control"/>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Senha</label> <br />
+                            <input th:field="*{senha.senha}" type="password" class="form-control">
+                                <validateRegex pattern = "(?=.*[a-zA-Z])(?=.*[0-9]).{8,13}"/>
+                                <message for = "senha" style = "color:red"/>
+                            </input>
+
+                        </div>
+                        <div class="form-group">
+                            <label>Confirmar Senha</label> <br />
+                            <input th:field="*{senha.confirmaSenha}" type="password" required class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h4 class="py-4">Dados de Endereço do Cliente</h4>
+            <div class="border">
+                <div class="row justify-content-center">
+                    <div class="col-10">
+                        <div class="form-group">
+                            <label>Logradouro</label> <br />
+                            <input th:field="*{endereco.logradouro}" required class="form-control"/>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Número</label> <br />
+                            <input th:field="*{endereco.numero}" required class="form-control"/>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Bairro</label> <br />
+                            <input th:field="*{endereco.bairro}" required class="form-control"/>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Complemento</label> <br />
+                            <input th:field="*{endereco.complemento}" class="form-control"/>
+                        </div>
+
+                        <div class="form-group">
+                            <label>CEP</label> <br />
+                            <input th:field="*{endereco.cep}" required class="form-control"/>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Cidade</label> <br />
+                            <input th:field="*{endereco.cidade.cidade}" required class="form-control"/>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Estado</label> <br />
+                            <input th:field="*{endereco.cidade.estado.estado}" required class="form-control"/>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Tipo de Endereço</label><br />
+                            <select th:field="*{endereco.tpEndereco}" class="form-select">
+                                <option th:each="tpEnd : ${T(br.com.fatec.chopperhouse.models.TipoEndereco).values()}" th:value="${tpEnd}" th:text="${tpEnd}"></option>
+                            </select>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-success my-5" value="Cadastrar" >Finalizar</button>
+        </form>
+    </div>
 </body>
 </html>

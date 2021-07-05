@@ -1,12 +1,13 @@
-package br.com.fatec.ChopperHouse.model;
+package br.com.fatec.chopperhouse.models;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.Date;
 
 @Getter
 @Setter
@@ -16,8 +17,10 @@ import lombok.Setter;
 public class Documento extends EntidadeDominio{
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Enumerated(EnumType.STRING)
     private TipoDocumento tipoDocumento;
     private String codigo;
-    private Date validade;
+    private String validade;
 }

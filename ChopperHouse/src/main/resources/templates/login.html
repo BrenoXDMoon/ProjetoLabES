@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="~{base :: head}">
+</head>
+<body>
+  <header th:replace="~{base :: header}"></header>
+
+  <main class="form-signin container my-5">
+      <div class="row justify-content-center">
+        <div class="col-5">
+          <h1 class="h3 mb-3 fw-normal">Login</h1>
+          <form th:action="@{login}" method="post">
+            <div class="form-floating">
+              <label>Email</label>
+              <input name="username" type="text" class="form-control" placeholder="nome@exemplo.com">
+            </div>
+            <div class="form-floating">
+              <label >Senha</label>
+              <input name="password" type="password"class="form-control" placeholder="Senha">
+            </div>
+
+            <div class="checkbox mb-3">
+              <label>
+                <input type="checkbox" value="remember-me"> Lembre-se de mim
+              </label>
+            </div>
+            <a href="cliente/form">Cadastre-se</a>
+            <button class="w-100 btn btn-lg btn-primary" type="submit">Acessar</button>
+          </form>
+        </div>
+      </div>
+  </main>
+
+<footer th:replace="~{base :: footer}"></footer>
+</body>
+</html>

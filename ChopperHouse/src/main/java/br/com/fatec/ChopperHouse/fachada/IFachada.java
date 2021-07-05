@@ -1,7 +1,7 @@
-package br.com.fatec.ChopperHouse.fachada;
+package br.com.fatec.chopperhouse.fachada;
 
-import br.com.fatec.ChopperHouse.model.EntidadeDominio;
-import br.com.fatec.ChopperHouse.model.Resultado;
+import br.com.fatec.chopperhouse.models.EntidadeDominio;
+import br.com.fatec.chopperhouse.models.Resultado;
 
 public interface IFachada {
     Resultado salvar(EntidadeDominio ent);

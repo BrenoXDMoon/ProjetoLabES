@@ -1,4 +1,4 @@
-package br.com.fatec.ChopperHouse.model;
+package br.com.fatec.chopperhouse.models;
 
 public enum TipoDocumento {
 
