@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{base :: head}">
+        <meta charset="UTF-8">
+        <title>ADMIN CLIENTE LISTA</title>
+    </head>
+    <body>
+        <header th:replace="~{base :: header-admin}"></header>
+        <div class="container-fluid">
+            <div class="row">
+                <div th:replace="~{base :: sidebar-admin}"></div>
+                <div class="col-5">
+                    <h3>Lista de Clientes</h3>
+                    <table class="table table-dark table-striped">
+                        <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Nome Completo</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Status</th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <div th:each="cliente : ${clientes}">
+                            <tr>
+                                <td scope="row" th:text="${cliente.id}"></td>
+                                <td scope="row" th:text="${cliente.nomeCompleto}"></td>
+                                <td scope="row" th:text="${cliente.email}"></td>
+                                <td scope="row" th:text="${cliente.ativo}"></td>
+                                <td scope="row"><a class="btn btn-primary" th:href="@{/admin/buscar(id=${cliente.id})}">Editar</a></td>
+                                <td scope="row"><a class="btn btn-danger" th:href="@{/admin/excluir/(id=${cliente.id})}">Deletar</a></td>
+                            </tr>
+                        </div>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
