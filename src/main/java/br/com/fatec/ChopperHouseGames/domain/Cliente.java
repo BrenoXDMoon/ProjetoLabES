@@ -31,20 +31,9 @@ public class Cliente extends EntidadeDominio {
     @ManyToOne
     private TipoCliente tipoCliente;
 
+    private String telefone;
+
     private String roles;
 
     private boolean ativo;
-
-    public boolean confirmaSenha() {
-        if(null == this.senhaCriptografada)
-            if(null == this.senha || this.senha.length() <= 0)
-                return false;
-        return true;
-    }
-
-    public boolean validaSenha() {
-        Pattern pattern = Pattern.compile("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{8,20}$");
-        Matcher matcher = pattern.matcher(senha);
-        return matcher.matches();
-    }
 }
