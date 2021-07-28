@@ -25,6 +25,5 @@ public class Documento extends EntidadeDominio {
 
     @NotNull(message = "Selecione um tipo de documento")
     @ManyToOne
-    @JoinColumn(name="document_type_id")
     private TipoDocumento tipoDocumento;
 }

@@ -36,11 +36,13 @@
                                 <validateRegex pattern = "(?=.*[a-zA-Z])(?=.*[0-9]).{8,13}"/>
                                 <message for = "senha" style = "color:red"/>
                             </input>
-
+                            <p class='alert-danger' th:each="error : ${#fields.errors('senha')}"
+                               th:text="${error}">Erros de Validação</p>
                         </div>
+
                         <div class="form-group">
                             <label>Confirmar Senha</label> <br />
-                            <input type="password" id="confirma_senha" required class="form-control">
+                            <input type="password" th:field="*{confirmaSenha}" id="confirma_senha" required class="form-control">
                         </div>
                     </div>
                 </div>
@@ -65,17 +67,6 @@
         });
     </script>
     <script>
-
-        $('#senha, #confirma_senha').on('keyup', function () {
-            if($("#confirma_senha").val() == $("#password").val()) {
-                $("#grupo_senha").empty();
-                $(":submit").attr("disabled", false)
-            } else {
-                $(":submit").attr("disabled", true)
-                $("#grupo_senha").empty();
-                $("#grupo_senha").append("<small class='alert-danger' id='password_alert'>Senhas não conferem</small>");
-            }
-        })
 
         $("#telephone").on('keyup', function () {
             if($("#telephone").val().replace(/\D/g, '').length < 10) {

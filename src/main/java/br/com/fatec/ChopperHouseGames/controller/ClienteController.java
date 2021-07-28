@@ -1,7 +1,7 @@
 package br.com.fatec.ChopperHouseGames.controller;
 
 import br.com.fatec.ChopperHouseGames.domain.Cliente;
-import br.com.fatec.ChopperHouseGames.dto.request.ClienteForm;
+import br.com.fatec.ChopperHouseGames.dto.request.ClienteDtoForm;
 import br.com.fatec.ChopperHouseGames.service.IClienteService;
 import br.com.fatec.ChopperHouseGames.service.ITipoClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +28,7 @@ public class ClienteController {
     private ITipoClienteService iTipoClienteService;
 
     @GetMapping("/novo")
-    public ModelAndView novoCliente(ClienteForm clienteForm){
+    public ModelAndView novoCliente(ClienteDtoForm clienteForm){
 
         ModelAndView mv = new ModelAndView("/cliente/form");
         mv.addObject("clienteForm", clienteForm);
@@ -37,7 +37,9 @@ public class ClienteController {
     }
 
     @PostMapping("/novo")
-    public ModelAndView salvarCliente(@Valid ClienteForm clienteForm, BindingResult result, RedirectAttributes attributes){
+    public ModelAndView salvarCliente(@Valid ClienteDtoForm clienteForm, BindingResult result, RedirectAttributes attributes){
+
+        System.out.println("Entrou");
 
         Cliente cliente = new Cliente();
 
@@ -47,33 +49,34 @@ public class ClienteController {
 
         if(!clienteForm.validaSenha()){
             result.addError(new ObjectError("cliente", "A senha deve conter ao menos numero," +
-                    " letra maiuscula, letra minuscula, caracter especial e a quantidade entre 6 e 20"));
+                    " letra maiuscula, letra minuscula, caracter especial e a quantidade entre 8 e 20"));
         }
 
         if(result.hasErrors()){
             return novoCliente(clienteForm);
         }
 
-        cliente.setTipoCliente(iTipoClienteService.buscarById(1));//1 é o id do Cliente mais básico que tenho
+        System.out.println("Validou");
 
+        cliente = clienteForm.toCliente();
+        cliente.setTipoCliente(iTipoClienteService.buscarById(1));//1 é o id do Cliente mais básico que tenho
         service.salvar(cliente);
 
-        ModelAndView mv = new ModelAndView("redirect:/customer/edit/" + cliente.getId() + "");
+        System.out.println("Salvou");
+
+        ModelAndView mv = new ModelAndView("redirect:/cliente/perfil/" + cliente.getId() + "");
 
         attributes.addFlashAttribute("message", "Usuário criado com sucesso!");
 
         return mv;
     }
 
-    @GetMapping("/edit/{id}")
+    @GetMapping("/perfil/{id}")
     public ModelAndView editCustomer(@PathVariable("id") Cliente cliente) {
 
-        ModelAndView mv = new ModelAndView("/cliente/perfil");
+        ModelAndView mv = new ModelAndView("/index");
 
         service.usuarioLogado(cliente.getId(), mv);
-
-
-
         return mv;
     }
 }

@@ -27,6 +27,7 @@ public class ClienteService implements IClienteService {
 
     @Override
     public Cliente salvar(Cliente cliente) {
+        cliente.setRoles("CLIENTE");
         return repository.saveAndFlush(cliente);
     }
 

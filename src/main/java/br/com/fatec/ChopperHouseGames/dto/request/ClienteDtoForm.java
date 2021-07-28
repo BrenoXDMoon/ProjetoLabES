@@ -2,44 +2,42 @@ package br.com.fatec.ChopperHouseGames.dto.request;
 
 import br.com.fatec.ChopperHouseGames.domain.Cliente;
 import lombok.Data;
-import org.hibernate.validator.constraints.Length;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import javax.persistence.Transient;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Data
-public class ClienteForm {
+public class ClienteDtoForm {
 
-    @NotNull(message = "Nome Completo é obrigatório")
-    @NotBlank(message = "Nome Completo não pode estar em branco")
+    @NotNull
+    @NotEmpty(message = "Nome Completo é obrigatório")
     private String nomeCompleto;
 
-    @NotNull(message = "Email é obrigatório")
-    @NotBlank(message = "Email não pode estar em branco")
+    @NotNull
+    @NotEmpty(message = "Email é obrigatório")
     private String email;
 
-    @NotNull(message = "Data de Nascimento é obrigatório")
-    @NotBlank(message = "Data de Nascimento não pode estar em branco")
+    @NotNull
+    @NotEmpty(message = "Data de Nascimento é obrigatório")
     private String dataNascimento;
 
-    @NotNull(message = "Telefone é obrigatório")
-    @NotBlank(message = "Telefone não pode estar em branco")
+    @NotNull
+    @NotEmpty(message = "Telefone é obrigatório")
     private String telefone;
 
-
-    @Length(min = 6)
-    private String senhaCriptografada;
-
-    @NotNull(message = "Senha é obrigatório")
-    @NotBlank(message = "Senha não pode estar em branco")
-    @Transient
+    @NotNull
+    @NotEmpty(message = "Senha é obrigatória")
     private String senha;
 
+    @NotNull
+    @NotEmpty(message = "Confirmar a senha é obrigatório")
+    private String confirmaSenha;
+
     public boolean confirmaSenha() {
-        if(null == this.senhaCriptografada)
+        if(null == this.confirmaSenha)
             if(null == this.senha || this.senha.length() <= 0)
                 return false;
         return true;
@@ -52,17 +50,14 @@ public class ClienteForm {
     }
 
     public Cliente toCliente(){
-        Cliente cliente = new Cliente();
 
+        Cliente cliente = new Cliente();
         cliente.setNomeCompleto(this.nomeCompleto);
         cliente.setDataNascimento(this.dataNascimento);
         cliente.setAtivo(true);
         cliente.setEmail(this.email);
-        cliente.setSenhaCriptografada(this.senhaCriptografada);
-        cliente.setSenha(this.senha);
+        cliente.setSenha(new BCryptPasswordEncoder().encode(this.senha));
         cliente.setTelefone(this.telefone);
-
-
         return cliente;
     }
 }

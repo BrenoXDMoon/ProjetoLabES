@@ -17,9 +17,6 @@ public class Cliente extends EntidadeDominio {
     private String dataNascimento;
 
     @Length(min = 6)
-    private String senhaCriptografada;
-
-    @Transient
     private String senha;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
