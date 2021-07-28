@@ -1,6 +1,7 @@
 package br.com.fatec.ChopperHouseGames.access;
 
 import br.com.fatec.ChopperHouseGames.domain.Cliente;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,19 +13,17 @@ import java.util.stream.Collectors;
 
 public class UsuarioAcesso implements UserDetails {
 
-    private String userName;
-    private String password;
-    private boolean active;
+    @Autowired
+    Cliente cliente;
+
     private List<GrantedAuthority> authorities;
 
     public UsuarioAcesso(Cliente cliente) {
-        this.userName = cliente.getEmail();
-        this.password = cliente.getSenha();
-        this.active = cliente.isAtivo();
 
+        this.cliente = cliente;
         this.authorities = Arrays.stream(cliente.getRoles().split(","))
-                .map(SimpleGrantedAuthority::new)
-                .collect(Collectors.toList());
+            .map(SimpleGrantedAuthority::new)
+            .collect(Collectors.toList());
     }
 
     @Override
@@ -34,12 +33,12 @@ public class UsuarioAcesso implements UserDetails {
 
     @Override
     public String getPassword() {
-        return password;
+        return cliente.getSenha();
     }
 
     @Override
     public String getUsername() {
-        return userName;
+        return cliente.getEmail();
     }
 
     @Override
@@ -59,7 +58,6 @@ public class UsuarioAcesso implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return active;
+        return cliente.isAtivo();
     }
-
 }

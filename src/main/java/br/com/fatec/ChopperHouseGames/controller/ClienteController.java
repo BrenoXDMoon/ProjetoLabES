@@ -41,8 +41,6 @@ public class ClienteController {
 
         System.out.println("Entrou");
 
-        Cliente cliente = new Cliente();
-
         if(!clienteForm.confirmaSenha()){
             result.addError(new ObjectError("cliente", "Senha é obrigatória"));
         }
@@ -58,13 +56,14 @@ public class ClienteController {
 
         System.out.println("Validou");
 
-        cliente = clienteForm.toCliente();
+        Cliente cliente = clienteForm.toCliente();
         cliente.setTipoCliente(iTipoClienteService.buscarById(1));//1 é o id do Cliente mais básico que tenho
         service.salvar(cliente);
 
         System.out.println("Salvou");
 
         ModelAndView mv = new ModelAndView("redirect:/cliente/perfil/" + cliente.getId() + "");
+        mv.addObject("cliente", cliente);
 
         attributes.addFlashAttribute("message", "Usuário criado com sucesso!");
 
@@ -74,9 +73,9 @@ public class ClienteController {
     @GetMapping("/perfil/{id}")
     public ModelAndView editCustomer(@PathVariable("id") Cliente cliente) {
 
-        ModelAndView mv = new ModelAndView("/index");
+        ModelAndView mv = new ModelAndView("/cliente/perfil");
 
-        service.usuarioLogado(cliente.getId(), mv);
+        mv.addObject("cliente", service.atualUsuarioLogado());
         return mv;
     }
 }

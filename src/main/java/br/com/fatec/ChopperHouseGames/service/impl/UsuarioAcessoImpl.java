@@ -20,10 +20,9 @@ public class UsuarioAcessoImpl implements IUsuarioAcessoService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Optional<Cliente> cliente = Optional.ofNullable(service.buscarByEmail(email));
-
         cliente.orElseThrow(() -> new UsernameNotFoundException("Email não encontrado: " + email));
-
-        return cliente.map(UsuarioAcesso::new).get();
+        UsuarioAcesso usuarioAcesso = new UsuarioAcesso(cliente.get());
+        return usuarioAcesso;
     }
 
 }

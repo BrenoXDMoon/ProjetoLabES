@@ -4,6 +4,8 @@ import br.com.fatec.ChopperHouseGames.domain.Cliente;
 import br.com.fatec.ChopperHouseGames.repository.ClienteRepository;
 import br.com.fatec.ChopperHouseGames.service.IClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -38,16 +40,31 @@ public class ClienteService implements IClienteService {
 
     @Override
     public Cliente atualUsuarioLogado() {
+
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String email;
+
+        if(principal != null){
+            if (principal instanceof UserDetails) {
+                email = ((UserDetails) principal).getUsername();
+                Cliente cliente = this.buscarByEmail(email);
+                return cliente;
+            }
+        }
         return null;
     }
 
     @Override
     public void usuarioLogado(Integer id, ModelAndView mv) {
+        Cliente cliente = this.atualUsuarioLogado();
 
+        if(!cliente.getId().equals(id)){
+            mv.setViewName("redirect:/");
+        }
     }
 
     @Override
     public boolean usuarioIsLogado(Integer id) {
-        return false;
+        return this.atualUsuarioLogado().getId().equals(id);
     }
 }

@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 
 <html lang="pt">
-<head th:insert="~{base :: head}">
+<head th:insert="~{layout/shared :: head('ChopperHouse - Perfil de Cliente')}">
     <meta charset="UTF-8">
     <title>ChopperHouse - Perfil de Cliente</title>
 </head>
 
 <body class="" onload="pag()">
-<header class="site-header py-1 header" th:replace="~{base :: header-cliente}">
+<header class="site-header py-1 header" th:replace="~{layout/baseCliente :: header}">
 
 </header>
 
@@ -16,181 +16,10 @@
     <div class="row">
         <div class="col-12 text-center">
             <h1>Bem vindo, <span th:text="${cliente.getNomeCompleto()}"></span></h1>
-
-            <div class="my-5">
-                <a class="btn btn-primary" href="senha/form.xhtml?id=#{loginBean.cliente.id}">Alterar Senha</a>
-                <a class="btn btn-primary" href="edit-form.xhtml?id=#{loginBean.cliente.id}">Alterar Dados de Cliente</a>
-            </div>
-
-            <h2 class="text-white mt-5">Documentos</h2>
-            <a href="documento/form" class="btn btn-success my-3">Adicionar Novo Documentos</a>
-            <table class="table table-bordered table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th>Tipo</th>
-                        <th>Código</th>
-                        <th>Validade</th>
-                        <th>Editar</th>
-                        <th>Deletar</th>
-                    </tr>
-
-                </thead>
-                <tbody>
-                    <tr th:each="d : ${cliente.documentos}">
-                        <td th:text="${d.tipoDocumento}"></td>
-                        <td th:text="${d.codigo}"></td>
-                        <td th:text="${d.validade}"></td>
-                        <td><a class="btn btn-primary">Editar</a></td>
-                        <td><a class="btn btn-primary">Excluir</a></td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <h2 class='text-white'>Endereços</h2>
-            <a href="endereco/form.xhtml?id=#{loginBean.id}" class="btn btn-success my-3">Adicionar Novo Endereco</a>
-            <table class="table table-bordered table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th>Logadouro</th>
-                        <th>CEP</th>
-                        <th>Tipo de Endereço</th>
-                        <th>Editar</th>
-                        <th>Deletar</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <tr th:each="e : ${cliente.enderecos}">
-                        <td th:text="${e.logradouro}"></td>
-                        <td th:text="${e.cep}"></td>
-                        <td th:text="${e.tpEndereco}"></td>
-                        <td><a class="btn btn-primary">Editar</a></td>
-                        <td><a class="btn btn-primary">Excluir</a></td>
-                    </tr>
-                </tbody>
-            </table>
-
-<!--            <h2 class='text-white'>Cartões</h2>-->
-<!--            <a href="cartao/form.xhtml?id=#{loginBean.id}" class="btn btn-success my-3">Adicionar Novo Cartão</a>-->
-<!--            <table class="table table-bordered table-striped table-hover">-->
-
-<!--                <thead>-->
-<!--                    <tr>-->
-<!--                        <th>Número</th>-->
-<!--                        <th>Validade</th>-->
-<!--                        <th>Bandeira</th>-->
-<!--                        <th>Editar</th>-->
-<!--                        <th>Deletar</th>-->
-<!--                    </tr>-->
-<!--                </thead>-->
-
-<!--                <tbody>-->
-<!--                    <tr th:each="c : ${cliente.cartoes}">-->
-<!--                        <td th:text="${c.numero}"></td>-->
-<!--                        <td th:text="${c.validade}"></td>-->
-<!--                        <td th:text="${c.bandeira}"></td>-->
-<!--                        <td><a class="btn btn-primary">Editar</a></td>-->
-<!--                        <td><a class="btn btn-primary">Excluir</a></td>-->
-<!--                    </tr>-->
-<!--                </tbody>-->
-<!--            </table>-->
-
-
-<!--            <h2 class='text-white'>Pedidos</h2>-->
-<!--            #{pedidoBean.setMaxPedido(loginBean.id)}-->
-<!--            <p class="d-none" id="totalPedido">#{pedidoBean.totalPedidos}</p>-->
-<!--            <div class="float-left mb-3">-->
-<!--                <input type="button" value="Voltar"  class="btn btn-info" onclick="volta()"/>-->
-<!--                <input type="button" value="Avan�ar" class="btn btn-info ml-4" onclick="avanca()"/>-->
-<!--            </div>-->
-<!--            <h:dataTable var="ped" value="#{pedidoBean.pedidos(loginBean.id)}" class="table table-bordered table-striped table-hover" id="pedidoCliente">-->
-<!--                <h:column>-->
-<!--                    <f:facet name="header">codigo</f:facet>-->
-<!--                    <a class="decoration-none font-weight-bold text-blue" href="#{request.contextPath}/cliente/pedido/detalhe-pedido.xhtml?id=#{ped.id}">#{ped.uuid}</a>-->
-<!--                </h:column>-->
-<!--                <h:column>-->
-<!--                    <f:facet name="header">Cartas</f:facet>-->
-<!--                    <ui:repeat value="#{ped.itens.toArray()}" var="itens">-->
-<!--                        #{itens.carta.nome} - -->
-<!--                        #{itens.quantidade}  <p></p>-->
-<!--                    </ui:repeat>-->
-<!--                </h:column>-->
-<!--                <h:column>-->
-<!--                    <f:facet name="header">Endereco Entrega</f:facet>-->
-<!--                    #{ped.endereco.logradouro}-->
-<!--                </h:column>-->
-<!--                <h:column>-->
-<!--                    <f:facet name="header">Data do Pedido</f:facet>-->
-<!--                    <h:outputText value="#{ped.dataAtualizacao.time}">]-->
-<!--                        <f:convertDateTime pattern="dd/MM/yyyy" />-->
-<!--                    </h:outputText>-->
-<!--                </h:column>-->
-<!--                <h:column>-->
-<!--                    <f:facet name="header">total</f:facet>-->
-<!--                    #{ped.total}-->
-<!--                </h:column>-->
-<!--                <h:column>-->
-<!--                    <f:facet name="header">Status</f:facet>-->
-<!--                    #{ped.statusPedido}-->
-<!--                </h:column>-->
-<!--            </h:dataTable>-->
         </div>
     </div>
 </section>
 
+<footer th:replace="~{layout/shared :: footer}"></footer>
 </body>
-<script>
-    function trocaIndex(){
-        document.getElementById("j_idt66:botaoIndex").click();
-    }
-
-    var max_item = Number(5);
-    var min_item = Number(0);
-    let totalPedido = Number(document.getElementById("totalPedido").innerHTML);
-    let totalPaginas = Math.round(totalPedido/5);
-    var countPagina = 1;
-
-    /*<![CDATA[*/
-    function avanca(){
-        if(totalPedido % 5 != 0){
-            if(countPagina <= totalPaginas){
-                max_item += 5;
-                min_item += 5;
-                countPagina += 1;
-                pag();
-            }
-        }
-        else{
-            if(countPagina < totalPaginas){
-                max_item += 5;
-                min_item += 5;
-                countPagina += 1;
-                pag();
-            }
-        }
-    }
-
-    function volta(){
-        if(countPagina > 1){
-            max_item -= 5;
-            min_item -= 5;
-            countPagina -= 1;
-            pag();
-        }
-    }
-
-    function pag(){
-        tabela = document.getElementById("pedidoCliente").getElementsByTagName("tbody")[0].children;
-
-        for (var i = 0; i <= tabela.length;i++){
-            console.log("i: " + i >= min_item && i < max_item)
-            if(i >= min_item && i < max_item){
-                tabela[i].style.display = "";
-            }else{
-                tabela[i].style.display = "none";
-            }
-        }
-    }
-    /*]]>*/
-</script>
 </html>

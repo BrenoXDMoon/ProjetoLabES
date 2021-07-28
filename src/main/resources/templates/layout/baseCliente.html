@@ -24,7 +24,7 @@
 
           <ul class="navbar-nav" sec:authorize="isAuthenticated()">
             <li class="nav-item">
-              <a class="nav-link my-2" th:href="@{'/cliente/perfil/2'}">
+              <a class="nav-link my-2" th:href="@{'/cliente/perfil/' + ${cliente.id}}">
                 <i class="now-ui-icons users_single-02"></i>
                 <p>
                   <span class="d-lg-none d-md-block">Perfil</span>

@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -25,8 +26,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth
-                .userDetailsService(userDetailsService)
-                .passwordEncoder(bCryptPasswordEncoder);
+            .userDetailsService(userDetailsService)
+            .passwordEncoder(bCryptPasswordEncoder);
     }
 
     @Override
@@ -34,34 +35,37 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.ALWAYS);
 
         http
-                .authorizeRequests()
-                    .antMatchers(HttpMethod.GET,"/admin/**")
-                        .hasRole("ADMIN")
-                    .antMatchers(HttpMethod.POST,"/admin/**")
-                        .hasRole("ADMIN")
-                    .antMatchers(HttpMethod.DELETE,"/admin/**")
-                        .hasRole("ADMIN")
+            .authorizeRequests()
+                .antMatchers(HttpMethod.GET,"/admin/**")
+                    .hasRole("ADMIN")
+                .antMatchers(HttpMethod.POST,"/admin/**")
+                    .hasRole("ADMIN")
+                .antMatchers(HttpMethod.DELETE,"/admin/**")
+                    .hasRole("ADMIN")
 
-                    .antMatchers(HttpMethod.GET,"/cliente/novo")
-                        .permitAll()
+                .antMatchers(HttpMethod.GET,"/cliente/novo")
+                    .permitAll()
 
-                    .antMatchers(HttpMethod.POST,"/cliente/novo")
-                        .permitAll()
-                    .antMatchers(HttpMethod.GET,"/cliente/{\\d+}/**")
-                        .hasAnyRole("ADMIN","CLIENTE")
+                .antMatchers(HttpMethod.POST,"/cliente/novo")
+                    .permitAll()
+                .antMatchers(HttpMethod.GET,"/cliente/**")
+                .permitAll()//.hasAnyRole("ADMIN","CLIENTE")
 
-                    .antMatchers(HttpMethod.POST,"/cliente/{\\d+}/**")
-                        .hasAnyRole("ADMIN","CLIENTE")
+                .antMatchers(HttpMethod.POST,"/cliente/**")
+                .permitAll()//.hasAnyRole("ADMIN","CLIENTE")
 
-                    .antMatchers(HttpMethod.DELETE,"/cliente/{\\d+}/**")
-                        .hasAnyRole("ADMIN","CLIENTE")
+                .antMatchers(HttpMethod.DELETE,"/cliente/**")
+                .permitAll()//.hasAnyRole("ADMIN","CLIENTE")
 
-                    .antMatchers(HttpMethod.GET,"/")
-                        .permitAll()
-                    .and()
-                    .formLogin()
+                .antMatchers(HttpMethod.GET,"/")
+                    .permitAll()
+                .and()
+                .formLogin()
                     .loginPage("/login").permitAll()
-                    .and().logout().permitAll()
+                        .defaultSuccessUrl("/", true)
+                        .failureUrl("/login")
+                    .and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .permitAll()
                     .and().cors().and().csrf().disable();
     }
 

@@ -1,5 +1,8 @@
 package br.com.fatec.ChopperHouseGames.controller;
 
+import br.com.fatec.ChopperHouseGames.domain.Cliente;
+import br.com.fatec.ChopperHouseGames.service.IClienteService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,9 +14,23 @@ import java.util.List;
 @RequestMapping("/")
 public class IndexController {
 
+    @Autowired
+    IClienteService clienteService;
+
     @GetMapping
     public ModelAndView index() {
-        ModelAndView mv = new ModelAndView("/index");
-        return mv;
+
+        ModelAndView mv = null;
+
+        if(clienteService.atualUsuarioLogado() == null){
+            mv = new ModelAndView("/index");
+            System.out.println("NÃO LOGADO");
+            return mv;
+        }else{
+            mv = new ModelAndView("/index");
+            mv.addObject("cliente", clienteService.atualUsuarioLogado());
+            System.out.println("LOGADO");
+            return mv;
+        }
     }
 }
