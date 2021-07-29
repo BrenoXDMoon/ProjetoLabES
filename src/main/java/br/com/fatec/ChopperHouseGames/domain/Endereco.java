@@ -38,5 +38,5 @@ public class Endereco extends EntidadeDominio{
     @NotNull
     @ManyToOne
     @JoinColumn
-    private Cidade city;
+    private Cidade cidade;
 }

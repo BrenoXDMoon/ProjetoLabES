@@ -14,4 +14,5 @@ public interface IClienteService {
     Cliente atualUsuarioLogado();
     void usuarioLogado(Integer id, ModelAndView mv);
     boolean usuarioIsLogado(Integer id);
+    boolean validaRoleUsuario(Cliente cliente);
 }

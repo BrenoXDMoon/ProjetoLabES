@@ -1,42 +1,68 @@
 <!DOCTYPE html>
 <html lang="pt" xmlns:th="http://www.thymeleaf.org">
-    <head th:replace="~{base :: head}">
-        <meta charset="UTF-8">
-        <title>ADMIN CLIENTE LISTA</title>
-    </head>
-    <body>
-        <header th:replace="~{base :: header-admin}"></header>
-        <div class="container-fluid">
-            <div class="row">
-                <div th:replace="~{base :: sidebar-admin}"></div>
-                <div class="col-5">
-                    <h3>Lista de Clientes</h3>
-                    <table class="table table-dark table-striped">
-                        <thead>
-                        <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Nome Completo</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Status</th>
-                            <th scope="col"></th>
-                            <th scope="col"></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <div th:each="cliente : ${clientes}">
-                            <tr>
-                                <td scope="row" th:text="${cliente.id}"></td>
-                                <td scope="row" th:text="${cliente.nomeCompleto}"></td>
-                                <td scope="row" th:text="${cliente.email}"></td>
-                                <td scope="row" th:text="${cliente.ativo}"></td>
-                                <td scope="row"><a class="btn btn-primary" th:href="@{/admin/buscar(id=${cliente.id})}">Editar</a></td>
-                                <td scope="row"><a class="btn btn-danger" th:href="@{/admin/excluir/(id=${cliente.id})}">Deletar</a></td>
-                            </tr>
-                        </div>
-                        </tbody>
-                    </table>
+<head th:replace="~{layout/shared :: head('Painel Administrativo - ChopperHouse')}"></head>
+
+<body class="">
+<div class="wrapper ">
+    <div th:replace="~{layout/baseAdmin :: sidebar}"></div>
+    <div class="main-panel" id="main-panel">
+        <nav th:replace="~{layout/baseAdmin :: header}"></nav>
+        <div class="col-md-12">
+            <div class="card card-plain">
+                <div class="card-header">
+                    <h4 class="card-title"> Table on Plain Background</h4>
+                    <p class="category"> Here is a subtitle for this table</p>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class=" text-primary">
+                                <th>#</th>
+                                <th>Nome</th>
+                                <th>Documentos</th>
+                                <th>Estado</th>
+                                <th>Email</th>
+                                <th>Tipo de Cliente</th>
+                                <th colspan="2"></th>
+                            </thead>
+                            <tbody>
+                                <tr th:each="cliente : ${clientes}">
+                                    <td th:text="${cliente.id}"></td>
+                                    <td th:text="${cliente.nomeCompleto}"></td>
+                                    <td th:if="${cliente.documentos.isEmpty()}">Sem Documentos Cadastrados</td>
+                                    <td th:if="${!cliente.documentos.isEmpty()}">
+                                        <span th:text="${cliente.documentos.get(0).tipoDocumento.nome}"></span>
+                                        <span th:text="${cliente.documentos.get(0).codigo}"></span>
+                                    </td>
+                                    <td th:if="${cliente.enderecos.isEmpty()}">Sem Endereços Cadastrados</td>
+                                    <td th:if="${!cliente.enderecos.isEmpty()}">
+                                        <span th:text="${cliente.enderecos.get(0).cidade}"></span>
+                                    </td>
+                                    <td th:text="${cliente.email}">andreia@gmail.com</td>
+                                    <td th:text="${cliente.tipoCliente.titulo}">The Sims</td>
+                                    <td class="m-auto">
+                                        <form th:object="${cliente}" th:method="delete">
+                                            <input type="hidden" name="_method" value="delete">
+                                            <input type="hidden" name="id" th:value="${cliente.id}">
+                                            <button class="btn btn-outline-danger">
+                                                <i class="fas fa-trash-alt"></i>
+                                                <span> Excluir</span>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                <tr th:if="${clientes   .isEmpty()}">
+                                    <td colspan="6" class="text-center">Nenhum cadastro de Cliente</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
-    </body>
+    </div>
+</div>
+<footer th:replace="~{layout/shared :: footer}"></footer>
+</body>
+
 </html>

@@ -1,70 +1,61 @@
-<header th:fragment="header">
-  <div class="px-3 py-2 bg-dark text-white">
-    <div class="container-fluid">
-      <div class="row flex-wrap align-items-center justify-content-between">
-        <div class="col-10">
-          <div class="row">
-            <a href="/home" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
-              <img th:src="@{/img/Chopper-icon.png}" class="w-25">
-            </a>
-            <div class="mt-2">
-              <ul class="nav e-lg-auto mb-2 justify-content-center mb-md-0">
-                <li class="nav-link">
-                  <a href="home" class="nav-link text-secondary">
-                    Início
-                  </a>
-                </li>
-                <li class="nav-link">
-                  <a href="dashboard" class="nav-link text-white">
-                    Dashboard
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+<div th:fragment="sidebar" class="sidebar" data-color="orange">
+  <!--
+    Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
+-->
+  <div class="logo">
+    <a href="/" class="simple-text logo-normal">
+      ChopperHouse
+    </a>
   </div>
-</header>
+  <div class="sidebar-wrapper" id="sidebar-wrapper">
+    <ul class="nav">
+      <li class="active">
+        <a href="./dashboard.html">
+          <i class="now-ui-icons business_chart-bar-32"></i>
+          <p>Dashboard</p>
+        </a>
+      </li>
+      <li>
+        <a th:href="@{/admin/clientes}">
+          <i class="now-ui-icons users_single-02"></i>
+          <p>Clientes</p>
+        </a>
+      </li>
+      <li>
+        <a th:href="@{/admin/produtos}">
+          <i class="now-ui-icons shopping_shop"></i>
+          <p>Produtos</p>
+        </a>
+      </li>
+      <li>
+        <a th:href="@{/admin/cupons}">
+          <i class="now-ui-icons files_single-copy-04"></i>
+          <p>Cupons</p>
+        </a>
+      </li>
+      <li>
+        <a th:href="@{/admin/pedidos}">
+          <i class="now-ui-icons shopping_delivery-fast"></i>
+          <p>Pedidos</p>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
 
-<div th:fragment="sidebar-admin" class="bg-dark text-white">
-  <div class="col-4">
-    <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;">
-      <hr>
-      <ul class="nav nav-pills flex-column mb-auto">
-        <li>
-          <a href="dashboard" class="nav-link text-white">
-            <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
-            Dashboard
-          </a>
-        </li>
-        <li>
-          <a href="lista-clientes" class="nav-link text-white">
-            <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
-            Cliente
-          </a>
-        </li>
-        <li>
-          <a href="#" class="nav-link text-white">
-            <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
-            Produtos
-          </a>
-        </li>
-        <li>
-          <a href="#" class="nav-link text-white">
-            <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
-            Pedidos
-          </a>
-        </li>
-        <li>
-          <a href="#" class="nav-link text-white">
-            <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
-            Cupom
+<nav th:fragment="header" class="navbar navbar-expand-lg bg-primary">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse justify-content-end" id="navigation">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/admin}">
+            <i class="now-ui-icons users_single-02"></i>
+            <p>
+              <span class="d-lg-none d-md-block">Painel Administrativo</span>
+            </p>
           </a>
         </li>
       </ul>
-      <hr>
     </div>
   </div>
-</div>
+</nav>

@@ -29,7 +29,7 @@ public class ClienteService implements IClienteService {
 
     @Override
     public Cliente salvar(Cliente cliente) {
-        cliente.setRoles("CLIENTE");
+        cliente.setRoles("CLIENTE,");
         return repository.saveAndFlush(cliente);
     }
 
@@ -66,5 +66,14 @@ public class ClienteService implements IClienteService {
     @Override
     public boolean usuarioIsLogado(Integer id) {
         return this.atualUsuarioLogado().getId().equals(id);
+    }
+
+    @Override
+    public boolean validaRoleUsuario(Cliente cliente) {
+
+        if(!cliente.getRoles().equals("CLIENTE")){
+            return false;
+        }
+        return true;
     }
 }

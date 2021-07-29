@@ -39,8 +39,6 @@ public class ClienteController {
     @PostMapping("/novo")
     public ModelAndView salvarCliente(@Valid ClienteDtoForm clienteForm, BindingResult result, RedirectAttributes attributes){
 
-        System.out.println("Entrou");
-
         if(!clienteForm.confirmaSenha()){
             result.addError(new ObjectError("cliente", "Senha é obrigatória"));
         }
@@ -54,13 +52,9 @@ public class ClienteController {
             return novoCliente(clienteForm);
         }
 
-        System.out.println("Validou");
-
         Cliente cliente = clienteForm.toCliente();
         cliente.setTipoCliente(iTipoClienteService.buscarById(1));//1 é o id do Cliente mais básico que tenho
         service.salvar(cliente);
-
-        System.out.println("Salvou");
 
         ModelAndView mv = new ModelAndView("redirect:/cliente/perfil/" + cliente.getId() + "");
         mv.addObject("cliente", cliente);
@@ -71,11 +65,29 @@ public class ClienteController {
     }
 
     @GetMapping("/perfil/{id}")
-    public ModelAndView editCustomer(@PathVariable("id") Cliente cliente) {
+    public ModelAndView perfil(@PathVariable("id") Cliente cliente) {
 
-        ModelAndView mv = new ModelAndView("/cliente/perfil");
+        ModelAndView  mv = new ModelAndView();
+        cliente = service.atualUsuarioLogado();
 
-        mv.addObject("cliente", service.atualUsuarioLogado());
+        if(service.validaRoleUsuario(cliente)){
+            mv.setViewName("/cliente/perfil");
+            mv.addObject("cliente", cliente);
+        }else{
+            mv.setViewName("/admin");
+            mv.addObject("admin", cliente);
+        }
+
+
+        return mv;
+    }
+
+    @PostMapping("editar")
+    public ModelAndView editaCliente(@Valid ClienteDtoForm clienteForm, BindingResult result, RedirectAttributes attributes){
+
+        ModelAndView mv = new ModelAndView();
+
+
         return mv;
     }
 }
