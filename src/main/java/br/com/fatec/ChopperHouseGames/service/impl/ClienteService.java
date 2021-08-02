@@ -3,6 +3,7 @@ package br.com.fatec.ChopperHouseGames.service.impl;
 import br.com.fatec.ChopperHouseGames.domain.Cliente;
 import br.com.fatec.ChopperHouseGames.repository.ClienteRepository;
 import br.com.fatec.ChopperHouseGames.service.IClienteService;
+import br.com.fatec.ChopperHouseGames.service.ITipoClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,6 +18,9 @@ public class ClienteService implements IClienteService {
     @Autowired
     ClienteRepository repository;
 
+    @Autowired
+    private ITipoClienteService iTipoClienteService;
+
     @Override
     public List<Cliente> buscarTodos() {
         return repository.findAll();
@@ -29,7 +33,15 @@ public class ClienteService implements IClienteService {
 
     @Override
     public Cliente salvar(Cliente cliente) {
-        cliente.setRoles("CLIENTE,");
+        cliente.setRoles("CLIENTE");
+        cliente.setTipoCliente(iTipoClienteService.buscarById(1));//1 é o id do Cliente mais básico que tenho
+        return repository.saveAndFlush(cliente);
+    }
+
+    @Override
+    public Cliente editar(Cliente cliente) {
+        cliente.setRoles("CLIENTE");
+        cliente.setTipoCliente(iTipoClienteService.buscarById(1));
         return repository.saveAndFlush(cliente);
     }
 

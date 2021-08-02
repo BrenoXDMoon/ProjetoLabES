@@ -12,6 +12,8 @@ import java.util.regex.Pattern;
 @Data
 public class ClienteDtoForm {
 
+    private Integer id;
+
     @NotNull
     @NotEmpty(message = "Nome Completo é obrigatório")
     private String nomeCompleto;
@@ -60,4 +62,18 @@ public class ClienteDtoForm {
         cliente.setTelefone(this.telefone);
         return cliente;
     }
+
+    public Cliente toClienteEdit(){
+
+        Cliente cliente = new Cliente();
+        cliente.setId(this.id);
+        cliente.setNomeCompleto(this.nomeCompleto);
+        cliente.setDataNascimento(this.dataNascimento);
+        cliente.setSenha(this.senha);
+        cliente.setAtivo(true);
+        cliente.setEmail(this.email);
+        cliente.setTelefone(this.telefone);
+        return cliente;
+    }
+
 }

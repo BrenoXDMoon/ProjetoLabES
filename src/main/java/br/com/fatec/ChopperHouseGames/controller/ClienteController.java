@@ -24,9 +24,6 @@ public class ClienteController {
     @Autowired
     private IClienteService service;
 
-    @Autowired
-    private ITipoClienteService iTipoClienteService;
-
     @GetMapping("/novo")
     public ModelAndView novoCliente(ClienteDtoForm clienteForm){
 
@@ -53,13 +50,12 @@ public class ClienteController {
         }
 
         Cliente cliente = clienteForm.toCliente();
-        cliente.setTipoCliente(iTipoClienteService.buscarById(1));//1 é o id do Cliente mais básico que tenho
         service.salvar(cliente);
 
         ModelAndView mv = new ModelAndView("redirect:/cliente/perfil/" + cliente.getId() + "");
         mv.addObject("cliente", cliente);
 
-        attributes.addFlashAttribute("message", "Usuário criado com sucesso!");
+        attributes.addFlashAttribute("mensagem", "Usuário criado com sucesso!");
 
         return mv;
     }
@@ -74,7 +70,7 @@ public class ClienteController {
             mv.setViewName("/cliente/perfil");
             mv.addObject("cliente", cliente);
         }else{
-            mv.setViewName("/admin");
+            mv.setViewName("/admin/dashboard");
             mv.addObject("admin", cliente);
         }
 
@@ -83,10 +79,16 @@ public class ClienteController {
     }
 
     @PostMapping("editar")
-    public ModelAndView editaCliente(@Valid ClienteDtoForm clienteForm, BindingResult result, RedirectAttributes attributes){
+    public ModelAndView editaCliente(ClienteDtoForm clienteForm, BindingResult result, RedirectAttributes attributes){
 
-        ModelAndView mv = new ModelAndView();
+        Cliente cliente = service.editar(clienteForm.toClienteEdit());
 
+        ModelAndView mv = new ModelAndView("/cliente/perfil");
+        mv.addObject("cliente", cliente);
+
+        System.out.println("CLIENTE ALTERADO COM SUCESSO");
+
+        attributes.addFlashAttribute("message", "Alteração realizada com sucesso!");
 
         return mv;
     }
