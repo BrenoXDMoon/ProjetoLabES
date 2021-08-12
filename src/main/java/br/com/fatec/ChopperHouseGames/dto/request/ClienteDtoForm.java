@@ -2,6 +2,7 @@ package br.com.fatec.ChopperHouseGames.dto.request;
 
 import br.com.fatec.ChopperHouseGames.domain.Cliente;
 import lombok.Data;
+import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.validation.constraints.NotEmpty;
@@ -15,27 +16,32 @@ public class ClienteDtoForm {
     private Integer id;
 
     @NotNull
-    @NotEmpty(message = "Nome Completo é obrigatório")
+    @NotEmpty(message = "Nome Completo é obrigatório!")
     private String nomeCompleto;
 
     @NotNull
-    @NotEmpty(message = "Email é obrigatório")
+    @NotEmpty(message = "Email é obrigatório!")
     private String email;
 
     @NotNull
-    @NotEmpty(message = "Data de Nascimento é obrigatório")
+    @NotEmpty(message = "Data de Nascimento é obrigatório!")
     private String dataNascimento;
 
     @NotNull
-    @NotEmpty(message = "Telefone é obrigatório")
+    @NotEmpty(message = "Telefone é obrigatório!")
     private String telefone;
 
     @NotNull
-    @NotEmpty(message = "Senha é obrigatória")
+    @NotEmpty(message = "CPF é obrigatório!")
+    @CPF(message = "CPF Inválido!")
+    private String cpf;
+
+    @NotNull
+    @NotEmpty(message = "Senha é obrigatória!")
     private String senha;
 
     @NotNull
-    @NotEmpty(message = "Confirmar a senha é obrigatório")
+    @NotEmpty(message = "Confirmar a senha é obrigatório!")
     private String confirmaSenha;
 
     public boolean confirmaSenha() {
@@ -73,6 +79,7 @@ public class ClienteDtoForm {
         cliente.setAtivo(true);
         cliente.setEmail(this.email);
         cliente.setTelefone(this.telefone);
+        cliente.setRoles("CLIENTE");
         return cliente;
     }
 

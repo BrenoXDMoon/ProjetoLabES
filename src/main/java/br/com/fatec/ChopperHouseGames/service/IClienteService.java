@@ -7,10 +7,6 @@ import java.util.List;
 
 public interface IClienteService {
 
-    public List<Cliente> buscarTodos();
-    public Cliente buscarById(Integer id);
-    public Cliente salvar(Cliente cliente);
-    public Cliente editar(Cliente cliente);
     Cliente buscarByEmail(String email);
     Cliente atualUsuarioLogado();
     void usuarioLogado(Integer id, ModelAndView mv);

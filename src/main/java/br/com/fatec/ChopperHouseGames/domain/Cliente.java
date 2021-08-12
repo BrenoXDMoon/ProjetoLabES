@@ -5,8 +5,6 @@ import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 @Entity
 @Data
@@ -19,8 +17,7 @@ public class Cliente extends EntidadeDominio {
     @Length(min = 6)
     private String senha;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
-    private List<Documento> documentos;
+    private String cpf;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
     private List<Endereco> enderecos;

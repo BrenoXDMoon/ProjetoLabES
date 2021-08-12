@@ -13,9 +13,30 @@
 </header>
 
 <section class="container-fluid perfil">
+    <div class="alert alert-success alert-dismissible" role="alert" th:if="${not #strings.isEmpty(mensagem)}">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <div>
+            <i class="fa  fa-exclamation-circle mr-3"></i>
+            <span th:text="${mensagem}"></span>
+        </div>
+    </div>
     <div class="row">
         <div class="col-12 text-center">
-            <div class="panel-header panel-header-sm">
+            <div class="panel-header panel-header-sm text-white font-weight-bolder"><h3>Dados do Cliente</h3></div>
+            <div class="card-header py-3 d-flex flex-wrap justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary" th:if="${cliente.id.equals(null)}">Cliente Novo</h6>
+                <h6 class="m-0 font-weight-bold text-primary" th:unless="${cliente.id.equals(null)}">
+                    <a th:href="@{'/cliente/perfil/' + ${cliente.id}}" th:unless="${cliente.id.equals(null)}">Detalhes do Cliente</a>
+                </h6>
+                <h6 class="m-0 font-weight-bold text-primary">
+                    <a th:href="@{'/cliente/perfil/' + ${cliente.id} + '/cartoes'}">Cartões</a>
+                </h6>
+                <h6 class="m-0 font-weight-bold text-primary" th:if="${null != cliente.id}">
+                    <a th:href="@{'/cliente/perfil/' + ${cliente.id} + '/enderecos'}">Endereços</a>
+                </h6>
+                <h6 class="m-0 font-weight-bold text-primary" th:if="${null != cliente.id}">
+                    <a th:href="@{'/cliente/perfil/' + ${cliente.id} + '/enderecos'}">Pedidos</a>
+                </h6>
             </div>
             <div class="card-body">
                 <form method="post" class="container" th:action="@{/cliente/editar}">
@@ -48,13 +69,7 @@
                         </div>
                         <button type="submit" class="btn btn-success">Salvar</button>
                     </div>
-                    <div class="alert alert-success alert-dismissible" role="alert" th:if="${not #strings.isEmpty(mensagem)}">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <div>
-                            <i class="fa  fa-exclamation-circle mr-3"></i>
-                            <span th:text="${mensagem}"></span>
-                        </div>
-                    </div>
+
                 </form>
             </div>
         </div>

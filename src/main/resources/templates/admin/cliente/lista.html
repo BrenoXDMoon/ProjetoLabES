@@ -19,8 +19,7 @@
                             <thead class=" text-primary">
                                 <th>#</th>
                                 <th>Nome</th>
-                                <th>Documentos</th>
-                                <th>Estado</th>
+                                <th>Endereco</th>
                                 <th>Email</th>
                                 <th>Tipo de Cliente</th>
                                 <th colspan="2"></th>
@@ -29,11 +28,6 @@
                                 <tr th:each="cliente : ${clientes}">
                                     <td th:text="${cliente.id}"></td>
                                     <td th:text="${cliente.nomeCompleto}"></td>
-                                    <td th:if="${cliente.documentos.isEmpty()}">Sem Documentos Cadastrados</td>
-                                    <td th:if="${!cliente.documentos.isEmpty()}">
-                                        <span th:text="${cliente.documentos.get(0).tipoDocumento.nome}"></span>
-                                        <span th:text="${cliente.documentos.get(0).codigo}"></span>
-                                    </td>
                                     <td th:if="${cliente.enderecos.isEmpty()}">Sem Endereços Cadastrados</td>
                                     <td th:if="${!cliente.enderecos.isEmpty()}">
                                         <span th:text="${cliente.enderecos.get(0).cidade}"></span>

@@ -22,30 +22,6 @@ public class ClienteService implements IClienteService {
     private ITipoClienteService iTipoClienteService;
 
     @Override
-    public List<Cliente> buscarTodos() {
-        return repository.findAll();
-    }
-
-    @Override
-    public Cliente buscarById(Integer id) {
-        return repository.findById(id).get();
-    }
-
-    @Override
-    public Cliente salvar(Cliente cliente) {
-        cliente.setRoles("CLIENTE");
-        cliente.setTipoCliente(iTipoClienteService.buscarById(1));//1 é o id do Cliente mais básico que tenho
-        return repository.saveAndFlush(cliente);
-    }
-
-    @Override
-    public Cliente editar(Cliente cliente) {
-        cliente.setRoles("CLIENTE");
-        cliente.setTipoCliente(iTipoClienteService.buscarById(1));
-        return repository.saveAndFlush(cliente);
-    }
-
-    @Override
     public Cliente buscarByEmail(String email) {
         return repository.findByEmail(email).get();
     }
