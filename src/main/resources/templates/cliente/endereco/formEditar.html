@@ -39,27 +39,27 @@
         </h6>
       </div>
       <div class="card-body">
-        <form method="post" class="container" th:object="${enderecoDtoForm}">
+        <form method="post" class="container" th:action="@{'/cliente/perfil/' + ${cliente.id} + '/enderecos/editar'}">
           <div class="row justify-content-center">
             <div class="col-md-5">
               <div class="form-group">
                 <label>Logradouro</label>
-                <input class="form-control" th:field="*{logradouro}" required>
+                <input class="form-control" th:field="*{endereco.logradouro}" required>
               </div>
               <div class="form-group">
                 <label>Numero</label>
-                <input class="form-control" th:field="*{numero}" required>
+                <input class="form-control" th:field="*{endereco.numero}" required>
               </div>
               <div class="form-group">
                 <label>CEP</label>
-                <input class="form-control" th:field="*{cep}" required>
+                <input class="form-control" th:field="*{endereco.cep}" required>
               </div>
               <div class="form-group">
                 <label>Complemento</label>
-                <input class="form-control" th:field="*{complemento}">
+                <input class="form-control" th:field="*{endereco.complemento}">
               </div>
               <label>Tipo de Endereco</label>
-              <select class="form-select" th:field="*{tipoEndereco}" required>
+              <select class="form-select" th:field="*{endereco.tipoEndereco}" required>
                 <option th:each="tpEnd : ${tiposEnd}"
                         th:value="${tpEnd}"
                         th:text="${tpEnd}">
@@ -68,11 +68,11 @@
               </select>
               <div class="form-group">
                 <label>Cidade</label>
-                <input class="form-control" th:field="*{cidade}" required>
+                <input class="form-control" th:field="*{endereco.cidade.cidade}" required>
               </div>
               <div class="form-group">
                 <label>Estado</label>
-                <input class="form-control" th:field="*{estado}" required>
+                <input class="form-control" th:field="*{endereco.cidade.estado.estado}" required>
               </div>
             </div>
           </div>

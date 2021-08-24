@@ -3,15 +3,11 @@ package br.com.fatec.ChopperHouseGames.domain;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.List;
 
-@Entity
+@Embeddable
 @Data
-public class Cidade extends EntidadeDominio{
-    private String descricao;
-
-    @ManyToOne(cascade = {CascadeType.ALL})
+public class Cidade {
+    private String cidade;
+    @Embedded
     private Estado estado;
-    @OneToMany
-    private List<Endereco> enderecos;
 }

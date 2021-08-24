@@ -15,7 +15,6 @@ public class CartaoCreditoDtoForm {
     private String numeroCartao;
 
     @Enumerated(EnumType.STRING)
-    @NotBlank(message = "A bandeira do cartão não pode ser vazia")
     private BANDEIRA bandeira;
 
     @NotBlank(message = "O Nome Impresso do cartão não pode ser vazio")

@@ -27,7 +27,10 @@ public class Endereco extends EntidadeDominio{
     @Enumerated(EnumType.STRING)
     private TIPO_ENDERECO tipoEndereco;
 
-    @NotNull
-    @ManyToOne(cascade = {CascadeType.ALL})
+    @Embedded
     private Cidade cidade;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cliente_id")
+    private Cliente cliente;
 }

@@ -13,10 +13,10 @@
 </header>
 
 <section class="container-fluid perfil">
-    <div class="alert alert-success alert-dismissible" role="alert" th:if="${!#strings.isEmpty(mensagem)}">
+    <div class="alert alert-success alert-dismissible" role="alert" th:if="${not #strings.isEmpty(mensagem)}">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <div>
-            <i class="fa  fa-exclamation-circle mr-3"></i>
+            <i class="fa fa-exclamation-circle mr-3"></i>
             <span th:text="${mensagem}"></span>
         </div>
     </div>
@@ -31,7 +31,7 @@
                 <h6 class="m-0 font-weight-bold text-primary">
                     <a th:href="@{'/cliente/perfil/' + ${cliente.id} + '/cartoes'}">Cartões</a>
                 </h6>
-                <h6 class="m-0 font-weight-bold text-primary" th:if="${null != cliente.id}">
+                <h6 class="m-0 font-weight-bold text-primary " th:if="${null != cliente.id}">
                     <a th:href="@{'/cliente/perfil/' + ${cliente.id} + '/enderecos'}">Endereços</a>
                 </h6>
                 <h6 class="m-0 font-weight-bold text-primary" th:if="${null != cliente.id}">
@@ -39,34 +39,33 @@
                 </h6>
             </div>
             <div class="card-body">
-                <form method="post" class="container" th:action="@{/cliente/editar}">
-                    <input type="hidden" th:field="*{cliente.id}" th:value="${cliente.id}">
-                    <input type="hidden" th:field="*{cliente.senha}" th:value="${cliente.senha}">
-                    <input type="hidden" th:field="*{cliente.tipoCliente}" th:value="${cliente.tipoCliente}">
+                <form method="post" class="container" th:object="${cartaoCreditoDtoForm}">
                     <div class="row justify-content-center">
                         <div class="col-md-5">
                             <div class="form-group">
-                                <label >Email</label>
-                                <input type="email" class="form-control" placeholder="email@exemplo.com.br" th:field="*{cliente.email}">
+                                <label>Numero do Cartao</label>
+                                <input class="form-control" th:field="*{numeroCartao}" required>
                             </div>
-                        </div>
-                        <div class="col-md-5">
                             <div class="form-group">
-                                <label>Nome Completo</label>
-                                <input type="text" class="form-control" placeholder="Nome Completo" th:field="*{cliente.nomeCompleto}">
+                                <label>Nome Impresso</label>
+                                <input class="form-control" th:field="*{nomeImpresso}" required>
                             </div>
-                        </div>
-                        <div class="col-5">
                             <div class="form-group">
-                                <label>Data de Nascimento</label>
-                                <input type="date" class="form-control" placeholder="Nome Completo" th:field="*{cliente.dataNascimento}">
+                                <label>Validade</label>
+                                <input class="form-control" th:field="*{validade}" required>
                             </div>
-                        </div>
-                        <div class="col-5">
                             <div class="form-group">
-                                <label>Telefone</label>
-                                <input type="text" class="form-control" placeholder="Nome Completo" th:field="*{cliente.telefone}">
+                                <label>Codigo de Seguranca</label>
+                                <input class="form-control" th:field="*{codigoSeguranca}">
                             </div>
+                            <label>Bandeira</label>
+                            <select class="form-select" th:field="*{bandeira}" required>
+                                <option th:each="band : ${bandeiras}"
+                                        th:value="${band}"
+                                        th:text="${band}">
+                                    Residencial
+                                </option>
+                            </select>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-success">Salvar</button>

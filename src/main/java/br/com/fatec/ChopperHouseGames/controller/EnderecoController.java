@@ -10,13 +10,11 @@ import br.com.fatec.ChopperHouseGames.repository.CartaoCreditoRepository;
 import br.com.fatec.ChopperHouseGames.repository.ClienteRepository;
 import br.com.fatec.ChopperHouseGames.repository.EnderecoRepository;
 import br.com.fatec.ChopperHouseGames.service.IClienteService;
+import br.com.fatec.ChopperHouseGames.service.IEnderecoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -40,6 +38,9 @@ public class EnderecoController {
 
     @Autowired
     private IFacade facade;
+
+    @Autowired
+    private IEnderecoService enderecoService;
 
     @GetMapping("/{id}/enderecos")
     public ModelAndView listarEnderecos(@PathVariable("id") Cliente cliente) {
@@ -68,12 +69,64 @@ public class EnderecoController {
 
         facade = new Facade(clienteRepository, enderecoRepository, cartaoCreditoRepository);
         cliente = clienteService.atualUsuarioLogado();
+        endereco.setCliente(cliente);
         cliente.getEnderecos().add(endereco);
         facade.salvar(endereco);
+        mv.addObject("cliente", cliente);
 
-        mv.setViewName("/cliente/perfil/" + cliente.getId());
+        mv.setViewName("/cliente/listaEnderecos");
 
         return mv;
     }
 
+    @PostMapping("/{id}/enderecos")
+    public ModelAndView excluirEndereco(@RequestParam String id, RedirectAttributes attributes){
+
+        ModelAndView mv = new ModelAndView("/cliente/perfil");
+
+        Endereco endereco = enderecoService.buscarById(Integer.parseInt(id));
+
+        facade = new Facade(clienteRepository, enderecoRepository, cartaoCreditoRepository);
+        facade.excluir(endereco);
+
+        Cliente cliente = clienteService.atualUsuarioLogado();
+
+        mv.addObject("cliente", cliente);
+
+        return mv;
+    }
+    @GetMapping("/{id}/enderecos/editar/{idEnd}")
+    public ModelAndView formularioEditar(@PathVariable("id") Cliente cliente,
+                                         @PathVariable("idEnd") Endereco idEnd ,@Valid EnderecoDtoForm enderecoDtoForm,
+                                         BindingResult result, RedirectAttributes attributes){
+
+        ModelAndView mv = new ModelAndView("/cliente/endereco/formEditar");
+
+        Endereco endereco = enderecoService.buscarById(idEnd.getId());
+
+        cliente = clienteService.atualUsuarioLogado();
+
+        mv.addObject("cliente", cliente);
+        mv.addObject("endereco", endereco);
+        mv.addObject("tiposEnd", TIPO_ENDERECO.values());
+
+        return mv;
+    }
+
+    @PostMapping("/{id}/enderecos/editar")
+    public ModelAndView editaEndereco(@Valid Endereco enderecoDtoForm, RedirectAttributes attributes){
+
+        facade = new Facade(clienteRepository, enderecoRepository, cartaoCreditoRepository);
+
+        Endereco endereco = (Endereco) facade.editar(enderecoDtoForm).getEntidade();
+
+        Cliente cliente = clienteService.atualUsuarioLogado();
+
+        ModelAndView mv = new ModelAndView("/cliente/perfil");
+        mv.addObject("cliente", cliente);
+
+        attributes.addFlashAttribute("mensagem", "Usuário atualizado com sucesso!");
+
+        return mv;
+    }
 }

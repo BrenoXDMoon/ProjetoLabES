@@ -18,9 +18,6 @@ public class ClienteService implements IClienteService {
     @Autowired
     ClienteRepository repository;
 
-    @Autowired
-    private ITipoClienteService iTipoClienteService;
-
     @Override
     public Cliente buscarByEmail(String email) {
         return repository.findByEmail(email).get();
@@ -63,5 +60,10 @@ public class ClienteService implements IClienteService {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public Cliente buscarById(Integer id) {
+        return repository.findById(id).get();
     }
 }

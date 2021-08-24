@@ -12,4 +12,5 @@ public interface IClienteService {
     void usuarioLogado(Integer id, ModelAndView mv);
     boolean usuarioIsLogado(Integer id);
     boolean validaRoleUsuario(Cliente cliente);
+    Cliente buscarById(Integer id);
 }

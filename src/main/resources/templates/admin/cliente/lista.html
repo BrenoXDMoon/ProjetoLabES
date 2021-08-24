@@ -9,10 +9,6 @@
         <nav th:replace="~{layout/baseAdmin :: header}"></nav>
         <div class="col-md-12">
             <div class="card card-plain">
-                <div class="card-header">
-                    <h4 class="card-title"> Table on Plain Background</h4>
-                    <p class="category"> Here is a subtitle for this table</p>
-                </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table">
@@ -34,19 +30,25 @@
                                     </td>
                                     <td th:text="${cliente.email}">andreia@gmail.com</td>
                                     <td th:text="${cliente.tipoCliente.titulo}">The Sims</td>
-                                    <td class="m-auto">
-                                        <form th:object="${cliente}" th:method="delete">
+                                    <td class="m-auto" th:if="${cliente.ativo}">
+                                        <form th:object="${cliente}" th:action="@{clientes}" th:method="delete">
                                             <input type="hidden" name="_method" value="delete">
                                             <input type="hidden" name="id" th:value="${cliente.id}">
                                             <button class="btn btn-outline-danger">
                                                 <i class="fas fa-trash-alt"></i>
-                                                <span> Excluir</span>
+                                                <span>Excluir</span>
                                             </button>
                                         </form>
                                     </td>
-                                </tr>
-                                <tr th:if="${clientes   .isEmpty()}">
-                                    <td colspan="6" class="text-center">Nenhum cadastro de Cliente</td>
+                                    <td class="m-auto" th:unless="${cliente.ativo}">
+                                        <form th:object="${cliente}" th:action="@{clientes}" th:method="post">
+                                            <input type="hidden" name="id" th:value="${cliente.id}">
+                                            <button class="btn btn-outline-warning">
+                                                <i class="fas fa-trash-alt"></i>
+                                                <span>Ativar</span>
+                                            </button>
+                                        </form>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>

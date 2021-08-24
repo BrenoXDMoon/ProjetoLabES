@@ -19,8 +19,11 @@ public class Cliente extends EntidadeDominio {
 
     private String cpf;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+    @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Endereco> enderecos;
+
+    @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<CartaoCredito> cartoes;
 
     @ManyToOne
     private TipoCliente tipoCliente;

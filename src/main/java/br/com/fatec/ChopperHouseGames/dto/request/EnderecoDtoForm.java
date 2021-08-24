@@ -48,9 +48,9 @@ public class EnderecoDtoForm {
         if(this.complemento != null){
             endereco.setComplemento(this.complemento);
         }
-        estado.setDescricao(this.estado);
+        estado.setEstado(this.estado);
         cidade.setEstado(estado);
-        cidade.setDescricao(this.cidade);
+        cidade.setCidade(this.cidade);
         endereco.setCidade(cidade);
 
         return endereco;

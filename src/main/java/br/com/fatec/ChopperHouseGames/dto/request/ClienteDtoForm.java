@@ -1,6 +1,7 @@
 package br.com.fatec.ChopperHouseGames.dto.request;
 
 import br.com.fatec.ChopperHouseGames.domain.Cliente;
+import br.com.fatec.ChopperHouseGames.domain.TipoCliente;
 import lombok.Data;
 import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -44,6 +45,8 @@ public class ClienteDtoForm {
     @NotEmpty(message = "Confirmar a senha é obrigatório!")
     private String confirmaSenha;
 
+    private TipoCliente tipoCliente;
+
     public boolean confirmaSenha() {
         if(null == this.confirmaSenha)
             if(null == this.senha || this.senha.length() <= 0)
@@ -60,6 +63,9 @@ public class ClienteDtoForm {
     public Cliente toCliente(){
 
         Cliente cliente = new Cliente();
+        if(this.id != null){
+            cliente.setId(this.id);
+        }
         cliente.setNomeCompleto(this.nomeCompleto);
         cliente.setDataNascimento(this.dataNascimento);
         cliente.setAtivo(true);
@@ -77,8 +83,10 @@ public class ClienteDtoForm {
         cliente.setDataNascimento(this.dataNascimento);
         cliente.setSenha(this.senha);
         cliente.setAtivo(true);
+        cliente.setCpf(this.cpf);
         cliente.setEmail(this.email);
         cliente.setTelefone(this.telefone);
+        cliente.setTipoCliente(this.tipoCliente);
         cliente.setRoles("CLIENTE");
         return cliente;
     }

@@ -2,9 +2,7 @@ package br.com.fatec.ChopperHouseGames.domain;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.*;
 
 @Entity
 @Data
@@ -17,5 +15,9 @@ public class CartaoCredito extends EntidadeDominio {
     private String nomeImpresso;
     private String validade;
     private String codigoSeguranca;
+
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
+            private Cliente cliente;
 
 }

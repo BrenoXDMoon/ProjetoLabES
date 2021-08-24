@@ -29,7 +29,7 @@
           <a th:href="@{'/cliente/perfil/' + ${cliente.id}}" th:unless="${cliente.id.equals(null)}">Detalhes do Cliente</a>
         </h6>
         <h6 class="m-0 font-weight-bold text-primary">
-          <a th:href="@{'/cliente/perfil/' + ${cliente.id} + '/documentos'}">Documentos</a>
+          <a th:href="@{'/cliente/perfil/' + ${cliente.id} + '/cartoes'}">Cartões</a>
         </h6>
         <h6 class="m-0 font-weight-bold text-primary " th:if="${null != cliente.id}">
           <a th:href="@{'/cliente/perfil/' + ${cliente.id} + '/enderecos'}">Endereços</a>
@@ -60,8 +60,13 @@
               <td th:text="${end.cep}">The Sims</td>
               <td th:text="${end.tipoEndereco}">The Sims</td>
               <td class="m-auto">
-                <form th:object="${cliente}" th:method="delete">
-                  <input type="hidden" name="_method" value="delete">
+                <a th:href="@{'/cliente/perfil/' + ${cliente.id} + '/enderecos/editar/'+ ${end.id}}" class="btn btn-outline-warning">
+                  <i class="fas fa-trash-alt"></i>
+                  <span>Alterar</span>
+                </a>
+              </td>
+              <td class="m-auto">
+                <form th:object="${cliente}" th:action="@{'/cliente/perfil/' + ${cliente.id} + '/enderecos'}" th:method="post">
                   <input type="hidden" name="id" th:value="${end.id}">
                   <button class="btn btn-outline-danger">
                     <i class="fas fa-trash-alt"></i>
@@ -73,7 +78,9 @@
             </tbody>
           </table>
         </div>
-
+        <div class="card-body">
+          <a th:href="@{'/cliente/perfil/' + ${cliente.id} + '/enderecos/novo'}" class="btn btn-success">Cadastrar Novo Endereco</a>
+        </div>
       </div>
       <div class="card-body" th:if="${cliente.enderecos.isEmpty()}">
         <a th:href="@{'/cliente/perfil/' + ${cliente.id} + '/enderecos/novo'}" class="btn btn-success" th:if="${cliente.enderecos.isEmpty()}">Cadastrar Novo Endereco</a>
@@ -81,7 +88,6 @@
     </div>
   </div>
 </section>
-
 <footer th:replace="~{layout/shared :: footer}"></footer>
 </body>
 </html>

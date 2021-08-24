@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html>
+
+<html lang="pt">
+<head th:insert="~{layout/shared :: head('ChopperHouse - Perfil de Cliente')}">
+    <meta charset="UTF-8">
+    <title>ChopperHouse - Perfil de Cliente</title>
+</head>
+
+<body class="" onload="pag()">
+<header class="site-header py-1 header" th:replace="~{layout/baseCliente :: header}">
+
+</header>
+
+<section class="container-fluid perfil">
+    <div class="alert alert-success alert-dismissible" role="alert" th:if="${not #strings.isEmpty(mensagem)}">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <div>
+            <i class="fa  fa-exclamation-circle mr-3"></i>
+            <span th:text="${mensagem}"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 text-center">
+            <div class="panel-header panel-header-sm text-white font-weight-bolder"><h3>Dados do Cliente</h3></div>
+            <div class="card-header py-3 d-flex flex-wrap justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary" th:if="${cliente.id.equals(null)}">Cliente Novo</h6>
+                <h6 class="m-0 font-weight-bold text-primary" th:unless="${cliente.id.equals(null)}">
+                    <a th:href="@{'/cliente/perfil/' + ${cliente.id}}" th:unless="${cliente.id.equals(null)}">Detalhes do Cliente</a>
+                </h6>
+                <h6 class="m-0 font-weight-bold text-primary">
+                    <a th:href="@{'/cliente/perfil/' + ${cliente.id} + '/cartoes'}">Cartões</a>
+                </h6>
+                <h6 class="m-0 font-weight-bold text-primary " th:if="${null != cliente.id}">
+                    <a th:href="@{'/cliente/perfil/' + ${cliente.id} + '/enderecos'}">Endereços</a>
+                </h6>
+                <h6 class="m-0 font-weight-bold text-primary" th:if="${null != cliente.id}">
+                    <a th:href="@{'/cliente/perfil/' + ${cliente.id} + '/enderecos'}">Pedidos</a>
+                </h6>
+            </div>
+            <div class="card-body" th:if="${!cliente.cartoes.isEmpty()}">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead class=" text-primary">
+                        <th>#</th>
+                        <th>Número do Cartao</th>
+                        <th>Bandeira</th>
+                        <th>Validade</th>
+                        <th colspan="2"></th>
+                        <th colspan="2"></th>
+                        </thead>
+                        <tbody>
+                        <tr th:each="card : ${cliente.cartoes}">
+                            <td th:text="${card.id}"></td>
+                            <td th:if="${cliente.cartoes.isEmpty()}">Sem Cartoes Cadastrados</td>
+                            <td th:if="${!cliente.cartoes.isEmpty()}">
+                                <span th:text="${card.numeroCartao}"></span>
+                            </td>
+                            <td th:text="${card.bandeira}">Master</td>
+                            <td th:text="${card.validade}">The Sims</td>
+                            <td class="m-auto">
+                                <a th:href="@{'/cliente/perfil/' + ${cliente.id} + '/cartoes/editar/'+ ${card.id}}" class="btn btn-outline-warning">
+                                    <i class="now-ui-icons ui-2_settings-90"></i>
+                                    <span>Alterar</span>
+                                </a>
+                            </td>
+                            <td class="m-auto">
+                                <form th:object="${cliente}" th:method="delete">
+                                    <input type="hidden" name="_method" value="delete">
+                                    <input type="hidden" name="id" th:value="${card.id}">
+                                    <button class="btn btn-outline-danger">
+                                        <i class="fas fa-trash-alt"></i>
+                                        <span> Excluir</span>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-body">
+                    <a th:href="@{'/cliente/perfil/' + ${cliente.id} + '/cartoes/novo'}" class="btn btn-success">Cadastrar Novo Cartao</a>
+                </div>
+            </div>
+            <div class="card-body" th:if="${cliente.cartoes.isEmpty()}">
+                <a th:href="@{'/cliente/perfil/' + ${cliente.id} + '/cartoes/novo'}" class="btn btn-success">Cadastrar Novo Cartao</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer th:replace="~{layout/shared :: footer}"></footer>
+</body>
+</html>

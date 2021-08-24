@@ -16,7 +16,7 @@
   <div class="alert alert-success alert-dismissible" role="alert" th:if="${not #strings.isEmpty(mensagem)}">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     <div>
-      <i class="fa fa-exclamation-circle mr-3"></i>
+      <i class="fa  fa-exclamation-circle mr-3"></i>
       <span th:text="${mensagem}"></span>
     </div>
   </div>
@@ -35,50 +35,10 @@
           <a th:href="@{'/cliente/perfil/' + ${cliente.id} + '/enderecos'}">Endereços</a>
         </h6>
         <h6 class="m-0 font-weight-bold text-primary" th:if="${null != cliente.id}">
-          <a th:href="@{'/cliente/perfil/' + ${cliente.id} + '/enderecos'}">Pedidos</a>
+          <a th:href="@{'/cliente/perfil/' + ${cliente.id} + '/pedidos'}">Pedidos</a>
         </h6>
       </div>
-      <div class="card-body">
-        <form method="post" class="container" th:object="${enderecoDtoForm}">
-          <div class="row justify-content-center">
-            <div class="col-md-5">
-              <div class="form-group">
-                <label>Logradouro</label>
-                <input class="form-control" th:field="*{logradouro}" required>
-              </div>
-              <div class="form-group">
-                <label>Numero</label>
-                <input class="form-control" th:field="*{numero}" required>
-              </div>
-              <div class="form-group">
-                <label>CEP</label>
-                <input class="form-control" th:field="*{cep}" required>
-              </div>
-              <div class="form-group">
-                <label>Complemento</label>
-                <input class="form-control" th:field="*{complemento}">
-              </div>
-              <label>Tipo de Endereco</label>
-              <select class="form-select" th:field="*{tipoEndereco}" required>
-                <option th:each="tpEnd : ${tiposEnd}"
-                        th:value="${tpEnd}"
-                        th:text="${tpEnd}">
-                  Residencial
-                </option>
-              </select>
-              <div class="form-group">
-                <label>Cidade</label>
-                <input class="form-control" th:field="*{cidade}" required>
-              </div>
-              <div class="form-group">
-                <label>Estado</label>
-                <input class="form-control" th:field="*{estado}" required>
-              </div>
-            </div>
-          </div>
-          <button type="submit" class="btn btn-success">Salvar</button>
-        </form>
-      </div>
+      <span> Sem Cartoes Cadastrados</span>
     </div>
   </div>
 </section>

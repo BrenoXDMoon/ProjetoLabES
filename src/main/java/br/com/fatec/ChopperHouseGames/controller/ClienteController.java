@@ -79,9 +79,11 @@ public class ClienteController {
 
         cliente.setTipoCliente(tipoClienteService.buscarById(1));
 
+        cliente.setRoles("CLIENTE");
+
         facade.salvar(cliente);
 
-        ModelAndView mv = new ModelAndView("/");
+        ModelAndView mv = new ModelAndView("/index");
         mv.addObject("cliente", cliente);
 
         attributes.addFlashAttribute("mensagem", "Usuário criado com sucesso!");
@@ -101,13 +103,11 @@ public class ClienteController {
             mv.setViewName("/admin/dashboard");
             mv.addObject("admin", cliente);
         }
-
-
         return mv;
     }
 
     @PostMapping("editar")
-    public ModelAndView editaCliente(ClienteDtoForm clienteForm, BindingResult result, RedirectAttributes attributes){
+    public ModelAndView editaCliente(ClienteDtoForm clienteForm, RedirectAttributes attributes){
 
         facade = new Facade(clienteRepository, enderecoRepository, cartaoCreditoRepository);
 
@@ -116,7 +116,7 @@ public class ClienteController {
         ModelAndView mv = new ModelAndView("/cliente/perfil");
         mv.addObject("cliente", cliente);
 
-        attributes.addFlashAttribute("message", "Alteração realizada com sucesso!");
+        attributes.addFlashAttribute("mensagem", "Usuário atualizado com sucesso!");
 
         return mv;
     }

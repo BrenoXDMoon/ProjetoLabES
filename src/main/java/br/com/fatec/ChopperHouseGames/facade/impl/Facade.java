@@ -90,7 +90,7 @@ public class Facade implements IFacade {
         executarRegras(ent, rnsEntidade);
         if (sb.length() == 0) {
             JpaRepository repository = repos.get(nmClasse);
-            repository.save(ent);
+            repository.saveAndFlush(ent);
             resultado.add(ent);
         } else {
             resultado.add(ent);
@@ -102,13 +102,31 @@ public class Facade implements IFacade {
     @Override
     public Resultado editar(EntidadeDominio ent) {
 
-        return null;
+        String nmClasse = ent.getClass().getName();
+        Map<String, List<IStrategy>> mapaEntidade = rns.get(nmClasse);
+        List<IStrategy> rnsEntidade = mapaEntidade.get("Editar");
+        executarRegras(ent, rnsEntidade);
+        if (sb.length() == 0) {
+            JpaRepository repository = repos.get(nmClasse);
+            repository.saveAndFlush(ent);
+            resultado.setEntidade(ent);
+        } else {
+            resultado.setEntidade(null);
+            resultado.setMensagem(sb.toString());
+        }
+        return this.resultado;
     }
 
     @Override
     public Resultado excluir(EntidadeDominio ent) {
+        String nmClasse = ent.getClass().getName();
+        Map<String, List<IStrategy>> mapaEntidade = rns.get(nmClasse);
 
-        return null;
+        JpaRepository repository = repos.get(nmClasse);
+        repository.delete(ent);
+        resultado.add(ent);
+
+        return this.resultado;
     }
 
     @Override
