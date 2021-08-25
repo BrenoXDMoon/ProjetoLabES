@@ -11,7 +11,10 @@ import java.util.List;
 public class Cliente extends EntidadeDominio {
 
     private String nomeCompleto;
+
+    @Column(unique = true)
     private String email;
+
     private String dataNascimento;
 
     @Length(min = 6)

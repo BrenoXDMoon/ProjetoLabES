@@ -114,13 +114,16 @@ public class EnderecoController {
     }
 
     @PostMapping("/{id}/enderecos/editar")
-    public ModelAndView editaEndereco(@Valid Endereco enderecoDtoForm, RedirectAttributes attributes){
+    public ModelAndView editaEndereco(@Valid Endereco enderecoForm, RedirectAttributes attributes){
 
         facade = new Facade(clienteRepository, enderecoRepository, cartaoCreditoRepository);
-
-        Endereco endereco = (Endereco) facade.editar(enderecoDtoForm).getEntidade();
-
         Cliente cliente = clienteService.atualUsuarioLogado();
+
+        enderecoForm.setCliente(cliente);
+
+        Endereco endereco = (Endereco) facade.editar(enderecoForm).getEntidade();
+
+
 
         ModelAndView mv = new ModelAndView("/cliente/perfil");
         mv.addObject("cliente", cliente);

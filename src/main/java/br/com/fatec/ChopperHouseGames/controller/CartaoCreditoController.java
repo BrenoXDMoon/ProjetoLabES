@@ -120,8 +120,12 @@ public class CartaoCreditoController {
 
         facade = new Facade(clienteRepository, enderecoRepository, cartaoCreditoRepository);
 
-        CartaoCredito cartaoCredito = (CartaoCredito) facade.editar(cartaoCreditoForm).getEntidade();
         Cliente cliente = clienteService.atualUsuarioLogado();
+
+        cartaoCreditoForm.setCliente(cliente);
+
+        CartaoCredito cartaoCredito = (CartaoCredito) facade.editar(cartaoCreditoForm).getEntidade();
+
 
         ModelAndView mv = new ModelAndView("/cliente/perfil");
         mv.addObject("cliente", cliente);
