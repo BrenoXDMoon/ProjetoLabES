@@ -3,7 +3,8 @@ package br.com.fatec.ChopperHouseGames.controller;
 import br.com.fatec.ChopperHouseGames.domain.Cliente;
 import br.com.fatec.ChopperHouseGames.domain.Endereco;
 import br.com.fatec.ChopperHouseGames.domain.TIPO_ENDERECO;
-import br.com.fatec.ChopperHouseGames.dto.request.EnderecoDtoForm;
+import br.com.fatec.ChopperHouseGames.dto.ClienteDto;
+import br.com.fatec.ChopperHouseGames.dto.EnderecoDto;
 import br.com.fatec.ChopperHouseGames.facade.IFacade;
 import br.com.fatec.ChopperHouseGames.facade.impl.Facade;
 import br.com.fatec.ChopperHouseGames.repository.CartaoCreditoRepository;
@@ -54,7 +55,7 @@ public class EnderecoController {
     }
 
     @GetMapping("/{id}/enderecos/novo")
-    public ModelAndView formularioNovoEndereco(@PathVariable("id") Cliente cliente, EnderecoDtoForm enderecoDto){
+    public ModelAndView formularioNovoEndereco(@PathVariable("id") Cliente cliente, EnderecoDto enderecoDto){
         ModelAndView mv = new ModelAndView("cliente/endereco/form");
         mv.addObject("cliente",cliente);
         mv.addObject("endereco", enderecoDto);
@@ -63,9 +64,9 @@ public class EnderecoController {
     }
 
     @PostMapping("/{id}/enderecos/novo")
-    public ModelAndView salvaEndereco(@PathVariable("id") Cliente cliente, @Valid EnderecoDtoForm enderecoDtoForm, BindingResult result, RedirectAttributes attributes){
+    public ModelAndView salvaEndereco(@PathVariable("id") Cliente cliente, @Valid EnderecoDto enderecoDto, BindingResult result, RedirectAttributes attributes){
         ModelAndView mv = new ModelAndView();
-        Endereco endereco = enderecoDtoForm.toEndereco();
+        Endereco endereco = enderecoDto.toEndereco();
 
         facade = new Facade(clienteRepository, enderecoRepository, cartaoCreditoRepository);
         cliente = clienteService.atualUsuarioLogado();
@@ -76,11 +77,13 @@ public class EnderecoController {
 
         mv.setViewName("/cliente/listaEnderecos");
 
+        mv.addObject("mensagem", "Endereco criado com sucesso!");
+
         return mv;
     }
 
     @PostMapping("/{id}/enderecos")
-    public ModelAndView excluirEndereco(@RequestParam String id, RedirectAttributes attributes){
+    public ModelAndView excluirEndereco(@RequestParam String id, RedirectAttributes attributes, ClienteDto clienteDto){
 
         ModelAndView mv = new ModelAndView("/cliente/perfil");
 
@@ -93,12 +96,12 @@ public class EnderecoController {
 
         mv.addObject("cliente", cliente);
 
+        mv.addObject("mensagem", "Endereco removido com sucesso!");
+
         return mv;
     }
     @GetMapping("/{id}/enderecos/editar/{idEnd}")
-    public ModelAndView formularioEditar(@PathVariable("id") Cliente cliente,
-                                         @PathVariable("idEnd") Endereco idEnd ,@Valid EnderecoDtoForm enderecoDtoForm,
-                                         BindingResult result, RedirectAttributes attributes){
+    public ModelAndView formularioEditar(@PathVariable("id") Cliente cliente, @PathVariable("idEnd") Endereco idEnd, EnderecoDto enderecoDto){
 
         ModelAndView mv = new ModelAndView("/cliente/endereco/formEditar");
 
@@ -128,7 +131,7 @@ public class EnderecoController {
         ModelAndView mv = new ModelAndView("/cliente/perfil");
         mv.addObject("cliente", cliente);
 
-        attributes.addFlashAttribute("mensagem", "Usuário atualizado com sucesso!");
+        mv.addObject("mensagem", "Endereco atualizado com sucesso!");
 
         return mv;
     }

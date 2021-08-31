@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html>
+
+<html lang="pt">
+<head th:insert="~{layout/shared :: head('ChopperHouse - Perfil de Cliente')}">
+  <meta charset="UTF-8">
+  <title>ChopperHouse - Perfil de Cliente</title>
+</head>
+
+<body class="" onload="pag()">
+<header class="site-header py-1 header" th:replace="~{layout/baseCliente :: header}">
+
+</header>
+
+<section class="container-fluid perfil">
+  <div class="row">
+    <div class="col-12 text-center">
+      <div class="panel-header panel-header-sm text-white font-weight-bolder"><h3>Alteracao de Senha</h3></div>
+      <div class="card-header py-3 d-flex flex-wrap justify-content-between">
+        <h6 class="m-0 font-weight-bold text-primary" th:if="${cliente.id.equals(null)}">Cliente Novo</h6>
+        <h6 class="m-0 font-weight-bold text-primary" th:unless="${cliente.id.equals(null)}">
+          <a th:href="@{'/cliente/perfil/' + ${cliente.id}}" th:unless="${cliente.id.equals(null)}">Detalhes do Cliente</a>
+        </h6>
+        <h6 class="m-0 font-weight-bold text-primary">
+          <a th:href="@{'/cliente/perfil/' + ${cliente.id} + '/cartoes'}">Cartões</a>
+        </h6>
+        <h6 class="m-0 font-weight-bold text-primary" th:if="${null != cliente.id}">
+          <a th:href="@{'/cliente/perfil/' + ${cliente.id} + '/enderecos'}">Endereços</a>
+        </h6>
+        <h6 class="m-0 font-weight-bold text-primary" th:if="${null != cliente.id}">
+          <a th:href="@{'/cliente/perfil/' + ${cliente.id} + '/enderecos'}">Pedidos</a>
+        </h6>
+      </div>
+      <div class="card-body">
+        <form method="post" class="container" th:object="${senhaDto}" th:action="@{'/cliente/perfil/' + ${cliente.id} + '/senha'}">
+          <div class="alert  alert-danger  alert-dismissible" role="alert" th:if="${#fields.hasAnyErrors()} ">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <th:block th:each="error : ${#fields.detailedErrors()}">
+              <div>
+                <i class="fa  fa-exclamation-circle mr-3"></i>
+                <span th:text="${error.message}"></span>
+              </div>
+            </th:block>
+          </div>
+          <div class="row justify-content-center">
+            <div class="col-7">
+              <div class="form-group">
+                <label>Senha Antiga</label>
+                <input type="password" class="form-control" id="senhaAntiga" th:field="*{senhaAntiga}">
+              </div>
+            </div>
+            <div class="col-7">
+              <div class="form-group">
+                <label>Senha Nova</label>
+                <input type="password" class="form-control" id="senha" th:field="*{senha}">
+              </div>
+            </div>
+            <div class="col-7">
+              <div class="form-group">
+                <label>Repita Senha Nova</label>
+                <input type="password" class="form-control" id="confirmaSenha" th:field="*{confirmaSenha}">
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-success">Confirmar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer th:replace="~{layout/shared :: footer}"></footer>
+</body>
+</html>

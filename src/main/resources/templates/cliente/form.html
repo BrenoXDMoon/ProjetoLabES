@@ -6,39 +6,50 @@
 
     <div class="container perfil mt-5">
         <form th:object="${clienteForm}" method="post">
+            <div th:if="${resultados != null} ">
+                <div class="alert  alert-danger  alert-dismissible" role="alert" th:if="${resultados.hasErrors()}">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <th:block th:each="error : ${resultados.getAllErrors()}">
+                        <div>
+                            <i class="fa  fa-exclamation-circle mr-3"></i>
+                            <span th:text="${error.getDefaultMessage()}"></span>
+                        </div>
+                    </th:block>
+                </div>
+            </div>
             <h4 class="py-4">Dados de Cliente</h4>
             <div class="border">
                 <div class="row justify-content-center">
                     <div class="col-10">
                         <div class="form-group">
                             <label>Nome Completo</label> <br />
-                            <input class="form-control" th:field="*{nomeCompleto}" required/>
+                            <input class="form-control" id="nomeCompleto" th:field="*{nomeCompleto}" required/>
                         </div>
                         <div class="form-group">
                             <label>CPF</label> <br />
-                            <input class="form-control" th:field="*{cpf}" required/>
+                            <input class="form-control" id="cpf" th:field="*{cpf}" required/>
                         </div>
 
                         <div class="form-group">
                             <label>Data de Nascimento</label> <br />
-                            <input th:field="*{dataNascimento}" type="date" class="form-control"/>
+                            <input th:field="*{dataNascimento}" id="dataNascimento" type="date" class="form-control"/>
                         </div>
 
                         <div class="form-group mt-2">
-                            <label for="telephone">Telefone:</label>
-                            <input type="text" class="form-control" id="telephone" aria-describedby="telephoneHelp" placeholder="(11) 91234-5678" th:field="*{telefone}" required/>
+                            <label for="telefone">Telefone:</label>
+                            <input type="text" class="form-control" id="telefone" aria-describedby="telephoneHelp" placeholder="(11) 91234-5678" th:field="*{telefone}" required/>
                         </div>
 
                         <div class="form-group">
                             <label>E-mail</label> <br />
-                            <input th:field="*{email}" type="email" class="form-control"/>
+                            <input th:field="*{email}" id="email" type="email" class="form-control"/>
                         </div>
 
                         <div class="form-group">
                             <label>Senha</label> <br />
                             <input th:field="*{senha}" type="password" id="senha" class="form-control">
-                                <validateRegex pattern = "(?=.*[a-zA-Z])(?=.*[0-9]).{8,13}"/>
-                                <message for = "senha" style = "color:red"/>
+                            <validateRegex pattern = "(?=.*[a-zA-Z])(?=.*[0-9]).{8,13}"/>
+                            <message for = "senha" style = "color:red"/>
                             </input>
                             <p class='alert-danger' th:each="error : ${#fields.errors('senha')}"
                                th:text="${error}">Erros de Validação</p>
@@ -46,7 +57,7 @@
 
                         <div class="form-group">
                             <label>Confirmar Senha</label> <br />
-                            <input type="password" th:field="*{confirmaSenha}" id="confirma_senha" required class="form-control">
+                            <input type="password" th:field="*{confirmaSenha}" id="confirmaSenha" required class="form-control">
                         </div>
                     </div>
                     <div th:if="${#fields.hasAnyErrors()}">
@@ -71,24 +82,23 @@
                         field.mask(SPMaskBehavior.apply({}, arguments), options);
                     }
                 };
-
-            $('#telephone').mask(SPMaskBehavior, spOptions);
+            $('#telefone').mask(SPMaskBehavior, spOptions);
         });
     </script>
     <script>
 
-        $("#telephone").on('keyup', function () {
-            if($("#telephone").val().replace(/\D/g, '').length < 10) {
-                $("#telephone_group").empty();
-                $("#telephone_group").append("<small class='alert-danger' id='password_alert'>Telefone inválido</small>");
+        $("#telefone").on('keyup', function () {
+            if($("#telefone").val().replace(/\D/g, '').length < 10) {
+                $("#telefone_group").empty();
+                $("#telefone_group").append("<small class='alert-danger' id='password_alert'>Telefone inválido</small>");
                 $(":submit").attr("disabled", true)
             } else {
-                $("#telephone_group").empty();
+                $("#telefone_group").empty();
                 $(":submit").attr("disabled", false)
             }
         })
 
-        $("#name").on('keyup', function () {
+        $("#nomeCompleto").on('keyup', function () {
             if(this.value.length < 3) {
                 $("#name_group").empty();
                 $("#name_group").append("<small class='alert-danger' id='password_alert'>Nome inválido</small>");

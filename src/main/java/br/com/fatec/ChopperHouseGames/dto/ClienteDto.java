@@ -1,57 +1,51 @@
-package br.com.fatec.ChopperHouseGames.dto.request;
+package br.com.fatec.ChopperHouseGames.dto;
 
 import br.com.fatec.ChopperHouseGames.domain.Cliente;
 import br.com.fatec.ChopperHouseGames.domain.TipoCliente;
+import br.com.fatec.ChopperHouseGames.repository.ClienteRepository;
 import lombok.Data;
 import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Data
-public class ClienteDtoForm {
+public class ClienteDto {
 
     private Integer id;
 
-    @NotNull
     @NotEmpty(message = "Nome Completo é obrigatório!")
     private String nomeCompleto;
 
-    @NotNull
     @NotEmpty(message = "Email é obrigatório!")
     private String email;
 
-    @NotNull
     @NotEmpty(message = "Data de Nascimento é obrigatório!")
     private String dataNascimento;
 
-    @NotNull
     @NotEmpty(message = "Telefone é obrigatório!")
     private String telefone;
 
-    @NotNull
     @NotEmpty(message = "CPF é obrigatório!")
     @CPF(message = "CPF Inválido!")
     private String cpf;
 
-    @NotNull
     @NotEmpty(message = "Senha é obrigatória!")
     private String senha;
 
-    @NotNull
     @NotEmpty(message = "Confirmar a senha é obrigatório!")
     private String confirmaSenha;
 
     private TipoCliente tipoCliente;
 
     public boolean confirmaSenha() {
-        if(null == this.confirmaSenha)
-            if(null == this.senha || this.senha.length() <= 0)
-                return false;
-        return true;
+       if(this.senha.equals(this.confirmaSenha)){
+           return true;
+       }
+        return false;
     }
 
     public boolean validaSenha() {
@@ -68,6 +62,7 @@ public class ClienteDtoForm {
         }
         cliente.setNomeCompleto(this.nomeCompleto);
         cliente.setDataNascimento(this.dataNascimento);
+        cliente.setCpf(this.cpf);
         cliente.setAtivo(true);
         cliente.setEmail(this.email);
         cliente.setSenha(new BCryptPasswordEncoder().encode(this.senha));
@@ -81,7 +76,11 @@ public class ClienteDtoForm {
         cliente.setId(this.id);
         cliente.setNomeCompleto(this.nomeCompleto);
         cliente.setDataNascimento(this.dataNascimento);
-        cliente.setSenha(this.senha);
+
+        System.out.println("-" + this.senha);
+        System.out.println("-" + this.confirmaSenha);
+        cliente.setSenha(new BCryptPasswordEncoder().encode(this.senha));
+
         cliente.setAtivo(true);
         cliente.setCpf(this.cpf);
         cliente.setEmail(this.email);
@@ -91,4 +90,13 @@ public class ClienteDtoForm {
         return cliente;
     }
 
+    public boolean validaEmail(ClienteRepository clienteRepository, String email) {
+        Optional<Cliente> optional = clienteRepository.findByEmail(email);
+
+        if(optional.isPresent()){
+            return false;
+        }else{
+            return true;
+        }
+    }
 }

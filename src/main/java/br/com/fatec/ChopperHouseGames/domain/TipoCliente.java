@@ -9,9 +9,9 @@ import java.util.List;
 @Entity
 @Data
 public class TipoCliente extends EntidadeDominio{
+
     private String titulo;
     private String descricao;
-
     @OneToMany(targetEntity = Cliente.class)
     private List<Cliente> clientes;
 }

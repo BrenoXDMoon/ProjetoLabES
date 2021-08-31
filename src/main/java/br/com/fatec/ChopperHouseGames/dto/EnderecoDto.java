@@ -1,24 +1,22 @@
-package br.com.fatec.ChopperHouseGames.dto.request;
+package br.com.fatec.ChopperHouseGames.dto;
 
 import br.com.fatec.ChopperHouseGames.domain.*;
 import com.sun.istack.NotNull;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 
 @Data
-public class EnderecoDtoForm {
+public class EnderecoDto {
 
-    @NotBlank(message = "Logradouro não pode estar em branco")
-    @NotNull
+    @NotEmpty(message = "Logradouro não pode estar em branco")
     private String logradouro;
 
-    @NotBlank(message = "Número do endereço não pode estar em branco")
-    @NotNull
+    @NotEmpty(message = "Número do endereço não pode estar em branco")
     private String numero;
 
-    @NotBlank(message = "CEP não pode estar em branco")
-    @NotNull
+    @NotEmpty(message = "CEP não pode estar em branco")
     private String cep;
 
     private String complemento;
@@ -26,12 +24,10 @@ public class EnderecoDtoForm {
     @NotNull
     private TIPO_ENDERECO tipoEndereco;
 
-    @NotBlank(message = "Cidade não pode estar em branco")
-    @NotNull
+    @NotEmpty(message = "Cidade não pode estar em branco")
     private String cidade;
 
-    @NotBlank(message = "Estado não pode estar em branco")
-    @NotNull
+    @NotEmpty(message = "Estado não pode estar em branco")
     private String estado;
 
 

@@ -18,6 +18,6 @@ public class CartaoCredito extends EntidadeDominio {
 
     @ManyToOne
     @JoinColumn(name = "cliente_id")
-            private Cliente cliente;
+    private Cliente cliente;
 
 }

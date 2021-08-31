@@ -1,4 +1,4 @@
-package br.com.fatec.ChopperHouseGames.dto.request;
+package br.com.fatec.ChopperHouseGames.dto;
 
 import br.com.fatec.ChopperHouseGames.domain.BANDEIRA;
 import br.com.fatec.ChopperHouseGames.domain.CartaoCredito;
@@ -9,7 +9,7 @@ import javax.persistence.Enumerated;
 import javax.validation.constraints.NotBlank;
 
 @Data
-public class CartaoCreditoDtoForm {
+public class CartaoCreditoDto {
 
     @NotBlank(message = "O Número do cartão não pode ser vazio")
     private String numeroCartao;

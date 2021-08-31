@@ -1,8 +1,9 @@
 package br.com.fatec.ChopperHouseGames.controller;
 
 import br.com.fatec.ChopperHouseGames.domain.*;
-import br.com.fatec.ChopperHouseGames.dto.request.CartaoCreditoDtoForm;
-import br.com.fatec.ChopperHouseGames.dto.request.EnderecoDtoForm;
+import br.com.fatec.ChopperHouseGames.dto.CartaoCreditoDto;
+import br.com.fatec.ChopperHouseGames.dto.ClienteDto;
+import br.com.fatec.ChopperHouseGames.dto.EnderecoDto;
 import br.com.fatec.ChopperHouseGames.facade.impl.Facade;
 import br.com.fatec.ChopperHouseGames.repository.CartaoCreditoRepository;
 import br.com.fatec.ChopperHouseGames.repository.ClienteRepository;
@@ -40,7 +41,7 @@ public class CartaoCreditoController {
     private ICartaoService cartaoService;
 
     @GetMapping("/{id}/cartoes")
-    public ModelAndView listarCartoes(@PathVariable("id") Cliente cliente, CartaoCreditoDtoForm dto) {
+    public ModelAndView listarCartoes(@PathVariable("id") Cliente cliente, CartaoCreditoDto dto) {
 
         facade = new Facade(clienteRepository, enderecoRepository, cartaoCreditoRepository);
 
@@ -54,7 +55,7 @@ public class CartaoCreditoController {
     }
 
     @GetMapping("/{id}/cartoes/novo")
-    public ModelAndView formularioNovoCartao(@PathVariable("id") Cliente cliente, CartaoCreditoDtoForm cartaoCreditoDtoForm){
+    public ModelAndView formularioNovoCartao(@PathVariable("id") Cliente cliente, CartaoCreditoDto cartaoCreditoDto){
 
         ModelAndView mv = new ModelAndView("cliente/cartao/form");
 
@@ -65,9 +66,9 @@ public class CartaoCreditoController {
     }
 
     @PostMapping("/{id}/cartoes/novo")
-    public ModelAndView salvaCartao(@PathVariable("id") Cliente cliente, @Valid CartaoCreditoDtoForm cartaoCreditoDtoForm, BindingResult result, RedirectAttributes attributes){
+    public ModelAndView salvaCartao(@PathVariable("id") Cliente cliente, @Valid CartaoCreditoDto cartaoCreditoDto, BindingResult result, RedirectAttributes attributes){
         ModelAndView mv = new ModelAndView();
-        CartaoCredito cartao = cartaoCreditoDtoForm.toCartao();
+        CartaoCredito cartao = cartaoCreditoDto.toCartao();
 
         facade = new Facade(clienteRepository, enderecoRepository, cartaoCreditoRepository);
         cliente = clienteService.atualUsuarioLogado();
@@ -77,6 +78,7 @@ public class CartaoCreditoController {
 
         mv.addObject("cliente", cliente);
         mv.setViewName("cliente/perfil");
+        mv.addObject("mensagem", "Cartao atualizado com sucesso!");
 
         return mv;
     }
@@ -95,17 +97,16 @@ public class CartaoCreditoController {
 
         mv.addObject("cliente", cliente);
 
+        mv.addObject("mensagem", "Cartao removido com sucesso!");
+
         return mv;
     }
 
-    @GetMapping("/{id}/cartoes/editar/{idEnd}")
-    public ModelAndView formularioEditar(@PathVariable("id") Cliente cliente,
-                                         @PathVariable("idEnd") CartaoCredito idEnd,
-                                         @Valid EnderecoDtoForm enderecoDtoForm,
-                                         BindingResult result, RedirectAttributes attributes){
+    @GetMapping("/{id}/cartoes/editar/{idCard}")
+    public ModelAndView formularioEditar(@PathVariable("id") Cliente cliente, @PathVariable("idCard") Integer idEnd, ClienteDto clienteDto){
 
         ModelAndView mv = new ModelAndView("/cliente/cartao/formEditar");
-        CartaoCredito cartaoCredito = cartaoService.buscarById(idEnd.getId());
+        CartaoCredito cartaoCredito = cartaoService.buscarById(idEnd);
         cliente = clienteService.atualUsuarioLogado();
 
         mv.addObject("cliente", cliente);
@@ -116,7 +117,7 @@ public class CartaoCreditoController {
     }
 
     @PostMapping("/{id}/cartoes/editar")
-    public ModelAndView editaEndereco(@Valid CartaoCredito cartaoCreditoForm, RedirectAttributes attributes){
+    public ModelAndView editaEndereco(@Valid CartaoCredito cartaoCreditoForm, RedirectAttributes attributes, ClienteDto clienteDto){
 
         facade = new Facade(clienteRepository, enderecoRepository, cartaoCreditoRepository);
 
@@ -129,7 +130,7 @@ public class CartaoCreditoController {
 
         ModelAndView mv = new ModelAndView("/cliente/perfil");
         mv.addObject("cliente", cliente);
-        attributes.addFlashAttribute("mensagem", "Cartao atualizado com sucesso!");
+        mv.addObject("mensagem", "Cartao atualizado com sucesso!");
 
         return mv;
     }

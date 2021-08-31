@@ -1,7 +1,6 @@
 package br.com.fatec.ChopperHouseGames.domain;
 
 import lombok.Data;
-import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import java.util.List;
@@ -14,12 +13,9 @@ public class Cliente extends EntidadeDominio {
 
     @Column(unique = true)
     private String email;
-
     private String dataNascimento;
 
-    @Length(min = 6)
     private String senha;
-
     private String cpf;
 
     @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY, cascade = CascadeType.ALL)

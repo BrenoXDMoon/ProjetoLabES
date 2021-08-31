@@ -1,7 +1,8 @@
 package br.com.fatec.ChopperHouseGames.controller;
 
 import br.com.fatec.ChopperHouseGames.domain.Cliente;
-import br.com.fatec.ChopperHouseGames.dto.request.ClienteDtoForm;
+import br.com.fatec.ChopperHouseGames.dto.ClienteDto;
+import br.com.fatec.ChopperHouseGames.dto.SenhaDto;
 import br.com.fatec.ChopperHouseGames.facade.IFacade;
 import br.com.fatec.ChopperHouseGames.facade.impl.Facade;
 import br.com.fatec.ChopperHouseGames.repository.CartaoCreditoRepository;
@@ -13,10 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -44,38 +42,41 @@ public class ClienteController {
     ITipoClienteService tipoClienteService;
 
     @GetMapping("/novo")
-    public ModelAndView novoCliente(ClienteDtoForm clienteForm){
+    public ModelAndView novoCliente(ClienteDto clienteForm, ModelAndView mv){
 
-        ModelAndView mv = new ModelAndView("/cliente/form");
+        if(mv == null){
+            mv = new ModelAndView();
+        }
+        mv.setViewName("/cliente/form");
         mv.addObject("clienteForm", clienteForm);
 
         return mv;
     }
 
     @PostMapping("/novo")
-    public ModelAndView salvarCliente(@Valid ClienteDtoForm clienteForm, BindingResult result, RedirectAttributes attributes){
+    public ModelAndView salvarCliente(@Valid ClienteDto clienteDto, BindingResult result, RedirectAttributes attributes){
 
-        System.out.println("Vamo validar");
-        if(!clienteForm.confirmaSenha()){
-            result.addError(new ObjectError("cliente", "Senha é obrigatória"));
+        ModelAndView mv = new ModelAndView();
+        if(!clienteDto.confirmaSenha()){
+            result.addError(new ObjectError("resultado", "Senha não confere com a confirmação de senha"));
         }
-        System.out.println("Senhas conferem");
-        if(!clienteForm.validaSenha()){
-            result.addError(new ObjectError("cliente", "A senha deve conter ao menos numero," +
+        if(!clienteDto.validaSenha()){
+            result.addError(new ObjectError("resultado", "A senha deve conter ao menos numero," +
                     " letra maiuscula, letra minuscula, caracter especial e a quantidade entre 8 e 20"));
         }
-        System.out.println("Serase senha é forte");
+        if(!clienteDto.validaEmail(clienteRepository, clienteDto.getEmail())){
+            result.addError(new ObjectError("resultado", "Email já cadastrado"));
+        }
 
         if(result.hasErrors()){
             System.out.println(result.getAllErrors());
-            return novoCliente(clienteForm);
+            mv.addObject("resultados", result);
+            return novoCliente(clienteDto, mv);
         }
-
-        System.out.println("não teve erro, bora salvar com coragem");
 
         facade = new Facade(clienteRepository, enderecoRepository, cartaoCreditoRepository);
 
-        Cliente cliente = clienteForm.toCliente();
+        Cliente cliente = clienteDto.toCliente();
 
         cliente.setTipoCliente(tipoClienteService.buscarById(1));
 
@@ -83,10 +84,11 @@ public class ClienteController {
 
         facade.salvar(cliente);
 
-        ModelAndView mv = new ModelAndView("/index");
+        mv.setViewName("index");
+
         mv.addObject("cliente", cliente);
 
-        attributes.addFlashAttribute("mensagem", "Usuário criado com sucesso!");
+        mv.addObject("mensagem", "Usuário criado com sucesso!");
 
         return mv;
     }
@@ -107,16 +109,60 @@ public class ClienteController {
     }
 
     @PostMapping("editar")
-    public ModelAndView editaCliente(ClienteDtoForm clienteForm, RedirectAttributes attributes){
+    public ModelAndView editaCliente(@ModelAttribute("cliente") Cliente clienteDto, BindingResult result){
 
         facade = new Facade(clienteRepository, enderecoRepository, cartaoCreditoRepository);
 
-        Cliente cliente = (Cliente) facade.editar(clienteForm.toClienteEdit()).getEntidade();
+        Cliente cliente = (Cliente) facade.editar(clienteDto).getEntidade();
 
         ModelAndView mv = new ModelAndView("/cliente/perfil");
         mv.addObject("cliente", cliente);
 
-        attributes.addFlashAttribute("mensagem", "Usuário atualizado com sucesso!");
+        mv.addObject("mensagem", "Usuário atualizado com sucesso!");
+
+        return mv;
+    }
+
+    @GetMapping("/perfil/{id}/senha")
+    public ModelAndView editaSenha(@PathVariable("id") Cliente cliente, SenhaDto senhaDto, ModelAndView mv){
+        if(mv == null){
+            mv = new ModelAndView();
+        }
+
+        mv.setViewName("/cliente/senha");
+        cliente = service.atualUsuarioLogado();
+        mv.addObject(cliente);
+
+        return mv;
+    }
+
+    @PostMapping("/perfil/{id}/senha")
+    public ModelAndView editarSenha(@Valid SenhaDto senhaDto, BindingResult result, RedirectAttributes attributes){
+        ModelAndView mv = new ModelAndView();
+        Cliente cliente = service.atualUsuarioLogado();
+        facade = new Facade(clienteRepository, enderecoRepository, cartaoCreditoRepository);
+
+        if(!senhaDto.senhaAntigaCorreta(cliente)){
+            result.addError(new ObjectError("resultado","A senha antiga não confere"));
+        }
+
+        if(!senhaDto.confirmaSenha()){
+            result.addError(new ObjectError("resultado","A senha nova não confere com a confirmação"));
+        }
+
+        if(result.hasErrors()){
+            mv.addObject("resultados", result);
+            return editaSenha(cliente,senhaDto, mv);
+        }
+
+        cliente.setSenha(senhaDto.getSenha());
+
+        cliente = (Cliente) facade.editar(cliente).getEntidade();
+
+        mv.setViewName("/cliente/perfil");
+        mv.addObject("cliente", cliente);
+
+        mv.addObject("mensagem", "Senha atualizada com sucesso!");
 
         return mv;
     }
