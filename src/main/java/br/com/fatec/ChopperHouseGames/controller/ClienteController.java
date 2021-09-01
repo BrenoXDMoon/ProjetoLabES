@@ -137,7 +137,7 @@ public class ClienteController {
     }
 
     @PostMapping("/perfil/{id}/senha")
-    public ModelAndView editarSenha(@Valid SenhaDto senhaDto, BindingResult result, RedirectAttributes attributes){
+    public ModelAndView editarSenha(@Valid SenhaDto senhaDto, BindingResult result){
         ModelAndView mv = new ModelAndView();
         Cliente cliente = service.atualUsuarioLogado();
         facade = new Facade(clienteRepository, enderecoRepository, cartaoCreditoRepository);
@@ -155,7 +155,7 @@ public class ClienteController {
             return editaSenha(cliente,senhaDto, mv);
         }
 
-        cliente.setSenha(senhaDto.getSenha());
+        cliente.setSenha(senhaDto.toSenha());
 
         cliente = (Cliente) facade.editar(cliente).getEntidade();
 

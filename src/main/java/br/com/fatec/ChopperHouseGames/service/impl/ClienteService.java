@@ -3,7 +3,6 @@ package br.com.fatec.ChopperHouseGames.service.impl;
 import br.com.fatec.ChopperHouseGames.domain.Cliente;
 import br.com.fatec.ChopperHouseGames.repository.ClienteRepository;
 import br.com.fatec.ChopperHouseGames.service.IClienteService;
-import br.com.fatec.ChopperHouseGames.service.ITipoClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;

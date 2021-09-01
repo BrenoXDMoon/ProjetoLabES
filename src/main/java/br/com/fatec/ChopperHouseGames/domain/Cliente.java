@@ -32,4 +32,10 @@ public class Cliente extends EntidadeDominio {
     private String roles;
 
     private boolean ativo;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private Carrinho carrinho;
+
+    @OneToMany(mappedBy = "cliente", targetEntity = Pedido.class)
+    private List<Pedido> pedidos;
 }

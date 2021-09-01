@@ -35,4 +35,8 @@ public class SenhaDto {
             return false;
         }
     }
+
+    public String toSenha() {
+        return new BCryptPasswordEncoder().encode(this.senha);
+    }
 }
