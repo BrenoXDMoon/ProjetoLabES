@@ -10,7 +10,7 @@
   <div class="sidebar-wrapper" id="sidebar-wrapper">
     <ul class="nav">
       <li class="active">
-        <a href="./dashboard.html">
+        <a href="/admin">
           <i class="now-ui-icons business_chart-bar-32"></i>
           <p>Dashboard</p>
         </a>
@@ -22,7 +22,7 @@
         </a>
       </li>
       <li>
-        <a th:href="@{/admin/produtos}">
+        <a th:href="@{/admin/jogos}">
           <i class="now-ui-icons shopping_shop"></i>
           <p>Produtos</p>
         </a>
@@ -37,6 +37,12 @@
         <a th:href="@{/admin/pedidos}">
           <i class="now-ui-icons shopping_delivery-fast"></i>
           <p>Pedidos</p>
+        </a>
+      </li>
+      <li>
+        <a th:href="@{/admin/devolucoes}">
+          <i class="now-ui-icons shopping_delivery-fast"></i>
+          <p>Devolucoes</p>
         </a>
       </li>
     </ul>

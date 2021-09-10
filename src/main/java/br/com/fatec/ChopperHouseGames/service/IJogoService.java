@@ -11,5 +11,5 @@ public interface IJogoService {
     Jogo excluir(Jogo jogo);
     List<Jogo> listar();
     List<Jogo> listarAtivos();
-    Jogo buscarById(Jogo jogo);
+    Jogo buscarById(Integer id);
 }

@@ -10,7 +10,7 @@ import java.util.List;
 @Data
 public class Editora extends EntidadeDominio{
 
-    private String name;
+    private String nome;
     @OneToMany(mappedBy = "editora", targetEntity = Jogo.class)
-    private List<Jogo> game;
+    private List<Jogo> jogos;
 }

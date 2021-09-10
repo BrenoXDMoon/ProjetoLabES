@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ProdutoService implements IJogoService {
+public class JogoService implements IJogoService {
 
     @Autowired
     JogoRepository repository;
@@ -58,8 +58,8 @@ public class ProdutoService implements IJogoService {
     }
 
     @Override
-    public Jogo buscarById(Jogo jogo) {
-        Optional optional = repository.findById(jogo.getId());
+    public Jogo buscarById(Integer id) {
+        Optional optional = repository.findById(id);
 
         if (optional.isPresent()){
             return (Jogo) optional.get();

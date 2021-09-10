@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout/shared :: head('Painel Administrativo - ChopperHouse')}"></head>
+
+<body class="">
+<div class="wrapper ">
+    <div th:replace="~{layout/baseAdmin :: sidebar}"></div>
+    <div class="main-panel" id="main-panel">
+        <nav th:replace="~{layout/baseAdmin :: header}"></nav>
+        <div class="col-md-12">
+            <div class="card card-plain">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <div th:replace="~{layout/shared :: mensagem}"></div>
+                        <a class="btn btn-success" th:href="@{'/admin/jogos/novo'}">Novo Jogo</a>
+                        <table class="table">
+                            <thead class=" text-primary">
+                                <th>#</th>
+                                <th>Titulo</th>
+                                <th>Preço</th>
+                                <th>Data de Lancamento</th>
+                                <th>Quantidade</th>
+                                <th colspan="2"></th>
+                                <th colspan="2"></th>
+                            </thead>
+                            <tbody>
+                                <tr th:each="jogo : ${jogos}">
+                                    <td th:text="${jogo.id}">0</td>
+                                    <td th:text="${jogo.titulo}"></td>
+                                    <td th:text="${jogo.preco}"></td>
+                                    <td th:text="${jogo.dataLancamento}"></td>
+                                    <td th:text="${jogo.quantidade}"></td>
+                                    <td class="m-auto">
+                                        <a th:href="@{'/admin/jogos/editar/'+${jogo.id}}" class="btn btn-outline-warning">
+                                            <i class="fas fa-trash-alt"></i>
+                                            <span>Alterar</span>
+                                        </a>
+                                    </td>
+                                    <td class="m-auto" th:if="${jogo.ativo}">
+                                        <form th:object="${cliente}" th:action="@{clientes}" th:method="delete">
+                                            <input type="hidden" name="_method" value="delete">
+                                            <input type="hidden" name="id" th:value="${cliente.id}">
+                                            <button class="btn btn-outline-danger">
+                                                <i class="fas fa-trash-alt"></i>
+                                                <span>Excluir</span>
+                                            </button>
+                                        </form>
+                                    </td>
+                                    <td class="m-auto" th:unless="${cliente.ativo}">
+                                        <form th:object="${cliente}" th:action="@{clientes}" th:method="post">
+                                            <input type="hidden" name="id" th:value="${cliente.id}">
+                                            <button class="btn btn-outline-warning">
+                                                <i class="fas fa-trash-alt"></i>
+                                                <span>Ativar</span>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer th:replace="~{layout/shared :: footer}"></footer>
+</body>
+
+</html>

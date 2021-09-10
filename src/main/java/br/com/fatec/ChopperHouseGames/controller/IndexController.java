@@ -27,12 +27,10 @@ public class IndexController {
         ModelAndView mv = new ModelAndView("/index");
         List<Jogo> jogos = jogoService.listarAtivos();
         mv.addObject("jogos", jogos);
-
         if(clienteService.atualUsuarioLogado() == null){
         }else{
             mv.addObject("cliente", clienteService.atualUsuarioLogado());
         }
-
         return mv;
     }
 }

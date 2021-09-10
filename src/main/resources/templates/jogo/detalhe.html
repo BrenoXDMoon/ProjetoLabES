@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{layout/shared :: head(${'ChopperHouse Games'})}"></head>
+<body>
+<header th:replace="~{layout/baseCliente :: header}"></header>
+<div class="container">
+    <div th:replace="~{layout/shared :: mensagem}"></div>
+    <h3>Últimos lançamentos</h3>
+    <div class="row justify-content-center">
+
+        <div class="col-10">
+
+            <div class="game-description">
+                <h2 class="text-black" th:text="${jogo.titulo} + ' - ' + ${jogo.plataforma.nome}">Resident Evil 3 - PS4</h2>
+                <span>Sinopse:</span>
+                <p class="text-wrap" th:text="${jogo.sinopse}">
+                    Jill Valentine é uma das últimas pessoas em Raccoon City a
+                    testemunhar as atrocidades que a Umbrella cometeu. Para
+                    pará-la a Umbrella libera sua arma secreta suprema: Nemesis!
+                </p>
+
+                <div class="">
+                    <div class="d-flex">
+                        <span>Data de publicação:</span>
+                        <p class="ml-3" th:text="${jogo.dataLancamento}">03/04/2021</p>
+                    </div>
+
+                    <div class="d-flex">
+                        <span>Desenvolvedora:</span>
+                        <p class="ml-3" th:text="${jogo.editora.nome}">Capcom</p>
+                    </div>
+
+                    <div class="d-flex">
+                        <span>Plataforma:</span>
+                        <p class="ml-3" th:text="${jogo.plataforma.nome}">PS4</p>
+                    </div>
+
+                    <div class="d-flex">
+                        <span>Gênero:</span>
+                        <th:block th:each="genero : ${jogo.generos}">
+                            <p class="ml-3" th:text="${genero.nome} + ', '">PS4</p>
+                        </th:block>
+                    </div>
+
+                    <div class="d-flex">
+                        <span>Quantidade disponível:</span>
+                        <p class="ml-3" th:text="${jogo.quantidadeDisponivel}">10</p>
+                    </div>
+
+
+                    <div class="text-center pricing mt-3">
+                        <h4 class="text-success" th:text="'R$ ' +
+                      ${jogo.preco}">R$ 300,00</h4>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-md-flex flex-wrap justify-content-around mt-5">
+                <form th:method="POST" th:action="@{${null != cliente ? '/cliente/' + cliente.id + '/checkout/adicionarJogo' : '/login'}}"
+                      th:if="${jogo.quantidadeDisponivel > 0}">
+                    <input type="hidden" name="idGame" th:value="${jogo.id}">
+                    <div class="d-flex">
+                        <div class="mr-3">
+                            <input type="number" th:name="amount" id="amount" class="form-control" min=1 value=1 th:max="${jogo.quantidadeDisponivel}" required/>
+                        </div>
+                        <button class="btn btn-outline-success">
+                            <i class="fas fa-cart-plus"></i>
+                            <span> Adicionar ao Carrinho</span>
+                        </button>
+                    </div>
+                </form>
+                <p class="alert alert-success" th:if="${jogo.quantidadeDisponivel <= 0}" >Sem estoque disponível</p>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+
+<footer th:insert="~{layout/shared :: footer}"></footer>
+
+</body>
+</html>

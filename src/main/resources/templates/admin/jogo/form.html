@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout/shared :: head('Cadastro de Jogo')}"></head>
+
+<body class="">
+<div class="wrapper ">
+    <div th:replace="~{layout/baseAdmin :: sidebar}"></div>
+    <div class="main-panel" id="main-panel">
+        <nav th:replace="~{layout/baseAdmin :: header}"></nav>
+
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-10 ">
+                    <form method="post" th:object="${jogoDto}">
+                        <div th:if="${resultados != null} ">
+                            <div class="alert  alert-danger  alert-dismissible" role="alert" th:if="${resultados.hasErrors()}">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <th:block th:each="error : ${resultados.getAllErrors()}">
+                                    <div>
+                                        <i class="fa  fa-exclamation-circle mr-3"></i>
+                                        <span th:text="${error.getDefaultMessage()}"></span>
+                                    </div>
+                                </th:block>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 form-group">
+                                <label for="image">Imagem:</label>
+                                <input type="text" class="form-control" placeholder="https://shuttershock" required id="image" th:field="*{imagem}">
+                            </div>
+
+                            <div class="col-lg-4 form-group">
+                                <label for="title">Título:</label>
+                                <input type="text" class="form-control" placeholder="Watch Dogs" required id="title" th:field="*{titulo}">
+                            </div>
+
+                            <div class="col-lg-4 form-group">
+                                <label for="price">Valor:</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">R$</span>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="180,00" id="price" required th:name="price" th:value="${#numbers.formatDecimal(jogoDto.preco, 0, 'COMMA', 2, 'POINT')}">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 form-group">
+                                <label for="amount">Quantidade:</label>
+                                <input type="text" class="form-control" placeholder="100" required id="amount" th:field="*{quantidade}">
+                            </div>
+
+                            <div class="col-lg-4 form-group">
+                                <label for="multiplayer">Multiplayer:</label>
+                                <select class="form-control" required id="multiplayer" th:field="*{multijogador}">
+                                    <option value=1>Sim</option>
+                                    <option value=0>Não</option>
+                                </select>
+                            </div>
+
+                            <div class="col-lg-4 form-group">
+                                <label for="publisher">Distribuidora:</label>
+                                <select class="form-control" required id="publisher" th:field="*{editora}">
+                                    <option data-toggle="tooltip" data-placement="top"
+                                            th:each="edit : ${editoras}"
+                                            th:value="${edit}"
+                                            th:text="${edit.}"
+                                            th:title="${publisher.name}"></option>
+                                </select>
+                            </div>
+
+                            <div class="col-lg-4 form-group">
+                                <label for="launchDate">Lançamento:</label>
+                                <input type="date" class="form-control" required id="launchDate" th:field="*{releaseDate}">
+                            </div>
+
+                            <div class="col-lg-4 form-group">
+                                <label for="platform">Plataforma:</label>
+                                <select class="form-control" required id="platform" th:field="*{platform}">
+                                    <option data-toggle="tooltip" data-placement="top"
+                                            th:each="platform : ${platformList}"
+                                            th:value="${platform.id}"
+                                            th:text="${platform.name}"
+                                            th:title="${platform.name}"></option>
+                                </select>
+                            </div>
+
+                            <div class="col-lg-4 form-group">
+                                <label for="language">Idioma:</label>
+                                <select class="form-control" required id="language" multiple th:field="*{languages}">
+                                    <option data-toggle="tooltip" data-placement="top"
+                                            th:each="language : ${languageList}"
+                                            th:value="${language.id}"
+                                            th:text="${language.name}"
+                                            th:title="${language.name}"></option>
+                                </select>
+                            </div>
+
+                            <div class="col-lg-4 form-group">
+                                <label for="gender">Genêro:</label>
+                                <select class="form-control" required id="gender" multiple th:field="*{genders}">
+                                    <option data-toggle="tooltip" data-placement="top"
+                                            th:each="gender : ${genderList}"
+                                            th:value="${gender.id}"
+                                            th:text="${gender.name}"
+                                            th:title="${gender.name}"></option>
+                                </select>
+                            </div>
+
+                            <div class="col-lg-4 form-group">
+                                <label for="age">Faixa etária:</label>
+                                <input type="number" step="1" min="1" th:field="*{age}" id="age" class="form-control"/>
+                            </div>
+
+                            <div class="col-lg-4 form-group" th:if="*{null != id}">
+                                <label for="status">Status:</label>
+                                <select class="form-control" id="status" th:field="*{active}">
+                                    <option value="1">Ativo</option>
+                                    <option value="0">Inativo</option>
+                                </select>
+                            </div>
+
+                            <div class="col-lg-4 form-group" th:if="*{null != id}">
+                                <label for="reason">Motivo:</label>
+                                <input placeholder="Breve descrição do motivo da ativação/desativação" class="form-control" id="reason" th:field="*{reason}"/>
+                            </div>
+
+                            <div class="col-12 form-group">
+                                <label for="synopsis">Sinopse:</label>
+                                <textarea type="text" class="form-control" placeholder="Sinopse" required id="synopsis" th:field="*{sinopsis}" maxlength="254"></textarea>
+                            </div>
+                            <div class="form-group col-12">
+                                <button type="submit" class="btn btn-primary" th:text="${null == game.id ? 'Cadastrar' : 'Atualizar'}">Cadastrar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<footer th:replace="~{layout/shared :: footer}"></footer>
+</body>
+
+</html>
