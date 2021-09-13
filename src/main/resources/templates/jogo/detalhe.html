@@ -5,7 +5,6 @@
 <header th:replace="~{layout/baseCliente :: header}"></header>
 <div class="container">
     <div th:replace="~{layout/shared :: mensagem}"></div>
-    <h3>Últimos lançamentos</h3>
     <div class="row justify-content-center">
 
         <div class="col-10">
@@ -61,7 +60,7 @@
                     <input type="hidden" name="idGame" th:value="${jogo.id}">
                     <div class="d-flex">
                         <div class="mr-3">
-                            <input type="number" th:name="amount" id="amount" class="form-control" min=1 value=1 th:max="${jogo.quantidadeDisponivel}" required/>
+                            <input type="number" th:name="quantidade" id="quantidade" class="form-control" min=1 value=1 th:max="${jogo.quantidadeDisponivel}" required/>
                         </div>
                         <button class="btn btn-outline-success">
                             <i class="fas fa-cart-plus"></i>

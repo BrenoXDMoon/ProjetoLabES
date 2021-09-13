@@ -1,10 +1,160 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+    <head th:insert="~{layout/shared :: head(${'ChopperHouse Games'})}"></head>
+    <body>
+        <header th:replace="~{layout/baseCliente :: header}"></header>
 
-</body>
+        <div class="container">
+            <div th:replace="~{layout/shared :: mensagem}"></div>
+            <div class="row justify-content-center">
+                <table class="table-responsive w-100 table d-block d-md-table table-hover mt-4 mb-4">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nome do Jogo</th>
+                        <th scope="col">Plataforma</th>
+                        <th scope="col">Quantidade</th>
+                        <th colspan="2"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Resident Evil 3</td>
+                        <td>PS4</td>
+                        <td>
+                            <input class="form-control" type="number" min="1" step="1" value="1" max="10">
+                        </td>
+                        <td>R$: 350,00</td>
+                        <td class="m-auto">
+                            <form>
+                                <input type="hidden" name="_method" value="delete">
+                                <input type="hidden" name="id">
+                                <button class="btn btn-outline-danger">
+                                    <i class="fas fa-trash-alt"></i>
+                                    <span>Remover produto</span>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <form th:method="POST">
+                    <div class="d-flex justify-content-between flex-wrap col-12">
+
+                        <div class="p-4 rounded bg-form col-12 col-md-6">
+                            <h5 class="text-center">Endereço de Entrega</h5>
+                            <hr />
+                            <div class="form-group">
+                                <label for="delivery_address_selector">Selecione um endereço</label>
+                                <select id="delivery_address_selector" class="form-control" required>
+                                    <option value="">Escolha um endereço de entrega</option>
+                                    <option data-toggle="tooltip" data-placement="top">Endereço 1</option>
+                                    <option data-toggle="tooltip" data-placement="top">Endereço 2</option>
+                                    <option value="-1">
+                                        Cadastre um novo endereço
+                                    </option>
+                                </select>
+                            </div>
+                            <button id="create-new-address" type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#modalDeliveryAddress" hidden>
+                                Cadastrar novo Endereço
+                            </button>
+
+                            <h5 class="text-center mt-5">Endereço de Cobrança</h5>
+                            <hr />
+                            <div class="form-group">
+                                <label for="delivery_address_selector">Selecione um endereço</label>
+                                <select id="billing_address_selector" class="form-control" required>
+                                    <option data-toggle="tooltip" data-placement="top">Endereço 1</option>
+                                    <option data-toggle="tooltip" data-placement="top">Endereço 2</option>
+                                        Cadastre um novo endereço
+                                    </option>
+                                </select>
+                            </div>
+
+                            <h5 class="text-center mt-5">Cartões</h5>
+                            <hr />
+                            <div id="payment_method_card">
+                                <div class="form-group">
+                                    <label>Selecione um cartão</label>
+                                    <select class="custom-select credit-card-selector" required
+                                            onchange="changeCreditCardOption(event)">
+                                        <option value="">Selecione um cartão</option>
+
+                                        <option data-toggle="tooltip" data-placement="top">Cartão 1</option>
+                                        <option data-toggle="tooltip" data-placement="top">Cartão 2</option>
+                                        <option value="-1">Cadastrar Novo</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Digite o valor do pagamento:</label>
+                                    <input type="number" min="10" step="0.01" class="form-control credit-card-value"  placeholder="10.00" required
+                                           name="paymentMethodList[0].paymentValue" onchange="validationValue(event)"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group mt-3">
+                                <button class="btn btn-outline-info btn-block" id="add_payment_method">
+                                    <i class="fas fa-plus-circle"></i>
+                                    <span> Adicionar mais um método de pagamento</span>
+                                </button>
+                            </div>
+
+                        </div>
+
+                        <div class="p-4 rounded bg-form col-12 col-md-5 mt-5 mt-md-0">
+                            <div class="">
+                                <h5 class="text-center">Resumo do pedido</h5>
+                                <hr />
+                                <div class="d-flex flex-wrap justify-content-between">
+                                    <span>1 produto</span>
+                                    <span>R$ 300,00</span>
+                                </div>
+
+                                <div class="d-flex flex-wrap justify-content-between">
+                                    <span>Frete</span>
+                                    <span id="shippingTaxShow">R$ 0</span>
+                                </div>
+
+                                <div class="flex-wrap justify-content-between d-none" id="cupom_div">
+                                    <span>Cupom de desconto:</span>
+                                    <div class="d-flex">
+                                        <span class="mr-1">R$ </span>
+                                        <div id="cupon_layer"></div>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex flex-wrap justify-content-between mt-4">
+                                    <input class="form-control col-8 mr-3" placeholder="Insira seu cupom aqui" id="cupom_input"/>
+                                    <button class="btn btn-outline-success col-3" onclick="cupomVerify(event)" id="apply_coupon">Aplicar</button>
+                                </div>
+                                <hr/>
+                                <div class="d-flex flex-wrap justify-content-between">
+                                    <h5 class="font-weight-bold">Total:</h5>
+                                    <div class="d-flex">
+                                        <span class="font-weight-bold mr-1">R$: </span>
+                                        <span class="font-weight-bold" id="total">200.0</span>
+                                    </div>
+                                </div>
+                                <span class="text-center d-none" id="cupomAlert">
+                                  Valor do desconto não pode ser maior que o total
+                                </span>
+                                <a th:href="@{'cliente/perfil/' + ${cliente.id} +'/pedidos'}" class="btn btn-success" id="final_step">
+                                    Finalizar Compra
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Button trigger modal -->
+                    <button id="create-new-credit-card" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalCreditCard" hidden>
+                        Cadastrar novo cartão de crédito
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <footer th:insert="~{layout/shared :: footer}"></footer>
+    </body>
 </html>

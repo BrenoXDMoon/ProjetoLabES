@@ -1,6 +1,7 @@
 package br.com.fatec.ChopperHouseGames.controller;
 
 import br.com.fatec.ChopperHouseGames.domain.Cliente;
+import br.com.fatec.ChopperHouseGames.domain.Devolucao;
 import br.com.fatec.ChopperHouseGames.dto.ClienteDto;
 import br.com.fatec.ChopperHouseGames.dto.SenhaDto;
 import br.com.fatec.ChopperHouseGames.facade.IFacade;
@@ -163,6 +164,26 @@ public class ClienteController {
         mv.addObject("cliente", cliente);
 
         mv.addObject("mensagem", "Senha atualizada com sucesso!");
+
+        return mv;
+    }
+
+    @GetMapping("perfil/{id}/pedidos")
+    public ModelAndView listaPedidos(@PathVariable("id") Cliente cliente) {
+        ModelAndView mv = new ModelAndView("cliente/pedido/lista");
+        //gerar pedidos reais
+        mv.addObject("cliente", cliente);
+        mv.addObject("devolucao", new Devolucao());
+
+        return mv;
+    }
+
+    @GetMapping("perfil/{id}/pedidos/visualizar")
+    public ModelAndView visualizaPedido(@PathVariable("id") Cliente cliente) {
+        ModelAndView mv = new ModelAndView("cliente/pedido/detalhe");
+        //jogar pedido pro front
+        mv.addObject("cliente", cliente);
+        mv.addObject("devolucao", new Devolucao());
 
         return mv;
     }
