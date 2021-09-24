@@ -6,6 +6,7 @@ import br.com.fatec.ChopperHouseGames.domain.Jogo;
 import br.com.fatec.ChopperHouseGames.dto.JogoDto;
 import br.com.fatec.ChopperHouseGames.facade.IFacade;
 import br.com.fatec.ChopperHouseGames.service.IClienteService;
+import br.com.fatec.ChopperHouseGames.service.IEditoraService;
 import br.com.fatec.ChopperHouseGames.service.IJogoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,6 +29,7 @@ public class JogoController {
 
     @Autowired
     private IClienteService clienteService;
+
     @Autowired
     private IEditoraService editoraService;
 

@@ -16,4 +16,11 @@ public class EnderecoService implements IEnderecoService {
     public Endereco buscarById(Integer id) {
         return repository.findById(id).get();
     }
+
+    @Override
+    public Endereco salvar(Endereco end) {
+
+        Endereco endereco = repository.saveAndFlush(end);
+        return endereco;
+    }
 }

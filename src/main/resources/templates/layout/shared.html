@@ -11,13 +11,16 @@
   <link th:href="@{/css/now-ui-dashboard.css?v=1.5.0}" rel="stylesheet" />
   <link th:href="@{/demo/demo.css}" rel="stylesheet" />
 </head>
-
 <div th:fragment="mensagem">
-  <div class="alert alert-success alert-dismissible" role="alert" th:if="${mensagem != null and !mensagem.isEmpty()}">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    <div>
-      <i class="fa  fa-exclamation-circle mr-3"></i>
-      <span th:text="${mensagem}"></span>
+  <div th:if="${resultados != null} ">
+    <div class="alert  alert-danger alert-dismissible" role="alert" th:if="${resultados.hasErrors()}">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <th:block th:each="error : ${resultados.getAllErrors()}">
+        <div>
+          <i class="fa  fa-exclamation-circle mr-3"></i>
+          <span th:text="${error.getDefaultMessage()}"></span>
+        </div>
+      </th:block>
     </div>
   </div>
 </div>
@@ -34,6 +37,7 @@
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
   <script th:src="@{/js/now-ui-dashboard.min.js?v=1.5.0}" type="text/javascript"></script><!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
   <script th:src="@{/demo/demo.js}"></script>
+  <script th:src="@{/js/sb-admin-2.js}"></script>
   <script>
     $(document).ready(function() {
 

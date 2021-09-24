@@ -1,12 +1,15 @@
 package br.com.fatec.ChopperHouseGames.domain;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Data
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Cliente extends EntidadeDominio {
 
     private String nomeCompleto;

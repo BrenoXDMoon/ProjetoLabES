@@ -32,6 +32,14 @@
               </a>
             </li>
             <li class="nav-item">
+              <a class="nav-link my-2" id="carrinho" th:href="@{'/cliente/perfil/' + ${cliente.id} +'/checkout'}">
+                <i class="now-ui-icons shopping_cart-simple"></i>
+                <p>
+                  <span class="d-lg-none d-md-block">Carrinho</span>
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
               <form th:action="@{/logout}" method="post">
                 <button type="submit" id="logout" class="nav-link btn btn-danger">Logout</button>
               </form>

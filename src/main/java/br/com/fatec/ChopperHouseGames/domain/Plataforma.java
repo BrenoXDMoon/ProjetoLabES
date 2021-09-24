@@ -1,13 +1,16 @@
 package br.com.fatec.ChopperHouseGames.domain;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import java.util.List;
 
 @Entity
-@Data
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Plataforma extends EntidadeDominio{
     private String nome;
 

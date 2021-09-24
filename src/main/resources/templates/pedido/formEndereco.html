@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html>
+
+<html lang="pt">
+<head th:insert="~{layout/shared :: head('Cadastro Endereco - Checkout')}">
+    <meta charset="UTF-8">
+    <title>ChopperHouse - Perfil de Cliente</title>
+</head>
+
+<body class="" onload="pag()">
+<header class="site-header py-1 header" th:replace="~{layout/baseCliente :: header}">
+
+</header>
+
+<section class="container-fluid perfil">
+    <div th:replace="~{layout/shared :: mensagem}"></div>
+    <div class="row">
+        <div class="card-body">
+            <form method="post" class="container" th:object="${enderecoDto}">
+                <div class="row justify-content-center">
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <label>Logradouro</label>
+                            <input class="form-control" th:field="*{logradouro}" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Numero</label>
+                            <input class="form-control" th:field="*{numero}" required>
+                        </div>
+                        <div class="form-group">
+                            <label>CEP</label>
+                            <input class="form-control" th:field="*{cep}" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Complemento</label>
+                            <input class="form-control" th:field="*{complemento}">
+                        </div>
+                        <label>Tipo de Endereco</label>
+                        <select class="form-select" th:field="*{tipoEndereco}" required>
+                            <option th:each="tpEnd : ${tiposEnd}"
+                                    th:value="${tpEnd}"
+                                    th:text="${tpEnd}">
+                                Residencial
+                            </option>
+                        </select>
+                        <div class="form-group">
+                            <label>Cidade</label>
+                            <input class="form-control" th:field="*{cidade}" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Estado</label>
+                            <input class="form-control" th:field="*{estado}" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-3">
+                        <a class="btn btn-danger" th:href="@{'/cliente/perfil/' + ${cliente.id} +'/checkout'}">Cancelar</a>
+                        <button type="submit" class="btn btn-success">Salvar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        </div>
+    </div>
+</section>
+
+<footer th:replace="~{layout/shared :: footer}"></footer>
+</body>
+</html>

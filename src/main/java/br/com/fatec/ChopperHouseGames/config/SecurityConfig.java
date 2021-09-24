@@ -25,7 +25,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        System.out.println("indo logar");
         auth
             .userDetailsService(userDetailsService)
             .passwordEncoder(bCryptPasswordEncoder);

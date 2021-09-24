@@ -16,4 +16,9 @@ public class CartaoService implements ICartaoService {
     public CartaoCredito buscarById(Integer id) {
         return repository.findById(id).get();
     }
+
+    @Override
+    public CartaoCredito salvar(CartaoCredito cartaoCredito) {
+        return repository.saveAndFlush(cartaoCredito);
+    }
 }

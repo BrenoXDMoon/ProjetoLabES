@@ -1,6 +1,6 @@
 package br.com.fatec.ChopperHouseGames.domain;
 
-import lombok.Data;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -8,7 +8,10 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Data
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Jogo extends EntidadeDominio {
 
     private String titulo;

@@ -1,4 +1,4 @@
-package br.com.fatec.ChopperHouseGames.controller;
+package br.com.fatec.ChopperHouseGames.service;
 
 import br.com.fatec.ChopperHouseGames.domain.Editora;
 

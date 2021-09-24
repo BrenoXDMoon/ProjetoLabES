@@ -1,6 +1,6 @@
 package br.com.fatec.ChopperHouseGames.service.impl;
 
-import br.com.fatec.ChopperHouseGames.controller.IEditoraService;
+import br.com.fatec.ChopperHouseGames.service.IEditoraService;
 import br.com.fatec.ChopperHouseGames.domain.Editora;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

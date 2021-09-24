@@ -48,16 +48,15 @@
 
 
                     <div class="text-center pricing mt-3">
-                        <h4 class="text-success" th:text="'R$ ' +
-                      ${jogo.preco}">R$ 300,00</h4>
+                        <h4 class="text-success" th:text="'R$ ' + ${jogo.preco}">R$ 300,00</h4>
                     </div>
                 </div>
             </div>
 
             <div class="d-md-flex flex-wrap justify-content-around mt-5">
-                <form th:method="POST" th:action="@{${null != cliente ? '/cliente/' + cliente.id + '/checkout/adicionarJogo' : '/login'}}"
+                <form th:method="POST" th:action="@{${null != cliente ? '/cliente/perfil/' + cliente.id + '/checkout/adicionarJogo' : '/login'}}"
                       th:if="${jogo.quantidadeDisponivel > 0}">
-                    <input type="hidden" name="idGame" th:value="${jogo.id}">
+                    <input type="hidden" th:name="idJogo" th:value="${jogo.id}">
                     <div class="d-flex">
                         <div class="mr-3">
                             <input type="number" th:name="quantidade" id="quantidade" class="form-control" min=1 value=1 th:max="${jogo.quantidadeDisponivel}" required/>

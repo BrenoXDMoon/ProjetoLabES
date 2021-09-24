@@ -55,7 +55,28 @@
                         <h6 class="f-18 font-weight-bold">Data do Pedido:</h6>
                         <label>13/09/2021</label><br/>
                     </div>
-                    <a class="btn btn-danger" th:href="@{'/cliente/perfil/' + ${cliente.id} + '/pedidos'}">Solicitar devolucao</a>
+                    <div class="form-group">
+                        <h6>Produtos</h6>
+                        <table>
+                            <thead class="table">
+                            <tr>
+                                <th>Nome</th>
+                                <th>Quantidade</th>
+                                <th colspan="2"></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>Resident Evil 4</td>
+                                <td>1</td>
+                                <td>
+                                    <a class="btn btn-outline-danger">Trocar item</a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <a class="btn btn-danger" th:href="@{'/cliente/perfil/' + ${cliente.id} + '/pedidos'}">Solicitar Cancelamento do Pedido</a>
                 </div>
             </div>
         </div>

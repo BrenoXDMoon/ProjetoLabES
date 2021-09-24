@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout/shared :: head('Painel Administrativo - ChopperHouse')}"></head>
+
+<body class="">
+<div class="wrapper ">
+    <div th:replace="~{layout/baseAdmin :: sidebar}"></div>
+    <div class="main-panel" id="main-panel">
+        <nav th:replace="~{layout/baseAdmin :: header}"></nav>
+        <div class="col-md-12">
+            <div class="card card-plain">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <div th:replace="~{layout/shared :: mensagem}"></div>
+                        <h2 class=' mb-5'>Detalhe do Pedido</h2>
+                        <div class="form-group">
+                            <h6 class="f-18 font-weight-bold">ID de Pedido:</h6>
+                            <label>456</label>
+                        </div>
+                        <div class="form-group">
+                            <h6 class="f-18 font-weight-bold">Logradouro de Entrega:</h6>
+                            <label>Rua General Osório</label>
+                        </div>
+                        <div class="form-group">
+                            <h6 class="f-18 font-weight-bold">Total do Pedido:</h6>
+                            <label>R$ 90.0</label>
+                        </div>
+                        <div class="form-group">
+                            <h6 class="f-18 font-weight-bold">Status do Pedido:</h6>
+                            <label>EM PROCESSAMENTO</label><br/>
+                        </div>
+                        <div class="form-group">
+                            <h6 class="f-18 font-weight-bold">Data do Pedido:</h6>
+                            <label>13/09/2021</label><br/>
+                        </div>
+                        <div class="form-group">
+                            <h6>Produtos</h6>
+                            <table>
+                                <thead class="table">
+                                    <tr>
+                                        <th>Nome</th>
+                                        <th>Quantidade</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Resident Evil 4</td>
+                                        <td>1</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <select class="form-control">
+                            <option>EM PROCESSAMENTO</option>
+                            <option>PAGAMENTO REALIZADO</option>
+                            <option>EM TRANSPORTE</option>
+                            <option>TROCA SOLICITADA</option>
+                            <option>TROCA AUTORIZADA</option>
+                            <option>TROCA REJEITADA</option>
+                            <option>CANCELAMENTO SOLICITADO</option>
+                            <option>CANCELAMENTO REJEITADO</option>
+                            <option>TROCA ACEITA</option>
+                            <option>CANCELAMENTO ACEITO</option>
+                            <option>ENTREGA REALIZADA</option>
+                            <option>TROCA EFETUADA</option>
+                            <option>CANCELAMENTO EFETUADO</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a class="btn btn-danger" th:href="@{/admin/pedidos}">Gravar Alteracoes</a>
+    </div>
+</div>
+<footer th:replace="~{layout/shared :: footer}"></footer>
+</body>
+
+</html>
