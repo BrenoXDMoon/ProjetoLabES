@@ -3,12 +3,8 @@ package br.com.fatec.ChopperHouseGames.controller;
 import br.com.fatec.ChopperHouseGames.domain.*;
 import br.com.fatec.ChopperHouseGames.dto.CartaoCreditoDto;
 import br.com.fatec.ChopperHouseGames.dto.EnderecoDto;
-import br.com.fatec.ChopperHouseGames.service.ICarrinhoService;
-import br.com.fatec.ChopperHouseGames.service.ICartaoService;
-import br.com.fatec.ChopperHouseGames.service.IClienteService;
-import br.com.fatec.ChopperHouseGames.service.IEnderecoService;
+import br.com.fatec.ChopperHouseGames.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -32,15 +28,23 @@ public class CheckoutController {
     @Autowired
     ICartaoService cartaoService;
 
+    @Autowired
+    private IPedidoService pedidoService;
+
     @GetMapping
-    public ModelAndView checkout(@PathVariable("id") Cliente cliente, Pedido pedido) {
+    public ModelAndView checkout(@PathVariable("id") Cliente cliente, Pedido pedido, ModelAndView mv) {
 
         double totalPedido = cliente.getCarrinho().getItens().stream().mapToDouble(i -> i.getJogo().getPreco() * i.getQuantidade().doubleValue()).sum();
 
-        ModelAndView mv = new ModelAndView("pedido/checkout");
+        if(mv == null){
+            mv = new ModelAndView();
+        }
+        mv.setViewName("pedido/checkout");
+
         mv.addObject("cliente", cliente);
         mv.addObject("totalProdutos", cliente.getCarrinho().getItens().stream().mapToDouble(i -> i.getJogo().getPreco() * i.getQuantidade().doubleValue()).sum());
         mv.addObject("totalPedido", totalPedido + 15);
+        pedido.setTotal(totalPedido);
         mv.addObject("pedido", pedido);
         mv.addObject("cartaoCredito", new CartaoCredito());
         mv.addObject("endereco", new Endereco());
@@ -51,9 +55,17 @@ public class CheckoutController {
         return mv;
     }
 
-    @GetMapping("finaliza-pedido")
-    public ModelAndView finishCheckout(@PathVariable("id") Cliente cliente) {
+    @PostMapping
+    public ModelAndView finalizarPedido(@PathVariable("id") Cliente cliente, @Valid Pedido pedido, BindingResult result) {
         ModelAndView mv = new ModelAndView("redirect:/cliente/perfil/" + cliente.getId() + "/pedidos");
+
+        pedido.setCliente(cliente);
+        pedidoService.salvar(pedido, result);
+
+        if(result.hasErrors()){
+            mv.addObject("resultados", result);
+            return checkout(cliente, pedido, mv);
+        }
 
         return mv;
     }

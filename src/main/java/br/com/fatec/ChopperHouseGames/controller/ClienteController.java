@@ -2,6 +2,7 @@ package br.com.fatec.ChopperHouseGames.controller;
 
 import br.com.fatec.ChopperHouseGames.domain.Cliente;
 import br.com.fatec.ChopperHouseGames.domain.Devolucao;
+import br.com.fatec.ChopperHouseGames.domain.Pedido;
 import br.com.fatec.ChopperHouseGames.dto.ClienteDto;
 import br.com.fatec.ChopperHouseGames.dto.SenhaDto;
 import br.com.fatec.ChopperHouseGames.facade.IFacade;
@@ -10,6 +11,7 @@ import br.com.fatec.ChopperHouseGames.repository.CartaoCreditoRepository;
 import br.com.fatec.ChopperHouseGames.repository.ClienteRepository;
 import br.com.fatec.ChopperHouseGames.repository.EnderecoRepository;
 import br.com.fatec.ChopperHouseGames.service.IClienteService;
+import br.com.fatec.ChopperHouseGames.service.IPedidoService;
 import br.com.fatec.ChopperHouseGames.service.ITipoClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -38,6 +40,9 @@ public class ClienteController {
 
     @Autowired
     CartaoCreditoRepository cartaoCreditoRepository;
+
+    @Autowired
+    IPedidoService pedidoService;
 
     @Autowired
     ITipoClienteService tipoClienteService;
@@ -178,10 +183,12 @@ public class ClienteController {
         return mv;
     }
 
-    @GetMapping("perfil/{id}/pedidos/visualizar")
-    public ModelAndView visualizaPedido(@PathVariable("id") Cliente cliente) {
+    @GetMapping("perfil/{id}/pedidos/visualizar/{idPed}")
+    public ModelAndView visualizaPedido(@PathVariable("id") Cliente cliente, @PathVariable("idPed") Pedido pedido) {
         ModelAndView mv = new ModelAndView("cliente/pedido/detalhe");
-        //jogar pedido pro front
+
+
+
         mv.addObject("cliente", cliente);
         mv.addObject("devolucao", new Devolucao());
 

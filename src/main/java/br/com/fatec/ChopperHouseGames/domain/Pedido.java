@@ -26,11 +26,11 @@ public class Pedido extends EntidadeDominio {
     private Status status;
 
     @ManyToOne
-    @JoinColumn(name = "address_id")
+    @JoinColumn(name = "endereco_id")
     private Endereco endereco;
 
     @ManyToOne
-    @JoinColumn(name = "address_billing_id")
+    @JoinColumn(name = "endereco_cobranca_id")
     private Endereco enderecoCobranca;
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})

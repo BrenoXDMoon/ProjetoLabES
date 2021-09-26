@@ -7,48 +7,52 @@
         <div class="container">
             <div th:replace="~{layout/shared :: mensagem}"></div>
             <div class="row justify-content-center">
-                <table class="table-responsive w-100 table d-block d-md-table table-hover mt-4 mb-4">
-                    <thead>
-                    <tr>
-                        <th scope="col">Nome do Jogo</th>
-                        <th scope="col">Plataforma</th>
-                        <th scope="col">Quantidade</th>
-                        <th colspan="2"></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:if="${!cliente.carrinho.itens.isEmpty()}" th:each="item : ${cliente.carrinho.itens}">
-                        <td th:text="${item.jogo.titulo}">Resident Evil 3</td>
-                        <td th:text="${item.jogo.plataforma.nome}">PS4</td>
-                        <td>
-                            <input class="form-control" type="number" min="1" step="1" th:value="${item.quantidade}" th:max="${item.jogo.quantidadeDisponivel}">
-                        </td>
-                        <td th:text="'R$ ' + ${item.jogo.preco}">R$ 350,00</td>
-                        <td class="m-auto">
-                            <form th:method="delete" th:action="@{'/cliente/perfil/' + ${cliente.id} +'/checkout/removeItem'}">
-                                <input type="hidden" name="_method" value="delete">
-                                <input type="hidden" name="id" th:value="${item.id}">
-                                <button class="btn btn-outline-danger">
-                                    <i class="fas fa-trash-alt"></i>
-                                    <span>Remover produto</span>
-                                </button>
-                            </form>
-                        </td>
-                    </tr>
-                    <tr th:unless="${!cliente.carrinho.itens.isEmpty()}" th:each="item : ${cliente.carrinho.itens}">
-                        <td>Carrinho vazio.</td>
-                    </tr>
-                    </tbody>
-                </table>
-
                 <form>
+                    <table class="table-responsive w-100 table d-block d-md-table table-hover mt-4 mb-4">
+                        <thead>
+                        <tr>
+                            <th scope="col">Nome do Jogo</th>
+                            <th scope="col">Plataforma</th>
+                            <th scope="col">Quantidade</th>
+                            <th colspan="2"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:if="${!cliente.carrinho.itens.isEmpty()}" th:each="item : ${cliente.carrinho.itens}">
+                            <td th:text="${item.jogo.titulo}">Resident Evil 3</td>
+                            <td th:text="${item.jogo.plataforma.nome}">PS4</td>
+                            <td>
+                                <input class="form-control" type="number" min="1" step="1" th:value="${item.quantidade}" th:max="${item.jogo.quantidadeDisponivel}">
+                            </td>
+                            <td th:text="'R$ ' + ${item.jogo.preco}">R$ 350,00</td>
+                            <td class="m-auto">
+                                <form th:method="delete" th:action="@{'/cliente/perfil/' + ${cliente.id} +'/checkout/removeItem'}">
+                                    <input type="hidden" name="_method" value="delete">
+                                    <input type="hidden" name="id" th:value="${item.id}">
+                                    <button class="btn btn-outline-danger">
+                                        <i class="fas fa-trash-alt"></i>
+                                        <span>Remover produto</span>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                        <tr th:unless="${!cliente.carrinho.itens.isEmpty()}" th:each="item : ${cliente.carrinho.itens}">
+                            <td>Carrinho vazio.</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </form>
+                <form th:method="POST" th:object="${pedido}" th:if="${cliente.carrinho.itens.size() != 0}">
+
+                    <input th:field="*{cliente}" th:value="${cliente}" hidden>
+
                     <div class="d-flex justify-content-between flex-wrap col-12">
                         <div class="p-4 rounded bg-form col-12 col-md-6">
                             <h5 class="text-center">Endereço de Entrega</h5>
                             <hr />
                             <div class="form-group">
                                 <label for="endereco_entrega_selector">Selecione um endereço</label>
-                                <select id="endereco_entrega_selector" class="form-control" required>
+                                <select id="endereco_entrega_selector" class="form-control" th:field="*{endereco}" required>
                                     <option value="">Escolha um endereço de entrega</option>
                                     <th:block th:if="${!cliente.enderecos.isEmpty()}">
                                         <option data-toggle="tooltip" data-placement="top"
@@ -59,18 +63,14 @@
                                         </option>
                                     </th:block>
                                 </select>
-                                <a class="btn btn-success" th:href="@{'/cliente/perfil/' + ${cliente.id} +'/checkout/salvarEndereco'}">Cadastre um novo endereço</a>
+                                <a class="btn btn-success" id="cria-endereco" th:href="@{'/cliente/perfil/' + ${cliente.id} +'/checkout/salvarEndereco'}">Cadastre um novo endereço</a>
                             </div>
-                            <button id="create-new-address" type="button" class="btn btn-primary" data-toggle="modal"
-                                    data-target="#modalDeliveryAddress" hidden>
-                                Cadastrar novo Endereço
-                            </button>
 
                             <h5 class="text-center mt-5">Endereço de Cobrança</h5>
                             <hr/>
                             <div class="form-group">
                                 <label for="endereco_cobranca_selector">Selecione um endereço</label>
-                                <select id="endereco_cobranca_selector" class="form-control" required>
+                                <select id="endereco_cobranca_selector" class="form-control" th:field="*{enderecoCobranca}" required>
                                     <option value="">Escolha um endereço de entrega</option>
                                     <th:block th:if="${!cliente.enderecos.isEmpty()}">
                                         <option data-toggle="tooltip" data-placement="top"
@@ -88,8 +88,7 @@
                             <div id="metodo_pagamento_cartao">
                                 <div class="form-group">
                                     <label>Selecione um cartão</label>
-                                    <select class="custom-select cartao_credito_selector" required
-                                            onchange="changeCreditCardOption(event)">
+                                    <select class="custom-select cartao_credito_selector" required th:field="*{metodosPagamento[0].cartaoCredito.id}" onchange="changeCreditCardOption(event)">
                                         <option value="">Selecione um cartão</option>
                                         <th:block th:if="${!cliente.cartoes.isEmpty()}">
                                             <option data-toggle="tooltip" data-placement="top"
@@ -106,18 +105,17 @@
 
                                 <div class="form-group">
                                     <label>Digite o valor do pagamento:</label>
-                                    <input type="number" min="10" step="0.01" class="form-control credit-card-value"  placeholder="10.00" required
+                                    <input type="number" min="10" step="0.01" class="form-control credit-card-value" th:field="*{metodosPagamento[0].valorPagamento}" placeholder="10.00" required
                                            name="paymentMethodList[0].paymentValue" onchange="validationValue(event)"/>
                                 </div>
                             </div>
 
                             <div class="form-group mt-3">
-                                <button class="btn btn-outline-info btn-block" id="add_payment_method">
+                                <button class="btn btn-outline-info btn-block" id="adiciona mais um metodo de pagamento">
                                     <i class="fas fa-plus-circle"></i>
                                     <span> Adicionar mais um método de pagamento</span>
                                 </button>
                             </div>
-
                         </div>
 
                         <div class="p-4 rounded bg-form col-12 col-md-5 mt-5 mt-md-0">
@@ -152,6 +150,7 @@
                                     <div class="d-flex">
                                         <span class="font-weight-bold mr-1">R$: </span>
                                         <span class="font-weight-bold" id="total" th:text="${totalPedido}"></span>
+                                        <input type="hidden" th:field="*{total}" th:value="${totalPedido}">
                                     </div>
                                 </div>
                                 <span class="text-center d-none" id="cupomAlert">
@@ -162,10 +161,7 @@
                         </div>
                     </div>
                 </form>
-                    <!-- Button trigger modal -->
-                    <button id="create-new-credit-card" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalCreditCard" hidden>
-                        Cadastrar novo cartão de crédito
-                    </button>
+                <h1 class="text-black-50 text-center" th:if="${cliente.carrinho.itens.size() == 0}">Seu Carrinho está vazio</h1>
             </div>
         </div>
 

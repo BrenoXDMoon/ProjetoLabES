@@ -32,30 +32,34 @@
           <a th:href="@{'/cliente/perfil/' + ${cliente.id} + '/pedidos'}">Pedidos</a>
         </h6>
       </div>
-      <div class="card-body" >
+      <div class="card-body" th:if="${!cliente.pedidos.isEmpty()}">
         <div class="table-responsive">
           <table class="table">
             <thead class=" text-primary">
             <th>#</th>
-            <th>Data da compra</th>
+            <th>Data do Pedido</th>
+            <th>Status do Pedido</th>
             <th colspan="2"></th>
             </thead>
             <tbody>
-            <tr >
-              <td>456</td>
-              <td>
-                <span>13/09/2021</span>
-              </td>
+            <tr th:each="pedido : ${cliente.pedidos}">
+              <td th:text="${pedido.id}">1</td>
+              <td th:text="${pedido.dataCriacao}">13/09/2021</td>
+              <td th:text="${pedido.status.status}"></td>
               <td class="m-auto">
-                <a th:href="@{'/cliente/perfil/' + ${cliente.id} + '/pedidos/visualizar'}" class="btn btn-outline-warning">
+                <a th:href="@{'/cliente/perfil/' + ${cliente.id} + '/pedidos/visualizar/'+${pedido.id}}" class="btn btn-outline-warning">
                   <i class="fas fa-trash-alt"></i>
                   <span>Visualizar</span>
                 </a>
               </td>
             </tr>
+
             </tbody>
           </table>
         </div>
+      </div>
+      <div class="card-body" th:if="${cliente.pedidos.isEmpty()}">
+        <span>Sem Pedidos Registrados</span>
       </div>
     </div>
   </div>
