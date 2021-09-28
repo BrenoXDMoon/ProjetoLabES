@@ -3,10 +3,7 @@ package br.com.fatec.ChopperHouseGames.service.impl;
 import br.com.fatec.ChopperHouseGames.domain.Pedido;
 import br.com.fatec.ChopperHouseGames.domain.Status;
 import br.com.fatec.ChopperHouseGames.dto.GraficoDto;
-import br.com.fatec.ChopperHouseGames.repository.CartaoCreditoRepository;
-import br.com.fatec.ChopperHouseGames.repository.ClienteRepository;
-import br.com.fatec.ChopperHouseGames.repository.PedidoRepository;
-import br.com.fatec.ChopperHouseGames.repository.StatusRepository;
+import br.com.fatec.ChopperHouseGames.repository.*;
 import br.com.fatec.ChopperHouseGames.service.IPedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,6 +28,9 @@ public class PedidoService implements IPedidoService {
 
     @Autowired
     ClienteRepository clienteRepository;
+
+    @Autowired
+    CupomRepository cupomRepository;
 
     @Override
     public Pedido buscarById(Integer id) {
@@ -68,24 +68,47 @@ public class PedidoService implements IPedidoService {
 
         pedido.getMetodosPagamento().forEach(p -> p.setCartaoCredito(cartaoRepository.findById(p.getCartaoCredito().getId()).get()));
 
-        if(pedido.getCupom() != null){
+        if(pedido.getCupom() != null && pedido.getCupom().getId() != null){
+            System.out.println(pedido.getCupom().getId());
+            pedido.setCupom(cupomRepository.findById(pedido.getCupom().getId()).get());
+
             pedido.setTotal(BigDecimal.valueOf(pedido.getTotal() - pedido.getCupom().getValor())
                     .setScale(2, RoundingMode.FLOOR)
                     .doubleValue());
         }
 
+        if(pedido.getCuponsTroca() != null && !pedido.getCuponsTroca().isEmpty()){
+            pedido.getCuponsTroca().forEach(
+                    c -> pedido.setTotal(
+                            BigDecimal.valueOf(pedido.getTotal() - c.getValor())
+                                .setScale(2, RoundingMode.FLOOR)
+                                .doubleValue()));
+        }
+
         Double total = pedido.getMetodosPagamento().stream().mapToDouble(metodoPagamento -> metodoPagamento.getValorPagamento()).sum();
 
-        if(!total.equals(pedido.getTotal() + 15)){
+        Double pag = pedido.getTotal() + 15;
+
+        pedido.setTotal(pag);
+
+        if(!total.equals(pedido.getTotal())){
             result.addError(new ObjectError("pedido", "Valor total e do pagamento são diferentes: TOTAL PAGAMENTO:" +   total + " TOTAL PEDIDO: " + pedido.getTotal()));
             return pedido;
         }
 
         pedido.getItens().forEach(j -> j.getJogo().setQuantidade(j.getJogo().getQuantidade() - j.getQuantidade()));
 
-        if(pedido.getCupom() != null){
-            pedido.getCupom().setQuantidade(pedido.getCupom().getQuantidade() - 1);
+        //diminuindo a quantidade do cupom de desconto quando usado
+        if(pedido.getCupom() != null && pedido.getCupom().getId() != null){
+            if(!pedido.getCupom().getTipoCupom().getNome().equals("ZERADO")){
+                pedido.getCupom().setQuantidade(pedido.getCupom().getQuantidade() - 1);
+            }
         }
+
+        //diminuindo a quantidade do cupom de troca quando usado
+//        if(pedido.getCuponsTroca() != null && !pedido.getCuponsTroca().isEmpty()){
+//            pedido.getCuponsTroca().forEach(c -> c.setQuantidade(c.getQuantidade() - 1));
+//        }
 
         return pedido;
     }

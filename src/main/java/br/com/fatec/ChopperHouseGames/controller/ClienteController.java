@@ -187,9 +187,8 @@ public class ClienteController {
     public ModelAndView visualizaPedido(@PathVariable("id") Cliente cliente, @PathVariable("idPed") Pedido pedido) {
         ModelAndView mv = new ModelAndView("cliente/pedido/detalhe");
 
-
-
         mv.addObject("cliente", cliente);
+        mv.addObject("pedido", pedidoService.buscarById(pedido.getId()));
         mv.addObject("devolucao", new Devolucao());
 
         return mv;

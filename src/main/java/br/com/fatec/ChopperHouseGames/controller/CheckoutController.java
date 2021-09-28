@@ -31,6 +31,9 @@ public class CheckoutController {
     @Autowired
     private IPedidoService pedidoService;
 
+    @Autowired
+    private ICupomService cupomService;
+
     @GetMapping
     public ModelAndView checkout(@PathVariable("id") Cliente cliente, Pedido pedido, ModelAndView mv) {
 
@@ -40,7 +43,6 @@ public class CheckoutController {
             mv = new ModelAndView();
         }
         mv.setViewName("pedido/checkout");
-
         mv.addObject("cliente", cliente);
         mv.addObject("totalProdutos", cliente.getCarrinho().getItens().stream().mapToDouble(i -> i.getJogo().getPreco() * i.getQuantidade().doubleValue()).sum());
         mv.addObject("totalPedido", totalPedido + 15);
@@ -50,6 +52,9 @@ public class CheckoutController {
         mv.addObject("endereco", new Endereco());
         mv.addObject("tipoEnderecos", TIPO_ENDERECO.values());
         mv.addObject("bandeiras", BANDEIRA.values());
+        mv.addObject("cupons", cupomService.listarCupomDesconto());
+        mv.addObject("cupomZerado", cupomService.buscarCupomZerado());
+        mv.addObject("cuponsTroca", cupomService.listarCupomTroca());
 
         clienteService.usuarioLogado(cliente.getId(), mv);
         return mv;
@@ -59,7 +64,7 @@ public class CheckoutController {
     public ModelAndView finalizarPedido(@PathVariable("id") Cliente cliente, @Valid Pedido pedido, BindingResult result) {
         ModelAndView mv = new ModelAndView("redirect:/cliente/perfil/" + cliente.getId() + "/pedidos");
 
-        pedido.setCliente(cliente);
+        pedido.setCliente(clienteService.atualUsuarioLogado());
         pedidoService.salvar(pedido, result);
 
         if(result.hasErrors()){
@@ -85,15 +90,10 @@ public class CheckoutController {
     }
 
     @PostMapping("removeItem")
-    public ModelAndView removeItemCarrinho(Cliente cliente, Integer id){
-        ModelAndView mv = new ModelAndView("pedido/checkout");
-
-
+    public ModelAndView removeItemCarrinho(@PathVariable("id") Cliente cliente, Integer id){
+        ModelAndView mv = new ModelAndView("redirect:/cliente/perfil/" + cliente.getId() + "/checkout");
         cliente = clienteService.atualUsuarioLogado();
-
         carrinhoService.removerItemCarrinho(cliente, id);
-
-
         mv.addObject("cliente", cliente);
         return mv;
     }

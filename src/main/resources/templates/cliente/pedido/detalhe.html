@@ -32,51 +32,51 @@
                     <a th:href="@{'/cliente/perfil/' + ${cliente.id} + '/pedidos'}">Pedidos</a>
                 </h6>
             </div>
-            <div class="card-body" >
-                <div class="table-responsive">
+            <div class="card-body row justify-content-center">
+                <div class="table-responsive col-5">
                     <h2 class=' mb-5'>Detalhe do Pedido</h2>
                     <div class="form-group">
                         <h6 class="f-18 font-weight-bold">ID de Pedido:</h6>
-                        <label>456</label>
+                        <label th:text="${pedido.id}">456</label>
                     </div>
                     <div class="form-group">
                         <h6 class="f-18 font-weight-bold">Logradouro de Entrega:</h6>
-                        <label>Rua General Osório</label>
+                        <label th:text="${pedido.endereco.logradouro}">Rua General Osório</label>
                     </div>
                     <div class="form-group">
                         <h6 class="f-18 font-weight-bold">Total do Pedido:</h6>
-                        <label>R$ 90.0</label>
+                        <label th:text="${pedido.total}">R$ 90.0</label>
                     </div>
                     <div class="form-group">
                         <h6 class="f-18 font-weight-bold">Status do Pedido:</h6>
-                        <label>EM PROCESSAMENTO</label><br/>
+                        <label th:text="${pedido.status.status}">EM PROCESSAMENTO</label><br/>
                     </div>
                     <div class="form-group">
                         <h6 class="f-18 font-weight-bold">Data do Pedido:</h6>
-                        <label>13/09/2021</label><br/>
-                    </div>
-                    <div class="form-group">
-                        <h6>Produtos</h6>
-                        <table>
-                            <thead class="table">
-                            <tr>
-                                <th>Nome</th>
-                                <th>Quantidade</th>
-                                <th colspan="2"></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>Resident Evil 4</td>
-                                <td>1</td>
-                                <td>
-                                    <a class="btn btn-outline-danger">Trocar item</a>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
+                        <label th:text="${pedido.dataCriacao}">13/09/2021</label><br/>
                     </div>
                     <a class="btn btn-danger" th:href="@{'/cliente/perfil/' + ${cliente.id} + '/pedidos'}">Solicitar Cancelamento do Pedido</a>
+                </div>
+                <div class="form-group col-5">
+                    <h6>Produtos</h6>
+                    <table>
+                        <thead class="table">
+                        <tr>
+                            <th>Nome</th>
+                            <th>Quantidade</th>
+                            <th colspan="2"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="item : ${pedido.getItens()}">
+                            <td th:text="${item.jogo.titulo}">Resident Evil 4</td>
+                            <td th:text="${item.quantidade}">1</td>
+                            <td>
+                                <a class="btn btn-outline-danger">Trocar item</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

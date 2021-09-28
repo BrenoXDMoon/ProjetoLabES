@@ -7,45 +7,39 @@
         <div class="container">
             <div th:replace="~{layout/shared :: mensagem}"></div>
             <div class="row justify-content-center">
-                <form>
-                    <table class="table-responsive w-100 table d-block d-md-table table-hover mt-4 mb-4">
-                        <thead>
-                        <tr>
-                            <th scope="col">Nome do Jogo</th>
-                            <th scope="col">Plataforma</th>
-                            <th scope="col">Quantidade</th>
-                            <th colspan="2"></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr th:if="${!cliente.carrinho.itens.isEmpty()}" th:each="item : ${cliente.carrinho.itens}">
-                            <td th:text="${item.jogo.titulo}">Resident Evil 3</td>
-                            <td th:text="${item.jogo.plataforma.nome}">PS4</td>
-                            <td>
-                                <input class="form-control" type="number" min="1" step="1" th:value="${item.quantidade}" th:max="${item.jogo.quantidadeDisponivel}">
-                            </td>
-                            <td th:text="'R$ ' + ${item.jogo.preco}">R$ 350,00</td>
-                            <td class="m-auto">
-                                <form th:method="delete" th:action="@{'/cliente/perfil/' + ${cliente.id} +'/checkout/removeItem'}">
-                                    <input type="hidden" name="_method" value="delete">
-                                    <input type="hidden" name="id" th:value="${item.id}">
-                                    <button class="btn btn-outline-danger">
-                                        <i class="fas fa-trash-alt"></i>
-                                        <span>Remover produto</span>
-                                    </button>
-                                </form>
-                            </td>
-                        </tr>
-                        <tr th:unless="${!cliente.carrinho.itens.isEmpty()}" th:each="item : ${cliente.carrinho.itens}">
-                            <td>Carrinho vazio.</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </form>
+                <table class="table-responsive w-100 table d-block d-md-table table-hover mt-4 mb-4">
+                    <thead>
+                    <tr>
+                        <th scope="col">Nome do Jogo</th>
+                        <th scope="col">Plataforma</th>
+                        <th scope="col">Quantidade</th>
+                        <th colspan="2"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:if="${!cliente.carrinho.itens.isEmpty()}" th:each="item : ${cliente.carrinho.itens}">
+                        <td th:text="${item.jogo.titulo}">Resident Evil 3</td>
+                        <td th:text="${item.jogo.plataforma.nome}">PS4</td>
+                        <td>
+                            <input class="form-control" type="number" min="1" step="1" th:value="${item.quantidade}" th:max="${item.jogo.quantidadeDisponivel}">
+                        </td>
+                        <td th:text="'R$ ' + ${item.jogo.preco}">R$ 350,00</td>
+                        <td class="m-auto">
+                            <form th:method="post" th:action="@{'/cliente/perfil/' + ${cliente.id} +'/checkout/removeItem'}">
+                                <input type="hidden" name="id" th:value="${item.id}">
+                                <button class="btn btn-outline-danger" type="submit">
+                                    <i class="fas fa-trash-alt"></i>
+                                    <span>Remover produto</span>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr th:unless="${!cliente.carrinho.itens.isEmpty()}" th:each="item : ${cliente.carrinho.itens}">
+                        <td>Carrinho vazio.</td>
+                    </tr>
+                    </tbody>
+                </table>
                 <form th:method="POST" th:object="${pedido}" th:if="${cliente.carrinho.itens.size() != 0}">
-
-                    <input th:field="*{cliente}" th:value="${cliente}" hidden>
-
                     <div class="d-flex justify-content-between flex-wrap col-12">
                         <div class="p-4 rounded bg-form col-12 col-md-6">
                             <h5 class="text-center">Endereço de Entrega</h5>
@@ -111,10 +105,10 @@
                             </div>
 
                             <div class="form-group mt-3">
-                                <button class="btn btn-outline-info btn-block" id="adiciona mais um metodo de pagamento">
+                                <a class="btn btn-outline-info btn-block" id="add_metodo_pagamento">
                                     <i class="fas fa-plus-circle"></i>
                                     <span> Adicionar mais um método de pagamento</span>
-                                </button>
+                                </a>
                             </div>
                         </div>
 
@@ -129,20 +123,30 @@
 
                                 <div class="d-flex flex-wrap justify-content-between">
                                     <span>Frete</span>
-                                    <span id="shippingTaxShow">R$ 15</span>
+                                    <span>R$ 15</span>
                                 </div>
 
-                                <div class="flex-wrap justify-content-between d-none" id="cupom_div">
-                                    <span>Cupom de desconto:</span>
-                                    <div class="d-flex">
-                                        <span class="mr-1">R$ </span>
-                                        <div id="cupon_layer"></div>
-                                    </div>
+                                <div class="flex-wrap justify-content-between" id="cupom_div">
+                                    <span>Cupom de desconto disponíveis:</span>
+                                    <select id="cupom_select" class="custom-select" th:field="*{cupom.id}">
+                                        <option th:value="${cupomZerado.id}">Selecione um cupom</option>
+                                        <option class="form-check-input" th:each="cupom : ${cupons}"
+                                                th:value="${cupom.id}"
+                                                th:text="${'Código: ' + cupom.codigo + ' | Valor: ' + cupom.valor}"
+                                                th:title="${'Código: ' + cupom.codigo + ' | Valor: ' + cupom.valor}">
+                                        </option>
+                                    </select>
                                 </div>
 
-                                <div class="d-flex flex-wrap justify-content-between mt-4">
-                                    <input class="form-control col-8 mr-3" placeholder="Insira seu cupom aqui" id="cupom_input"/>
-                                    <button class="btn btn-outline-success col-3" onclick="cupomVerify(event)" id="apply_coupon">Aplicar</button>
+                                <div class="flex-wrap justify-content-between" id="cupom_troca_div">
+                                    <span>Cupom de troca disponíveis:</span>
+                                    <select class="custom-select" multiple id="cuponsTroca" name="cuponsTroca">
+                                        <option th:each="cupom : ${cuponsTroca}"
+                                                th:value="${cupom.id}"
+                                                th:text="${'Código: ' + cupom.codigo + ' | Valor: ' + cupom.valor}"
+                                                th:title="${'Código: ' + cupom.codigo + ' | Valor: ' + cupom.valor}">
+                                        </option>
+                                    </select>
                                 </div>
                                 <hr/>
                                 <div class="d-flex flex-wrap justify-content-between">
@@ -164,6 +168,37 @@
                 <h1 class="text-black-50 text-center" th:if="${cliente.carrinho.itens.size() == 0}">Seu Carrinho está vazio</h1>
             </div>
         </div>
+
+        <script>
+            var total = $("#total").text();
+            var listaPagamento = 0;
+
+            $("#add_metodo_pagamento").on("click", function(event) {
+                event.preventDefault();
+                let pagamento_dom = $("#metodo_pagamento_cartao")
+
+                $("#metodo_pagamento_cartao").clone().insertBefore(this)
+                pagamento_dom.removeAttr("id")
+                pagamento_dom.attr("id", "metodo_pagamento_cartao" + listaPagamento)
+
+                for(let i = 0; i< $(".credit-card-selector").length; i++){
+                    let select_dom_credit_card = $(".cartao_credito_selector")[i]
+                    let input_dom_credit_card_value = $(".credit-card-value")[i]
+
+                    select_dom_credit_card.removeAttribute("name");
+                    input_dom_credit_card_value.removeAttribute("name");
+
+                    select_dom_credit_card.setAttribute("name", "metodosPagamento[" + i + "].cartaoCredito.id")
+                    input_dom_credit_card_value.setAttribute("name", "metodosPagamento[" + i + "].valorPagamento")
+                }
+
+                listaPagamento += 1
+            });
+
+            let valorCupom = document.getElementById("cupom_select");
+
+            console.log(valorCupom)
+        </script>
 
         <footer th:insert="~{layout/shared :: footer}"></footer>
     </body>

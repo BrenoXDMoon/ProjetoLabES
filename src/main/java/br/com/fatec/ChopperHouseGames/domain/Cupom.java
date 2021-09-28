@@ -1,9 +1,9 @@
 package br.com.fatec.ChopperHouseGames.domain;
 
 import lombok.Data;
+import org.springframework.lang.Nullable;
 
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import javax.validation.constraints.Min;
 import java.util.List;
 
@@ -21,4 +21,13 @@ public class Cupom extends EntidadeDominio {
 
     @OneToMany(mappedBy = "cupom", targetEntity = Pedido.class)
     private List<Pedido> pedidos;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "tipo_cupom_ID")
+    private TipoCupom tipoCupom;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "cliente_ID")
+    @Nullable
+    private Cliente cliente;
 }

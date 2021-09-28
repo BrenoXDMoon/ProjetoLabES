@@ -64,9 +64,7 @@ public class CarrinhoService implements ICarrinhoService {
 
         clienteRepository.saveAndFlush(cliente);
 
-        System.out.println("PRODUTO ADICIONADO COM SUCESSO: " + cliente.getCarrinho().getItens());
         jogoRepository.saveAndFlush(jogo);
-        System.out.println("ESTOQUE DO PRODUTO " + jogo.getTitulo() +" ATUALIZADO");
     }
 
     @Override
@@ -84,6 +82,4 @@ public class CarrinhoService implements ICarrinhoService {
         }
         clienteRepository.saveAndFlush(cliente);
     }
-
-
 }

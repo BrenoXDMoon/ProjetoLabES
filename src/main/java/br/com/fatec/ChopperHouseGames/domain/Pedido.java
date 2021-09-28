@@ -39,6 +39,9 @@ public class Pedido extends EntidadeDominio {
     @ManyToOne(cascade = {CascadeType.ALL})
     private Cupom cupom;
 
+    @ManyToMany(cascade = {CascadeType.ALL})
+    private List<Cupom> cuponsTroca;
+
     @ManyToMany
     private List<Item> itens;
 
