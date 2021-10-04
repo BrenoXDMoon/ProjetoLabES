@@ -7,7 +7,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum StatusDevolucao {
     AGUARDANDO_RESPOSTA("Aguardando resposta"),
-    EM_PROCESSAMENTO("Aguardando resposta"),
+    EM_PROCESSAMENTO("Em processamento"),
     ACEITO("Aceito"),
     RECUSADO("Recusado");
 

@@ -2,27 +2,56 @@ package br.com.fatec.ChopperHouseGames.controller;
 
 import br.com.fatec.ChopperHouseGames.domain.Cliente;
 import br.com.fatec.ChopperHouseGames.domain.Pedido;
+import br.com.fatec.ChopperHouseGames.service.IPedidoService;
+import br.com.fatec.ChopperHouseGames.service.IStatusService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("admin/pedidos")
 public class PedidoController {
 
-    @GetMapping
-    public ModelAndView listaPedidosAdmin(){
-       ModelAndView mv = new ModelAndView("admin/pedido/listaPedido");
+    @Autowired
+    private IPedidoService pedidoService;
 
-       return mv;
+    @Autowired
+    IStatusService statusService;
+
+    @GetMapping
+    public ModelAndView listaPedidosAdmin(ModelAndView mv){
+
+        if(mv == null){
+            mv = new ModelAndView();
+        }
+
+        mv.setViewName("admin/pedido/listaPedido");
+
+        mv.addObject("pedidos", pedidoService.buscarTodos());
+
+        return mv;
     }
 
-    @GetMapping("visualizar/{idPed}")
-    public ModelAndView visualizarPedidoAdmin(@PathVariable("id") Cliente cliente, @PathVariable("idPed") Pedido pedido){
+    @GetMapping("visualizar/{id}")
+    public ModelAndView visualizarPedidoAdmin( @PathVariable("id") Pedido pedido){
         ModelAndView mv = new ModelAndView("admin/pedido/detalhe");
 
+        mv.addObject("pedido", pedidoService.buscarById(pedido.getId()));
+
+        mv.addObject("statusPedidos", statusService.listarTodos());
+        return mv;
+    }
+
+    @PostMapping("visualizar/{id}/editar")
+    public ModelAndView alteraPedido(@RequestParam(required = false, name = "statusId") String statusId, @PathVariable Pedido id){
+
+        Pedido pedido = pedidoService.buscarById(id.getId());
+        pedido.setStatus(statusService.buscarById(Integer.parseInt(statusId)));
+        ModelAndView mv = new ModelAndView();
+        pedidoService.editar(pedido);
+        listaPedidosAdmin(mv);
         return mv;
     }
 }

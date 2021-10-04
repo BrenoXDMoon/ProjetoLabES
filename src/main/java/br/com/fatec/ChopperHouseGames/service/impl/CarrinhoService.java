@@ -22,8 +22,9 @@ public class CarrinhoService implements ICarrinhoService {
 
     @Autowired
     JogoRepository jogoRepository;
+
     @Autowired
-    private IClienteService clienteService;
+    IClienteService clienteService;
 
     @Override
     public void adicionarItemCarrinho(Cliente cliente, Integer idJogo, Integer quantidade) {
@@ -78,7 +79,6 @@ public class CarrinhoService implements ICarrinhoService {
                 item.getJogo().setQuantidadeDisponivel(item.getQuantidade() + item.getQuantidade());
                 break;
             }
-
         }
         clienteRepository.saveAndFlush(cliente);
     }

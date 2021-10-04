@@ -13,6 +13,7 @@ import org.springframework.validation.ObjectError;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class PedidoService implements IPedidoService {
@@ -53,6 +54,16 @@ public class PedidoService implements IPedidoService {
         clienteRepository.saveAndFlush(pedido.getCliente());
 
         return null;
+    }
+
+    @Override
+    public List<Pedido> buscarTodos() {
+        return repository.findAll();
+    }
+
+    @Override
+    public Pedido editar(Pedido pedido) {
+        return repository.saveAndFlush(pedido);
     }
 
     @Override
@@ -106,9 +117,9 @@ public class PedidoService implements IPedidoService {
         }
 
         //diminuindo a quantidade do cupom de troca quando usado
-//        if(pedido.getCuponsTroca() != null && !pedido.getCuponsTroca().isEmpty()){
-//            pedido.getCuponsTroca().forEach(c -> c.setQuantidade(c.getQuantidade() - 1));
-//        }
+        if(pedido.getCuponsTroca() != null && !pedido.getCuponsTroca().isEmpty()){
+            pedido.getCuponsTroca().forEach(c -> c.setQuantidade(c.getQuantidade() - 1));
+        }
 
         return pedido;
     }

@@ -8,6 +8,43 @@
     <div class="main-panel" id="main-panel">
         <nav th:replace="~{layout/baseAdmin :: header}"></nav>
         <div class="col-md-12">
+            <div th:replace="~{layout/shared :: mensagem}"></div>
+            <div class="card-body">
+                <form>
+                    <div class="row">
+                        <div class="form-group col-2">
+                            <label>Numero do Pedido</label>
+                            <input class="form-control" placeholder="000001" id="order_id">
+                        </div>
+
+                        <div class="form-group col-2">
+                            <label>Valor da compra até:</label>
+                            <input class="form-control" placeholder="500" id="value">
+                        </div>
+
+                        <div class="form-group col-2">
+                            <label>Data da compra</label>
+                            <input class="form-control" placeholder="São Paulo" type="date" id="purchase_date">
+                        </div>
+
+                        <div class="form-group col-2">
+                            <label>Conteúdo comprado contém:</label>
+                            <input class="form-control" placeholder="Resident Evil 3" id="content_value">
+                        </div>
+
+                        <div class="form-group col-2">
+                            <label>Status:</label>
+                            <select class="form-control" id="status">
+                                <option>Entregue</option>
+                                <option>Em Processo</option>
+                                <option>Aprovado</option>
+                                <option>Recusado</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button class="btn btn-block btn-success">Pesquisar</button>
+                </form>
+            </div>
             <div class="card card-plain">
                 <div class="card-body">
                     <div class="table-responsive">
@@ -16,16 +53,18 @@
                             <thead class=" text-primary">
                             <th>#</th>
                             <th>Data do Pedido</th>
+                            <th>Status</th>
                             <th>Total</th>
                             <th colspan="2"></th>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>456</td>
-                                <td>13/09/2021</td>
-                                <td>R$ 90.0</td>
+                            <tr th:each="pedido : ${pedidos}">
+                                <td th:text="${pedido.id}">456</td>
+                                <td th:text="${pedido.dataCriacao}">13/09/2021</td>
+                                <td th:text="${pedido.status.status}"></td>
+                                <td th:text="${pedido.total}">R$ 90.0</td>
                                 <td class="m-auto">
-                                    <a th:href="@{'pedidos/visualizar'}" class="btn btn-outline-warning">
+                                    <a th:href="@{'/admin/pedidos/visualizar/' +${pedido.id}}" class="btn btn-outline-warning">
                                         <span>Visualizar</span>
                                     </a>
                                 </td>

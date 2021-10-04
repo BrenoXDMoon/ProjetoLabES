@@ -60,7 +60,7 @@ public class ClienteController {
     }
 
     @PostMapping("/novo")
-    public ModelAndView salvarCliente(@Valid ClienteDto clienteDto, BindingResult result, RedirectAttributes attributes){
+    public ModelAndView salvarCliente(@Valid ClienteDto clienteDto, BindingResult result){
 
         ModelAndView mv = new ModelAndView();
         if(!clienteDto.confirmaSenha()){
