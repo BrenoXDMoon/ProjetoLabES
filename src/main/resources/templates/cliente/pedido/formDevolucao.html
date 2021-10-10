@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html>
+
+<html lang="pt">
+<head th:insert="~{layout/shared :: head('ChopperHouse - Perfil de Cliente')}">
+    <meta charset="UTF-8">
+    <title>ChopperHouse - Perfil de Cliente</title>
+</head>
+
+<body class="" onload="pag()">
+<header class="site-header py-1 header" th:replace="~{layout/baseCliente :: header}">
+
+</header>
+
+<section class="container-fluid perfil">
+    <div th:replace="~{layout/shared :: mensagem}"></div>
+    <div class="row">
+        <div class="col-12 text-center">
+            <div class="panel-header panel-header-sm text-white font-weight-bolder"><h3>Formulario de Solicitacao de Devolucao</h3></div>
+            <div class="card-header py-3 d-flex flex-wrap justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">
+                    <a th:href="@{'/cliente/perfil/' + ${cliente.id}}" th:unless="${cliente.id.equals(null)}">Detalhes do Cliente</a>
+                </h6>
+                <h6 class="m-0 font-weight-bold text-primary">
+                    <a th:href="@{'/cliente/perfil/' + ${cliente.id} + '/cartoes'}">Cartões</a>
+                </h6>
+                <h6 class="m-0 font-weight-bold text-primary" th:if="${null != cliente.id}">
+                    <a th:href="@{'/cliente/perfil/' + ${cliente.id} + '/enderecos'}">Endereços</a>
+                </h6>
+                <h6 class="m-0 font-weight-bold text-primary" th:if="${null != cliente.id}">
+                    <a th:href="@{'/cliente/perfil/' + ${cliente.id} + '/pedidos'}">Pedidos</a>
+                </h6>
+            </div>
+            <form method="post" class="container" th:object="${devolucao}" th:action="@{'/cliente/perfil/' + ${cliente.id} +'/devolucao/'+${pedido.id}}">
+                <div class="row justify-content-center">
+                    <div class="card-body col-5">
+                        <div class="form-group">
+                            <h6>Produtos</h6>
+                            <table>
+                                <thead class="table">
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Quantidade</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="item : ${pedido.getItens()}">
+                                    <td th:text="${item.jogo.titulo}">Resident Evil 4</td>
+                                    <td th:text="${item.quantidade}">1</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-5">
+                        <div class="form-floating">
+                            <label>Descreva seu motivo(obrigatório):</label>
+                            <textarea class="form-control" required th:field="*{motivo}"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-success">Enviar Solicitacao</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<footer th:replace="~{layout/shared :: footer}"></footer>
+</body>
+</html>

@@ -14,7 +14,6 @@ public class Pedido extends EntidadeDominio {
     @Temporal(TemporalType.DATE)
     private Date dataEntrega;
     private Double total;
-    private String codigo;
     private Double frete;
 
     @ManyToOne

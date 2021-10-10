@@ -60,6 +60,17 @@
             </div>
             <button type="submit" class="btn btn-danger">Gravar Alteracoes</button>
         </form>
+        <div class="container-fluid" th:if="${pedido.status.status.equals('CANCELAMENTO SOLICITADO')}">
+            <h4 class=' mb-5'>Cancelamento do pedido solicitado. Deseja aceitar?</h4>
+            <div class="row">
+                <form class="col-1" th:method="post" th:action="@{'/admin/pedidos/visualizar/'+ ${pedido.id}+'/aceitarCancelamento'}">
+                    <button type="submit" class="btn btn-success">Sim</button>
+                </form>
+                <form class="col-1" th:method="post" th:action="@{'/admin/pedidos/visualizar/'+ ${pedido.id}+'/recusarCancelamento'}">
+                    <button type="submit" class="btn btn-danger">Não</button>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
 <footer th:replace="~{layout/shared :: footer}"></footer>

@@ -16,7 +16,7 @@
     <div th:replace="~{layout/shared :: mensagem}"></div>
     <div class="row">
         <div class="col-12 text-center">
-            <div class="panel-header panel-header-sm text-white font-weight-bolder"><h3>Dados do Cliente</h3></div>
+            <div class="panel-header panel-header-sm text-white font-weight-bolder"><h3>Detalhes do pedido</h3></div>
             <div class="card-header py-3 d-flex flex-wrap justify-content-between">
                 <h6 class="m-0 font-weight-bold text-primary" th:if="${cliente.id.equals(null)}">Cliente Novo</h6>
                 <h6 class="m-0 font-weight-bold text-primary" th:unless="${cliente.id.equals(null)}">
@@ -32,55 +32,58 @@
                     <a th:href="@{'/cliente/perfil/' + ${cliente.id} + '/pedidos'}">Pedidos</a>
                 </h6>
             </div>
-                <form method="post" th:action="@{'/cliente/perfil/' + ${cliente.id} +'/pedidos/visualizar/'+${pedido.id}+'/cancelamento'}" class="card-body row justify-content-center">
-                    <div class="table-responsive col-5">
-                        <h2 class=' mb-5'>Detalhe do Pedido</h2>
-                        <div class="form-group">
-                            <h6 class="f-18 font-weight-bold">ID de Pedido:</h6>
-                            <label th:text="${pedido.id}">456</label>
+            <div class="row justify-content-center">
+                <div class="col-5">
+                    <form method="post" th:action="@{'/cliente/perfil/' + ${cliente.id} +'/pedidos/visualizar/'+${pedido.id}+'/cancelamento'}" class="card-body row justify-content-center">
+                        <div class="table-responsive">
+                            <h2 class=' mb-5'>Detalhes do Pedido</h2>
+                            <div class="form-group">
+                                <h6 class="f-18 font-weight-bold">ID de Pedido:</h6>
+                                <label th:text="${pedido.id}">456</label>
+                            </div>
+                            <div class="form-group">
+                                <h6 class="f-18 font-weight-bold">Logradouro de Entrega:</h6>
+                                <label th:text="${pedido.endereco.logradouro}">Rua General Osório</label>
+                            </div>
+                            <div class="form-group">
+                                <h6 class="f-18 font-weight-bold">Total do Pedido:</h6>
+                                <label th:text="${pedido.total}">R$ 90.0</label>
+                            </div>
+                            <div class="form-group">
+                                <h6 class="f-18 font-weight-bold">Status do Pedido:</h6>
+                                <label th:text="${pedido.status.status}">EM PROCESSAMENTO</label><br/>
+                            </div>
+                            <div class="form-group">
+                                <h6 class="f-18 font-weight-bold">Data do Pedido:</h6>
+                                <label th:text="${pedido.dataCriacao}">13/09/2021</label><br/>
+                            </div>
+                            <button type="submit" class="btn btn-danger" th:if="${pedido.status.id.equals(1)}">Solicitar Cancelamento do Pedido</button>
                         </div>
-                        <div class="form-group">
-                            <h6 class="f-18 font-weight-bold">Logradouro de Entrega:</h6>
-                            <label th:text="${pedido.endereco.logradouro}">Rua General Osório</label>
-                        </div>
-                        <div class="form-group">
-                            <h6 class="f-18 font-weight-bold">Total do Pedido:</h6>
-                            <label th:text="${pedido.total}">R$ 90.0</label>
-                        </div>
-                        <div class="form-group">
-                            <h6 class="f-18 font-weight-bold">Status do Pedido:</h6>
-                            <label th:text="${pedido.status.status}">EM PROCESSAMENTO</label><br/>
-                        </div>
-                        <div class="form-group">
-                            <h6 class="f-18 font-weight-bold">Data do Pedido:</h6>
-                            <label th:text="${pedido.dataCriacao}">13/09/2021</label><br/>
-                        </div>
-                        <button type="submit" class="btn btn-danger" th:if="${pedido.status.id.equals(1)}">Solicitar Cancelamento do Pedido</button>
-                    </div>
-                </form>
+                    </form>
+                </div>
                 <div class="form-group col-5">
                     <h6>Produtos</h6>
-                    <table>
-                        <thead class="table">
-                        <tr>
-                            <th>Nome</th>
-                            <th>Quantidade</th>
-                            <th colspan="2"></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr th:each="item : ${pedido.getItens()}">
-                            <td th:text="${item.jogo.titulo}">Resident Evil 4</td>
-                            <td th:text="${item.quantidade}">1</td>
-                            <td>
-                                <button type="submit" class="btn btn-outline-danger">Trocar item</button>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
+                    <div class="d-flex justify-content-center">
+                        <table>
+                            <thead class="table">
+                            <tr>
+                                <th>Nome</th>
+                                <th>Quantidade</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="item : ${pedido.getItens()}">
+                                <td th:text="${item.jogo.titulo}">Resident Evil 4</td>
+                                <td th:text="${item.quantidade}">1</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <a th:if="${pedido.status.status.equals('ENTREGUE')}" th:href="@{'/cliente/perfil/' + ${cliente.id} +'/devolucao/' + ${pedido.id}}" class="btn btn-danger">Solicitar Devolucao de Pedido</a>
                 </div>
             </div>
         </div>
+    </div>
 </section>
 <footer th:replace="~{layout/shared :: footer}"></footer>
 </body>

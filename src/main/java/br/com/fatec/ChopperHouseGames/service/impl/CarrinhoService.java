@@ -69,14 +69,14 @@ public class CarrinhoService implements ICarrinhoService {
     }
 
     @Override
-    public void removerItemCarrinho(Cliente cliente, Integer idJogo) {
+    public void removerItemCarrinho(Cliente cliente, Integer itemId) {
 
         for(Item i : cliente.getCarrinho().getItens()){
             Item item = i;
 
-            if(item.getId().equals(idJogo)){
+            if(item.getId().equals(itemId)){
+                item.getJogo().setQuantidadeDisponivel(item.getJogo().getQuantidadeDisponivel() + item.getQuantidade());
                 cliente.getCarrinho().getItens().remove(i);
-                item.getJogo().setQuantidadeDisponivel(item.getQuantidade() + item.getQuantidade());
                 break;
             }
         }

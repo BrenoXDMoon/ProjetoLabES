@@ -1,20 +1,21 @@
 package br.com.fatec.ChopperHouseGames.domain;
 
+import lombok.Data;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 @Entity
+@Data
 public class Devolucao extends EntidadeDominio{
-    @NotNull(message = "O campo Motivo é obrigatório")
-    @NotBlank(message = "O campo Motivo é obrigatório")
+    @NotEmpty(message = "O campo Motivo é obrigatório")
     @Size(max = 254)
-    private String reason;
+    private String motivo;
 
-    private String answer;
+    private String resposta;
 
     @OneToOne(cascade = CascadeType.ALL)
     private Pedido pedido;

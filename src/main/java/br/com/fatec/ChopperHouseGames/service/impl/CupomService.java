@@ -1,10 +1,9 @@
 package br.com.fatec.ChopperHouseGames.service.impl;
 
-import br.com.fatec.ChopperHouseGames.controller.ICupomService;
+import br.com.fatec.ChopperHouseGames.service.ICupomService;
 import br.com.fatec.ChopperHouseGames.domain.Cupom;
 import br.com.fatec.ChopperHouseGames.repository.CupomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

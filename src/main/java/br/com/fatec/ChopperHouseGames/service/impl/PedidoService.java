@@ -53,7 +53,7 @@ public class PedidoService implements IPedidoService {
 
         clienteRepository.saveAndFlush(pedido.getCliente());
 
-        return null;
+        return pedido;
     }
 
     @Override
@@ -69,6 +69,16 @@ public class PedidoService implements IPedidoService {
     @Override
     public GraficoDto findAllByCreatedAtBetween(Date dateInitial, Date dateFinal, Integer searchType) {
         return null;
+    }
+
+    @Override
+    public List<Pedido> buscarByStatus(String status) {
+        return repository.findAllByStatus_Status(status);
+    }
+
+    @Override
+    public List<Pedido> buscarByStatusGeral(String status) {
+        return repository.findAllByStatusStatusContains(status);
     }
 
     private Pedido preencherPedido(Pedido pedido, BindingResult result) {

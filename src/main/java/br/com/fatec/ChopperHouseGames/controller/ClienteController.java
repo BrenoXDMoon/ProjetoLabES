@@ -11,6 +11,7 @@ import br.com.fatec.ChopperHouseGames.repository.CartaoCreditoRepository;
 import br.com.fatec.ChopperHouseGames.repository.ClienteRepository;
 import br.com.fatec.ChopperHouseGames.repository.EnderecoRepository;
 import br.com.fatec.ChopperHouseGames.service.IClienteService;
+import br.com.fatec.ChopperHouseGames.service.IDevolucaoService;
 import br.com.fatec.ChopperHouseGames.service.IPedidoService;
 import br.com.fatec.ChopperHouseGames.service.ITipoClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +47,9 @@ public class ClienteController {
 
     @Autowired
     ITipoClienteService tipoClienteService;
+
+    @Autowired
+    IDevolucaoService devolucaoService;
 
     @GetMapping("/novo")
     public ModelAndView novoCliente(ClienteDto clienteForm, ModelAndView mv){
@@ -115,7 +119,7 @@ public class ClienteController {
     }
 
     @PostMapping("editar")
-    public ModelAndView editaCliente(@ModelAttribute("cliente") Cliente clienteDto, BindingResult result){
+    public ModelAndView editarCliente(@ModelAttribute("cliente") Cliente clienteDto, BindingResult result){
 
         facade = new Facade(clienteRepository, enderecoRepository, cartaoCreditoRepository);
 
@@ -130,7 +134,7 @@ public class ClienteController {
     }
 
     @GetMapping("/perfil/{id}/senha")
-    public ModelAndView editaSenha(@PathVariable("id") Cliente cliente, SenhaDto senhaDto, ModelAndView mv){
+    public ModelAndView editarSenha(@PathVariable("id") Cliente cliente, SenhaDto senhaDto, ModelAndView mv){
         if(mv == null){
             mv = new ModelAndView();
         }
@@ -158,7 +162,7 @@ public class ClienteController {
 
         if(result.hasErrors()){
             mv.addObject("resultados", result);
-            return editaSenha(cliente,senhaDto, mv);
+            return editarSenha(cliente,senhaDto, mv);
         }
 
         cliente.setSenha(senhaDto.toSenha());
@@ -174,17 +178,41 @@ public class ClienteController {
     }
 
     @GetMapping("perfil/{id}/pedidos")
-    public ModelAndView listaPedidos(@PathVariable("id") Cliente cliente) {
+    public ModelAndView listarPedidos(@PathVariable("id") Cliente cliente) {
         ModelAndView mv = new ModelAndView("cliente/pedido/lista");
         //gerar pedidos reais
         mv.addObject("cliente", cliente);
+
+        return mv;
+    }
+
+    @GetMapping("perfil/{id}/devolucao/{idPed}")
+    public ModelAndView acessarFormularioDevolucao(@PathVariable("id") Cliente cliente, @PathVariable("idPed") Pedido pedido){
+
+        ModelAndView mv = new ModelAndView("cliente/pedido/formDevolucao");
+
+        mv.addObject("cliente", service.atualUsuarioLogado());
+        mv.addObject("pedido", pedidoService.buscarById(pedido.getId()));
         mv.addObject("devolucao", new Devolucao());
 
         return mv;
     }
 
+    @PostMapping("perfil/{id}/devolucao/{idPed}")
+    public ModelAndView solicitarDevolucaoPedido(@PathVariable("id") Cliente cliente, @PathVariable("idPed") Pedido pedido, Devolucao devolucao){
+
+        ModelAndView mv = new ModelAndView("cliente/perfil");
+        devolucao.setPedido(pedidoService.buscarById(pedido.getId()));
+        devolucaoService.salvarSolicitacaoDevolucao(devolucao);
+
+        mv.addObject("cliente", service.atualUsuarioLogado());
+        mv.addObject("mensagem", "Solicitação de troca enviada com sucesso!");
+
+        return mv;
+    }
+
     @GetMapping("perfil/{id}/pedidos/visualizar/{idPed}")
-    public ModelAndView visualizaPedido(@PathVariable("id") Cliente cliente, @PathVariable("idPed") Pedido pedido) {
+    public ModelAndView visualizarPedido(@PathVariable("id") Cliente cliente, @PathVariable("idPed") Pedido pedido) {
         ModelAndView mv = new ModelAndView("cliente/pedido/detalhe");
 
         mv.addObject("cliente", cliente);
