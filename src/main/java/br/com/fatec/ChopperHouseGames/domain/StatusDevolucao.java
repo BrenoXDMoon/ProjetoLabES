@@ -9,7 +9,8 @@ public enum StatusDevolucao {
     AGUARDANDO_RESPOSTA("Aguardando resposta"),
     EM_PROCESSAMENTO("Em processamento"),
     ACEITO("Aceito"),
-    RECUSADO("Recusado");
+    RECUSADO("Recusado"),
+    FINALIZADO("Finalizado");
 
     private final String descricao;
 }

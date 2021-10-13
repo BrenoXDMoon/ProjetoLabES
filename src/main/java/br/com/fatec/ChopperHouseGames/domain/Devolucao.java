@@ -2,9 +2,7 @@ package br.com.fatec.ChopperHouseGames.domain;
 
 import lombok.Data;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
@@ -19,6 +17,8 @@ public class Devolucao extends EntidadeDominio{
 
     @OneToOne(cascade = CascadeType.ALL)
     private Pedido pedido;
+
+    @Enumerated(EnumType.ORDINAL)
     private StatusDevolucao statusDevolucao;
 
     public Devolucao() {

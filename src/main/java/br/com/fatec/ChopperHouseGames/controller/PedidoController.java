@@ -1,12 +1,12 @@
 package br.com.fatec.ChopperHouseGames.controller;
 
-import br.com.fatec.ChopperHouseGames.domain.Cliente;
+import br.com.fatec.ChopperHouseGames.domain.Devolucao;
 import br.com.fatec.ChopperHouseGames.domain.Pedido;
+import br.com.fatec.ChopperHouseGames.service.IDevolucaoService;
 import br.com.fatec.ChopperHouseGames.service.IPedidoService;
 import br.com.fatec.ChopperHouseGames.service.IStatusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -89,19 +89,6 @@ public class PedidoController {
         pedido.setStatus(statusService.buscarByNome("CANCELAMENTO RECUSADO"));
 
         pedidoService.editar(pedido);
-
-        return mv;
-    }
-
-
-    @GetMapping("devolucoes")
-    public ModelAndView listarDevolucoes(ModelAndView mv){
-
-        if(mv == null){
-            mv = new ModelAndView();
-        }
-        mv.setViewName("admin/pedido/listaDevolucao");
-        mv.addObject("pedidos", pedidoService.buscarByStatusGeral("TROCA"));
 
         return mv;
     }

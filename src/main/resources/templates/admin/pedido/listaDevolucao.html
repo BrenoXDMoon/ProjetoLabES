@@ -52,19 +52,19 @@
             <table class="table">
               <thead class=" text-primary">
               <th>#</th>
-              <th>Data do Pedido</th>
+              <th>Data da Devolucao</th>
               <th>Status</th>
               <th>Total</th>
               <th colspan="2"></th>
               </thead>
               <tbody>
-              <tr th:each="pedido : ${pedidos}">
-                <td th:text="${pedido.id}">456</td>
-                <td th:text="${pedido.dataCriacao}">13/09/2021</td>
-                <td th:text="${pedido.status.status}"></td>
-                <td th:text="${pedido.total}">R$ 90.0</td>
+              <tr th:each="devo : ${pedidos}">
+                <td th:text="${devo.id}">456</td>
+                <td th:text="${devo.dataCriacao}">13/09/2021</td>
+                <td th:text="${devo.statusDevolucao.descricao}"></td>
+                <td th:text="${devo.pedido.total}">R$ 90.0</td>
                 <td class="m-auto">
-                  <a th:href="@{'/admin/pedidos/visualizar/' +${pedido.id}}" class="btn btn-outline-warning">
+                  <a th:href="@{'/admin/devolucoes/' +${devo.id}}" class="btn btn-outline-warning">
                     <span>Visualizar</span>
                   </a>
                 </td>

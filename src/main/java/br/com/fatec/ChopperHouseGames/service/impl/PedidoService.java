@@ -82,9 +82,7 @@ public class PedidoService implements IPedidoService {
     }
 
     private Pedido preencherPedido(Pedido pedido, BindingResult result) {
-        Status status = statusRepository.findByStatus("EM PROCESSAMENTO");
-
-        pedido.setStatus(status);
+        pedido.setStatus(statusRepository.findByStatus("EM PROCESSAMENTO"));
         pedido.setItens(pedido.getCliente().getCarrinho().getItens());
 
         pedido.getMetodosPagamento().forEach(p -> p.setCartaoCredito(cartaoRepository.findById(p.getCartaoCredito().getId()).get()));
