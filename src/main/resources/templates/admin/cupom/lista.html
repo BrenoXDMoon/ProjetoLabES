@@ -21,11 +21,11 @@
                             </thead>
 
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>DESC10</td>
-                                    <td>R$ 10.0</td>
-                                    <td>Promocional</td>
+                                <tr th:each="cupom : ${cupons}">
+                                    <td th:text="${cupom.id}">1</td>
+                                    <td th:text="${cupom.codigo}">DESC10</td>
+                                    <td th:text="${cupom.valor}">R$ 10.0</td>
+                                    <td th:text="${cupom.tipoCupom.nome}">Promocional</td>
                                     <td class="m-auto">
                                         <button class="btn btn-outline-danger">
                                             <i class="fas fa-trash-alt"></i>
