@@ -58,7 +58,7 @@
             <button type="submit" class="btn btn-danger">Gravar Alteracoes</button>
         </form>
         <div class="container-fluid" th:if="${devolucao.statusDevolucao.descricao.equals('Aguardando resposta')}">
-            <h4 class=' mb-5'>Cancelamento do pedido solicitado. Deseja aceitar?</h4>
+            <h4 class=' mb-5'>Devolucao do pedido solicitado. Deseja aceitar?</h4>
             <div class="row">
                 <form class="col-1" th:method="post" th:action="@{'/admin/devolucoes/'+ ${devolucao.id}+'/aceitar'}">
                     <button type="submit" class="btn btn-success">Sim</button>
@@ -66,15 +66,6 @@
                 <form class="col-1" th:method="post" th:action="@{'/admin/devolucoes/'+ ${devolucao.id}+'/recusar'}">
                     <button type="submit" class="btn btn-danger">Não</button>
                 </form>
-            </div>
-        </div>
-        <div class="container-fluid" th:if="${devolucao.statusDevolucao.descricao.equals('Aceito')}">
-            <h4 class=' mb-5'>Troca aceita. Deseja processar o envio?</h4>
-            <div class="row">
-                <form class="col-1" th:method="post" th:action="@{'/admin/devolucoes/'+ ${devolucao.id}+'/processar'}">
-                    <button type="submit" class="btn btn-success">Sim</button>
-                </form>
-                <a th:href="@{/admin/devolucoes}" class="btn btn-danger">Não</a>
             </div>
         </div>
         <div class="container-fluid" th:if="${devolucao.statusDevolucao.descricao.equals('Em processamento')}">

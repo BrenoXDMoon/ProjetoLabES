@@ -1,9 +1,6 @@
 package br.com.fatec.ChopperHouseGames.service.impl;
 
-import br.com.fatec.ChopperHouseGames.domain.Cupom;
-import br.com.fatec.ChopperHouseGames.domain.Devolucao;
-import br.com.fatec.ChopperHouseGames.domain.StatusDevolucao;
-import br.com.fatec.ChopperHouseGames.domain.TipoCupom;
+import br.com.fatec.ChopperHouseGames.domain.*;
 import br.com.fatec.ChopperHouseGames.repository.CupomRepository;
 import br.com.fatec.ChopperHouseGames.repository.DevolucaoRepository;
 import br.com.fatec.ChopperHouseGames.repository.StatusRepository;
@@ -44,6 +41,11 @@ public class DevolucaoService implements IDevolucaoService {
     @Override
     public List<Devolucao> buscarTodos() {
         return repository.findAll();
+    }
+
+    @Override
+    public Devolucao buscaDevolucaoByPedidoId(Pedido pedido) {
+        return repository.findByPedido_Id(pedido.getId());
     }
 
     @Override
@@ -99,14 +101,14 @@ public class DevolucaoService implements IDevolucaoService {
         Cupom cupom = new Cupom();
 
         Random random = new Random();
-        StringBuilder buffer = new StringBuilder(10);
-        for (int i = 0; i < 10; i++) {
-            int randomLimitedInt = 97 + (int)
-                    (random.nextFloat() * (122 - 97 + 1));
-            buffer.append((char) randomLimitedInt);
-        }
 
-        cupom.setCodigo(buffer.toString());
+        String codigo = random.ints(48, 122 + 1)
+                .filter(i -> (i <= 57 || i >= 65) && (i <= 90 || i >= 97))
+                .limit(10)
+                .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+                .toString();
+
+        cupom.setCodigo(codigo);
         cupom.setQuantidade(1);
         cupom.setCliente(devolucao.getPedido().getCliente());
         cupom.setTipoCupom(tipoCupomRepository.findByNome("TROCA"));

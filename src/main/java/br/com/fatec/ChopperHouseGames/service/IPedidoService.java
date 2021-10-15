@@ -15,5 +15,4 @@ public interface IPedidoService {
     Pedido editar(Pedido pedido);
     GraficoDto findAllByCreatedAtBetween(Date dateInitial, Date dateFinal, Integer searchType);
     List<Pedido> buscarByStatus(String status);
-    List<Pedido> buscarByStatusGeral(String status);
 }

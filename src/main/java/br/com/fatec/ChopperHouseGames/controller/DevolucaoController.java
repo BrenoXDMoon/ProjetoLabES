@@ -1,7 +1,9 @@
 package br.com.fatec.ChopperHouseGames.controller;
 
+import br.com.fatec.ChopperHouseGames.domain.Cliente;
 import br.com.fatec.ChopperHouseGames.domain.Devolucao;
 import br.com.fatec.ChopperHouseGames.domain.StatusDevolucao;
+import br.com.fatec.ChopperHouseGames.service.IClienteService;
 import br.com.fatec.ChopperHouseGames.service.IDevolucaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +17,9 @@ public class DevolucaoController {
 
     @Autowired
     IDevolucaoService devolucaoService;
+
+    @Autowired
+    IClienteService clienteService;
 
     @GetMapping
     public ModelAndView listarDevolucoes(ModelAndView mv){
@@ -65,7 +70,8 @@ public class DevolucaoController {
     @PostMapping("{id}/processar")
     public ModelAndView processarTroca(@PathVariable("id") Devolucao devolucao){
 
-        ModelAndView mv = new ModelAndView("redirect:/admin/devolucoes");
+        Cliente cliente = clienteService.atualUsuarioLogado();
+        ModelAndView mv = new ModelAndView("redirect:cliente/perfil/" + cliente.getId() +"/pedidos");
         devolucaoService.processar(devolucao);
         return mv;
     }

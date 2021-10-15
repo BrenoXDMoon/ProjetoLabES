@@ -58,7 +58,7 @@
                             <th colspan="2"></th>
                             </thead>
                             <tbody>
-                            <tr th:each="pedido : ${pedidos}">
+                            <tr th:each="pedido : ${pedidos}" th:if="${pedido.status.status.contains('CANCELAMENTO')}">
                                 <td th:text="${pedido.id}">456</td>
                                 <td th:text="${pedido.dataCriacao}">13/09/2021</td>
                                 <td th:text="${pedido.status.status}"></td>

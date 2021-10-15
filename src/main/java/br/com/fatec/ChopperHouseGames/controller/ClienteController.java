@@ -217,6 +217,7 @@ public class ClienteController {
 
         mv.addObject("cliente", cliente);
         mv.addObject("pedido", pedidoService.buscarById(pedido.getId()));
+        mv.addObject("devolucaoExist", devolucaoService.buscaDevolucaoByPedidoId(pedido));
         mv.addObject("devolucao", new Devolucao());
 
         return mv;

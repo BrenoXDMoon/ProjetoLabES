@@ -42,6 +42,8 @@ public class CheckoutController {
         if(mv == null){
             mv = new ModelAndView();
         }
+
+        pedido = new Pedido();
         mv.setViewName("pedido/checkout");
         mv.addObject("cliente", cliente);
         mv.addObject("totalProdutos", cliente.getCarrinho().getItens().stream().mapToDouble(i -> i.getJogo().getPreco() * i.getQuantidade().doubleValue()).sum());

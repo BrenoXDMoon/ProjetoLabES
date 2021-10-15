@@ -6,4 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface DevolucaoRepository extends JpaRepository<Devolucao, Integer> {
+
+    Devolucao findByPedido_Id(Integer id);
+
 }

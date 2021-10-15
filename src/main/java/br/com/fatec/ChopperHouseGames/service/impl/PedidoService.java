@@ -40,19 +40,24 @@ public class PedidoService implements IPedidoService {
 
     @Override
     public Pedido salvar(Pedido pedido, BindingResult result) {
-        
+        System.out.println("--- entrei pra salvar pedido");
         pedido = preencherPedido(pedido, result);
-
+        for(Pedido ped : repository.findAll()){
+            if(pedido.getId().equals(ped.getId())){
+                pedido.setId(pedido.getId()+1);
+                break;
+            }
+        }
         if(result.hasErrors()){
             return pedido;
         }
 
-        repository.saveAndFlush(pedido);
+        pedido = repository.save(pedido);
 
         pedido.getCliente().getCarrinho().getItens().clear();
 
         clienteRepository.saveAndFlush(pedido.getCliente());
-
+        System.out.println("--- salvei pedido " + pedido.getId());
         return pedido;
     }
 
@@ -76,19 +81,14 @@ public class PedidoService implements IPedidoService {
         return repository.findAllByStatus_Status(status);
     }
 
-    @Override
-    public List<Pedido> buscarByStatusGeral(String status) {
-        return repository.findAllByStatusStatusContains(status);
-    }
-
     private Pedido preencherPedido(Pedido pedido, BindingResult result) {
+
         pedido.setStatus(statusRepository.findByStatus("EM PROCESSAMENTO"));
         pedido.setItens(pedido.getCliente().getCarrinho().getItens());
 
         pedido.getMetodosPagamento().forEach(p -> p.setCartaoCredito(cartaoRepository.findById(p.getCartaoCredito().getId()).get()));
 
         if(pedido.getCupom() != null && pedido.getCupom().getId() != null){
-            System.out.println(pedido.getCupom().getId());
             pedido.setCupom(cupomRepository.findById(pedido.getCupom().getId()).get());
 
             pedido.setTotal(BigDecimal.valueOf(pedido.getTotal() - pedido.getCupom().getValor())
@@ -128,6 +128,9 @@ public class PedidoService implements IPedidoService {
         if(pedido.getCuponsTroca() != null && !pedido.getCuponsTroca().isEmpty()){
             pedido.getCuponsTroca().forEach(c -> c.setQuantidade(c.getQuantidade() - 1));
         }
+
+        Pedido ped = new Pedido();
+        pedido.setId(pedido.getId());
 
         return pedido;
     }

@@ -80,6 +80,17 @@
                         </table>
                     </div>
                     <a th:if="${pedido.status.status.equals('ENTREGUE')}" th:href="@{'/cliente/perfil/' + ${cliente.id} +'/devolucao/' + ${pedido.id}}" class="btn btn-danger">Solicitar Devolucao de Pedido</a>
+                    <div class="container-fluid" th:if="${devolucaoExist != null and devolucaoExist.statusDevolucao.descricao.equals('Aceito')}">
+                        <h4 class=' mb-5'>Troca aceita. Deseja processar o envio?</h4>
+                        <div class="row">
+                            <form class="col-1" th:method="post" th:action="@{'/admin/devolucoes/'+ ${devolucaoExist.id}+'/processar'}">
+                                <button type="submit" class="btn btn-success">Sim</button>
+                            </form>
+                            <div class="col-1">
+                                <a th:href="@{'/cliente/perfil/' + ${cliente.id}+'/pedidos'}" class="btn btn-danger">Não</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

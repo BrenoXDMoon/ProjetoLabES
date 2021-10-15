@@ -28,9 +28,9 @@ public class PedidoClienteController {
     @PostMapping("visualizar/{idPed}/cancelamento")
     public ModelAndView solicitaTroca(@PathVariable("id") Cliente cliente, @PathVariable("idPed") Pedido pedido){
 
-        ModelAndView mv = new ModelAndView("cliente/perfil");
+        ModelAndView mv = new ModelAndView("redirect:/cliente/perfil/" + cliente.getId() + "/pedidos");
 
-        pedido.setStatus(statusService.buscarByNome("CACELAMENTO SOLICITADO"));
+        pedido.setStatus(statusService.buscarById(13));
 
         pedidoService.editar(pedido);
 

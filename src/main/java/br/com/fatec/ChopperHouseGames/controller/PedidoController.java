@@ -64,7 +64,7 @@ public class PedidoController {
 
         mv.setViewName("admin/pedido/listaCancelamento");
 
-        mv.addObject("pedidos", pedidoService.buscarByStatusGeral("CANCELAMENTO"));
+        mv.addObject("pedidos", pedidoService.buscarTodos());
 
         return mv;
     }
