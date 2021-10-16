@@ -32,13 +32,13 @@ public class Pedido extends EntidadeDominio {
     @JoinColumn(name = "endereco_cobranca_id")
     private Endereco enderecoCobranca;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany(cascade = {CascadeType.ALL})
     private List<MetodoPagamento> metodosPagamento;
 
     @ManyToOne(cascade = {CascadeType.ALL})
     private Cupom cupom;
 
-    @ManyToMany(cascade = {CascadeType.ALL})
+    @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     private List<Cupom> cuponsTroca;
 
     @ManyToMany

@@ -79,33 +79,31 @@
                             </div>
                             <h5 class="text-center mt-5">Cartões</h5>
                             <hr />
-                            <div id="metodo_pagamento_cartao">
+                            <div id="payment_method_card">
                                 <div class="form-group">
                                     <label>Selecione um cartão</label>
-                                    <select class="custom-select cartao_credito_selector" required th:field="*{metodosPagamento[0].cartaoCredito.id}" onchange="changeCreditCardOption(event)">
+                                    <select class="custom-select credit-card-selector" required
+                                            th:field="*{metodosPagamento[0].cartaoCredito.id}" onchange="changeCreditCardOption(event)">
                                         <option value="">Selecione um cartão</option>
                                         <th:block th:if="${!cliente.cartoes.isEmpty()}">
                                             <option data-toggle="tooltip" data-placement="top"
-                                                    th:each="cartao : ${cliente.cartoes}"
-                                                    th:value="${cartao.id}"
-                                                    th:text="${cartao.numeroCartao}"
-                                                    th:title="${cartao.numeroCartao}">
-                                            </option>
+                                                    th:each="creditCard : ${cliente.cartoes}"
+                                                    th:value="${creditCard.id}"
+                                                    th:text="${creditCard.numeroCartao.substring(creditCard.numeroCartao.length() - 4)}"
+                                                    th:title="${creditCard.numeroCartao.substring(creditCard.numeroCartao.length() - 4)}"></option>
                                         </th:block>
-                                        <option value="-1">Cadastrar Novo</option>
                                     </select>
-                                    <a class="btn btn-success" th:href="@{'/cliente/perfil/' + ${cliente.id} +'/checkout/salvarCartao'}">Cadastre um novo cartao</a>
                                 </div>
 
                                 <div class="form-group">
                                     <label>Digite o valor do pagamento:</label>
-                                    <input type="number" min="10" step="0.01" class="form-control credit-card-value" th:field="*{metodosPagamento[0].valorPagamento}" placeholder="10.00" required
-                                           name="paymentMethodList[0].paymentValue" onchange="validationValue(event)"/>
+                                    <input type="number" min="10" step="0.01" class="form-control credit-card-value"  placeholder="10.00" required
+                                           name="metodosPagamento[0].valorPagamento" onchange="validationValue(event)"/>
                                 </div>
                             </div>
 
                             <div class="form-group mt-3">
-                                <a class="btn btn-outline-info btn-block" id="add_metodo_pagamento">
+                                <a class="btn btn-outline-info btn-block" id="add_metodo_pagamento" name="add_metodo_pagamento">
                                     <i class="fas fa-plus-circle"></i>
                                     <span> Adicionar mais um método de pagamento</span>
                                 </a>
@@ -141,7 +139,7 @@
                                 <div class="flex-wrap justify-content-between" id="cupom_troca_div">
                                     <span>Cupom de troca disponíveis:</span>
                                     <select class="custom-select" multiple id="cuponsTroca" name="cuponsTroca">
-                                        <option th:each="cupom : ${cuponsTroca}"
+                                        <option th:each="cupom : ${cuponsTroca}" th:if="${cupom.quantidade >= 1}"
                                                 th:value="${cupom.id}"
                                                 th:text="${'Código: ' + cupom.codigo + ' | Valor: ' + cupom.valor}"
                                                 th:title="${'Código: ' + cupom.codigo + ' | Valor: ' + cupom.valor}">
@@ -169,37 +167,45 @@
             </div>
         </div>
 
-        <script>
-            var total = $("#total").text();
-            var listaPagamento = 0;
-
-            $("#add_metodo_pagamento").on("click", function(event) {
-                event.preventDefault();
-                let pagamento_dom = $("#metodo_pagamento_cartao")
-
-                $("#metodo_pagamento_cartao").clone().insertBefore(this)
-                pagamento_dom.removeAttr("id")
-                pagamento_dom.attr("id", "metodo_pagamento_cartao" + listaPagamento)
-
-                for(let i = 0; i< $(".credit-card-selector").length; i++){
-                    let select_dom_credit_card = $(".cartao_credito_selector")[i]
-                    let input_dom_credit_card_value = $(".credit-card-value")[i]
-
-                    select_dom_credit_card.removeAttribute("name");
-                    input_dom_credit_card_value.removeAttribute("name");
-
-                    select_dom_credit_card.setAttribute("name", "metodosPagamento[" + i + "].cartaoCredito.id")
-                    input_dom_credit_card_value.setAttribute("name", "metodosPagamento[" + i + "].valorPagamento")
-                }
-
-                listaPagamento += 1
-            });
-
-            let valorCupom = document.getElementById("cupom_select");
-
-            console.log(valorCupom)
-        </script>
-
         <footer th:insert="~{layout/shared :: footer}"></footer>
     </body>
+    <script>
+        var total = document.getElementById("total");
+        var listPagamento = 0;
+
+        console.log("to aqui")
+        $(document).ready(function () {
+            $("#postalcode").mask("00000-000");
+        });
+
+        $("#add_metodo_pagamento").on("click", function (event) {
+            event.preventDefault();
+            let payment_dom = $("#payment_method_card");
+
+            $("#payment_method_card").clone().insertBefore(this);
+            payment_dom.removeAttr("id");
+            payment_dom.attr("id", "payment_method_card" + listPagamento);
+
+            for (let i = 0; i < $(".credit-card-selector").length; i++) {
+                let select_dom_credit_card = $(".credit-card-selector")[i];
+                let input_dom_credit_card_value = $(".credit-card-value")[i];
+
+                select_dom_credit_card.removeAttribute("name");
+                input_dom_credit_card_value.removeAttribute("name");
+
+                select_dom_credit_card.setAttribute(
+                    "name",
+                    "metodosPagamento[" + i + "].cartaoCredito.id"
+                );
+                input_dom_credit_card_value.setAttribute(
+                    "name",
+                    "metodosPagamento[" + i + "].valorPagamento"
+                );
+            }
+
+            listPagamento += 1;
+        });
+
+        let valorCupom = document.getElementById("cupom_select");
+    </script>
 </html>

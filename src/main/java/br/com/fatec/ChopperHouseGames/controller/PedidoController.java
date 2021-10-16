@@ -1,8 +1,8 @@
 package br.com.fatec.ChopperHouseGames.controller;
 
-import br.com.fatec.ChopperHouseGames.domain.Devolucao;
+import br.com.fatec.ChopperHouseGames.domain.Item;
 import br.com.fatec.ChopperHouseGames.domain.Pedido;
-import br.com.fatec.ChopperHouseGames.service.IDevolucaoService;
+import br.com.fatec.ChopperHouseGames.repository.JogoRepository;
 import br.com.fatec.ChopperHouseGames.service.IPedidoService;
 import br.com.fatec.ChopperHouseGames.service.IStatusService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,9 @@ public class PedidoController {
     private IPedidoService pedidoService;
 
     @Autowired
-    IStatusService statusService;
+    private IStatusService statusService;
+    @Autowired
+    private JogoRepository jogoRepository;
 
     @GetMapping("pedidos")
     public ModelAndView listaPedidosAdmin(ModelAndView mv){
@@ -75,7 +77,10 @@ public class PedidoController {
         ModelAndView mv = new ModelAndView("redirect:/admin/cancelamentos");
 
         pedido.setStatus(statusService.buscarByNome("CANCELAMENTO ACEITO"));
-
+        for(Item item : pedido.getItens()){//devolvendo produto ao estoque
+            item.getJogo().setQuantidadeDisponivel(item.getJogo().getQuantidadeDisponivel() + item.getQuantidade());
+            jogoRepository.saveAndFlush(item.getJogo());
+        }
         pedidoService.editar(pedido);
 
         return mv;

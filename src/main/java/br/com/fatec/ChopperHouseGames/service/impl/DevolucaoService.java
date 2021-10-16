@@ -1,10 +1,7 @@
 package br.com.fatec.ChopperHouseGames.service.impl;
 
 import br.com.fatec.ChopperHouseGames.domain.*;
-import br.com.fatec.ChopperHouseGames.repository.CupomRepository;
-import br.com.fatec.ChopperHouseGames.repository.DevolucaoRepository;
-import br.com.fatec.ChopperHouseGames.repository.StatusRepository;
-import br.com.fatec.ChopperHouseGames.repository.TipoCupomRepository;
+import br.com.fatec.ChopperHouseGames.repository.*;
 import br.com.fatec.ChopperHouseGames.service.IDevolucaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +19,8 @@ public class DevolucaoService implements IDevolucaoService {
     StatusRepository statusRepository;
     @Autowired
     CupomRepository cupomRepository;
+    @Autowired
+    JogoRepository jogoRepository;
 
     @Autowired
     TipoCupomRepository tipoCupomRepository;
@@ -85,15 +84,20 @@ public class DevolucaoService implements IDevolucaoService {
         devolucao = repository.findById(devolucao.getId()).get();
         devolucao.getPedido().setStatus(statusRepository.findByStatus("PRODUTO RECEBIDO PARA TROCA"));
         devolucao.setStatusDevolucao(StatusDevolucao.EM_PROCESSAMENTO);
+
         return repository.saveAndFlush(devolucao);
     }
 
-    @Override//gerar cupom de troca
+    @Override
     public Devolucao finalizar(Devolucao devolucao){
         devolucao = repository.findById(devolucao.getId()).get();
         devolucao.getPedido().setStatus(statusRepository.findByStatus("TROCA REALIZADA"));
         devolucao.setStatusDevolucao(StatusDevolucao.FINALIZADO);
         gerarCupomTrocaAleatorio(devolucao);
+        for(Item item : devolucao.getPedido().getItens()){//devolvendo produto ao estoque
+            item.getJogo().setQuantidadeDisponivel(item.getJogo().getQuantidadeDisponivel() + item.getQuantidade());
+            jogoRepository.saveAndFlush(item.getJogo());
+        }
         return repository.saveAndFlush(devolucao);
     }
 

@@ -13,7 +13,6 @@ public class Cupom extends EntidadeDominio {
 
     private String codigo;
 
-    @Min(value = 1, message = "A quantidade deve ser maior que 0")
     private Integer quantidade;
 
     @Min(value = 1, message = "O Valor deve ser maior que 0")
