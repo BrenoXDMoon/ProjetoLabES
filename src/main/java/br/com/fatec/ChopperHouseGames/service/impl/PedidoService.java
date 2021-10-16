@@ -42,15 +42,11 @@ public class PedidoService implements IPedidoService {
     public Pedido salvar(Pedido pedido, BindingResult result) {
         System.out.println("--- entrei pra salvar pedido");
         pedido = preencherPedido(pedido, result);
-        for(Pedido ped : repository.findAll()){
-            if(pedido.getId().equals(ped.getId())){
-                pedido.setId(pedido.getId()+1);
-                break;
-            }
-        }
         if(result.hasErrors()){
             return pedido;
         }
+
+        //pedido = criaNovoPedido(pedido);
 
         pedido = repository.saveAndFlush(pedido);
 
@@ -59,6 +55,22 @@ public class PedidoService implements IPedidoService {
         clienteRepository.saveAndFlush(pedido.getCliente());
         System.out.println("--- salvei pedido " + pedido.getId());
         return pedido;
+    }
+
+    private Pedido criaNovoPedido(Pedido pedido) {
+        Pedido novoPedido = new Pedido();
+
+        novoPedido.setTotal(pedido.getTotal());
+        novoPedido.setItens(pedido.getItens());
+        novoPedido.setStatus(pedido.getStatus());
+        novoPedido.setCupom(pedido.getCupom());
+        novoPedido.setCliente(pedido.getCliente());
+        novoPedido.setCuponsTroca(pedido.getCuponsTroca());
+        novoPedido.setDataEntrega(pedido.getDataEntrega());
+        novoPedido.setEndereco(pedido.getEndereco());
+        novoPedido.setEnderecoCobranca(pedido.getEnderecoCobranca());
+
+        return novoPedido;
     }
 
     @Override
@@ -128,9 +140,6 @@ public class PedidoService implements IPedidoService {
         if(pedido.getCuponsTroca() != null && !pedido.getCuponsTroca().isEmpty()){
             pedido.getCuponsTroca().forEach(c -> c.setQuantidade(c.getQuantidade() - 1));
         }
-
-        Pedido ped = new Pedido();
-        pedido.setId(pedido.getId());
 
         return pedido;
     }
