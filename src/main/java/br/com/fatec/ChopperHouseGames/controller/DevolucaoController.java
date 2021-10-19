@@ -71,7 +71,7 @@ public class DevolucaoController {
     public ModelAndView processarTroca(@PathVariable("id") Devolucao devolucao){
 
         Cliente cliente = clienteService.atualUsuarioLogado();
-        ModelAndView mv = new ModelAndView("redirect:cliente/perfil/" + cliente.getId() +"/pedidos");
+        ModelAndView mv = new ModelAndView("redirect:/cliente/perfil/" + cliente.getId() +"/pedidos");
         devolucaoService.processar(devolucao);
         return mv;
     }

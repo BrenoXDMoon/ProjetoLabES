@@ -53,7 +53,6 @@ public class PedidoService implements IPedidoService {
         pedido.getCliente().getCarrinho().getItens().clear();
 
         clienteRepository.saveAndFlush(pedido.getCliente());
-        System.out.println("--- salvei pedido " + pedido.getId());
         return pedido;
     }
 

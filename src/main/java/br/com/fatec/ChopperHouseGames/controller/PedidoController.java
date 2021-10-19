@@ -81,6 +81,9 @@ public class PedidoController {
             item.getJogo().setQuantidadeDisponivel(item.getJogo().getQuantidadeDisponivel() + item.getQuantidade());
             jogoRepository.saveAndFlush(item.getJogo());
         }
+
+        pedido.setStatus(statusService.buscarById(12));
+
         pedidoService.editar(pedido);
 
         return mv;
