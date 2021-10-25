@@ -1,8 +1,11 @@
 package br.com.fatec.ChopperHouseGames.dto;
 
+import lombok.Data;
+
 import java.util.List;
 import java.util.Random;
 
+@Data
 public class DataSetDto {
     private String label;
     private List<Double> data ;

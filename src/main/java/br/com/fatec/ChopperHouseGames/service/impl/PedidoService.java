@@ -1,7 +1,8 @@
 package br.com.fatec.ChopperHouseGames.service.impl;
 
-import br.com.fatec.ChopperHouseGames.domain.Pedido;
-import br.com.fatec.ChopperHouseGames.domain.Status;
+import br.com.fatec.ChopperHouseGames.domain.*;
+import br.com.fatec.ChopperHouseGames.dto.ChartDto;
+import br.com.fatec.ChopperHouseGames.dto.DataSetDto;
 import br.com.fatec.ChopperHouseGames.dto.GraficoDto;
 import br.com.fatec.ChopperHouseGames.repository.*;
 import br.com.fatec.ChopperHouseGames.service.IPedidoService;
@@ -12,8 +13,10 @@ import org.springframework.validation.ObjectError;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class PedidoService implements IPedidoService {
@@ -32,6 +35,13 @@ public class PedidoService implements IPedidoService {
 
     @Autowired
     CupomRepository cupomRepository;
+
+    @Autowired
+    private JogoRepository jogoRepository;
+
+    @Autowired
+    GeneroRepository generoRepository;
+
 
     @Override
     public Pedido buscarById(Integer id) {
@@ -56,22 +66,6 @@ public class PedidoService implements IPedidoService {
         return pedido;
     }
 
-    private Pedido criaNovoPedido(Pedido pedido) {
-        Pedido novoPedido = new Pedido();
-
-        novoPedido.setTotal(pedido.getTotal());
-        novoPedido.setItens(pedido.getItens());
-        novoPedido.setStatus(pedido.getStatus());
-        novoPedido.setCupom(pedido.getCupom());
-        novoPedido.setCliente(pedido.getCliente());
-        novoPedido.setCuponsTroca(pedido.getCuponsTroca());
-        novoPedido.setDataEntrega(pedido.getDataEntrega());
-        novoPedido.setEndereco(pedido.getEndereco());
-        novoPedido.setEnderecoCobranca(pedido.getEnderecoCobranca());
-
-        return novoPedido;
-    }
-
     @Override
     public List<Pedido> buscarTodos() {
         return repository.findAll();
@@ -90,6 +84,124 @@ public class PedidoService implements IPedidoService {
     @Override
     public List<Pedido> buscarByStatus(String status) {
         return repository.findAllByStatus_Status(status);
+    }
+
+    @Override
+    public ChartDto buscarTodosCriadosEntre(Date dataInicial, Date dataFinal, Integer tipoBusca) {
+        if (null == tipoBusca){
+            tipoBusca = 0;
+        }
+
+        List<Pedido> pedidosFiltrados = repository.findAllByDataCriacaoBetweenOrderByDataCriacao(dataInicial, dataFinal);
+
+        Map<LocalDate, List<Pedido>> agrupadoPorData = new HashMap<>();
+
+        LocalDate localDate = null;
+
+        for(Pedido ped : pedidosFiltrados){
+            Date data = new Date(ped.getDataCriacao().getTime());
+            localDate = data.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            if(!agrupadoPorData.containsKey(localDate.getDayOfYear())){
+                agrupadoPorData.put(localDate, new ArrayList<>());
+                agrupadoPorData.get(localDate).add(ped);
+            }else {
+                agrupadoPorData.get(localDate).add(ped);
+            }
+        }
+
+        List<HashMap<String, Double>> pedidoValor = new ArrayList<>();
+
+        ChartDto chartDTO = new ChartDto();
+        List<DataSetDto> listaDataSet = new ArrayList<>();
+
+        if (tipoBusca.equals(0)) {
+            List<Jogo> jogos = jogoRepository.findAll();
+
+            for (Jogo jogo : jogos) {
+                DataSetDto dataSetDTO = new DataSetDto();
+                List<Double> doubleList = new ArrayList<>();
+                dataSetDTO.setLabel(jogo.getTitulo());
+
+
+                for (List<Pedido> order : agrupadoPorData.values()) {
+                    Integer amount = 0;
+                    for (Pedido orderValueGroup : order) {
+                        for (Item item : orderValueGroup.getItens()) {
+                            if (item.getJogo().equals(jogo))
+                                amount++;
+                        }
+                    }
+                    doubleList.add(amount * jogo.getPreco());
+                }
+
+                dataSetDTO.setData(doubleList);
+                listaDataSet.add(dataSetDTO);
+            }
+        } else {
+            List<Genero> generos = generoRepository.findAll();
+
+            for (Genero genero : generos) {
+                DataSetDto dataSetDTO = new DataSetDto();
+                List<Double> doubleList = new ArrayList<>();
+                dataSetDTO.setLabel(genero.getNome());
+
+
+                for (List<Pedido> pedidos : agrupadoPorData.values()) {
+                    Integer amount = 0;
+                    Jogo jogo = null;
+                    for (Pedido orderValueGroup : pedidos) {
+                        for (Item item : orderValueGroup.getItens()) {
+                            if (item.getJogo().getGeneros().contains(genero)) {
+                                amount++;
+                            }
+                            jogo = item.getJogo();
+                        }
+                    }
+                    if (null != jogo)
+                        doubleList.add(amount * jogo.getPreco());
+                }
+
+                dataSetDTO.setData(doubleList);
+                listaDataSet.add(dataSetDTO);
+            }
+        }
+
+        chartDTO.setLabel(agrupadoPorData.keySet().stream().map(lDate -> lDate.toString()).collect(Collectors.toList()));
+        chartDTO.setDatasets(listaDataSet);
+
+        return chartDTO;
+    }
+
+    @Override
+    public List<HashMap<String, Double>> preencherIndexCards() {
+        List<HashMap<String, Double>> cards = new ArrayList<>();
+
+        List<Pedido> allOrders = repository.findAll();
+
+        HashMap<String, Double> totalOrder = new HashMap<>();
+        HashMap<String, Double> cardSingle = new HashMap<>();
+        HashMap<String, Double> cardMultiple = new HashMap<>();
+        Double totalSingleCreditCard = 0d;
+        Double totalMultipleCreditCard = 0d;
+
+        totalOrder.put("total das vendas", allOrders.stream().mapToDouble(o -> o.getTotal()).sum());
+
+        for (Pedido order : allOrders) {
+            if(order.getMetodosPagamento().size() > 1){
+                totalMultipleCreditCard += 1;
+            } else {
+                totalSingleCreditCard += 1;
+            }
+        }
+
+        cardSingle.put("Vendas (1 cartão de crédito)", totalSingleCreditCard);
+        cardMultiple.put("Vendas (vários cartões de crédito)", totalMultipleCreditCard);
+
+        cards.add(totalOrder);
+        cards.add(cardSingle);
+        cards.add(cardMultiple);
+
+        return cards;
     }
 
     private Pedido preencherPedido(Pedido pedido, BindingResult result) {

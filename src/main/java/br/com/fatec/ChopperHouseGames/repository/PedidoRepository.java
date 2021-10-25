@@ -9,7 +9,6 @@ import java.util.List;
 
 @Repository
 public interface PedidoRepository extends JpaRepository<Pedido, Integer> {
-    List<Pedido> findAllByDataCriacaoBetweenOrderByDataCriacao(Date dataInicial, Date dataFinal);
     List<Pedido> findAllByStatus_Status(String status);
-    List<Pedido> findAllByStatusStatusContains(String status);
+    List<Pedido> findAllByDataCriacaoBetweenOrderByDataCriacao(Date dataInicial, Date dataFinal);
 }

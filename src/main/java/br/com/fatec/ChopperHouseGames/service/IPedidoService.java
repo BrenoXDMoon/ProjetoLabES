@@ -1,10 +1,12 @@
 package br.com.fatec.ChopperHouseGames.service;
 
 import br.com.fatec.ChopperHouseGames.domain.Pedido;
+import br.com.fatec.ChopperHouseGames.dto.ChartDto;
 import br.com.fatec.ChopperHouseGames.dto.GraficoDto;
 import org.springframework.validation.BindingResult;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 public interface IPedidoService {
@@ -15,4 +17,6 @@ public interface IPedidoService {
     Pedido editar(Pedido pedido);
     GraficoDto findAllByCreatedAtBetween(Date dateInitial, Date dateFinal, Integer searchType);
     List<Pedido> buscarByStatus(String status);
+    ChartDto buscarTodosCriadosEntre(Date dataInicial, Date dataFinal, Integer tipoBusca);
+    List<HashMap<String, Double>> preencherIndexCards();
 }
