@@ -10,7 +10,8 @@
 
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-10 ">
+                <div class="col-10 my-5">
+                    <h3>Cadastro de jogo</h3>
                     <form method="post" th:object="${jogoDto}">
                         <div th:if="${resultados != null} ">
                             <div class="alert  alert-danger  alert-dismissible" role="alert" th:if="${resultados.hasErrors()}">
@@ -63,73 +64,73 @@
                                     <option data-toggle="tooltip" data-placement="top"
                                             th:each="edit : ${editoras}"
                                             th:value="${edit}"
-                                            th:text="${edit.}"
-                                            th:title="${publisher.name}"></option>
+                                            th:text="${edit.nome}"
+                                            th:title="${edit.nome}"></option>
                                 </select>
                             </div>
 
                             <div class="col-lg-4 form-group">
                                 <label for="launchDate">Lançamento:</label>
-                                <input type="date" class="form-control" required id="launchDate" th:field="*{releaseDate}">
+                                <input type="date" class="form-control" required id="launchDate" th:field="*{dataLancamento}">
                             </div>
 
                             <div class="col-lg-4 form-group">
-                                <label for="platform">Plataforma:</label>
-                                <select class="form-control" required id="platform" th:field="*{platform}">
+                                <label for="plataforma">Plataforma:</label>
+                                <select class="form-control" required id="plataforma" name="plataforma">
                                     <option data-toggle="tooltip" data-placement="top"
-                                            th:each="platform : ${platformList}"
-                                            th:value="${platform.id}"
-                                            th:text="${platform.name}"
-                                            th:title="${platform.name}"></option>
+                                            th:each="plat : ${plataformas}"
+                                            th:value="${plat.id}"
+                                            th:text="${plat.nome}"
+                                            th:title="${plat.nome}"></option>
                                 </select>
                             </div>
 
                             <div class="col-lg-4 form-group">
-                                <label for="language">Idioma:</label>
-                                <select class="form-control" required id="language" multiple th:field="*{languages}">
+                                <label for="idiomas">Idioma:</label>
+                                <select class="form-control" required id="idiomas" name="idiomas" multiple>
                                     <option data-toggle="tooltip" data-placement="top"
-                                            th:each="language : ${languageList}"
-                                            th:value="${language.id}"
-                                            th:text="${language.name}"
-                                            th:title="${language.name}"></option>
+                                            th:each="idioma : ${idiomas}"
+                                            th:value="${idioma.id}"
+                                            th:text="${idioma.nome}"
+                                            th:title="${idioma.nome}"></option>
                                 </select>
                             </div>
 
                             <div class="col-lg-4 form-group">
-                                <label for="gender">Genêro:</label>
-                                <select class="form-control" required id="gender" multiple th:field="*{genders}">
+                                <label for="generos">Genêro:</label>
+                                <select class="form-control" required id="generos" name="generos" multiple>
                                     <option data-toggle="tooltip" data-placement="top"
-                                            th:each="gender : ${genderList}"
-                                            th:value="${gender.id}"
-                                            th:text="${gender.name}"
-                                            th:title="${gender.name}"></option>
+                                            th:each="gen : ${generos}"
+                                            th:value="${gen.id}"
+                                            th:text="${gen.nome}"
+                                            th:title="${gen.nome}"></option>
                                 </select>
                             </div>
 
                             <div class="col-lg-4 form-group">
                                 <label for="age">Faixa etária:</label>
-                                <input type="number" step="1" min="1" th:field="*{age}" id="age" class="form-control"/>
+                                <input type="number" step="1" min="1" th:field="*{faixaEtaria}" id="age" class="form-control"/>
                             </div>
 
-                            <div class="col-lg-4 form-group" th:if="*{null != id}">
+                            <div class="col-lg-4 form-group">
                                 <label for="status">Status:</label>
-                                <select class="form-control" id="status" th:field="*{active}">
+                                <select class="form-control" id="status" th:field="*{ativo}">
                                     <option value="1">Ativo</option>
                                     <option value="0">Inativo</option>
                                 </select>
                             </div>
 
-                            <div class="col-lg-4 form-group" th:if="*{null != id}">
+                            <div class="col-lg-4 form-group">
                                 <label for="reason">Motivo:</label>
-                                <input placeholder="Breve descrição do motivo da ativação/desativação" class="form-control" id="reason" th:field="*{reason}"/>
+                                <input placeholder="Breve descrição do motivo da ativação/desativação" class="form-control" id="reason" th:field="*{motivoInativacao}"/>
                             </div>
 
                             <div class="col-12 form-group">
                                 <label for="synopsis">Sinopse:</label>
-                                <textarea type="text" class="form-control" placeholder="Sinopse" required id="synopsis" th:field="*{sinopsis}" maxlength="254"></textarea>
+                                <textarea type="text" class="form-control" placeholder="Sinopse" required id="synopsis" th:field="*{sinopse}" maxlength="254"></textarea>
                             </div>
                             <div class="form-group col-12">
-                                <button type="submit" class="btn btn-primary" th:text="${null == game.id ? 'Cadastrar' : 'Atualizar'}">Cadastrar</button>
+                                <button type="submit" class="btn btn-primary">Cadastrar</button>
                             </div>
                         </div>
                     </form>

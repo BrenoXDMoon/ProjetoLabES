@@ -37,18 +37,18 @@
                                         </a>
                                     </td>
                                     <td class="m-auto" th:if="${jogo.ativo}">
-                                        <form th:object="${cliente}" th:action="@{clientes}" th:method="delete">
+                                        <form th:method="delete">
                                             <input type="hidden" name="_method" value="delete">
-                                            <input type="hidden" name="id" th:value="${cliente.id}">
+                                            <input type="hidden" name="id" th:value="${jogo.id}">
                                             <button class="btn btn-outline-danger">
                                                 <i class="fas fa-trash-alt"></i>
                                                 <span>Excluir</span>
                                             </button>
                                         </form>
                                     </td>
-                                    <td class="m-auto" th:unless="${cliente.ativo}">
-                                        <form th:object="${cliente}" th:action="@{clientes}" th:method="post">
-                                            <input type="hidden" name="id" th:value="${cliente.id}">
+                                    <td class="m-auto" th:unless="${jogo.ativo}">
+                                        <form th:method="post">
+                                            <input type="hidden" name="id" th:value="${jogo.id}">
                                             <button class="btn btn-outline-warning">
                                                 <i class="fas fa-trash-alt"></i>
                                                 <span>Ativar</span>

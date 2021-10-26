@@ -5,9 +5,7 @@ import br.com.fatec.ChopperHouseGames.domain.Editora;
 import br.com.fatec.ChopperHouseGames.domain.Jogo;
 import br.com.fatec.ChopperHouseGames.dto.JogoDto;
 import br.com.fatec.ChopperHouseGames.facade.IFacade;
-import br.com.fatec.ChopperHouseGames.service.IClienteService;
-import br.com.fatec.ChopperHouseGames.service.IEditoraService;
-import br.com.fatec.ChopperHouseGames.service.IJogoService;
+import br.com.fatec.ChopperHouseGames.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -32,6 +30,12 @@ public class JogoController {
 
     @Autowired
     private IEditoraService editoraService;
+    @Autowired
+    private IPlataformaService plataformaService;
+    @Autowired
+    private IIdiomaService idiomaService;
+    @Autowired
+    private IGeneroService generoService;
 
     @GetMapping("admin/jogos")
     public ModelAndView listaJogos(){
@@ -51,10 +55,11 @@ public class JogoController {
             mv = new ModelAndView();
         }
         mv.setViewName("admin/jogo/form");
-        
-        List<Editora> editoras = editoraService.listar();
-        
-        mv.addObject("editoras", editoras);
+
+        mv.addObject("generos", generoService.listar());
+        mv.addObject("idiomas", idiomaService.listar());
+        mv.addObject("plataformas", plataformaService.listar());
+        mv.addObject("editoras", editoraService.listar());
         return mv;
     }
 
@@ -120,5 +125,4 @@ public class JogoController {
 
         return mv;
     }
-
 }

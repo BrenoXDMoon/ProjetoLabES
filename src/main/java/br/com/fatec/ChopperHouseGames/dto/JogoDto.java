@@ -37,6 +37,7 @@ public class JogoDto {
     @NotEmpty(message = "O Jogo deve conter quantidade disponível não vazia")
     private Integer quantidadeDisponivel;
     private String motivoInativacao;
+    private boolean ativo;
 
     public Jogo toJogo() {
         Jogo jogo = new Jogo();

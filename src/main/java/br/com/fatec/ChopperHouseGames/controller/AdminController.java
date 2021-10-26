@@ -67,7 +67,7 @@ public class AdminController {
     public ChartDto getOrdersFiltered(String initialDateParam, String finalDateParam, Integer searchType) throws ParseException {
         Date inital;
         Date finalDate;
-        
+
         inital = Date.from(LocalDateTime.now().minusMonths(3).toInstant(ZoneOffset.UTC));
         finalDate = Date.from(LocalDateTime.now().plusMonths(3).toInstant(ZoneOffset.UTC));
 
