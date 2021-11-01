@@ -3,7 +3,10 @@ package br.com.fatec.ChopperHouseGames.dto;
 import br.com.fatec.ChopperHouseGames.domain.*;
 import lombok.Data;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -12,9 +15,8 @@ public class JogoDto {
 
     @NotEmpty(message = "O Jogo deve conter um título")
     private String titulo;
-    @NotEmpty(message = "O valor não pode ser nulo")
+    @Min(value = 1, message = "O preço míinimo do jogo deve ser R$1")
     private Double preco;
-    @NotEmpty(message = "O Jogo deve especificar se possui multiplayer")
     private boolean multijogador;
     @NotEmpty(message = "O jogo deve conter faixa etária minima")
     private String faixaEtaria;
@@ -22,19 +24,13 @@ public class JogoDto {
     private String sinopse;
     @NotEmpty(message = "O Jogo deve conter ao menos uma imagem")
     private String imagem;
-    @NotEmpty(message = "O Jogo deve conter uma data de lançamento")
-    private Date dataLancamento;
-    @NotEmpty(message = "O Jogo deve conter ao menos uma plataforma")
+    private String dataLancamento;
     private Plataforma plataforma;
-    @NotEmpty(message = "O Jogo deve conter ao menos um idioma")
     private List<Idioma> idiomas;
-    @NotEmpty(message = "O Jogo deve conter ao menos um gênero")
     private List<Genero> generos;
-    @NotEmpty(message = "O Jogo deve conter uma editora")
     private Editora editora;
-    @NotEmpty(message = "O Jogo deve conter quantidade não vazia")
+    @Min(value = 0, message = "O jogo deve ter quantidade mínima de 0")
     private Integer quantidade;
-    @NotEmpty(message = "O Jogo deve conter quantidade disponível não vazia")
     private Integer quantidadeDisponivel;
     private String motivoInativacao;
     private boolean ativo;
@@ -47,13 +43,18 @@ public class JogoDto {
         jogo.setFaixaEtaria(this.faixaEtaria);
         jogo.setSinopse(this.sinopse);
         jogo.setImagem(this.imagem);
-        jogo.setDataLancamento(this.dataLancamento);
+        try {
+            SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
+            jogo.setDataLancamento(fmt.parse(this.dataLancamento));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         jogo.setPlataforma(this.plataforma);
         jogo.setIdiomas(this.idiomas);
         jogo.setGeneros(this.generos);
         jogo.setEditora(this.editora);
         jogo.setQuantidade(this.quantidade);
-        jogo.setQuantidadeDisponivel(this.quantidadeDisponivel);
+        jogo.setQuantidadeDisponivel(this.quantidade);
         jogo.setMotivoInativacao(this.motivoInativacao);
         return jogo;
     }

@@ -35,6 +35,10 @@
                                 <label th:text="${devolucao.pedido.dataCriacao}">13/09/2021</label><br/>
                             </div>
                             <div class="form-group">
+                                <h6 class="f-18 font-weight-bold">Motivo da devolução do pedido:</h6>
+                                <label th:text="${devolucao.motivo}">13/09/2021</label><br/>
+                            </div>
+                            <div class="form-group">
                                 <h6>Produtos</h6>
                                 <table class="table">
                                     <thead>
@@ -44,9 +48,9 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr th:each="item : ${devolucao.pedido.itens}">
+                                        <tr th:each="item : ${devolucao.pedido.itens}" th:if="${item.quantidadeTroca != null and item.quantidadeTroca > 0}">
                                             <td th:text="${item.jogo.titulo}">Resident Evil 4</td>
-                                            <td th:text="${item.quantidade}">1</td>
+                                            <td th:text="${item.quantidadeTroca}">1</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -79,6 +83,6 @@
         </div>
     </div>
 </div>
-<footer th:replace="~{layout/shared :: footer}"></footer>
+<footer th:replace="~{layout/baseAdmin :: footer}"></footer>
 </body>
 </html>

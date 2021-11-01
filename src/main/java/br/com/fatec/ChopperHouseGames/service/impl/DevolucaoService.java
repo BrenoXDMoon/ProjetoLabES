@@ -93,15 +93,26 @@ public class DevolucaoService implements IDevolucaoService {
         devolucao = repository.findById(devolucao.getId()).get();
         devolucao.getPedido().setStatus(statusRepository.findByStatus("TROCA REALIZADA"));
         devolucao.setStatusDevolucao(StatusDevolucao.FINALIZADO);
-        gerarCupomTrocaAleatorio(devolucao);
-        for(Item item : devolucao.getPedido().getItens()){//devolvendo produto ao estoque
+        Double valorDeRetiradaDoPedido = 0.0;
+        for(Item item : devolucao.getPedido().getItens()){
+            //devolvendo produto ao estoque
             item.getJogo().setQuantidadeDisponivel(item.getJogo().getQuantidadeDisponivel() + item.getQuantidade());
             jogoRepository.saveAndFlush(item.getJogo());
+
+            if(item.getQuantidadeTroca() != null && item.getQuantidadeTroca() > 0){
+                //pega o valor do jogo e multiplica pela quantidade que está sendo recebida para troca
+                valorDeRetiradaDoPedido += item.getJogo().getPreco() * item.getQuantidadeTroca();
+                //atualiza a quantidade de itens efetivos do pedido
+                item.setQuantidade(item.getQuantidade()-item.getQuantidadeTroca());
+            }
         }
+        //atualiza valor total do pedido com base no valor total dos produtos sendo devolvidos
+        devolucao.getPedido().setTotal(devolucao.getPedido().getTotal() - valorDeRetiradaDoPedido);
+        gerarCupomTrocaAleatorio(devolucao, valorDeRetiradaDoPedido);
         return repository.saveAndFlush(devolucao);
     }
 
-    private void gerarCupomTrocaAleatorio(Devolucao devolucao){
+    private void gerarCupomTrocaAleatorio(Devolucao devolucao, Double valor){
         Cupom cupom = new Cupom();
 
         Random random = new Random();
@@ -116,7 +127,7 @@ public class DevolucaoService implements IDevolucaoService {
         cupom.setQuantidade(1);
         cupom.setCliente(devolucao.getPedido().getCliente());
         cupom.setTipoCupom(tipoCupomRepository.findByNome("TROCA"));
-        cupom.setValor(devolucao.getPedido().getTotal());
+        cupom.setValor(valor);
 
         cupomRepository.saveAndFlush(cupom);
     }

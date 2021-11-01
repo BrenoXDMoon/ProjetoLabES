@@ -2,8 +2,10 @@ package br.com.fatec.ChopperHouseGames.controller;
 
 import br.com.fatec.ChopperHouseGames.domain.Cliente;
 import br.com.fatec.ChopperHouseGames.domain.Devolucao;
+import br.com.fatec.ChopperHouseGames.domain.Item;
 import br.com.fatec.ChopperHouseGames.domain.Pedido;
 import br.com.fatec.ChopperHouseGames.dto.ClienteDto;
+import br.com.fatec.ChopperHouseGames.dto.DevolucaoDto;
 import br.com.fatec.ChopperHouseGames.dto.SenhaDto;
 import br.com.fatec.ChopperHouseGames.facade.IFacade;
 import br.com.fatec.ChopperHouseGames.facade.impl.Facade;
@@ -23,6 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequestMapping("cliente")
@@ -177,32 +180,35 @@ public class ClienteController {
         return mv;
     }
 
-    @GetMapping("perfil/{id}/pedidos")
-    public ModelAndView listarPedidos(@PathVariable("id") Cliente cliente) {
-        ModelAndView mv = new ModelAndView("cliente/pedido/lista");
-        //gerar pedidos reais
-        mv.addObject("cliente", cliente);
-
-        return mv;
-    }
-
     @GetMapping("perfil/{id}/devolucao/{idPed}")
     public ModelAndView acessarFormularioDevolucao(@PathVariable("id") Cliente cliente, @PathVariable("idPed") Pedido pedido){
 
         ModelAndView mv = new ModelAndView("cliente/pedido/formDevolucao");
 
         mv.addObject("cliente", service.atualUsuarioLogado());
-        mv.addObject("pedido", pedidoService.buscarById(pedido.getId()));
-        mv.addObject("devolucao", new Devolucao());
+        DevolucaoDto devolucaoDto = new DevolucaoDto();
+        devolucaoDto.setPedido(pedidoService.buscarById(pedido.getId()));
+        mv.addObject("dto", devolucaoDto);
 
         return mv;
     }
 
     @PostMapping("perfil/{id}/devolucao/{idPed}")
-    public ModelAndView solicitarDevolucaoPedido(@PathVariable("id") Cliente cliente, @PathVariable("idPed") Pedido pedido, Devolucao devolucao){
-
+    public ModelAndView solicitarDevolucaoPedido(@PathVariable("id") Cliente cliente, @PathVariable("idPed") Pedido pedido, @ModelAttribute DevolucaoDto dto){
         ModelAndView mv = new ModelAndView("cliente/perfil");
-        devolucao.setPedido(pedidoService.buscarById(pedido.getId()));
+
+        Devolucao devolucao = new Devolucao();
+        devolucao.setMotivo(dto.getMotivo());
+        devolucao.setStatusDevolucao(dto.getStatusDevolucao());
+        pedido = pedidoService.buscarById(pedido.getId());
+
+        Integer i = 0;
+        for(Item item : pedido.getItens()){
+            item.setQuantidadeTroca(dto.getPedido().getItens().get(i).getQuantidadeTroca());
+            i++;
+        }
+        devolucao.setPedido(pedido);
+
         devolucaoService.salvarSolicitacaoDevolucao(devolucao);
 
         mv.addObject("cliente", service.atualUsuarioLogado());

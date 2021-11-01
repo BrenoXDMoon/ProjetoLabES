@@ -114,6 +114,7 @@ public class PedidoService implements IPedidoService {
         ChartDto chartDTO = new ChartDto();
         List<DataSetDto> listaDataSet = new ArrayList<>();
 
+        //filtro de jogo
         if (tipoBusca.equals(0)) {
             List<Jogo> jogos = jogoRepository.findAll();
 
@@ -128,23 +129,21 @@ public class PedidoService implements IPedidoService {
                     for (Pedido orderValueGroup : order) {
                         for (Item item : orderValueGroup.getItens()) {
                             if (item.getJogo().equals(jogo))
-                                amount++;
+                                amount += item.getQuantidade();
                         }
                     }
-                    doubleList.add(amount * jogo.getPreco());
+                    doubleList.add(Double.parseDouble(String.valueOf(amount)));
                 }
 
                 dataSetDTO.setData(doubleList);
                 listaDataSet.add(dataSetDTO);
             }
-        } else {
+        } else {//filtro de genero de jogo
             List<Genero> generos = generoRepository.findAll();
-
             for (Genero genero : generos) {
                 DataSetDto dataSetDTO = new DataSetDto();
                 List<Double> doubleList = new ArrayList<>();
                 dataSetDTO.setLabel(genero.getNome());
-
 
                 for (List<Pedido> pedidos : agrupadoPorData.values()) {
                     Integer amount = 0;
@@ -152,13 +151,14 @@ public class PedidoService implements IPedidoService {
                     for (Pedido orderValueGroup : pedidos) {
                         for (Item item : orderValueGroup.getItens()) {
                             if (item.getJogo().getGeneros().contains(genero)) {
-                                amount++;
+                                amount += item.getQuantidade();
                             }
                             jogo = item.getJogo();
                         }
                     }
+
                     if (null != jogo)
-                        doubleList.add(amount * jogo.getPreco());
+                        doubleList.add(Double.parseDouble(String.valueOf(amount)));
                 }
 
                 dataSetDTO.setData(doubleList);

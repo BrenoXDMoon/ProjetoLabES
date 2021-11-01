@@ -36,12 +36,12 @@
                             </div>
 
                             <div class="col-lg-4 form-group">
-                                <label for="price">Valor:</label>
+                                <label>Valor:</label>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">R$</span>
                                     </div>
-                                    <input type="text" class="form-control" placeholder="180,00" id="price" required th:name="price" th:value="${#numbers.formatDecimal(jogoDto.preco, 0, 'COMMA', 2, 'POINT')}">
+                                    <input type="text" class="form-control" placeholder="180,00" required th:field="*{preco}" th:value="${#numbers.formatDecimal(jogoDto.preco, 0, 'COMMA', 2, 'POINT')}">
                                 </div>
                             </div>
 
@@ -59,11 +59,11 @@
                             </div>
 
                             <div class="col-lg-4 form-group">
-                                <label for="publisher">Distribuidora:</label>
-                                <select class="form-control" required id="publisher" th:field="*{editora}">
+                                <label>Distribuidora:</label>
+                                <select class="form-control" required id="editora" name="editora">
                                     <option data-toggle="tooltip" data-placement="top"
                                             th:each="edit : ${editoras}"
-                                            th:value="${edit}"
+                                            th:value="${edit.id}"
                                             th:text="${edit.nome}"
                                             th:title="${edit.nome}"></option>
                                 </select>

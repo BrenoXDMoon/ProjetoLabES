@@ -7,6 +7,7 @@ import br.com.fatec.ChopperHouseGames.service.IPedidoService;
 import br.com.fatec.ChopperHouseGames.service.IStatusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +25,15 @@ public class PedidoClienteController {
 
     @Autowired
     IPedidoService pedidoService;
+
+    @GetMapping
+    public ModelAndView listarPedidos(@PathVariable("id") Cliente cliente) {
+        ModelAndView mv = new ModelAndView("cliente/pedido/lista");
+        //gerar pedidos reais
+        mv.addObject("cliente", cliente);
+
+        return mv;
+    }
 
     @PostMapping("visualizar/{idPed}/cancelamento")
     public ModelAndView solicitaTroca(@PathVariable("id") Cliente cliente, @PathVariable("idPed") Pedido pedido){

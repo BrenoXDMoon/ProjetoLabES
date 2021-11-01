@@ -24,10 +24,8 @@ public class JogoController {
 
     @Autowired
     private IJogoService service;
-
     @Autowired
     private IClienteService clienteService;
-
     @Autowired
     private IEditoraService editoraService;
     @Autowired
@@ -65,14 +63,13 @@ public class JogoController {
 
     @PostMapping("admin/jogos/novo")
     public ModelAndView cadastrarNovoJogo(@Valid JogoDto jogoDto, BindingResult result){
-        ModelAndView mv = new ModelAndView();
+        ModelAndView mv = new ModelAndView("redirect:/admin/jogos");
 
         if(result.hasErrors()){
             mv.addObject("resultados", result);
             return formularioNovoJogo(jogoDto, mv);
         }
-
-        Jogo jogo = service.salvar(jogoDto.toJogo());
+        service.salvar(jogoDto.toJogo());
 
         mv.addObject("mensagem", "Jogo salvo com sucesso!");
         return mv;
@@ -80,11 +77,9 @@ public class JogoController {
 
     @GetMapping("admin/jogos/editar/{id}")
     public ModelAndView fomularioEditarJogo(@PathVariable("id") Integer id, ModelAndView mv){
-
         if(mv == null){
             mv = new ModelAndView();
         }
-
         Jogo jogo = service.buscarById(id);
         mv.setViewName("admin/jogo/formEditar");
         mv.addObject("jogo", jogo);

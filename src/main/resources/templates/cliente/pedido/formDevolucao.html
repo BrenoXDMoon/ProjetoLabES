@@ -31,7 +31,7 @@
                     <a th:href="@{'/cliente/perfil/' + ${cliente.id} + '/pedidos'}">Pedidos</a>
                 </h6>
             </div>
-            <form method="post" class="container" th:object="${devolucao}" th:action="@{'/cliente/perfil/' + ${cliente.id} +'/devolucao/'+${pedido.id}}">
+            <form method="post" class="container" th:object="${dto}" th:action="@{'/cliente/perfil/' + ${cliente.id} +'/devolucao/'+${dto.pedido.id}}">
                 <div class="row justify-content-center">
                     <div class="card-body col-5">
                         <div class="form-group">
@@ -40,19 +40,22 @@
                                 <thead class="table">
                                 <tr>
                                     <th>Nome</th>
-                                    <th>Quantidade</th>
+                                    <th>Quantidade comprada</th>
+                                    <th>Quantidade para trocar</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr th:each="item : ${pedido.getItens()}">
+                                <tr th:each="item, itemCount : ${dto.pedido.itens}">
                                     <td th:text="${item.jogo.titulo}">Resident Evil 4</td>
                                     <td th:text="${item.quantidade}">1</td>
+                                    <td>
+                                        <input class="form-control" th:max="${item.quantidade}" th:field="*{pedido.itens[__${itemCount.index}__].quantidadeTroca}"
+                                            th:value="${item.quantidade}" type="number" required>
+                                    </td>
                                 </tr>
                                 </tbody>
                             </table>
                         </div>
-                    </div>
-                    <div class="col-5">
                         <div class="form-floating">
                             <label>Descreva seu motivo(obrigatório):</label>
                             <textarea class="form-control" required th:field="*{motivo}"></textarea>
