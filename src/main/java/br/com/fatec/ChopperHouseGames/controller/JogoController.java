@@ -120,4 +120,24 @@ public class JogoController {
 
         return mv;
     }
+
+    @PostMapping("admin/jogos/desativar/{id}")
+    public ModelAndView desativarJogo(@PathVariable("id") Jogo jogo){
+
+       ModelAndView mv = new ModelAndView("redirect:/admin/jogos");
+       jogo = service.buscarById(jogo.getId());
+       service.excluir(jogo);
+
+       return mv;
+    }
+
+    @PostMapping("admin/jogos/ativar/{id}")
+    public ModelAndView ativarJogo(@PathVariable("id") Jogo jogo){
+
+        ModelAndView mv = new ModelAndView("redirect:/admin/jogos");
+        jogo = service.buscarById(jogo.getId());
+        service.ativar(jogo);
+
+        return mv;
+    }
 }

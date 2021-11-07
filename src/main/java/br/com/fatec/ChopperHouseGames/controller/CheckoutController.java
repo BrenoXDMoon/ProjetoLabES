@@ -49,7 +49,7 @@ public class CheckoutController {
         mv.addObject("totalProdutos", cliente.getCarrinho().getItens().stream().mapToDouble(i -> i.getJogo().getPreco() * i.getQuantidade().doubleValue()).sum());
         mv.addObject("totalPedido", totalPedido + 15);
         pedido.setTotal(totalPedido);
-        mv.addObject("pedido", pedido);
+        mv.addObject("pedido", new Pedido());
         mv.addObject("cartaoCredito", new CartaoCredito());
         mv.addObject("endereco", new Endereco());
         mv.addObject("tipoEnderecos", TIPO_ENDERECO.values());
@@ -65,6 +65,8 @@ public class CheckoutController {
     @PostMapping
     public ModelAndView finalizarPedido(@PathVariable("id") Cliente cliente, @Valid Pedido pedido, BindingResult result) {
         ModelAndView mv = new ModelAndView("redirect:/cliente/perfil/" + cliente.getId() + "/pedidos");
+
+        System.out.println(pedido.getTotal());
 
         pedido.setCliente(clienteService.atualUsuarioLogado());
         pedidoService.salvar(pedido, result);

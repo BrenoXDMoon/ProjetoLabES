@@ -48,6 +48,17 @@ public class JogoService implements IJogoService {
     }
 
     @Override
+    public Jogo ativar(Jogo jogo) {
+        try{
+            jogo.setAtivo(true);
+            repository.saveAndFlush(jogo);
+            return jogo;
+        }catch(Exception e){
+            return null;
+        }
+    }
+
+    @Override
     public List<Jogo> listar() {
         return repository.findAll();
     }

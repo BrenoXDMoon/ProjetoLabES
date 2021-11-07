@@ -71,9 +71,15 @@ public class AdminController {
         inital = Date.from(LocalDateTime.now().minusMonths(3).toInstant(ZoneOffset.UTC));
         finalDate = Date.from(LocalDateTime.now().plusMonths(3).toInstant(ZoneOffset.UTC));
 
-        if((null != initialDateParam || null != finalDateParam) && (initialDateParam.length() > 0 && finalDateParam.length() > 0)){
+        if(null != initialDateParam && initialDateParam.length() > 0){
             inital = new SimpleDateFormat("yyyy-MM-dd").parse(initialDateParam);
+        }
+
+        if(finalDateParam != null && finalDateParam.length() > 0){
             finalDate = new SimpleDateFormat("yyyy-MM-dd").parse(finalDateParam);
+        }else {
+            Date data = new Date();
+            finalDate = new SimpleDateFormat("yyyy-MM-dd").parse(data.toInstant().toString());
         }
 
         return pedidoService.buscarTodosCriadosEntre(inital, finalDate, searchType);

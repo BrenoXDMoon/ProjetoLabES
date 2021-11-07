@@ -50,13 +50,10 @@ public class PedidoService implements IPedidoService {
 
     @Override
     public Pedido salvar(Pedido pedido, BindingResult result) {
-        System.out.println("--- entrei pra salvar pedido");
         pedido = preencherPedido(pedido, result);
         if(result.hasErrors()){
             return pedido;
         }
-
-        //pedido = criaNovoPedido(pedido);
 
         pedido = repository.saveAndFlush(pedido);
 
@@ -210,7 +207,7 @@ public class PedidoService implements IPedidoService {
         pedido.setItens(pedido.getCliente().getCarrinho().getItens());
 
         pedido.getMetodosPagamento().forEach(p -> p.setCartaoCredito(cartaoRepository.findById(p.getCartaoCredito().getId()).get()));
-
+        pedido.setTotal((pedido.getCliente().getCarrinho().getItens().stream().mapToDouble(i -> i.getJogo().getPreco() * i.getQuantidade().doubleValue()).sum()));
         if(pedido.getCupom() != null && pedido.getCupom().getId() != null){
             pedido.setCupom(cupomRepository.findById(pedido.getCupom().getId()).get());
 
@@ -252,6 +249,14 @@ public class PedidoService implements IPedidoService {
             pedido.getCuponsTroca().forEach(c -> c.setQuantidade(c.getQuantidade() - 1));
         }
 
+        pedido.setId(geraIdNovo(pedido));
+
         return pedido;
+    }
+
+    private Integer geraIdNovo(Pedido pedido) {
+        Integer id = null;
+        id = repository.findAll().size() + 1;
+        return id;
     }
 }

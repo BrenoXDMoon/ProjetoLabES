@@ -37,7 +37,7 @@
                                         </a>
                                     </td>
                                     <td class="m-auto" th:if="${jogo.ativo}">
-                                        <form th:method="delete">
+                                        <form th:method="post" th:action="@{'/admin/jogos/desativar/' +${jogo.id}}">
                                             <input type="hidden" name="_method" value="delete">
                                             <input type="hidden" name="id" th:value="${jogo.id}">
                                             <button class="btn btn-outline-danger">
@@ -47,9 +47,9 @@
                                         </form>
                                     </td>
                                     <td class="m-auto" th:unless="${jogo.ativo}">
-                                        <form th:method="post">
+                                        <form th:method="post" th:action="@{'/admin/jogos/ativar/'+ ${jogo.id}}">
                                             <input type="hidden" name="id" th:value="${jogo.id}">
-                                            <button class="btn btn-outline-warning">
+                                            <button type="submit" class="btn btn-outline-warning">
                                                 <i class="fas fa-trash-alt"></i>
                                                 <span>Ativar</span>
                                             </button>
