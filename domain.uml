@@ -3,795 +3,815 @@
   <ID>JAVA</ID>
   <OriginalElement>br.com.fatec.ChopperHouseGames.domain</OriginalElement>
   <nodes>
-    <node x="240.93347639485035" y="273.0">br.com.fatec.ChopperHouseGames.domain.Genero</node>
-    <node x="304.43347639485035" y="178.0">br.com.fatec.ChopperHouseGames.domain.Jogo</node>
-    <node x="778.1834763948503" y="178.0">br.com.fatec.ChopperHouseGames.domain.StatusDevolucao</node>
-    <node x="377.99999999999994" y="83.0">br.com.fatec.ChopperHouseGames.domain.Plataforma</node>
-    <node x="689.0584763948503" y="616.0">br.com.fatec.ChopperHouseGames.domain.Endereco</node>
-    <node x="8.842274678110584" y="0.0">br.com.fatec.ChopperHouseGames.domain.EntidadeDominio</node>
-    <node x="600.5833333333333" y="273.0">br.com.fatec.ChopperHouseGames.domain.Cupom</node>
-    <node x="258.9999999999999" y="83.0">br.com.fatec.ChopperHouseGames.domain.Idioma</node>
-    <node x="1033.875" y="178.0">br.com.fatec.ChopperHouseGames.domain.CartaoCredito</node>
-    <node x="0.0" y="83.0">br.com.fatec.ChopperHouseGames.domain.Resultado</node>
-    <node x="407.4772889842629" y="273.0">br.com.fatec.ChopperHouseGames.domain.Item</node>
-    <node x="835.2083333333333" y="273.0">br.com.fatec.ChopperHouseGames.domain.Devolucao</node>
-    <node x="720.5833333333333" y="273.0">br.com.fatec.ChopperHouseGames.domain.Status</node>
-    <node x="1199.4356223175962" y="398.0">br.com.fatec.ChopperHouseGames.domain.TipoCliente</node>
-    <node x="568.9166666666666" y="178.0">br.com.fatec.ChopperHouseGames.domain.TipoCupom</node>
-    <node x="396.97728898426294" y="398.0">br.com.fatec.ChopperHouseGames.domain.Carrinho</node>
-    <node x="733.5833333333333" y="398.0">br.com.fatec.ChopperHouseGames.domain.Pedido</node>
-    <node x="1138.4334763948505" y="523.0">br.com.fatec.ChopperHouseGames.domain.Cliente</node>
-    <node x="139.0" y="83.0">br.com.fatec.ChopperHouseGames.domain.Editora</node>
-    <node x="278.97728898426294" y="523.0">br.com.fatec.ChopperHouseGames.domain.Cidade</node>
-    <node x="997.4356223175962" y="273.0">br.com.fatec.ChopperHouseGames.domain.MetodoPagamento</node>
-    <node x="94.97728898426283" y="523.0">br.com.fatec.ChopperHouseGames.domain.TIPO_ENDERECO</node>
-    <node x="279.97728898426294" y="398.0">br.com.fatec.ChopperHouseGames.domain.Estado</node>
-    <node x="1020.2083333333333" y="83.0">br.com.fatec.ChopperHouseGames.domain.BANDEIRA</node>
+    <node x="566.5084048640911" y="766.0">br.com.fatec.ChopperHouseGames.domain.Genero</node>
+    <node x="437.89949928469287" y="294.0">br.com.fatec.ChopperHouseGames.domain.Jogo</node>
+    <node x="965.0084048640911" y="448.0">br.com.fatec.ChopperHouseGames.domain.StatusDevolucao</node>
+    <node x="329.25840486409106" y="141.0">br.com.fatec.ChopperHouseGames.domain.Plataforma</node>
+    <node x="610.1334048640911" y="1798.0">br.com.fatec.ChopperHouseGames.domain.Endereco</node>
+    <node x="44.991237482117185" y="0.0">br.com.fatec.ChopperHouseGames.domain.EntidadeDominio</node>
+    <node x="1405.383404864091" y="722.0">br.com.fatec.ChopperHouseGames.domain.Cupom</node>
+    <node x="482.258404864091" y="141.0">br.com.fatec.ChopperHouseGames.domain.Idioma</node>
+    <node x="1180.8206366237469" y="393.0">br.com.fatec.ChopperHouseGames.domain.CartaoCredito</node>
+    <node x="0.0" y="130.0">br.com.fatec.ChopperHouseGames.domain.Resultado</node>
+    <node x="367.50840486409106" y="755.0">br.com.fatec.ChopperHouseGames.domain.Item</node>
+    <node x="876.258404864091" y="744.0">br.com.fatec.ChopperHouseGames.domain.Devolucao</node>
+    <node x="741.258404864091" y="777.0">br.com.fatec.ChopperHouseGames.domain.Status</node>
+    <node x="1526.758404864091" y="1092.0">br.com.fatec.ChopperHouseGames.domain.TipoCliente</node>
+    <node x="1405.133404864091" y="448.0">br.com.fatec.ChopperHouseGames.domain.TipoCupom</node>
+    <node x="363.82457081545044" y="1114.0">br.com.fatec.ChopperHouseGames.domain.Carrinho</node>
+    <node x="778.0745708154504" y="982.0">br.com.fatec.ChopperHouseGames.domain.Pedido</node>
+    <node x="1264.008404864091" y="1416.0">br.com.fatec.ChopperHouseGames.domain.Cliente</node>
+    <node x="640.258404864091" y="141.0">br.com.fatec.ChopperHouseGames.domain.Editora</node>
+    <node x="191.88340486409106" y="1537.0">br.com.fatec.ChopperHouseGames.domain.Cidade</node>
+    <node x="1155.008404864091" y="766.0">br.com.fatec.ChopperHouseGames.domain.MetodoPagamento</node>
+    <node x="601.3834048640911" y="1560.5">br.com.fatec.ChopperHouseGames.domain.TIPO_ENDERECO</node>
+    <node x="193.88340486409106" y="1114.0">br.com.fatec.ChopperHouseGames.domain.Estado</node>
+    <node x="1182.4039699570803" y="164.5">br.com.fatec.ChopperHouseGames.domain.BANDEIRA</node>
   </nodes>
   <notes />
   <edges>
     <edge source="br.com.fatec.ChopperHouseGames.domain.Carrinho" target="br.com.fatec.ChopperHouseGames.domain.Item" relationship="DEPENDENCY">
-      <point x="-5.6843418860808015E-14" y="-15.5" />
-      <point x="450.9772889842629" y="376.0" />
-      <point x="453.4772889842629" y="376.0" />
-      <point x="453.4772889842629" y="336.0" />
-      <point x="468.9772889842628" y="336.0" />
-      <point x="20.499999999999943" y="15.5" />
+      <point x="45.0" y="-28.0" />
+      <point x="476.32457081545044" y="960.0" />
+      <point x="463.5661659513594" y="960.0" />
+      <point x="463.5661659513594" y="920.0" />
+      <point x="501.75840486409106" y="920.0" />
+      <point x="44.75" y="50.0" />
     </edge>
     <edge source="br.com.fatec.ChopperHouseGames.domain.Jogo" target="br.com.fatec.ChopperHouseGames.domain.EntidadeDominio" relationship="GENERALIZATION">
-      <point x="28.000000000000057" y="-15.5" />
-      <point x="374.4334763948504" y="156.0" />
-      <point x="513.5" y="156.0" />
-      <point x="513.5" y="62.0" />
-      <point x="691.5854792560791" y="62.0" />
-      <point x="691.5854792560791" y="52.0" />
-      <point x="149.67560801144384" y="52.0" />
-      <point x="56.33333333333326" y="15.5" />
+      <point x="-68.66666666666669" y="-182.0" />
+      <point x="472.2328326180261" y="272.0" />
+      <point x="318.75840486409106" y="272.0" />
+      <point x="318.75840486409106" y="109.0" />
+      <point x="853.6494992846926" y="109.0" />
+      <point x="853.6494992846926" y="99.0" />
+      <point x="185.82457081545044" y="99.0" />
+      <point x="56.33333333333334" y="39.0" />
     </edge>
     <edge source="br.com.fatec.ChopperHouseGames.domain.Cupom" target="br.com.fatec.ChopperHouseGames.domain.Cliente" relationship="DEPENDENCY">
-      <point x="25.0" y="15.5" />
-      <point x="675.5833333333333" y="326.0" />
-      <point x="664.5089413447773" y="326.0" />
-      <point x="664.5089413447773" y="461.0" />
-      <point x="1187.4334763948505" y="461.0" />
-      <point x="0.0" y="-15.5" />
-    </edge>
-    <edge source="br.com.fatec.ChopperHouseGames.domain.Editora" target="br.com.fatec.ChopperHouseGames.domain.Jogo" relationship="TO_ONE">
-      <point x="-25.0" y="15.5" />
-      <point x="164.0" y="146.0" />
-      <point x="336.43347639485035" y="146.0" />
-      <point x="336.43347639485035" y="156.0" />
-      <point x="318.4334763948504" y="156.0" />
-      <point x="-27.999999999999943" y="-15.5" />
-    </edge>
-    <edge source="br.com.fatec.ChopperHouseGames.domain.Jogo" target="br.com.fatec.ChopperHouseGames.domain.Editora" relationship="TO_ONE">
-      <point x="-27.999999999999943" y="-15.5" />
-      <point x="318.4334763948504" y="156.0" />
-      <point x="336.43347639485035" y="156.0" />
-      <point x="336.43347639485035" y="146.0" />
-      <point x="164.0" y="146.0" />
-      <point x="-25.0" y="15.5" />
+      <point x="-43.25" y="83.0" />
+      <point x="1448.633404864091" y="930.0" />
+      <point x="1497.2373032904136" y="930.0" />
+      <point x="1497.2373032904136" y="1354.0" />
+      <point x="1144.508404864091" y="1354.0" />
+      <point x="1144.508404864091" y="1394.0" />
+      <point x="1296.8417381974243" y="1394.0" />
+      <point x="-65.66666666666674" y="-160.0" />
     </edge>
     <edge source="br.com.fatec.ChopperHouseGames.domain.Carrinho" target="br.com.fatec.ChopperHouseGames.domain.Item" relationship="TO_MANY">
-      <point x="-36.00000000000006" y="-15.5" />
-      <point x="414.9772889842629" y="376.0" />
-      <point x="443.4772889842629" y="376.0" />
-      <point x="443.4772889842629" y="356.0" />
-      <point x="427.9772889842629" y="356.0" />
-      <point x="-20.5" y="15.5" />
+      <point x="0.0" y="-28.0" />
+      <point x="431.32457081545044" y="960.0" />
+      <point x="453.5661659513594" y="960.0" />
+      <point x="453.5661659513594" y="930.0" />
+      <point x="412.25840486409106" y="930.0" />
+      <point x="-44.75" y="50.0" />
     </edge>
-    <edge source="br.com.fatec.ChopperHouseGames.domain.Cliente" target="br.com.fatec.ChopperHouseGames.domain.Pedido" relationship="DEPENDENCY">
-      <point x="0.0" y="-15.5" />
-      <point x="1187.4334763948505" y="491.0" />
-      <point x="1265.4334763948505" y="491.0" />
-      <point x="1265.4334763948505" y="451.0" />
-      <point x="807.8333333333333" y="451.0" />
-      <point x="24.75" y="15.5" />
+    <edge source="br.com.fatec.ChopperHouseGames.domain.Jogo" target="br.com.fatec.ChopperHouseGames.domain.Editora" relationship="TO_ONE">
+      <point x="68.66666666666663" y="-182.0" />
+      <point x="609.5661659513595" y="272.0" />
+      <point x="556.2584048640911" y="272.0" />
+      <point x="556.2584048640911" y="252.0" />
+      <point x="743.758404864091" y="252.0" />
+      <point x="34.5" y="39.0" />
+    </edge>
+    <edge source="br.com.fatec.ChopperHouseGames.domain.Editora" target="br.com.fatec.ChopperHouseGames.domain.Jogo" relationship="TO_ONE">
+      <point x="34.5" y="39.0" />
+      <point x="743.758404864091" y="252.0" />
+      <point x="556.2584048640911" y="252.0" />
+      <point x="556.2584048640911" y="272.0" />
+      <point x="609.5661659513595" y="272.0" />
+      <point x="68.66666666666663" y="-182.0" />
     </edge>
     <edge source="br.com.fatec.ChopperHouseGames.domain.Pedido" target="br.com.fatec.ChopperHouseGames.domain.Cliente" relationship="DEPENDENCY">
-      <point x="24.75" y="15.5" />
-      <point x="807.8333333333333" y="451.0" />
-      <point x="1265.4334763948505" y="451.0" />
-      <point x="1265.4334763948505" y="491.0" />
-      <point x="1187.4334763948505" y="491.0" />
-      <point x="0.0" y="-15.5" />
+      <point x="-73.5" y="160.0" />
+      <point x="851.5745708154504" y="1344.0" />
+      <point x="437.3206366237471" y="1344.0" />
+      <point x="437.3206366237471" y="1374.0" />
+      <point x="1144.508404864091" y="1374.0" />
+      <point x="1144.508404864091" y="1394.0" />
+      <point x="1296.8417381974243" y="1394.0" />
+      <point x="-65.66666666666674" y="-160.0" />
+    </edge>
+    <edge source="br.com.fatec.ChopperHouseGames.domain.Cliente" target="br.com.fatec.ChopperHouseGames.domain.Pedido" relationship="DEPENDENCY">
+      <point x="-65.66666666666674" y="-160.0" />
+      <point x="1296.8417381974243" y="1394.0" />
+      <point x="1144.508404864091" y="1394.0" />
+      <point x="1144.508404864091" y="1374.0" />
+      <point x="437.3206366237471" y="1374.0" />
+      <point x="437.3206366237471" y="1344.0" />
+      <point x="851.5745708154504" y="1344.0" />
+      <point x="-73.5" y="160.0" />
     </edge>
     <edge source="br.com.fatec.ChopperHouseGames.domain.Cupom" target="br.com.fatec.ChopperHouseGames.domain.TipoCupom" relationship="TO_ONE">
-      <point x="0.0" y="-15.5" />
-      <point x="650.5833333333333" y="251.0" />
-      <point x="666.4166666666666" y="251.0" />
-      <point x="32.5" y="15.5" />
+      <point x="0.0" y="-83.0" />
+      <point x="1491.883404864091" y="700.0" />
+      <point x="1502.633404864091" y="700.0" />
+      <point x="32.5" y="28.0" />
     </edge>
     <edge source="br.com.fatec.ChopperHouseGames.domain.Resultado" target="br.com.fatec.ChopperHouseGames.domain.EntidadeDominio" relationship="TO_ONE">
-      <point x="29.5" y="-15.5" />
-      <point x="88.5" y="62.0" />
-      <point x="93.34227467811058" y="62.0" />
-      <point x="0.0" y="15.5" />
-    </edge>
-    <edge source="br.com.fatec.ChopperHouseGames.domain.Cupom" target="br.com.fatec.ChopperHouseGames.domain.Pedido" relationship="TO_ONE">
-      <point x="-25.0" y="15.5" />
-      <point x="625.5833333333333" y="336.0" />
-      <point x="632.5089413447773" y="336.0" />
-      <point x="632.5089413447773" y="356.0" />
-      <point x="762.6834763948503" y="356.0" />
-      <point x="762.6834763948503" y="376.0" />
-      <point x="750.0833333333333" y="376.0" />
-      <point x="-33.0" y="-15.5" />
+      <point x="57.5" y="-50.0" />
+      <point x="172.5" y="109.0" />
+      <point x="129.49123748211719" y="109.0" />
+      <point x="0.0" y="39.0" />
     </edge>
     <edge source="br.com.fatec.ChopperHouseGames.domain.Pedido" target="br.com.fatec.ChopperHouseGames.domain.Cupom" relationship="TO_ONE">
-      <point x="-33.0" y="-15.5" />
-      <point x="750.0833333333333" y="376.0" />
-      <point x="762.6834763948503" y="376.0" />
-      <point x="762.6834763948503" y="356.0" />
-      <point x="632.5089413447773" y="356.0" />
-      <point x="632.5089413447773" y="336.0" />
-      <point x="625.5833333333333" y="336.0" />
-      <point x="-25.0" y="15.5" />
+      <point x="0.0" y="-160.0" />
+      <point x="925.0745708154504" y="960.0" />
+      <point x="944.633404864091" y="960.0" />
+      <point x="944.633404864091" y="950.0" />
+      <point x="1508.2373032904136" y="950.0" />
+      <point x="1508.2373032904136" y="940.0" />
+      <point x="1535.133404864091" y="940.0" />
+      <point x="43.25" y="83.0" />
+    </edge>
+    <edge source="br.com.fatec.ChopperHouseGames.domain.Cupom" target="br.com.fatec.ChopperHouseGames.domain.Pedido" relationship="TO_ONE">
+      <point x="43.25" y="83.0" />
+      <point x="1535.133404864091" y="940.0" />
+      <point x="1508.2373032904136" y="940.0" />
+      <point x="1508.2373032904136" y="950.0" />
+      <point x="944.633404864091" y="950.0" />
+      <point x="944.633404864091" y="960.0" />
+      <point x="925.0745708154504" y="960.0" />
+      <point x="0.0" y="-160.0" />
     </edge>
     <edge source="br.com.fatec.ChopperHouseGames.domain.CartaoCredito" target="br.com.fatec.ChopperHouseGames.domain.EntidadeDominio" relationship="GENERALIZATION">
-      <point x="48.33333333333326" y="-15.5" />
-      <point x="1154.7083333333333" y="156.0" />
-      <point x="1159.6271459227457" y="156.0" />
-      <point x="1159.6271459227457" y="62.0" />
-      <point x="691.5854792560791" y="62.0" />
-      <point x="691.5854792560791" y="52.0" />
-      <point x="149.67560801144384" y="52.0" />
-      <point x="56.33333333333326" y="15.5" />
+      <point x="57.66666666666674" y="-83.0" />
+      <point x="1324.9873032904136" y="272.0" />
+      <point x="1339.4039699570803" y="272.0" />
+      <point x="1339.4039699570803" y="109.0" />
+      <point x="853.6494992846926" y="109.0" />
+      <point x="853.6494992846926" y="99.0" />
+      <point x="185.82457081545044" y="99.0" />
+      <point x="56.33333333333334" y="39.0" />
     </edge>
     <edge source="br.com.fatec.ChopperHouseGames.domain.Pedido" target="br.com.fatec.ChopperHouseGames.domain.Status" relationship="TO_ONE">
-      <point x="-33.0" y="-15.5" />
-      <point x="750.0833333333333" y="376.0" />
-      <point x="762.6834763948503" y="376.0" />
-      <point x="762.6834763948503" y="326.0" />
-      <point x="743.5833333333333" y="326.0" />
-      <point x="-23.0" y="15.5" />
+      <point x="0.0" y="-160.0" />
+      <point x="925.0745708154504" y="960.0" />
+      <point x="944.633404864091" y="960.0" />
+      <point x="944.633404864091" y="920.0" />
+      <point x="770.008404864091" y="920.0" />
+      <point x="-28.75" y="28.0" />
     </edge>
     <edge source="br.com.fatec.ChopperHouseGames.domain.Pedido" target="br.com.fatec.ChopperHouseGames.domain.Endereco" relationship="TO_ONE">
-      <point x="39.74966666666671" y="15.5" />
-      <point x="822.833" y="601.0" />
-      <point x="761.058" y="601.0" />
-      <point x="14.999523605149648" y="-15.5" />
-    </edge>
-    <edge source="br.com.fatec.ChopperHouseGames.domain.Cidade" target="br.com.fatec.ChopperHouseGames.domain.Estado" relationship="DEPENDENCY">
-      <point x="-24.75" y="-15.5" />
-      <point x="-24.25" y="15.5" />
+      <point x="73.5" y="160.0" />
+      <point x="998.5745708154504" y="1324.0" />
+      <point x="718.3789341917034" y="1324.0" />
+      <point x="718.3789341917034" y="1394.0" />
+      <point x="590.8834048640911" y="1394.0" />
+      <point x="590.8834048640911" y="1767.0" />
+      <point x="652.6334048640911" y="1767.0" />
+      <point x="652.6334048640911" y="1777.0" />
+      <point x="644.8000715307578" y="1777.0" />
+      <point x="-69.33333333333326" y="-94.0" />
     </edge>
     <edge source="br.com.fatec.ChopperHouseGames.domain.Cliente" target="br.com.fatec.ChopperHouseGames.domain.Pedido" relationship="TO_MANY">
-      <point x="-32.666666666666515" y="-15.5" />
-      <point x="1154.7668097281837" y="501.0" />
-      <point x="635.6834763948503" y="501.0" />
-      <point x="635.6834763948503" y="491.0" />
-      <point x="401.47728898426294" y="491.0" />
-      <point x="401.47728898426294" y="481.0" />
-      <point x="758.3333333333333" y="481.0" />
-      <point x="-24.75" y="15.5" />
+      <point x="0.0" y="-160.0" />
+      <point x="1362.508404864091" y="1364.0" />
+      <point x="718.3789341917034" y="1364.0" />
+      <point x="718.3789341917034" y="1324.0" />
+      <point x="998.5745708154504" y="1324.0" />
+      <point x="73.5" y="160.0" />
+    </edge>
+    <edge source="br.com.fatec.ChopperHouseGames.domain.Cidade" target="br.com.fatec.ChopperHouseGames.domain.Estado" relationship="DEPENDENCY">
+      <point x="-30.5" y="-39.0" />
+      <point x="-29.5" y="28.0" />
     </edge>
     <edge source="br.com.fatec.ChopperHouseGames.domain.Cliente" target="br.com.fatec.ChopperHouseGames.domain.Carrinho" relationship="TO_ONE">
-      <point x="-32.666666666666515" y="-15.5" />
-      <point x="1154.7668097281837" y="501.0" />
-      <point x="635.6834763948503" y="501.0" />
-      <point x="635.6834763948503" y="471.0" />
-      <point x="423.97728898426294" y="471.0" />
-      <point x="-27.0" y="15.5" />
+      <point x="0.0" y="-160.0" />
+      <point x="1362.508404864091" y="1334.0" />
+      <point x="465.07457081545044" y="1334.0" />
+      <point x="33.75" y="28.0" />
     </edge>
     <edge source="br.com.fatec.ChopperHouseGames.domain.Item" target="br.com.fatec.ChopperHouseGames.domain.Jogo" relationship="DEPENDENCY">
-      <point x="-5.6843418860808015E-14" y="-15.5" />
-      <point x="448.4772889842628" y="241.0" />
-      <point x="400.9683476394856" y="241.0" />
-      <point x="400.9683476394856" y="231.0" />
-      <point x="367.4334763948504" y="231.0" />
-      <point x="21.000000000000057" y="15.5" />
-    </edge>
-    <edge source="br.com.fatec.ChopperHouseGames.domain.Carrinho" target="br.com.fatec.ChopperHouseGames.domain.EntidadeDominio" relationship="GENERALIZATION">
-      <point x="35.99999999999994" y="-15.5" />
-      <point x="486.9772889842629" y="376.0" />
-      <point x="558.4166666666666" y="376.0" />
-      <point x="558.4166666666666" y="62.0" />
-      <point x="691.5854792560791" y="62.0" />
-      <point x="691.5854792560791" y="52.0" />
-      <point x="149.67560801144384" y="52.0" />
-      <point x="56.33333333333326" y="15.5" />
+      <point x="0.0" y="-50.0" />
+      <point x="457.00840486409106" y="700.0" />
+      <point x="484.5661659513593" y="700.0" />
+      <point x="484.5661659513593" y="690.0" />
+      <point x="489.39949928469287" y="690.0" />
+      <point x="-51.5" y="182.0" />
     </edge>
     <edge source="br.com.fatec.ChopperHouseGames.domain.Devolucao" target="br.com.fatec.ChopperHouseGames.domain.EntidadeDominio" relationship="GENERALIZATION">
-      <point x="41.0" y="-15.5" />
-      <point x="937.7083333333333" y="251.0" />
-      <point x="956.8084763948503" y="251.0" />
-      <point x="956.8084763948503" y="62.0" />
-      <point x="691.5854792560791" y="62.0" />
-      <point x="691.5854792560791" y="52.0" />
-      <point x="149.67560801144384" y="52.0" />
-      <point x="56.33333333333326" y="15.5" />
+      <point x="-75.66666666666663" y="-61.0" />
+      <point x="914.0917381974243" y="700.0" />
+      <point x="930.4039699570803" y="700.0" />
+      <point x="930.4039699570803" y="109.0" />
+      <point x="853.6494992846926" y="109.0" />
+      <point x="853.6494992846926" y="99.0" />
+      <point x="185.82457081545044" y="99.0" />
+      <point x="56.33333333333334" y="39.0" />
+    </edge>
+    <edge source="br.com.fatec.ChopperHouseGames.domain.Carrinho" target="br.com.fatec.ChopperHouseGames.domain.EntidadeDominio" relationship="GENERALIZATION">
+      <point x="-45.0" y="-28.0" />
+      <point x="386.32457081545044" y="960.0" />
+      <point x="240.5" y="960.0" />
+      <point x="240.5" y="109.0" />
+      <point x="853.6494992846926" y="109.0" />
+      <point x="853.6494992846926" y="99.0" />
+      <point x="185.82457081545044" y="99.0" />
+      <point x="56.33333333333334" y="39.0" />
     </edge>
     <edge source="br.com.fatec.ChopperHouseGames.domain.Jogo" target="br.com.fatec.ChopperHouseGames.domain.Idioma" relationship="DEPENDENCY">
-      <point x="5.6843418860808015E-14" y="-15.5" />
-      <point x="346.43347639485035" y="136.0" />
-      <point x="333.2499999999999" y="136.0" />
-      <point x="24.75" y="15.5" />
+      <point x="0.0" y="-182.0" />
+      <point x="540.8994992846929" y="272.0" />
+      <point x="546.2584048640911" y="272.0" />
+      <point x="546.2584048640911" y="262.0" />
+      <point x="516.7584048640911" y="262.0" />
+      <point x="-34.5" y="39.0" />
     </edge>
     <edge source="br.com.fatec.ChopperHouseGames.domain.Idioma" target="br.com.fatec.ChopperHouseGames.domain.Jogo" relationship="DEPENDENCY">
-      <point x="24.75" y="15.5" />
-      <point x="333.2499999999999" y="136.0" />
-      <point x="346.43347639485035" y="136.0" />
-      <point x="5.6843418860808015E-14" y="-15.5" />
-    </edge>
-    <edge source="br.com.fatec.ChopperHouseGames.domain.CartaoCredito" target="br.com.fatec.ChopperHouseGames.domain.Cliente" relationship="DEPENDENCY">
-      <point x="36.25" y="15.5" />
-      <point x="1142.625" y="241.0" />
-      <point x="1136.9334763948505" y="241.0" />
-      <point x="1136.9334763948505" y="251.0" />
-      <point x="1188.9356223175962" y="251.0" />
-      <point x="1188.9356223175962" y="461.0" />
-      <point x="1187.4334763948505" y="461.0" />
-      <point x="0.0" y="-15.5" />
-    </edge>
-    <edge source="br.com.fatec.ChopperHouseGames.domain.Devolucao" target="br.com.fatec.ChopperHouseGames.domain.Pedido" relationship="TO_ONE">
-      <point x="-30.75" y="15.5" />
-      <point x="865.9583333333333" y="326.0" />
-      <point x="762.6834763948503" y="326.0" />
-      <point x="762.6834763948503" y="376.0" />
-      <point x="750.0833333333333" y="376.0" />
-      <point x="-33.0" y="-15.5" />
-    </edge>
-    <edge source="br.com.fatec.ChopperHouseGames.domain.Cliente" target="br.com.fatec.ChopperHouseGames.domain.CartaoCredito" relationship="DEPENDENCY">
-      <point x="0.0" y="-15.5" />
-      <point x="1187.4334763948505" y="461.0" />
-      <point x="1188.9356223175962" y="461.0" />
-      <point x="1188.9356223175962" y="251.0" />
-      <point x="1136.9334763948505" y="251.0" />
-      <point x="1136.9334763948505" y="241.0" />
-      <point x="1142.625" y="241.0" />
-      <point x="36.25" y="15.5" />
-    </edge>
-    <edge source="br.com.fatec.ChopperHouseGames.domain.Pedido" target="br.com.fatec.ChopperHouseGames.domain.Devolucao" relationship="TO_ONE">
-      <point x="-33.0" y="-15.5" />
-      <point x="750.0833333333333" y="376.0" />
-      <point x="762.6834763948503" y="376.0" />
-      <point x="762.6834763948503" y="326.0" />
-      <point x="865.9583333333333" y="326.0" />
-      <point x="-30.75" y="15.5" />
+      <point x="-34.5" y="39.0" />
+      <point x="516.7584048640911" y="262.0" />
+      <point x="546.2584048640911" y="262.0" />
+      <point x="546.2584048640911" y="272.0" />
+      <point x="540.8994992846929" y="272.0" />
+      <point x="0.0" y="-182.0" />
     </edge>
     <edge source="br.com.fatec.ChopperHouseGames.domain.Endereco" target="br.com.fatec.ChopperHouseGames.domain.Cidade" relationship="TO_ONE">
-      <point x="0.0" y="15.5" />
-      <point x="746.0584763948503" y="679.5" />
-      <point x="313.47728898426294" y="679.5" />
-      <point x="-15.0" y="15.5" />
+      <point x="-69.33333333333326" y="-94.0" />
+      <point x="644.8000715307578" y="1777.0" />
+      <point x="652.6334048640911" y="1777.0" />
+      <point x="652.6334048640911" y="1767.0" />
+      <point x="222.38340486409106" y="1767.0" />
+      <point x="-30.5" y="39.0" />
+    </edge>
+    <edge source="br.com.fatec.ChopperHouseGames.domain.CartaoCredito" target="br.com.fatec.ChopperHouseGames.domain.Cliente" relationship="DEPENDENCY">
+      <point x="-43.25" y="83.0" />
+      <point x="1224.0706366237469" y="690.0" />
+      <point x="1194.008404864091" y="690.0" />
+      <point x="1194.008404864091" y="700.0" />
+      <point x="1144.508404864091" y="700.0" />
+      <point x="1144.508404864091" y="1394.0" />
+      <point x="1296.8417381974243" y="1394.0" />
+      <point x="-65.66666666666674" y="-160.0" />
+    </edge>
+    <edge source="br.com.fatec.ChopperHouseGames.domain.Devolucao" target="br.com.fatec.ChopperHouseGames.domain.Pedido" relationship="TO_ONE">
+      <point x="-56.75" y="61.0" />
+      <point x="933.008404864091" y="920.0" />
+      <point x="944.633404864091" y="920.0" />
+      <point x="944.633404864091" y="960.0" />
+      <point x="925.0745708154504" y="960.0" />
+      <point x="0.0" y="-160.0" />
+    </edge>
+    <edge source="br.com.fatec.ChopperHouseGames.domain.Cliente" target="br.com.fatec.ChopperHouseGames.domain.CartaoCredito" relationship="DEPENDENCY">
+      <point x="-65.66666666666674" y="-160.0" />
+      <point x="1296.8417381974243" y="1394.0" />
+      <point x="1144.508404864091" y="1394.0" />
+      <point x="1144.508404864091" y="700.0" />
+      <point x="1194.008404864091" y="700.0" />
+      <point x="1194.008404864091" y="690.0" />
+      <point x="1224.0706366237469" y="690.0" />
+      <point x="-43.25" y="83.0" />
+    </edge>
+    <edge source="br.com.fatec.ChopperHouseGames.domain.Pedido" target="br.com.fatec.ChopperHouseGames.domain.Devolucao" relationship="TO_ONE">
+      <point x="0.0" y="-160.0" />
+      <point x="925.0745708154504" y="960.0" />
+      <point x="944.633404864091" y="960.0" />
+      <point x="944.633404864091" y="920.0" />
+      <point x="933.008404864091" y="920.0" />
+      <point x="-56.75" y="61.0" />
     </edge>
     <edge source="br.com.fatec.ChopperHouseGames.domain.TipoCupom" target="br.com.fatec.ChopperHouseGames.domain.EntidadeDominio" relationship="GENERALIZATION">
-      <point x="0.0" y="-15.5" />
-      <point x="633.9166666666666" y="62.0" />
-      <point x="691.5854792560791" y="62.0" />
-      <point x="691.5854792560791" y="52.0" />
-      <point x="149.67560801144384" y="52.0" />
-      <point x="56.33333333333326" y="15.5" />
+      <point x="0.0" y="-28.0" />
+      <point x="1470.133404864091" y="109.0" />
+      <point x="853.6494992846926" y="109.0" />
+      <point x="853.6494992846926" y="99.0" />
+      <point x="185.82457081545044" y="99.0" />
+      <point x="56.33333333333334" y="39.0" />
     </edge>
     <edge source="br.com.fatec.ChopperHouseGames.domain.Devolucao" target="br.com.fatec.ChopperHouseGames.domain.StatusDevolucao" relationship="TO_ONE">
-      <point x="0.0" y="-15.5" />
-      <point x="896.7083333333333" y="251.0" />
-      <point x="900.4334763948503" y="251.0" />
-      <point x="40.75" y="15.5" />
+      <point x="1.1368683772161603E-13" y="-61.0" />
+      <point x="989.7584048640911" y="700.0" />
+      <point x="1005.7584048640911" y="700.0" />
+      <point x="-40.75" y="28.0" />
     </edge>
     <edge source="br.com.fatec.ChopperHouseGames.domain.MetodoPagamento" target="br.com.fatec.ChopperHouseGames.domain.CartaoCredito" relationship="DEPENDENCY">
-      <point x="0.0" y="-15.5" />
-      <point x="1087.9356223175962" y="251.0" />
-      <point x="1136.9334763948505" y="251.0" />
-      <point x="1136.9334763948505" y="241.0" />
-      <point x="1142.625" y="241.0" />
-      <point x="36.25" y="15.5" />
-    </edge>
-    <edge source="br.com.fatec.ChopperHouseGames.domain.Plataforma" target="br.com.fatec.ChopperHouseGames.domain.Jogo" relationship="TO_ONE">
-      <point x="-31.25" y="15.5" />
-      <point x="409.24999999999994" y="146.0" />
-      <point x="336.43347639485035" y="146.0" />
-      <point x="336.43347639485035" y="156.0" />
-      <point x="318.4334763948504" y="156.0" />
-      <point x="-27.999999999999943" y="-15.5" />
+      <point x="-65.66666666666674" y="-39.0" />
+      <point x="1187.8417381974243" y="700.0" />
+      <point x="1194.008404864091" y="700.0" />
+      <point x="1194.008404864091" y="690.0" />
+      <point x="1224.0706366237469" y="690.0" />
+      <point x="-43.25" y="83.0" />
     </edge>
     <edge source="br.com.fatec.ChopperHouseGames.domain.Jogo" target="br.com.fatec.ChopperHouseGames.domain.Plataforma" relationship="TO_ONE">
-      <point x="-27.999999999999943" y="-15.5" />
-      <point x="318.4334763948504" y="156.0" />
-      <point x="336.43347639485035" y="156.0" />
-      <point x="336.43347639485035" y="146.0" />
-      <point x="409.24999999999994" y="146.0" />
-      <point x="-31.25" y="15.5" />
+      <point x="68.66666666666663" y="-182.0" />
+      <point x="609.5661659513595" y="272.0" />
+      <point x="556.2584048640911" y="272.0" />
+      <point x="556.2584048640911" y="252.0" />
+      <point x="429.00840486409106" y="252.0" />
+      <point x="33.25" y="39.0" />
+    </edge>
+    <edge source="br.com.fatec.ChopperHouseGames.domain.Plataforma" target="br.com.fatec.ChopperHouseGames.domain.Jogo" relationship="TO_ONE">
+      <point x="33.25" y="39.0" />
+      <point x="429.00840486409106" y="252.0" />
+      <point x="556.2584048640911" y="252.0" />
+      <point x="556.2584048640911" y="272.0" />
+      <point x="609.5661659513595" y="272.0" />
+      <point x="68.66666666666663" y="-182.0" />
     </edge>
     <edge source="br.com.fatec.ChopperHouseGames.domain.Endereco" target="br.com.fatec.ChopperHouseGames.domain.Cliente" relationship="TO_ONE">
-      <point x="45.0" y="15.5" />
-      <point x="791.0584763948503" y="739.5" />
-      <point x="1366.685622317596" y="739.5" />
-      <point x="1366.685622317596" y="538.5" />
-      <point x="49.0" y="0.0" />
+      <point x="-69.33333333333326" y="-94.0" />
+      <point x="644.8000715307578" y="1777.0" />
+      <point x="652.6334048640911" y="1777.0" />
+      <point x="652.6334048640911" y="1767.0" />
+      <point x="1313.258404864091" y="1767.0" />
+      <point x="-49.25" y="160.0" />
     </edge>
     <edge source="br.com.fatec.ChopperHouseGames.domain.Endereco" target="br.com.fatec.ChopperHouseGames.domain.TIPO_ENDERECO" relationship="TO_ONE">
-      <point x="-45.0" y="15.5" />
-      <point x="701.0584763948503" y="664.5" />
-      <point x="176.97728898426283" y="664.5" />
-      <point x="0.0" y="15.5" />
+      <point x="-69.33333333333326" y="-94.0" />
+      <point x="644.8000715307578" y="1777.0" />
+      <point x="652.6334048640911" y="1777.0" />
+      <point x="652.6334048640911" y="1767.0" />
+      <point x="642.3834048640911" y="1767.0" />
+      <point x="-41.0" y="15.5" />
     </edge>
     <edge source="br.com.fatec.ChopperHouseGames.domain.Plataforma" target="br.com.fatec.ChopperHouseGames.domain.Jogo" relationship="TO_MANY">
-      <point x="-31.25" y="15.5" />
-      <point x="409.24999999999994" y="146.0" />
-      <point x="336.43347639485035" y="146.0" />
-      <point x="336.43347639485035" y="156.0" />
-      <point x="318.4334763948504" y="156.0" />
-      <point x="-27.999999999999943" y="-15.5" />
+      <point x="33.25" y="39.0" />
+      <point x="429.00840486409106" y="252.0" />
+      <point x="556.2584048640911" y="252.0" />
+      <point x="556.2584048640911" y="272.0" />
+      <point x="609.5661659513595" y="272.0" />
+      <point x="68.66666666666663" y="-182.0" />
     </edge>
     <edge source="br.com.fatec.ChopperHouseGames.domain.TipoCliente" target="br.com.fatec.ChopperHouseGames.domain.EntidadeDominio" relationship="GENERALIZATION">
-      <point x="0.0" y="-15.5" />
-      <point x="1263.4356223175962" y="62.0" />
-      <point x="691.5854792560791" y="62.0" />
-      <point x="691.5854792560791" y="52.0" />
-      <point x="149.67560801144384" y="52.0" />
-      <point x="56.33333333333326" y="15.5" />
+      <point x="0.0" y="-50.0" />
+      <point x="1607.758404864091" y="109.0" />
+      <point x="853.6494992846926" y="109.0" />
+      <point x="853.6494992846926" y="99.0" />
+      <point x="185.82457081545044" y="99.0" />
+      <point x="56.33333333333334" y="39.0" />
     </edge>
     <edge source="br.com.fatec.ChopperHouseGames.domain.Cliente" target="br.com.fatec.ChopperHouseGames.domain.Endereco" relationship="TO_MANY">
-      <point x="14.999523605149534" y="15.5" />
-      <point x="1202.433" y="601.0" />
-      <point x="761.058" y="601.0" />
-      <point x="14.999523605149648" y="-15.5" />
+      <point x="-49.25" y="160.0" />
+      <point x="1313.258404864091" y="1767.0" />
+      <point x="652.6334048640911" y="1767.0" />
+      <point x="652.6334048640911" y="1777.0" />
+      <point x="644.8000715307578" y="1777.0" />
+      <point x="-69.33333333333326" y="-94.0" />
     </edge>
     <edge source="br.com.fatec.ChopperHouseGames.domain.CartaoCredito" target="br.com.fatec.ChopperHouseGames.domain.BANDEIRA" relationship="DEPENDENCY">
-      <point x="-48.333333333333485" y="-15.5" />
-      <point x="1058.0416666666665" y="156.0" />
-      <point x="1051.2083333333333" y="156.0" />
-      <point x="-31.0" y="15.5" />
-    </edge>
-    <edge source="br.com.fatec.ChopperHouseGames.domain.Endereco" target="br.com.fatec.ChopperHouseGames.domain.TIPO_ENDERECO" relationship="DEPENDENCY">
-      <point x="-30.0" y="15.5" />
-      <point x="716.0584763948503" y="709.5" />
-      <point x="161.97728898426283" y="709.5" />
-      <point x="-15.0" y="15.5" />
-    </edge>
-    <edge source="br.com.fatec.ChopperHouseGames.domain.Editora" target="br.com.fatec.ChopperHouseGames.domain.Jogo" relationship="TO_MANY">
-      <point x="-25.0" y="15.5" />
-      <point x="164.0" y="146.0" />
-      <point x="336.43347639485035" y="146.0" />
-      <point x="336.43347639485035" y="156.0" />
-      <point x="318.4334763948504" y="156.0" />
-      <point x="-27.999999999999943" y="-15.5" />
-    </edge>
-    <edge source="br.com.fatec.ChopperHouseGames.domain.Endereco" target="br.com.fatec.ChopperHouseGames.domain.EntidadeDominio" relationship="GENERALIZATION">
-      <point x="30.0" y="15.5" />
-      <point x="776.0584763948503" y="724.5" />
-      <point x="-17.5" y="724.5" />
-      <point x="-17.5" y="15.5" />
-      <point x="-84.5" y="0.0" />
-    </edge>
-    <edge source="br.com.fatec.ChopperHouseGames.domain.Pedido" target="br.com.fatec.ChopperHouseGames.domain.MetodoPagamento" relationship="TO_MANY">
-      <point x="-33.0" y="-15.5" />
-      <point x="750.0833333333333" y="376.0" />
-      <point x="762.6834763948503" y="376.0" />
-      <point x="762.6834763948503" y="326.0" />
-      <point x="1042.6856223175962" y="326.0" />
-      <point x="-45.25" y="15.5" />
-    </edge>
-    <edge source="br.com.fatec.ChopperHouseGames.domain.Plataforma" target="br.com.fatec.ChopperHouseGames.domain.EntidadeDominio" relationship="GENERALIZATION">
-      <point x="5.6843418860808015E-14" y="-15.5" />
-      <point x="440.5" y="62.0" />
-      <point x="691.5854792560791" y="62.0" />
-      <point x="691.5854792560791" y="52.0" />
-      <point x="149.67560801144384" y="52.0" />
-      <point x="56.33333333333326" y="15.5" />
-    </edge>
-    <edge source="br.com.fatec.ChopperHouseGames.domain.Cupom" target="br.com.fatec.ChopperHouseGames.domain.Cliente" relationship="TO_ONE">
-      <point x="-25.0" y="15.5" />
-      <point x="625.5833333333333" y="336.0" />
-      <point x="632.5089413447773" y="336.0" />
-      <point x="632.5089413447773" y="471.0" />
-      <point x="635.6834763948503" y="471.0" />
-      <point x="635.6834763948503" y="501.0" />
-      <point x="1154.7668097281837" y="501.0" />
-      <point x="-32.666666666666515" y="-15.5" />
-    </edge>
-    <edge source="br.com.fatec.ChopperHouseGames.domain.Editora" target="br.com.fatec.ChopperHouseGames.domain.Jogo" relationship="DEPENDENCY">
-      <point x="25.0" y="15.5" />
-      <point x="214.0" y="136.0" />
-      <point x="346.43347639485035" y="136.0" />
-      <point x="5.6843418860808015E-14" y="-15.5" />
-    </edge>
-    <edge source="br.com.fatec.ChopperHouseGames.domain.Jogo" target="br.com.fatec.ChopperHouseGames.domain.Editora" relationship="DEPENDENCY">
-      <point x="5.6843418860808015E-14" y="-15.5" />
-      <point x="346.43347639485035" y="136.0" />
-      <point x="214.0" y="136.0" />
-      <point x="25.0" y="15.5" />
-    </edge>
-    <edge source="br.com.fatec.ChopperHouseGames.domain.Jogo" target="br.com.fatec.ChopperHouseGames.domain.Plataforma" relationship="DEPENDENCY">
-      <point x="5.6843418860808015E-14" y="-15.5" />
-      <point x="346.43347639485035" y="136.0" />
-      <point x="471.74999999999994" y="136.0" />
-      <point x="31.25" y="15.5" />
-    </edge>
-    <edge source="br.com.fatec.ChopperHouseGames.domain.Plataforma" target="br.com.fatec.ChopperHouseGames.domain.Jogo" relationship="DEPENDENCY">
-      <point x="31.25" y="15.5" />
-      <point x="471.74999999999994" y="136.0" />
-      <point x="346.43347639485035" y="136.0" />
-      <point x="5.6843418860808015E-14" y="-15.5" />
-    </edge>
-    <edge source="br.com.fatec.ChopperHouseGames.domain.MetodoPagamento" target="br.com.fatec.ChopperHouseGames.domain.EntidadeDominio" relationship="GENERALIZATION">
-      <point x="60.33333333333326" y="-15.5" />
-      <point x="1148.2689556509295" y="241.0" />
-      <point x="1223.0100143061522" y="241.0" />
-      <point x="1223.0100143061522" y="62.0" />
-      <point x="691.5854792560791" y="62.0" />
-      <point x="691.5854792560791" y="52.0" />
-      <point x="149.67560801144384" y="52.0" />
-      <point x="56.33333333333326" y="15.5" />
-    </edge>
-    <edge source="br.com.fatec.ChopperHouseGames.domain.Pedido" target="br.com.fatec.ChopperHouseGames.domain.MetodoPagamento" relationship="DEPENDENCY">
-      <point x="0.0" y="-15.5" />
-      <point x="783.0833333333333" y="376.0" />
-      <point x="772.6834763948503" y="376.0" />
-      <point x="772.6834763948503" y="366.0" />
-      <point x="1133.1856223175962" y="366.0" />
-      <point x="45.25" y="15.5" />
-    </edge>
-    <edge source="br.com.fatec.ChopperHouseGames.domain.Editora" target="br.com.fatec.ChopperHouseGames.domain.EntidadeDominio" relationship="GENERALIZATION">
-      <point x="0.0" y="-15.5" />
-      <point x="189.0" y="62.0" />
-      <point x="691.5854792560791" y="62.0" />
-      <point x="691.5854792560791" y="52.0" />
-      <point x="149.67560801144384" y="52.0" />
-      <point x="56.33333333333326" y="15.5" />
-    </edge>
-    <edge source="br.com.fatec.ChopperHouseGames.domain.Cidade" target="br.com.fatec.ChopperHouseGames.domain.Estado" relationship="TO_ONE">
-      <point x="24.75" y="-15.5" />
-      <point x="24.25" y="15.5" />
-    </edge>
-    <edge source="br.com.fatec.ChopperHouseGames.domain.Pedido" target="br.com.fatec.ChopperHouseGames.domain.Cupom" relationship="TO_MANY">
-      <point x="-33.0" y="-15.5" />
-      <point x="750.0833333333333" y="376.0" />
-      <point x="762.6834763948503" y="376.0" />
-      <point x="762.6834763948503" y="356.0" />
-      <point x="632.5089413447773" y="356.0" />
-      <point x="632.5089413447773" y="336.0" />
-      <point x="625.5833333333333" y="336.0" />
-      <point x="-25.0" y="15.5" />
-    </edge>
-    <edge source="br.com.fatec.ChopperHouseGames.domain.Pedido" target="br.com.fatec.ChopperHouseGames.domain.Endereco" relationship="DEPENDENCY">
-      <point x="-3.3333333328755543E-4" y="15.5" />
-      <point x="783.083" y="585.0" />
-      <point x="746.058" y="585.0" />
-      <point x="-4.763948503523352E-4" y="-15.5" />
-    </edge>
-    <edge source="br.com.fatec.ChopperHouseGames.domain.Cupom" target="br.com.fatec.ChopperHouseGames.domain.Pedido" relationship="TO_MANY">
-      <point x="-25.0" y="15.5" />
-      <point x="625.5833333333333" y="336.0" />
-      <point x="632.5089413447773" y="336.0" />
-      <point x="632.5089413447773" y="356.0" />
-      <point x="762.6834763948503" y="356.0" />
-      <point x="762.6834763948503" y="376.0" />
-      <point x="750.0833333333333" y="376.0" />
-      <point x="-33.0" y="-15.5" />
-    </edge>
-    <edge source="br.com.fatec.ChopperHouseGames.domain.Item" target="br.com.fatec.ChopperHouseGames.domain.EntidadeDominio" relationship="GENERALIZATION">
-      <point x="27.333333333333314" y="-15.5" />
-      <point x="475.8106223175962" y="251.0" />
-      <point x="524.0" y="251.0" />
-      <point x="524.0" y="62.0" />
-      <point x="691.5854792560791" y="62.0" />
-      <point x="691.5854792560791" y="52.0" />
-      <point x="149.67560801144384" y="52.0" />
-      <point x="56.33333333333326" y="15.5" />
-    </edge>
-    <edge source="br.com.fatec.ChopperHouseGames.domain.Status" target="br.com.fatec.ChopperHouseGames.domain.EntidadeDominio" relationship="GENERALIZATION">
-      <point x="0.0" y="-15.5" />
-      <point x="766.5833333333333" y="62.0" />
-      <point x="691.5854792560791" y="62.0" />
-      <point x="691.5854792560791" y="52.0" />
-      <point x="149.67560801144384" y="52.0" />
-      <point x="56.33333333333326" y="15.5" />
-    </edge>
-    <edge source="br.com.fatec.ChopperHouseGames.domain.Genero" target="br.com.fatec.ChopperHouseGames.domain.Jogo" relationship="DEPENDENCY">
-      <point x="33.333333333333314" y="-15.5" />
-      <point x="324.26680972818366" y="241.0" />
-      <point x="400.9683476394856" y="241.0" />
-      <point x="400.9683476394856" y="231.0" />
-      <point x="367.4334763948504" y="231.0" />
-      <point x="21.000000000000057" y="15.5" />
-    </edge>
-    <edge source="br.com.fatec.ChopperHouseGames.domain.Jogo" target="br.com.fatec.ChopperHouseGames.domain.Genero" relationship="DEPENDENCY">
-      <point x="21.000000000000057" y="15.5" />
-      <point x="367.4334763948504" y="231.0" />
-      <point x="400.9683476394856" y="231.0" />
-      <point x="400.9683476394856" y="241.0" />
-      <point x="324.26680972818366" y="241.0" />
-      <point x="33.333333333333314" y="-15.5" />
-    </edge>
-    <edge source="br.com.fatec.ChopperHouseGames.domain.Pedido" target="br.com.fatec.ChopperHouseGames.domain.Item" relationship="DEPENDENCY">
-      <point x="0.0" y="-15.5" />
-      <point x="783.0833333333333" y="376.0" />
-      <point x="772.6834763948503" y="376.0" />
-      <point x="772.6834763948503" y="346.0" />
-      <point x="453.4772889842629" y="346.0" />
-      <point x="453.4772889842629" y="336.0" />
-      <point x="468.9772889842628" y="336.0" />
-      <point x="20.499999999999943" y="15.5" />
-    </edge>
-    <edge source="br.com.fatec.ChopperHouseGames.domain.Idioma" target="br.com.fatec.ChopperHouseGames.domain.EntidadeDominio" relationship="GENERALIZATION">
-      <point x="0.0" y="-15.5" />
-      <point x="308.4999999999999" y="62.0" />
-      <point x="691.5854792560791" y="62.0" />
-      <point x="691.5854792560791" y="52.0" />
-      <point x="149.67560801144384" y="52.0" />
-      <point x="56.33333333333326" y="15.5" />
-    </edge>
-    <edge source="br.com.fatec.ChopperHouseGames.domain.Cliente" target="br.com.fatec.ChopperHouseGames.domain.Carrinho" relationship="DEPENDENCY">
-      <point x="0.0" y="-15.5" />
-      <point x="1187.4334763948505" y="461.0" />
-      <point x="477.9772889842628" y="461.0" />
-      <point x="26.999999999999943" y="15.5" />
-    </edge>
-    <edge source="br.com.fatec.ChopperHouseGames.domain.Resultado" target="br.com.fatec.ChopperHouseGames.domain.EntidadeDominio" relationship="TO_MANY">
-      <point x="29.5" y="-15.5" />
-      <point x="88.5" y="62.0" />
-      <point x="93.34227467811058" y="62.0" />
-      <point x="0.0" y="15.5" />
-    </edge>
-    <edge source="br.com.fatec.ChopperHouseGames.domain.Cupom" target="br.com.fatec.ChopperHouseGames.domain.TipoCupom" relationship="DEPENDENCY">
-      <point x="-33.33333333333337" y="-15.5" />
-      <point x="617.25" y="251.0" />
-      <point x="601.4166666666666" y="251.0" />
-      <point x="-32.5" y="15.5" />
-    </edge>
-    <edge source="br.com.fatec.ChopperHouseGames.domain.Cliente" target="br.com.fatec.ChopperHouseGames.domain.TipoCliente" relationship="DEPENDENCY">
-      <point x="0.0" y="-15.5" />
-      <point x="1187.4334763948505" y="461.0" />
-      <point x="1295.4356223175962" y="461.0" />
-      <point x="32.0" y="15.5" />
-    </edge>
-    <edge source="br.com.fatec.ChopperHouseGames.domain.TipoCliente" target="br.com.fatec.ChopperHouseGames.domain.Cliente" relationship="DEPENDENCY">
-      <point x="32.0" y="15.5" />
-      <point x="1295.4356223175962" y="461.0" />
-      <point x="1187.4334763948505" y="461.0" />
-      <point x="0.0" y="-15.5" />
-    </edge>
-    <edge source="br.com.fatec.ChopperHouseGames.domain.Cupom" target="br.com.fatec.ChopperHouseGames.domain.EntidadeDominio" relationship="GENERALIZATION">
-      <point x="33.33333333333337" y="-15.5" />
-      <point x="683.9166666666667" y="251.0" />
-      <point x="740.0922746781107" y="251.0" />
-      <point x="740.0922746781107" y="62.0" />
-      <point x="691.5854792560791" y="62.0" />
-      <point x="691.5854792560791" y="52.0" />
-      <point x="149.67560801144384" y="52.0" />
-      <point x="56.33333333333326" y="15.5" />
-    </edge>
-    <edge source="br.com.fatec.ChopperHouseGames.domain.Cupom" target="br.com.fatec.ChopperHouseGames.domain.Pedido" relationship="DEPENDENCY">
-      <point x="25.0" y="15.5" />
-      <point x="675.5833333333333" y="326.0" />
-      <point x="664.5089413447773" y="326.0" />
-      <point x="664.5089413447773" y="336.0" />
-      <point x="772.6834763948503" y="336.0" />
-      <point x="772.6834763948503" y="376.0" />
-      <point x="783.0833333333333" y="376.0" />
-      <point x="0.0" y="-15.5" />
-    </edge>
-    <edge source="br.com.fatec.ChopperHouseGames.domain.Pedido" target="br.com.fatec.ChopperHouseGames.domain.Cupom" relationship="DEPENDENCY">
-      <point x="0.0" y="-15.5" />
-      <point x="783.0833333333333" y="376.0" />
-      <point x="772.6834763948503" y="376.0" />
-      <point x="772.6834763948503" y="336.0" />
-      <point x="664.5089413447773" y="336.0" />
-      <point x="664.5089413447773" y="326.0" />
-      <point x="675.5833333333333" y="326.0" />
-      <point x="25.0" y="15.5" />
-    </edge>
-    <edge source="br.com.fatec.ChopperHouseGames.domain.Pedido" target="br.com.fatec.ChopperHouseGames.domain.Cliente" relationship="TO_ONE">
-      <point x="-24.75" y="15.5" />
-      <point x="758.3333333333333" y="481.0" />
-      <point x="401.47728898426294" y="481.0" />
-      <point x="401.47728898426294" y="491.0" />
-      <point x="635.6834763948503" y="491.0" />
-      <point x="635.6834763948503" y="501.0" />
-      <point x="1154.7668097281837" y="501.0" />
-      <point x="-32.666666666666515" y="-15.5" />
-    </edge>
-    <edge source="br.com.fatec.ChopperHouseGames.domain.Cliente" target="br.com.fatec.ChopperHouseGames.domain.Pedido" relationship="TO_ONE">
-      <point x="-32.666666666666515" y="-15.5" />
-      <point x="1154.7668097281837" y="501.0" />
-      <point x="635.6834763948503" y="501.0" />
-      <point x="635.6834763948503" y="491.0" />
-      <point x="401.47728898426294" y="491.0" />
-      <point x="401.47728898426294" y="481.0" />
-      <point x="758.3333333333333" y="481.0" />
-      <point x="-24.75" y="15.5" />
-    </edge>
-    <edge source="br.com.fatec.ChopperHouseGames.domain.Jogo" target="br.com.fatec.ChopperHouseGames.domain.Genero" relationship="TO_MANY">
-      <point x="-21.0" y="15.5" />
-      <point x="325.43347639485035" y="231.0" />
-      <point x="341.43347639485035" y="231.0" />
-      <point x="341.43347639485035" y="251.0" />
-      <point x="290.93347639485035" y="251.0" />
-      <point x="0.0" y="-15.5" />
-    </edge>
-    <edge source="br.com.fatec.ChopperHouseGames.domain.Cliente" target="br.com.fatec.ChopperHouseGames.domain.TipoCliente" relationship="TO_ONE">
-      <point x="-32.666666666666515" y="-15.5" />
-      <point x="1154.7668097281837" y="501.0" />
-      <point x="635.6834763948503" y="501.0" />
-      <point x="635.6834763948503" y="471.0" />
-      <point x="1231.4356223175962" y="471.0" />
-      <point x="-32.0" y="15.5" />
-    </edge>
-    <edge source="br.com.fatec.ChopperHouseGames.domain.Genero" target="br.com.fatec.ChopperHouseGames.domain.Jogo" relationship="TO_MANY">
-      <point x="0.0" y="-15.5" />
-      <point x="290.93347639485035" y="251.0" />
-      <point x="341.43347639485035" y="251.0" />
-      <point x="341.43347639485035" y="231.0" />
-      <point x="325.43347639485035" y="231.0" />
-      <point x="-21.0" y="15.5" />
-    </edge>
-    <edge source="br.com.fatec.ChopperHouseGames.domain.TipoCliente" target="br.com.fatec.ChopperHouseGames.domain.Cliente" relationship="TO_ONE">
-      <point x="-32.0" y="15.5" />
-      <point x="1231.4356223175962" y="471.0" />
-      <point x="635.6834763948503" y="471.0" />
-      <point x="635.6834763948503" y="501.0" />
-      <point x="1154.7668097281837" y="501.0" />
-      <point x="-32.666666666666515" y="-15.5" />
-    </edge>
-    <edge source="br.com.fatec.ChopperHouseGames.domain.Resultado" target="br.com.fatec.ChopperHouseGames.domain.EntidadeDominio" relationship="DEPENDENCY">
-      <point x="-29.5" y="-15.5" />
-      <point x="29.5" y="62.0" />
-      <point x="37.00894134477733" y="62.0" />
-      <point x="-56.33333333333326" y="15.5" />
-    </edge>
-    <edge source="br.com.fatec.ChopperHouseGames.domain.Cliente" target="br.com.fatec.ChopperHouseGames.domain.EntidadeDominio" relationship="GENERALIZATION">
-      <point x="32.666666666666515" y="-15.5" />
-      <point x="1220.100143061517" y="501.0" />
-      <point x="1351.685622317596" y="501.0" />
-      <point x="1351.685622317596" y="62.0" />
-      <point x="691.5854792560791" y="62.0" />
-      <point x="691.5854792560791" y="52.0" />
-      <point x="149.67560801144384" y="52.0" />
-      <point x="56.33333333333326" y="15.5" />
-    </edge>
-    <edge source="br.com.fatec.ChopperHouseGames.domain.TipoCliente" target="br.com.fatec.ChopperHouseGames.domain.Cliente" relationship="TO_MANY">
-      <point x="-32.0" y="15.5" />
-      <point x="1231.4356223175962" y="471.0" />
-      <point x="635.6834763948503" y="471.0" />
-      <point x="635.6834763948503" y="501.0" />
-      <point x="1154.7668097281837" y="501.0" />
-      <point x="-32.666666666666515" y="-15.5" />
-    </edge>
-    <edge source="br.com.fatec.ChopperHouseGames.domain.CartaoCredito" target="br.com.fatec.ChopperHouseGames.domain.BANDEIRA" relationship="TO_ONE">
-      <point x="0.0" y="-15.5" />
-      <point x="1106.375" y="156.0" />
-      <point x="1113.2083333333333" y="156.0" />
+      <point x="0.0" y="-83.0" />
+      <point x="1267.3206366237469" y="272.0" />
+      <point x="1275.4039699570803" y="272.0" />
       <point x="31.0" y="15.5" />
     </edge>
+    <edge source="br.com.fatec.ChopperHouseGames.domain.Endereco" target="br.com.fatec.ChopperHouseGames.domain.TIPO_ENDERECO" relationship="DEPENDENCY">
+      <point x="0.0" y="-94.0" />
+      <point x="714.1334048640911" y="1757.0" />
+      <point x="724.3834048640911" y="1757.0" />
+      <point x="41.0" y="15.5" />
+    </edge>
+    <edge source="br.com.fatec.ChopperHouseGames.domain.Editora" target="br.com.fatec.ChopperHouseGames.domain.Jogo" relationship="TO_MANY">
+      <point x="34.5" y="39.0" />
+      <point x="743.758404864091" y="252.0" />
+      <point x="556.2584048640911" y="252.0" />
+      <point x="556.2584048640911" y="272.0" />
+      <point x="609.5661659513595" y="272.0" />
+      <point x="68.66666666666663" y="-182.0" />
+    </edge>
+    <edge source="br.com.fatec.ChopperHouseGames.domain.Endereco" target="br.com.fatec.ChopperHouseGames.domain.EntidadeDominio" relationship="GENERALIZATION">
+      <point x="69.33333333333337" y="-94.0" />
+      <point x="783.4667381974243" y="1777.0" />
+      <point x="1718.15396995708" y="1777.0" />
+      <point x="1718.15396995708" y="109.0" />
+      <point x="853.6494992846926" y="109.0" />
+      <point x="853.6494992846926" y="99.0" />
+      <point x="185.82457081545044" y="99.0" />
+      <point x="56.33333333333334" y="39.0" />
+    </edge>
+    <edge source="br.com.fatec.ChopperHouseGames.domain.Pedido" target="br.com.fatec.ChopperHouseGames.domain.MetodoPagamento" relationship="TO_MANY">
+      <point x="0.0" y="-160.0" />
+      <point x="925.0745708154504" y="960.0" />
+      <point x="944.633404864091" y="960.0" />
+      <point x="944.633404864091" y="920.0" />
+      <point x="1204.258404864091" y="920.0" />
+      <point x="-49.25" y="39.0" />
+    </edge>
+    <edge source="br.com.fatec.ChopperHouseGames.domain.Plataforma" target="br.com.fatec.ChopperHouseGames.domain.EntidadeDominio" relationship="GENERALIZATION">
+      <point x="0.0" y="-39.0" />
+      <point x="395.75840486409106" y="109.0" />
+      <point x="853.6494992846926" y="109.0" />
+      <point x="853.6494992846926" y="99.0" />
+      <point x="185.82457081545044" y="99.0" />
+      <point x="56.33333333333334" y="39.0" />
+    </edge>
+    <edge source="br.com.fatec.ChopperHouseGames.domain.Editora" target="br.com.fatec.ChopperHouseGames.domain.Jogo" relationship="DEPENDENCY">
+      <point x="-34.5" y="39.0" />
+      <point x="674.758404864091" y="262.0" />
+      <point x="546.2584048640911" y="262.0" />
+      <point x="546.2584048640911" y="272.0" />
+      <point x="540.8994992846929" y="272.0" />
+      <point x="0.0" y="-182.0" />
+    </edge>
+    <edge source="br.com.fatec.ChopperHouseGames.domain.Jogo" target="br.com.fatec.ChopperHouseGames.domain.Editora" relationship="DEPENDENCY">
+      <point x="0.0" y="-182.0" />
+      <point x="540.8994992846929" y="272.0" />
+      <point x="546.2584048640911" y="272.0" />
+      <point x="546.2584048640911" y="262.0" />
+      <point x="674.758404864091" y="262.0" />
+      <point x="-34.5" y="39.0" />
+    </edge>
+    <edge source="br.com.fatec.ChopperHouseGames.domain.Cupom" target="br.com.fatec.ChopperHouseGames.domain.Cliente" relationship="TO_ONE">
+      <point x="43.25" y="83.0" />
+      <point x="1535.133404864091" y="940.0" />
+      <point x="1508.2373032904136" y="940.0" />
+      <point x="1508.2373032904136" y="1334.0" />
+      <point x="1362.508404864091" y="1334.0" />
+      <point x="0.0" y="-160.0" />
+    </edge>
+    <edge source="br.com.fatec.ChopperHouseGames.domain.Jogo" target="br.com.fatec.ChopperHouseGames.domain.Plataforma" relationship="DEPENDENCY">
+      <point x="0.0" y="-182.0" />
+      <point x="540.8994992846929" y="272.0" />
+      <point x="546.2584048640911" y="272.0" />
+      <point x="546.2584048640911" y="262.0" />
+      <point x="362.50840486409106" y="262.0" />
+      <point x="-33.25" y="39.0" />
+    </edge>
+    <edge source="br.com.fatec.ChopperHouseGames.domain.Plataforma" target="br.com.fatec.ChopperHouseGames.domain.Jogo" relationship="DEPENDENCY">
+      <point x="-33.25" y="39.0" />
+      <point x="362.50840486409106" y="262.0" />
+      <point x="546.2584048640911" y="262.0" />
+      <point x="546.2584048640911" y="272.0" />
+      <point x="540.8994992846929" y="272.0" />
+      <point x="0.0" y="-182.0" />
+    </edge>
+    <edge source="br.com.fatec.ChopperHouseGames.domain.MetodoPagamento" target="br.com.fatec.ChopperHouseGames.domain.EntidadeDominio" relationship="GENERALIZATION">
+      <point x="65.66666666666674" y="-39.0" />
+      <point x="1319.1750715307578" y="690.0" />
+      <point x="1394.633404864091" y="690.0" />
+      <point x="1394.633404864091" y="109.0" />
+      <point x="853.6494992846926" y="109.0" />
+      <point x="853.6494992846926" y="99.0" />
+      <point x="185.82457081545044" y="99.0" />
+      <point x="56.33333333333334" y="39.0" />
+    </edge>
+    <edge source="br.com.fatec.ChopperHouseGames.domain.Pedido" target="br.com.fatec.ChopperHouseGames.domain.MetodoPagamento" relationship="DEPENDENCY">
+      <point x="98.0" y="-160.0" />
+      <point x="1023.0745708154504" y="960.0" />
+      <point x="979.0745708154504" y="960.0" />
+      <point x="979.0745708154504" y="910.0" />
+      <point x="1302.758404864091" y="910.0" />
+      <point x="49.25" y="39.0" />
+    </edge>
+    <edge source="br.com.fatec.ChopperHouseGames.domain.Editora" target="br.com.fatec.ChopperHouseGames.domain.EntidadeDominio" relationship="GENERALIZATION">
+      <point x="0.0" y="-39.0" />
+      <point x="709.258404864091" y="109.0" />
+      <point x="853.6494992846926" y="109.0" />
+      <point x="853.6494992846926" y="99.0" />
+      <point x="185.82457081545044" y="99.0" />
+      <point x="56.33333333333334" y="39.0" />
+    </edge>
+    <edge source="br.com.fatec.ChopperHouseGames.domain.Cidade" target="br.com.fatec.ChopperHouseGames.domain.Estado" relationship="TO_ONE">
+      <point x="30.5" y="-39.0" />
+      <point x="29.5" y="28.0" />
+    </edge>
+    <edge source="br.com.fatec.ChopperHouseGames.domain.Pedido" target="br.com.fatec.ChopperHouseGames.domain.Endereco" relationship="DEPENDENCY">
+      <point x="-73.5" y="160.0" />
+      <point x="851.5745708154504" y="1344.0" />
+      <point x="437.3206366237471" y="1344.0" />
+      <point x="437.3206366237471" y="1384.0" />
+      <point x="775.8834048640911" y="1384.0" />
+      <point x="775.8834048640911" y="1757.0" />
+      <point x="714.1334048640911" y="1757.0" />
+      <point x="0.0" y="-94.0" />
+    </edge>
+    <edge source="br.com.fatec.ChopperHouseGames.domain.Pedido" target="br.com.fatec.ChopperHouseGames.domain.Cupom" relationship="TO_MANY">
+      <point x="0.0" y="-160.0" />
+      <point x="925.0745708154504" y="960.0" />
+      <point x="944.633404864091" y="960.0" />
+      <point x="944.633404864091" y="950.0" />
+      <point x="1508.2373032904136" y="950.0" />
+      <point x="1508.2373032904136" y="940.0" />
+      <point x="1535.133404864091" y="940.0" />
+      <point x="43.25" y="83.0" />
+    </edge>
+    <edge source="br.com.fatec.ChopperHouseGames.domain.Cupom" target="br.com.fatec.ChopperHouseGames.domain.Pedido" relationship="TO_MANY">
+      <point x="43.25" y="83.0" />
+      <point x="1535.133404864091" y="940.0" />
+      <point x="1508.2373032904136" y="940.0" />
+      <point x="1508.2373032904136" y="950.0" />
+      <point x="944.633404864091" y="950.0" />
+      <point x="944.633404864091" y="960.0" />
+      <point x="925.0745708154504" y="960.0" />
+      <point x="0.0" y="-160.0" />
+    </edge>
+    <edge source="br.com.fatec.ChopperHouseGames.domain.Item" target="br.com.fatec.ChopperHouseGames.domain.EntidadeDominio" relationship="GENERALIZATION">
+      <point x="-59.66666666666663" y="-50.0" />
+      <point x="397.34173819742443" y="700.0" />
+      <point x="308.25840486409106" y="700.0" />
+      <point x="308.25840486409106" y="109.0" />
+      <point x="853.6494992846926" y="109.0" />
+      <point x="853.6494992846926" y="99.0" />
+      <point x="185.82457081545044" y="99.0" />
+      <point x="56.33333333333334" y="39.0" />
+    </edge>
+    <edge source="br.com.fatec.ChopperHouseGames.domain.Status" target="br.com.fatec.ChopperHouseGames.domain.EntidadeDominio" relationship="GENERALIZATION">
+      <point x="0.0" y="-28.0" />
+      <point x="798.758404864091" y="109.0" />
+      <point x="853.6494992846926" y="109.0" />
+      <point x="853.6494992846926" y="99.0" />
+      <point x="185.82457081545044" y="99.0" />
+      <point x="56.33333333333334" y="39.0" />
+    </edge>
+    <edge source="br.com.fatec.ChopperHouseGames.domain.Genero" target="br.com.fatec.ChopperHouseGames.domain.Jogo" relationship="DEPENDENCY">
+      <point x="-46.0" y="-39.0" />
+      <point x="589.5084048640911" y="700.0" />
+      <point x="484.5661659513593" y="700.0" />
+      <point x="484.5661659513593" y="690.0" />
+      <point x="489.39949928469287" y="690.0" />
+      <point x="-51.5" y="182.0" />
+    </edge>
+    <edge source="br.com.fatec.ChopperHouseGames.domain.Pedido" target="br.com.fatec.ChopperHouseGames.domain.Item" relationship="DEPENDENCY">
+      <point x="98.0" y="-160.0" />
+      <point x="1023.0745708154504" y="960.0" />
+      <point x="979.0745708154504" y="960.0" />
+      <point x="979.0745708154504" y="930.0" />
+      <point x="463.5661659513594" y="930.0" />
+      <point x="463.5661659513594" y="920.0" />
+      <point x="501.75840486409106" y="920.0" />
+      <point x="44.75" y="50.0" />
+    </edge>
+    <edge source="br.com.fatec.ChopperHouseGames.domain.Jogo" target="br.com.fatec.ChopperHouseGames.domain.Genero" relationship="DEPENDENCY">
+      <point x="-51.5" y="182.0" />
+      <point x="489.39949928469287" y="690.0" />
+      <point x="484.5661659513593" y="690.0" />
+      <point x="484.5661659513593" y="700.0" />
+      <point x="589.5084048640911" y="700.0" />
+      <point x="-46.0" y="-39.0" />
+    </edge>
+    <edge source="br.com.fatec.ChopperHouseGames.domain.Idioma" target="br.com.fatec.ChopperHouseGames.domain.EntidadeDominio" relationship="GENERALIZATION">
+      <point x="0.0" y="-39.0" />
+      <point x="551.2584048640911" y="109.0" />
+      <point x="853.6494992846926" y="109.0" />
+      <point x="853.6494992846926" y="99.0" />
+      <point x="185.82457081545044" y="99.0" />
+      <point x="56.33333333333334" y="39.0" />
+    </edge>
+    <edge source="br.com.fatec.ChopperHouseGames.domain.Resultado" target="br.com.fatec.ChopperHouseGames.domain.EntidadeDominio" relationship="TO_MANY">
+      <point x="57.5" y="-50.0" />
+      <point x="172.5" y="109.0" />
+      <point x="129.49123748211719" y="109.0" />
+      <point x="0.0" y="39.0" />
+    </edge>
+    <edge source="br.com.fatec.ChopperHouseGames.domain.Cliente" target="br.com.fatec.ChopperHouseGames.domain.Carrinho" relationship="DEPENDENCY">
+      <point x="-65.66666666666674" y="-160.0" />
+      <point x="1296.8417381974243" y="1394.0" />
+      <point x="1144.508404864091" y="1394.0" />
+      <point x="1144.508404864091" y="1354.0" />
+      <point x="397.57457081545044" y="1354.0" />
+      <point x="-33.75" y="28.0" />
+    </edge>
+    <edge source="br.com.fatec.ChopperHouseGames.domain.Cupom" target="br.com.fatec.ChopperHouseGames.domain.TipoCupom" relationship="DEPENDENCY">
+      <point x="-57.66666666666674" y="-83.0" />
+      <point x="1434.2167381974243" y="700.0" />
+      <point x="1437.633404864091" y="700.0" />
+      <point x="-32.5" y="28.0" />
+    </edge>
+    <edge source="br.com.fatec.ChopperHouseGames.domain.Cliente" target="br.com.fatec.ChopperHouseGames.domain.TipoCliente" relationship="DEPENDENCY">
+      <point x="-65.66666666666674" y="-160.0" />
+      <point x="1296.8417381974243" y="1394.0" />
+      <point x="1144.508404864091" y="1394.0" />
+      <point x="1144.508404864091" y="1354.0" />
+      <point x="1567.258404864091" y="1354.0" />
+      <point x="-40.5" y="50.0" />
+    </edge>
+    <edge source="br.com.fatec.ChopperHouseGames.domain.TipoCliente" target="br.com.fatec.ChopperHouseGames.domain.Cliente" relationship="DEPENDENCY">
+      <point x="-40.5" y="50.0" />
+      <point x="1567.258404864091" y="1354.0" />
+      <point x="1144.508404864091" y="1354.0" />
+      <point x="1144.508404864091" y="1394.0" />
+      <point x="1296.8417381974243" y="1394.0" />
+      <point x="-65.66666666666674" y="-160.0" />
+    </edge>
+    <edge source="br.com.fatec.ChopperHouseGames.domain.Cupom" target="br.com.fatec.ChopperHouseGames.domain.EntidadeDominio" relationship="GENERALIZATION">
+      <point x="57.66666666666674" y="-83.0" />
+      <point x="1549.5500715307578" y="700.0" />
+      <point x="1586.258404864091" y="700.0" />
+      <point x="1586.258404864091" y="109.0" />
+      <point x="853.6494992846926" y="109.0" />
+      <point x="853.6494992846926" y="99.0" />
+      <point x="185.82457081545044" y="99.0" />
+      <point x="56.33333333333334" y="39.0" />
+    </edge>
+    <edge source="br.com.fatec.ChopperHouseGames.domain.Cupom" target="br.com.fatec.ChopperHouseGames.domain.Pedido" relationship="DEPENDENCY">
+      <point x="-43.25" y="83.0" />
+      <point x="1448.633404864091" y="930.0" />
+      <point x="1497.2373032904136" y="930.0" />
+      <point x="1497.2373032904136" y="940.0" />
+      <point x="979.0745708154504" y="940.0" />
+      <point x="979.0745708154504" y="960.0" />
+      <point x="1023.0745708154504" y="960.0" />
+      <point x="98.0" y="-160.0" />
+    </edge>
+    <edge source="br.com.fatec.ChopperHouseGames.domain.Pedido" target="br.com.fatec.ChopperHouseGames.domain.Cupom" relationship="DEPENDENCY">
+      <point x="98.0" y="-160.0" />
+      <point x="1023.0745708154504" y="960.0" />
+      <point x="979.0745708154504" y="960.0" />
+      <point x="979.0745708154504" y="940.0" />
+      <point x="1497.2373032904136" y="940.0" />
+      <point x="1497.2373032904136" y="930.0" />
+      <point x="1448.633404864091" y="930.0" />
+      <point x="-43.25" y="83.0" />
+    </edge>
+    <edge source="br.com.fatec.ChopperHouseGames.domain.Cliente" target="br.com.fatec.ChopperHouseGames.domain.Pedido" relationship="TO_ONE">
+      <point x="0.0" y="-160.0" />
+      <point x="1362.508404864091" y="1364.0" />
+      <point x="718.3789341917034" y="1364.0" />
+      <point x="718.3789341917034" y="1324.0" />
+      <point x="998.5745708154504" y="1324.0" />
+      <point x="73.5" y="160.0" />
+    </edge>
+    <edge source="br.com.fatec.ChopperHouseGames.domain.Pedido" target="br.com.fatec.ChopperHouseGames.domain.Cliente" relationship="TO_ONE">
+      <point x="73.5" y="160.0" />
+      <point x="998.5745708154504" y="1324.0" />
+      <point x="718.3789341917034" y="1324.0" />
+      <point x="718.3789341917034" y="1364.0" />
+      <point x="1362.508404864091" y="1364.0" />
+      <point x="0.0" y="-160.0" />
+    </edge>
+    <edge source="br.com.fatec.ChopperHouseGames.domain.Jogo" target="br.com.fatec.ChopperHouseGames.domain.Genero" relationship="TO_MANY">
+      <point x="51.5" y="182.0" />
+      <point x="592.3994992846929" y="680.0" />
+      <point x="610.4873032904138" y="680.0" />
+      <point x="610.4873032904138" y="690.0" />
+      <point x="635.5084048640911" y="690.0" />
+      <point x="0.0" y="-39.0" />
+    </edge>
+    <edge source="br.com.fatec.ChopperHouseGames.domain.Genero" target="br.com.fatec.ChopperHouseGames.domain.Jogo" relationship="TO_MANY">
+      <point x="0.0" y="-39.0" />
+      <point x="635.5084048640911" y="690.0" />
+      <point x="610.4873032904138" y="690.0" />
+      <point x="610.4873032904138" y="680.0" />
+      <point x="592.3994992846929" y="680.0" />
+      <point x="51.5" y="182.0" />
+    </edge>
+    <edge source="br.com.fatec.ChopperHouseGames.domain.Cliente" target="br.com.fatec.ChopperHouseGames.domain.TipoCliente" relationship="TO_ONE">
+      <point x="0.0" y="-160.0" />
+      <point x="1362.508404864091" y="1334.0" />
+      <point x="1648.258404864091" y="1334.0" />
+      <point x="40.5" y="50.0" />
+    </edge>
+    <edge source="br.com.fatec.ChopperHouseGames.domain.TipoCliente" target="br.com.fatec.ChopperHouseGames.domain.Cliente" relationship="TO_ONE">
+      <point x="40.5" y="50.0" />
+      <point x="1648.258404864091" y="1334.0" />
+      <point x="1362.508404864091" y="1334.0" />
+      <point x="0.0" y="-160.0" />
+    </edge>
+    <edge source="br.com.fatec.ChopperHouseGames.domain.Resultado" target="br.com.fatec.ChopperHouseGames.domain.EntidadeDominio" relationship="DEPENDENCY">
+      <point x="-57.5" y="-50.0" />
+      <point x="57.5" y="109.0" />
+      <point x="73.15790414878381" y="109.0" />
+      <point x="-56.33333333333334" y="39.0" />
+    </edge>
+    <edge source="br.com.fatec.ChopperHouseGames.domain.Cliente" target="br.com.fatec.ChopperHouseGames.domain.EntidadeDominio" relationship="GENERALIZATION">
+      <point x="65.66666666666674" y="-160.0" />
+      <point x="1428.1750715307578" y="1394.0" />
+      <point x="1699.258404864091" y="1394.0" />
+      <point x="1699.258404864091" y="109.0" />
+      <point x="853.6494992846926" y="109.0" />
+      <point x="853.6494992846926" y="99.0" />
+      <point x="185.82457081545044" y="99.0" />
+      <point x="56.33333333333334" y="39.0" />
+    </edge>
+    <edge source="br.com.fatec.ChopperHouseGames.domain.TipoCliente" target="br.com.fatec.ChopperHouseGames.domain.Cliente" relationship="TO_MANY">
+      <point x="40.5" y="50.0" />
+      <point x="1648.258404864091" y="1334.0" />
+      <point x="1362.508404864091" y="1334.0" />
+      <point x="0.0" y="-160.0" />
+    </edge>
+    <edge source="br.com.fatec.ChopperHouseGames.domain.CartaoCredito" target="br.com.fatec.ChopperHouseGames.domain.BANDEIRA" relationship="TO_ONE">
+      <point x="-57.66666666666674" y="-83.0" />
+      <point x="1209.65396995708" y="272.0" />
+      <point x="1213.4039699570803" y="272.0" />
+      <point x="-31.0" y="15.5" />
+    </edge>
     <edge source="br.com.fatec.ChopperHouseGames.domain.Devolucao" target="br.com.fatec.ChopperHouseGames.domain.StatusDevolucao" relationship="DEPENDENCY">
-      <point x="-41.0" y="-15.5" />
-      <point x="855.7083333333333" y="251.0" />
-      <point x="818.9334763948503" y="251.0" />
-      <point x="-40.75" y="15.5" />
+      <point x="75.66666666666686" y="-61.0" />
+      <point x="1065.4250715307578" y="700.0" />
+      <point x="1087.258404864091" y="700.0" />
+      <point x="40.75" y="28.0" />
     </edge>
     <edge source="br.com.fatec.ChopperHouseGames.domain.MetodoPagamento" target="br.com.fatec.ChopperHouseGames.domain.CartaoCredito" relationship="TO_ONE">
-      <point x="-60.33333333333326" y="-15.5" />
-      <point x="1027.602288984263" y="251.0" />
-      <point x="1050.875" y="251.0" />
-      <point x="1050.875" y="241.0" />
-      <point x="1070.125" y="241.0" />
-      <point x="-36.25" y="15.5" />
+      <point x="0.0" y="-39.0" />
+      <point x="1253.508404864091" y="700.0" />
+      <point x="1310.5706366237469" y="700.0" />
+      <point x="43.25" y="83.0" />
     </edge>
     <edge source="br.com.fatec.ChopperHouseGames.domain.Pedido" target="br.com.fatec.ChopperHouseGames.domain.Status" relationship="DEPENDENCY">
-      <point x="0.0" y="-15.5" />
-      <point x="783.0833333333333" y="376.0" />
-      <point x="772.6834763948503" y="376.0" />
-      <point x="772.6834763948503" y="366.0" />
-      <point x="789.5833333333333" y="366.0" />
-      <point x="23.0" y="15.5" />
+      <point x="98.0" y="-160.0" />
+      <point x="1023.0745708154504" y="960.0" />
+      <point x="979.0745708154504" y="960.0" />
+      <point x="979.0745708154504" y="910.0" />
+      <point x="827.508404864091" y="910.0" />
+      <point x="28.75" y="28.0" />
     </edge>
     <edge source="br.com.fatec.ChopperHouseGames.domain.Pedido" target="br.com.fatec.ChopperHouseGames.domain.EntidadeDominio" relationship="GENERALIZATION">
-      <point x="33.0" y="-15.5" />
-      <point x="816.0833333333333" y="376.0" />
-      <point x="1233.5100143061522" y="376.0" />
-      <point x="1233.5100143061522" y="62.0" />
-      <point x="691.5854792560791" y="62.0" />
-      <point x="691.5854792560791" y="52.0" />
-      <point x="149.67560801144384" y="52.0" />
-      <point x="56.33333333333326" y="15.5" />
+      <point x="-98.0" y="-160.0" />
+      <point x="827.0745708154504" y="950.0" />
+      <point x="297.75840486409106" y="950.0" />
+      <point x="297.75840486409106" y="109.0" />
+      <point x="853.6494992846926" y="109.0" />
+      <point x="853.6494992846926" y="99.0" />
+      <point x="185.82457081545044" y="99.0" />
+      <point x="56.33333333333334" y="39.0" />
     </edge>
     <edge source="br.com.fatec.ChopperHouseGames.domain.Cliente" target="br.com.fatec.ChopperHouseGames.domain.CartaoCredito" relationship="TO_MANY">
-      <point x="-32.666666666666515" y="-15.5" />
-      <point x="1154.7668097281837" y="501.0" />
-      <point x="635.6834763948503" y="501.0" />
-      <point x="635.6834763948503" y="471.0" />
-      <point x="986.9356223175962" y="471.0" />
-      <point x="986.9356223175962" y="251.0" />
-      <point x="1050.875" y="251.0" />
-      <point x="1050.875" y="241.0" />
-      <point x="1070.125" y="241.0" />
-      <point x="-36.25" y="15.5" />
+      <point x="0.0" y="-160.0" />
+      <point x="1362.508404864091" y="700.0" />
+      <point x="1310.5706366237469" y="700.0" />
+      <point x="43.25" y="83.0" />
     </edge>
     <edge source="br.com.fatec.ChopperHouseGames.domain.Endereco" target="br.com.fatec.ChopperHouseGames.domain.Cidade" relationship="DEPENDENCY">
-      <point x="-57.0" y="0.0" />
-      <point x="328.47728898426294" y="631.5" />
-      <point x="0.0" y="15.5" />
+      <point x="0.0" y="-94.0" />
+      <point x="714.1334048640911" y="1757.0" />
+      <point x="283.38340486409106" y="1757.0" />
+      <point x="30.5" y="39.0" />
     </edge>
     <edge source="br.com.fatec.ChopperHouseGames.domain.Pedido" target="br.com.fatec.ChopperHouseGames.domain.Item" relationship="TO_MANY">
-      <point x="-33.0" y="-15.5" />
-      <point x="750.0833333333333" y="376.0" />
-      <point x="762.6834763948503" y="376.0" />
-      <point x="762.6834763948503" y="366.0" />
-      <point x="443.4772889842629" y="366.0" />
-      <point x="443.4772889842629" y="356.0" />
-      <point x="427.9772889842629" y="356.0" />
-      <point x="-20.5" y="15.5" />
+      <point x="0.0" y="-160.0" />
+      <point x="925.0745708154504" y="960.0" />
+      <point x="944.633404864091" y="960.0" />
+      <point x="944.633404864091" y="940.0" />
+      <point x="453.5661659513594" y="940.0" />
+      <point x="453.5661659513594" y="930.0" />
+      <point x="412.25840486409106" y="930.0" />
+      <point x="-44.75" y="50.0" />
     </edge>
     <edge source="br.com.fatec.ChopperHouseGames.domain.CartaoCredito" target="br.com.fatec.ChopperHouseGames.domain.Cliente" relationship="TO_ONE">
-      <point x="-36.25" y="15.5" />
-      <point x="1070.125" y="241.0" />
-      <point x="1050.875" y="241.0" />
-      <point x="1050.875" y="251.0" />
-      <point x="986.9356223175962" y="251.0" />
-      <point x="986.9356223175962" y="471.0" />
-      <point x="635.6834763948503" y="471.0" />
-      <point x="635.6834763948503" y="501.0" />
-      <point x="1154.7668097281837" y="501.0" />
-      <point x="-32.666666666666515" y="-15.5" />
+      <point x="43.25" y="83.0" />
+      <point x="1310.5706366237469" y="700.0" />
+      <point x="1362.508404864091" y="700.0" />
+      <point x="0.0" y="-160.0" />
     </edge>
     <edge source="br.com.fatec.ChopperHouseGames.domain.Pedido" target="br.com.fatec.ChopperHouseGames.domain.Devolucao" relationship="DEPENDENCY">
-      <point x="0.0" y="-15.5" />
-      <point x="783.0833333333333" y="376.0" />
-      <point x="772.6834763948503" y="376.0" />
-      <point x="772.6834763948503" y="366.0" />
-      <point x="927.4583333333333" y="366.0" />
-      <point x="30.75" y="15.5" />
+      <point x="98.0" y="-160.0" />
+      <point x="1023.0745708154504" y="960.0" />
+      <point x="979.0745708154504" y="960.0" />
+      <point x="979.0745708154504" y="910.0" />
+      <point x="1046.508404864091" y="910.0" />
+      <point x="56.750000000000114" y="61.0" />
     </edge>
     <edge source="br.com.fatec.ChopperHouseGames.domain.Devolucao" target="br.com.fatec.ChopperHouseGames.domain.Pedido" relationship="DEPENDENCY">
-      <point x="30.75" y="15.5" />
-      <point x="927.4583333333333" y="366.0" />
-      <point x="772.6834763948503" y="366.0" />
-      <point x="772.6834763948503" y="376.0" />
-      <point x="783.0833333333333" y="376.0" />
-      <point x="0.0" y="-15.5" />
+      <point x="56.750000000000114" y="61.0" />
+      <point x="1046.508404864091" y="910.0" />
+      <point x="979.0745708154504" y="910.0" />
+      <point x="979.0745708154504" y="960.0" />
+      <point x="1023.0745708154504" y="960.0" />
+      <point x="98.0" y="-160.0" />
     </edge>
     <edge source="br.com.fatec.ChopperHouseGames.domain.Item" target="br.com.fatec.ChopperHouseGames.domain.Jogo" relationship="TO_ONE">
-      <point x="-27.33333333333337" y="-15.5" />
-      <point x="421.1439556509295" y="251.0" />
-      <point x="341.43347639485035" y="251.0" />
-      <point x="341.43347639485035" y="231.0" />
-      <point x="325.43347639485035" y="231.0" />
-      <point x="-21.0" y="15.5" />
-    </edge>
-    <edge source="br.com.fatec.ChopperHouseGames.domain.Idioma" target="br.com.fatec.ChopperHouseGames.domain.Jogo" relationship="TO_MANY">
-      <point x="-24.75" y="15.5" />
-      <point x="283.7499999999999" y="146.0" />
-      <point x="336.43347639485035" y="146.0" />
-      <point x="336.43347639485035" y="156.0" />
-      <point x="318.4334763948504" y="156.0" />
-      <point x="-27.999999999999943" y="-15.5" />
+      <point x="59.66666666666663" y="-50.0" />
+      <point x="516.6750715307577" y="690.0" />
+      <point x="610.4873032904138" y="690.0" />
+      <point x="610.4873032904138" y="680.0" />
+      <point x="592.3994992846929" y="680.0" />
+      <point x="51.5" y="182.0" />
     </edge>
     <edge source="br.com.fatec.ChopperHouseGames.domain.Jogo" target="br.com.fatec.ChopperHouseGames.domain.Idioma" relationship="TO_MANY">
-      <point x="-27.999999999999943" y="-15.5" />
-      <point x="318.4334763948504" y="156.0" />
-      <point x="336.43347639485035" y="156.0" />
-      <point x="336.43347639485035" y="146.0" />
-      <point x="283.7499999999999" y="146.0" />
-      <point x="-24.75" y="15.5" />
+      <point x="68.66666666666663" y="-182.0" />
+      <point x="609.5661659513595" y="272.0" />
+      <point x="556.2584048640911" y="272.0" />
+      <point x="556.2584048640911" y="252.0" />
+      <point x="585.7584048640911" y="252.0" />
+      <point x="34.5" y="39.0" />
+    </edge>
+    <edge source="br.com.fatec.ChopperHouseGames.domain.Idioma" target="br.com.fatec.ChopperHouseGames.domain.Jogo" relationship="TO_MANY">
+      <point x="34.5" y="39.0" />
+      <point x="585.7584048640911" y="252.0" />
+      <point x="556.2584048640911" y="252.0" />
+      <point x="556.2584048640911" y="272.0" />
+      <point x="609.5661659513595" y="272.0" />
+      <point x="68.66666666666663" y="-182.0" />
     </edge>
     <edge source="br.com.fatec.ChopperHouseGames.domain.Cliente" target="br.com.fatec.ChopperHouseGames.domain.Endereco" relationship="DEPENDENCY">
-      <point x="-4.7639485046602204E-4" y="15.5" />
-      <point x="1187.433" y="585.0" />
-      <point x="746.058" y="585.0" />
-      <point x="-4.763948503523352E-4" y="-15.5" />
+      <point x="49.25" y="160.0" />
+      <point x="1411.758404864091" y="1757.0" />
+      <point x="714.1334048640911" y="1757.0" />
+      <point x="0.0" y="-94.0" />
     </edge>
     <edge source="br.com.fatec.ChopperHouseGames.domain.Endereco" target="br.com.fatec.ChopperHouseGames.domain.Cliente" relationship="DEPENDENCY">
-      <point x="57.0" y="0.0" />
-      <point x="1217.433" y="631.5" />
-      <point x="29.999523605149534" y="15.5" />
+      <point x="0.0" y="-94.0" />
+      <point x="714.1334048640911" y="1757.0" />
+      <point x="1411.758404864091" y="1757.0" />
+      <point x="49.25" y="160.0" />
     </edge>
     <edge source="br.com.fatec.ChopperHouseGames.domain.Genero" target="br.com.fatec.ChopperHouseGames.domain.EntidadeDominio" relationship="GENERALIZATION">
-      <point x="-33.33333333333337" y="-15.5" />
-      <point x="257.600143061517" y="251.0" />
-      <point x="128.5" y="251.0" />
-      <point x="128.5" y="62.0" />
-      <point x="691.5854792560791" y="62.0" />
-      <point x="691.5854792560791" y="52.0" />
-      <point x="149.67560801144384" y="52.0" />
-      <point x="56.33333333333326" y="15.5" />
+      <point x="46.0" y="-39.0" />
+      <point x="681.5084048640911" y="700.0" />
+      <point x="788.758404864091" y="700.0" />
+      <point x="788.758404864091" y="109.0" />
+      <point x="853.6494992846926" y="109.0" />
+      <point x="853.6494992846926" y="99.0" />
+      <point x="185.82457081545044" y="99.0" />
+      <point x="56.33333333333334" y="39.0" />
     </edge>
   </edges>
-  <settings layout="Hierarchic" zoom="1.0" showDependencies="true" x="674.5" y="370.0" />
-  <SelectedNodes />
-  <Categories />
+  <settings layout="Hierarchic" zoom="0.4411764705882352" showDependencies="true" x="859.5" y="993.0" />
+  <SelectedNodes>
+    <node>br.com.fatec.ChopperHouseGames.domain.EntidadeDominio</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Properties</Category>
+  </Categories>
   <SCOPE>All</SCOPE>
   <VISIBILITY>packageLocal</VISIBILITY>
 </Diagram>

@@ -22,25 +22,27 @@ import java.util.stream.Collectors;
 public class PedidoService implements IPedidoService {
 
     @Autowired
-    PedidoRepository repository;
+    private PedidoRepository repository;
 
     @Autowired
-    StatusRepository statusRepository;
+    private StatusRepository statusRepository;
 
     @Autowired
-    CartaoCreditoRepository cartaoRepository;
+    private CartaoCreditoRepository cartaoRepository;
 
     @Autowired
-    ClienteRepository clienteRepository;
+    private ClienteRepository clienteRepository;
 
     @Autowired
-    CupomRepository cupomRepository;
+    private CupomRepository cupomRepository;
 
     @Autowired
     private JogoRepository jogoRepository;
 
     @Autowired
-    GeneroRepository generoRepository;
+    private GeneroRepository generoRepository;
+    @Autowired
+    private TipoCupomRepository tipoCupomRepository;
 
 
     @Override
@@ -233,6 +235,27 @@ public class PedidoService implements IPedidoService {
         if(!total.equals(pedido.getTotal())){
             result.addError(new ObjectError("pedido", "Valor total e do pagamento são diferentes: TOTAL PAGAMENTO:" +   total + " TOTAL PEDIDO: " + pedido.getTotal()));
             return pedido;
+        }
+
+        if(!pedido.getCuponsTroca().isEmpty()){
+            Double totalCupom = pedido.getCuponsTroca().stream().mapToDouble(i -> i.getValor()).sum();
+            if(totalCupom > pedido.getTotal()){
+                Cupom cupom = new Cupom();
+
+                Random random = new Random();
+
+                String codigo = random.ints(48, 122 + 1)
+                        .filter(i -> (i <= 57 || i >= 65) && (i <= 90 || i >= 97))
+                        .limit(10)
+                        .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+                        .toString();
+
+                cupom.setCodigo(codigo);
+                cupom.setQuantidade(1);
+                cupom.setCliente(pedido.getCliente());
+                cupom.setTipoCupom(tipoCupomRepository.findByNome("TROCA"));
+                cupom.setValor(totalCupom - pedido.getTotal());
+            }
         }
 
         pedido.getItens().forEach(j -> j.getJogo().setQuantidade(j.getJogo().getQuantidade() - j.getQuantidade()));
