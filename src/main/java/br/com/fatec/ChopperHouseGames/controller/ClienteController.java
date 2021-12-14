@@ -97,7 +97,7 @@ public class ClienteController {
 
         facade.salvar(cliente);
 
-        mv.setViewName("index");
+        mv.setViewName("redirect:/");
 
         mv.addObject("cliente", cliente);
 

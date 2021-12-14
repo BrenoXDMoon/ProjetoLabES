@@ -12,7 +12,7 @@
 	<artifactId>ChopperHouseGames</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>ChopperHouseGames</name>
-	<description>Trabalho de </description>
+	<description>Trabalho de Conclusão de Curso para Fatec Mogi das Cruzes, com o tema de Ecommerce de Jogos de Mídia Física</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
