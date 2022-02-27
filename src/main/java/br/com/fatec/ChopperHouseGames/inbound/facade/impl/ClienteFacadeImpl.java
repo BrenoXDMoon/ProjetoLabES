@@ -5,12 +5,12 @@ import br.com.fatec.ChopperHouseGames.core.service.ClienteService;
 import br.com.fatec.ChopperHouseGames.inbound.facade.ClienteFacade;
 import br.com.fatec.ChopperHouseGames.inbound.facade.dto.ClienteDTO;
 import br.com.fatec.ChopperHouseGames.inbound.facade.dto.EntidadeDTO;
-import br.com.fatec.ChopperHouseGames.inbound.facade.dto.ResultadoDTO;
 import br.com.fatec.ChopperHouseGames.inbound.facade.mapper.ClienteMapper;
 import br.com.fatec.ChopperHouseGames.inbound.facade.mapper.ResultadoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -28,27 +28,27 @@ public class ClienteFacadeImpl implements ClienteFacade {
     }
 
     @Override
-    public ResultadoDTO salvar(EntidadeDTO ent) {
+    public ClienteDTO salvar(ClienteDTO dto) {
         return null;
     }
 
     @Override
-    public ResultadoDTO editar(EntidadeDTO ent) {
-        return null;
+    public ClienteDTO editar(ClienteDTO dto) {
+        return mapper.toClienteDTO(service.editar(mapper.toCliente(dto)));
     }
 
     @Override
-    public ResultadoDTO excluir(EntidadeDTO ent) {
-        return null;
+    public ClienteDTO excluir(ClienteDTO dto) {
+        return mapper.toClienteDTO(service.excluir(mapper.toCliente(dto)));
     }
 
     @Override
-    public ResultadoDTO listar(EntidadeDTO ent) {
-        return null;
+    public List<ClienteDTO> listar(ClienteDTO dto) {
+        return mapper.toListDTO(service.listar());
     }
 
     @Override
-    public Optional<EntidadeDTO> buscarPorId(Integer id) {
+    public Optional<ClienteDTO> buscarPorId(Integer id) {
         return Optional.of(mapper.toClienteDTO(service.buscarById(id).get()));
     }
 

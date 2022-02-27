@@ -8,9 +8,6 @@ import br.com.fatec.ChopperHouseGames.inbound.facade.dto.ResultadoDTO;
 import java.util.Optional;
 
 public interface Facade {
-    ResultadoDTO salvar(EntidadeDTO ent);
-    ResultadoDTO editar(EntidadeDTO ent);
-    ResultadoDTO excluir(EntidadeDTO ent);
-    ResultadoDTO listar(EntidadeDTO ent);
-    Optional<EntidadeDTO> buscarPorId(Integer id);
+
+
 }

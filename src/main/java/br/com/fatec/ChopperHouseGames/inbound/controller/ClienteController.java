@@ -8,10 +8,7 @@ import br.com.fatec.ChopperHouseGames.inbound.validator.ClienteValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
@@ -83,7 +80,7 @@ public class ClienteController {
     public ModelAndView perfil(@PathVariable("id") Integer id) {
 
         ModelAndView mv = new ModelAndView();
-        if(facade.usuarioEstaLogado(id)){
+        if (facade.usuarioEstaLogado(id)) {
             ClienteDTO dto = facade.atualUsuarioLogado();
             if (validator.validaRoleUsuario(dto)) {
                 mv.setViewName("/cliente/perfil");
@@ -97,21 +94,17 @@ public class ClienteController {
         return mv;
     }
 
-//    @PostMapping("editar")
-//    public ModelAndView editarCliente(@ModelAttribute("cliente") Cliente clienteDto, BindingResult result){
-//
-//        facade = new Facade(clienteRepository, enderecoRepository, cartaoCreditoRepository);
-//
-//        Cliente cliente = (Cliente) facade.editar(clienteDto).getEntidade();
-//
-//        ModelAndView mv = new ModelAndView("/cliente/perfil");
-//        mv.addObject("cliente", cliente);
-//
-//        mv.addObject("mensagem", "Usuário atualizado com sucesso!");
-//
-//        return mv;
-//    }
-//
+    @PostMapping("editar")
+    public ModelAndView editarCliente(@ModelAttribute("cliente") ClienteDTO dto, BindingResult result) {
+
+        ModelAndView mv = new ModelAndView("/cliente/perfil");
+        mv.addObject("cliente", facade.editar(dto));
+
+        mv.addObject("mensagem", "Usuário atualizado com sucesso!");
+
+        return mv;
+    }
+
 //    @GetMapping("/perfil/{id}/senha")
 //    public ModelAndView editarSenha(@PathVariable("id") Cliente cliente, SenhaDto senhaDto, ModelAndView mv){
 //        if(mv == null){

@@ -14,12 +14,6 @@ public class TipoClienteServiceImpl implements TipoClienteService {
     @Autowired
     TipoClienteRepository repository;
 
-
-    @Override
-    public List<TipoCliente> buscarTodos() {
-        return repository.findAll();
-    }
-
     @Override
     public TipoCliente buscarById(Integer id) {
         return repository.findById(id).get();

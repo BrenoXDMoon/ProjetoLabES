@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -32,6 +33,22 @@ public class ClienteServiceImpl implements ClienteService {
         cliente.setRoles("CLIENTE");
 
         return repository.saveAndFlush(cliente);
+    }
+
+    @Override
+    public Cliente editar(Cliente cliente) {
+        return repository.saveAndFlush(cliente);
+    }
+
+    @Override
+    public Cliente excluir(Cliente cliente) {
+        cliente.setAtivo(false);
+        return editar(cliente);
+    }
+
+    @Override
+    public List<Cliente> listar() {
+        return repository.findAll();
     }
 
     @Override
