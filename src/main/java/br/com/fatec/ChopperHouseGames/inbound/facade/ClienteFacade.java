@@ -15,7 +15,9 @@ public interface ClienteFacade extends Facade {
 
     ClienteDTO excluir(ClienteDTO ent);
 
-    List<ClienteDTO> listar(ClienteDTO ent);
+    ClienteDTO ativaInativa(Integer id);
+
+    List<ClienteDTO> listar();
 
     Optional<ClienteDTO> buscarPorId(Integer id);
 

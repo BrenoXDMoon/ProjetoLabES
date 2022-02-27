@@ -1,6 +1,5 @@
 package br.com.fatec.ChopperHouseGames.inbound.controller;
 
-import br.com.fatec.ChopperHouseGames.core.domain.Cliente;
 import br.com.fatec.ChopperHouseGames.core.service.ClienteService;
 import br.com.fatec.ChopperHouseGames.inbound.facade.ClienteFacade;
 import br.com.fatec.ChopperHouseGames.inbound.facade.dto.ClienteDTO;
@@ -132,7 +131,8 @@ public class ClienteController {
 
         return mv;
     }
-//
+
+    //TODO - FLUXO DE DEVOLUÇÃO
 //    @GetMapping("perfil/{id}/devolucao/{idPed}")
 //    public ModelAndView acessarFormularioDevolucao(@PathVariable("id") Cliente cliente, @PathVariable("idPed") Pedido pedido){
 //
@@ -140,7 +140,7 @@ public class ClienteController {
 //
 //        mv.addObject("cliente", service.atualUsuarioLogado());
 //        DevolucaoDto devolucaoDto = new DevolucaoDto();
-//        devolucaoDto.setPedido(pedidoService.buscarById(pedido.getId()));
+//        devolucaoDto.setPedido(pedidoService.buscarPorId(pedido.getId()));
 //        mv.addObject("dto", devolucaoDto);
 //
 //        return mv;
@@ -153,7 +153,7 @@ public class ClienteController {
 //        Devolucao devolucao = new Devolucao();
 //        devolucao.setMotivo(dto.getMotivo());
 //        devolucao.setStatusDevolucao(dto.getStatusDevolucao());
-//        pedido = pedidoService.buscarById(pedido.getId());
+//        pedido = pedidoService.buscarPorId(pedido.getId());
 //
 //        Integer i = 0;
 //        for(Item item : pedido.getItens()){
@@ -175,7 +175,7 @@ public class ClienteController {
 //        ModelAndView mv = new ModelAndView("cliente/pedido/detalhe");
 //
 //        mv.addObject("cliente", cliente);
-//        mv.addObject("pedido", pedidoService.buscarById(pedido.getId()));
+//        mv.addObject("pedido", pedidoService.buscarPorId(pedido.getId()));
 //        mv.addObject("devolucaoExist", devolucaoService.buscaDevolucaoByPedidoId(pedido));
 //        mv.addObject("devolucao", new Devolucao());
 //

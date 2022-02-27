@@ -72,7 +72,7 @@ public class CartaoCreditoController {
 //
 //        ModelAndView mv = new ModelAndView("/cliente/perfil");
 //
-//        CartaoCredito cartaoCredito = cartaoService.buscarById(Integer.parseInt(id));
+//        CartaoCredito cartaoCredito = cartaoService.buscarPorId(Integer.parseInt(id));
 //
 //        facade = new Facade(clienteRepository, enderecoRepository, cartaoCreditoRepository);
 //        facade.excluir(cartaoCredito);
@@ -90,7 +90,7 @@ public class CartaoCreditoController {
 //    public ModelAndView formularioEditar(@PathVariable("id") Cliente cliente, @PathVariable("idCard") Integer idEnd, ClienteDto clienteDto){
 //
 //        ModelAndView mv = new ModelAndView("/cliente/cartao/formEditar");
-//        CartaoCredito cartaoCredito = cartaoService.buscarById(idEnd);
+//        CartaoCredito cartaoCredito = cartaoService.buscarPorId(idEnd);
 //        cliente = clienteService.atualUsuarioLogado();
 //
 //        mv.addObject("cliente", cliente);

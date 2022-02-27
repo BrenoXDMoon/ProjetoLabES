@@ -6,6 +6,7 @@ import br.com.fatec.ChopperHouseGames.core.repository.ClienteRepository;
 import br.com.fatec.ChopperHouseGames.core.repository.EnderecoRepository;
 import br.com.fatec.ChopperHouseGames.core.service.ClienteService;
 import br.com.fatec.ChopperHouseGames.core.service.IPedidoService;
+import br.com.fatec.ChopperHouseGames.inbound.facade.ClienteFacade;
 import br.com.fatec.ChopperHouseGames.inbound.facade.dto.ChartDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,7 +26,9 @@ import java.util.List;
 @RequestMapping("admin")
 public class AdminController {
 
-//    @Autowired
+    private ClienteFacade facade;
+
+    //    @Autowired
 //    ClienteService clienteService;
 //
 //    @Autowired
@@ -83,39 +86,23 @@ public class AdminController {
 //        return pedidoService.buscarTodosCriadosEntre(inital, finalDate, searchType);
 //    }
 //
-//    @GetMapping("clientes")
-//    public ModelAndView listaClientes(){
-//        facade = new Facade(clienteRepository, enderecoRepository, cartaoCreditoRepository);
-//        ModelAndView mv = new ModelAndView("admin/cliente/lista");
-//
-//        List<Cliente> clientes = ConverterCliente.converte(facade.listar(new Cliente()).getEntidades());
-//
-//        mv.addObject("clientes", clientes);
-//        mv.addObject("admin", clienteService.atualUsuarioLogado());
-//
-//        return mv;
-//    }
-//
-//    @PostMapping("clientes")
-//    public ModelAndView desativaEAtivaCliente(@RequestParam String id, RedirectAttributes attributes){
-//
-//        ModelAndView mv = new ModelAndView("admin/cliente/lista");
-//
-//        Cliente cliente = clienteService.buscarById(Integer.parseInt(id));
-//
-//        if(cliente.isAtivo()){
-//            cliente.setAtivo(false);
-//        }else{
-//            cliente.setAtivo(true);
-//        }
-//
-//        facade = new Facade(clienteRepository, enderecoRepository, cartaoCreditoRepository);
-//        facade.editar(cliente);
-//
-//        List<Cliente> clientes = ConverterCliente.converte(facade.listar(new Cliente()).getEntidades());
-//        mv.addObject("clientes", clientes);
-//        attributes.addFlashAttribute("mensagem", "Usuário excluído com sucesso!");
-//
-//        return mv;
-//    }
+    @GetMapping("clientes")
+    public ModelAndView listaClientes(){
+        ModelAndView mv = new ModelAndView("admin/cliente/lista");
+
+        mv.addObject("clientes", facade.listar());
+
+        return mv;
+    }
+
+    @PostMapping("clientes")
+    public ModelAndView desativaEAtivaCliente(@RequestParam Integer id, RedirectAttributes attributes){
+
+        ModelAndView mv = new ModelAndView("admin/cliente/lista");
+        facade.ativaInativa(id);
+        mv.addObject("clientes", facade.listar());
+        attributes.addFlashAttribute("mensagem", "Usuário excluído com sucesso!");
+
+        return mv;
+    }
 }

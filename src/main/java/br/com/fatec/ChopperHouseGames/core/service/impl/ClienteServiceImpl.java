@@ -5,11 +5,9 @@ import br.com.fatec.ChopperHouseGames.core.domain.Senha;
 import br.com.fatec.ChopperHouseGames.core.repository.ClienteRepository;
 import br.com.fatec.ChopperHouseGames.core.service.ClienteService;
 import br.com.fatec.ChopperHouseGames.core.service.TipoClienteService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 import java.util.Optional;
@@ -53,7 +51,7 @@ public class ClienteServiceImpl implements ClienteService {
     }
 
     @Override
-    public Cliente buscarByEmail(String email) {
+    public Cliente buscarPorEmail(String email) {
         return repository.findByEmail(email).get();
     }
 
@@ -66,7 +64,7 @@ public class ClienteServiceImpl implements ClienteService {
         if(principal != null){
             if (principal instanceof UserDetails) {
                 email = ((UserDetails) principal).getUsername();
-                Cliente cliente = this.buscarByEmail(email);
+                Cliente cliente = this.buscarPorEmail(email);
                 return cliente;
             }
         }
@@ -79,13 +77,27 @@ public class ClienteServiceImpl implements ClienteService {
     }
 
     @Override
-    public Optional<Cliente> buscarById(Integer id) {
+    public Optional<Cliente> buscarPorId(Integer id) {
         return repository.findById(id);
     }
 
     @Override
     public Cliente editarSenha(Cliente cliente, Senha senha) {
         cliente.setSenha(senha);
+        return editar(cliente);
+    }
+
+    @Override
+    public Cliente ativaInativa(Integer id) {
+
+        Cliente cliente = buscarPorId(id).orElse(new Cliente());
+
+        if(cliente.isAtivo()){
+            cliente.setAtivo(false);
+        }else{
+            cliente.setAtivo(true);
+        }
+
         return editar(cliente);
     }
 }

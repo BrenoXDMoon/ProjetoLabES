@@ -69,7 +69,7 @@ public class EnderecoController {
 //
 //        ModelAndView mv = new ModelAndView("/cliente/perfil");
 //
-//        Endereco endereco = enderecoService.buscarById(Integer.parseInt(id));
+//        Endereco endereco = enderecoService.buscarPorId(Integer.parseInt(id));
 //
 //        facade = new Facade(clienteRepository, enderecoRepository, cartaoCreditoRepository);
 //        facade.excluir(endereco);
@@ -87,7 +87,7 @@ public class EnderecoController {
 //
 //        ModelAndView mv = new ModelAndView("/cliente/endereco/formEditar");
 //
-//        Endereco endereco = enderecoService.buscarById(idEnd.getId());
+//        Endereco endereco = enderecoService.buscarPorId(idEnd.getId());
 //
 //        cliente = clienteService.atualUsuarioLogado();
 //
