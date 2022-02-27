@@ -9,7 +9,7 @@ import javax.persistence.Enumerated;
 import javax.validation.constraints.NotBlank;
 
 @Data
-public class CartaoCreditoDto {
+public class CartaoCreditoDTO extends EntidadeDTO{
 
     @NotBlank(message = "O Número do cartão não pode ser vazio")
     private String numeroCartao;

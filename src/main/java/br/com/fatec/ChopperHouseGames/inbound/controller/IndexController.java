@@ -1,7 +1,7 @@
 package br.com.fatec.ChopperHouseGames.inbound.controller;
 
 import br.com.fatec.ChopperHouseGames.core.domain.Jogo;
-import br.com.fatec.ChopperHouseGames.core.service.IClienteService;
+import br.com.fatec.ChopperHouseGames.core.service.ClienteService;
 import br.com.fatec.ChopperHouseGames.core.service.IJogoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,7 +16,7 @@ import java.util.List;
 public class IndexController {
 
     @Autowired
-    IClienteService clienteService;
+    ClienteService clienteService;
 
     @Autowired
     IJogoService jogoService;

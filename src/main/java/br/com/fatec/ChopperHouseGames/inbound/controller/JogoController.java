@@ -23,7 +23,7 @@ public class JogoController {
     @Autowired
     private IJogoService service;
     @Autowired
-    private IClienteService clienteService;
+    private ClienteService clienteService;
     @Autowired
     private IEditoraService editoraService;
     @Autowired

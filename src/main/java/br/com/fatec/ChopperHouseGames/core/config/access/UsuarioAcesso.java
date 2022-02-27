@@ -32,7 +32,7 @@ public class UsuarioAcesso implements UserDetails {
 
     @Override
     public String getPassword() {
-        return cliente.getSenha();
+        return cliente.getSenha().getSenha();
     }
 
     @Override

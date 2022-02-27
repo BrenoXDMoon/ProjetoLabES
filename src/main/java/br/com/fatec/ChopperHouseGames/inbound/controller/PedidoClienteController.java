@@ -2,7 +2,7 @@ package br.com.fatec.ChopperHouseGames.inbound.controller;
 
 import br.com.fatec.ChopperHouseGames.core.domain.Cliente;
 import br.com.fatec.ChopperHouseGames.core.domain.Pedido;
-import br.com.fatec.ChopperHouseGames.core.service.IClienteService;
+import br.com.fatec.ChopperHouseGames.core.service.ClienteService;
 import br.com.fatec.ChopperHouseGames.core.service.IPedidoService;
 import br.com.fatec.ChopperHouseGames.core.service.IStatusService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ public class PedidoClienteController {
     IStatusService statusService;
 
     @Autowired
-    IClienteService clienteService;
+    ClienteService clienteService;
 
     @Autowired
     IPedidoService pedidoService;

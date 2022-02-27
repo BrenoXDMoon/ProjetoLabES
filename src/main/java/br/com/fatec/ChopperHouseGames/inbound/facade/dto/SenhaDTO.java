@@ -7,7 +7,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import javax.validation.constraints.NotEmpty;
 
 @Data
-public class SenhaDto {
+public class SenhaDTO {
 
     @NotEmpty(message = "Senha não pode estar em branco")
     public String senha;
@@ -27,14 +27,7 @@ public class SenhaDto {
         }
     }
 
-    public boolean senhaAntigaCorreta(Cliente cliente){
 
-        if(new BCryptPasswordEncoder().matches(this.senhaAntiga, cliente.getSenha())){
-            return true;
-        }else{
-            return false;
-        }
-    }
 
     public String toSenha() {
         return new BCryptPasswordEncoder().encode(this.senha);

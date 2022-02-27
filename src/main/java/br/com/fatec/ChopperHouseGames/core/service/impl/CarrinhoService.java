@@ -7,7 +7,7 @@ import br.com.fatec.ChopperHouseGames.core.domain.Jogo;
 import br.com.fatec.ChopperHouseGames.core.repository.ClienteRepository;
 import br.com.fatec.ChopperHouseGames.core.repository.JogoRepository;
 import br.com.fatec.ChopperHouseGames.core.service.ICarrinhoService;
-import br.com.fatec.ChopperHouseGames.core.service.IClienteService;
+import br.com.fatec.ChopperHouseGames.core.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +24,7 @@ public class CarrinhoService implements ICarrinhoService {
     JogoRepository jogoRepository;
 
     @Autowired
-    IClienteService clienteService;
+    ClienteService clienteService;
 
     @Override
     public void adicionarItemCarrinho(Cliente cliente, Integer idJogo, Integer quantidade) {

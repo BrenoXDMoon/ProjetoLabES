@@ -2,12 +2,12 @@ package br.com.fatec.ChopperHouseGames.core.service.impl;
 
 import br.com.fatec.ChopperHouseGames.core.domain.CartaoCredito;
 import br.com.fatec.ChopperHouseGames.core.repository.CartaoCreditoRepository;
-import br.com.fatec.ChopperHouseGames.core.service.ICartaoService;
+import br.com.fatec.ChopperHouseGames.core.service.CartaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CartaoService implements ICartaoService {
+public class CartaoServiceImpl implements CartaoService {
 
     @Autowired
     CartaoCreditoRepository repository;
