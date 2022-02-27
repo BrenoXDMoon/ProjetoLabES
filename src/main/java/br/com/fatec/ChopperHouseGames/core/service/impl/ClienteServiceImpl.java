@@ -56,26 +56,8 @@ public class ClienteServiceImpl implements ClienteService {
     }
 
     @Override
-    public void usuarioLogado(Integer id, ModelAndView mv) {
-        Cliente cliente = this.atualUsuarioLogado();
-
-        if(!cliente.getId().equals(id)){
-            mv.setViewName("redirect:/");
-        }
-    }
-
-    @Override
-    public boolean usuarioIsLogado(Integer id) {
+    public boolean usuarioEstaLogado(Integer id) {
         return this.atualUsuarioLogado().getId().equals(id);
-    }
-
-    @Override
-    public boolean validaRoleUsuario(Cliente cliente) {
-
-        if(!cliente.getRoles().equals("CLIENTE")){
-            return false;
-        }
-        return true;
     }
 
     @Override

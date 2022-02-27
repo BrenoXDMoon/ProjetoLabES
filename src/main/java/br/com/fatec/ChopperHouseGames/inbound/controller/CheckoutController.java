@@ -1,8 +1,8 @@
 package br.com.fatec.ChopperHouseGames.inbound.controller;
 
 import br.com.fatec.ChopperHouseGames.core.domain.*;
-import br.com.fatec.ChopperHouseGames.inbound.facade.dto.CartaoCreditoDto;
-import br.com.fatec.ChopperHouseGames.inbound.facade.dto.EnderecoDto;
+import br.com.fatec.ChopperHouseGames.inbound.facade.dto.CartaoCreditoDTO;
+import br.com.fatec.ChopperHouseGames.inbound.facade.dto.EnderecoDTO;
 import br.com.fatec.ChopperHouseGames.core.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -58,7 +58,7 @@ public class CheckoutController {
         mv.addObject("cupomZerado", cupomService.buscarCupomZerado());
         mv.addObject("cuponsTroca", cupomService.listarCupomTroca());
 
-        clienteService.usuarioLogado(cliente.getId(), mv);
+        //clienteService.usuarioLogado(cliente.getId(), mv);
         return mv;
     }
 
@@ -81,7 +81,7 @@ public class CheckoutController {
 
     @PostMapping("/adicionarJogo")
     public ModelAndView adicionaItemCarrinho(@PathVariable("id") Cliente cliente, Integer idJogo, Integer quantidade) {
-        if(!clienteService.usuarioIsLogado(cliente.getId())){
+        if(!clienteService.usuarioEstaLogado(cliente.getId())){
             return new ModelAndView("redirect:/");
         }
         carrinhoService.adicionarItemCarrinho(cliente, idJogo, quantidade);
@@ -103,7 +103,7 @@ public class CheckoutController {
     }
 
     @GetMapping("/salvarEndereco")
-    public ModelAndView paginaCriaEnderecoCheckout(@PathVariable("id") Cliente cliente, EnderecoDto enderecoDto, ModelAndView mv){
+    public ModelAndView paginaCriaEnderecoCheckout(@PathVariable("id") Cliente cliente, EnderecoDTO enderecoDto, ModelAndView mv){
         if(mv == null){
             mv = new ModelAndView();
         }
@@ -114,7 +114,7 @@ public class CheckoutController {
     }
 
     @PostMapping("/salvarEndereco")
-    public ModelAndView salvaEndereco(@PathVariable("id") Cliente cliente, @Valid EnderecoDto enderecoDto, BindingResult result) {
+    public ModelAndView salvaEndereco(@PathVariable("id") Cliente cliente, @Valid EnderecoDTO enderecoDto, BindingResult result) {
 
         ModelAndView mv = new ModelAndView();
         if(result.hasErrors()){
@@ -133,7 +133,7 @@ public class CheckoutController {
     }
 
     @GetMapping("/salvarCartao")
-    private ModelAndView paginaCriaCartaoCheckout(Cliente cliente, CartaoCreditoDto cartaoCreditoDto, ModelAndView mv) {
+    private ModelAndView paginaCriaCartaoCheckout(Cliente cliente, CartaoCreditoDTO cartaoCreditoDto, ModelAndView mv) {
         if(mv == null){
             mv = new ModelAndView();
         }
@@ -144,7 +144,7 @@ public class CheckoutController {
     }
 
     @PostMapping("/salvarCartao")
-    public ModelAndView salvaCartao(@PathVariable("id") Cliente cliente, @Valid CartaoCreditoDto cartaoCreditoDto, BindingResult result) {
+    public ModelAndView salvaCartao(@PathVariable("id") Cliente cliente, @Valid CartaoCreditoDTO cartaoCreditoDto, BindingResult result) {
         ModelAndView mv = new ModelAndView();
         if(result.hasErrors()){
             mv.addObject("resultados", result);

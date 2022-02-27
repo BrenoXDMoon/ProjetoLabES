@@ -1,13 +1,12 @@
 package br.com.fatec.ChopperHouseGames.inbound.controller;
 
-import br.com.fatec.ChopperHouseGames.inbound.converter.ConverterCliente;
 import br.com.fatec.ChopperHouseGames.core.domain.Cliente;
-import br.com.fatec.ChopperHouseGames.inbound.facade.dto.ChartDto;
 import br.com.fatec.ChopperHouseGames.core.repository.CartaoCreditoRepository;
 import br.com.fatec.ChopperHouseGames.core.repository.ClienteRepository;
 import br.com.fatec.ChopperHouseGames.core.repository.EnderecoRepository;
 import br.com.fatec.ChopperHouseGames.core.service.ClienteService;
 import br.com.fatec.ChopperHouseGames.core.service.IPedidoService;
+import br.com.fatec.ChopperHouseGames.inbound.facade.dto.ChartDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -26,97 +25,97 @@ import java.util.List;
 @RequestMapping("admin")
 public class AdminController {
 
-    @Autowired
-    ClienteService clienteService;
-
-    @Autowired
-    ClienteRepository clienteRepository;
-
-    @Autowired
-    EnderecoRepository enderecoRepository;
-
-    @Autowired
-    CartaoCreditoRepository cartaoCreditoRepository;
-
-    Facade facade;
-    @Autowired
-    private IPedidoService pedidoService;
-
-    @GetMapping("/")
-    public ModelAndView dashboard(){
-        ModelAndView mv = new ModelAndView("admin/dashboard");
-
-        Date inital;
-        Date finalDate;
-
-        inital = Date.from(LocalDateTime.now().minusMonths(3).toInstant(ZoneOffset.UTC));
-        finalDate = Date.from(LocalDateTime.now().plusMonths(3).toInstant(ZoneOffset.UTC));
-
-        ChartDto orders = pedidoService.buscarTodosCriadosEntre(inital, finalDate, 0);
-        List<HashMap<String, Double>> cards = pedidoService.preencherIndexCards();
-
-        mv.addObject("ordersFiltered", orders);
-        mv.addObject("cards", cards);
-
-        return mv;
-    }
-
-    @GetMapping("filterdata")
-    @ResponseBody
-    public ChartDto getOrdersFiltered(String initialDateParam, String finalDateParam, Integer searchType) throws ParseException {
-        Date inital;
-        Date finalDate;
-
-        inital = Date.from(LocalDateTime.now().minusMonths(3).toInstant(ZoneOffset.UTC));
-        finalDate = Date.from(LocalDateTime.now().plusMonths(3).toInstant(ZoneOffset.UTC));
-
-        if(null != initialDateParam && initialDateParam.length() > 0){
-            inital = new SimpleDateFormat("yyyy-MM-dd").parse(initialDateParam);
-        }
-
-        if(finalDateParam != null && finalDateParam.length() > 0){
-            finalDate = new SimpleDateFormat("yyyy-MM-dd").parse(finalDateParam);
-        }else {
-            Date data = new Date();
-            finalDate = new SimpleDateFormat("yyyy-MM-dd").parse(data.toInstant().toString());
-        }
-
-        return pedidoService.buscarTodosCriadosEntre(inital, finalDate, searchType);
-    }
-
-    @GetMapping("clientes")
-    public ModelAndView listaClientes(){
-        facade = new Facade(clienteRepository, enderecoRepository, cartaoCreditoRepository);
-        ModelAndView mv = new ModelAndView("admin/cliente/lista");
-
-        List<Cliente> clientes = ConverterCliente.converte(facade.listar(new Cliente()).getEntidades());
-
-        mv.addObject("clientes", clientes);
-        mv.addObject("admin", clienteService.atualUsuarioLogado());
-
-        return mv;
-    }
-
-    @PostMapping("clientes")
-    public ModelAndView desativaEAtivaCliente(@RequestParam String id, RedirectAttributes attributes){
-
-        ModelAndView mv = new ModelAndView("admin/cliente/lista");
-
-        Cliente cliente = clienteService.buscarById(Integer.parseInt(id));
-
-        if(cliente.isAtivo()){
-            cliente.setAtivo(false);
-        }else{
-            cliente.setAtivo(true);
-        }
-
-        facade = new Facade(clienteRepository, enderecoRepository, cartaoCreditoRepository);
-        facade.editar(cliente);
-
-        List<Cliente> clientes = ConverterCliente.converte(facade.listar(new Cliente()).getEntidades());
-        mv.addObject("clientes", clientes);
-        attributes.addFlashAttribute("mensagem", "Usuário excluído com sucesso!");
-
-        return mv;
-    }
+//    @Autowired
+//    ClienteService clienteService;
+//
+//    @Autowired
+//    ClienteRepository clienteRepository;
+//
+//    @Autowired
+//    EnderecoRepository enderecoRepository;
+//
+//    @Autowired
+//    CartaoCreditoRepository cartaoCreditoRepository;
+//
+//    Facade facade;
+//    @Autowired
+//    private IPedidoService pedidoService;
+//
+//    @GetMapping("/")
+//    public ModelAndView dashboard(){
+//        ModelAndView mv = new ModelAndView("admin/dashboard");
+//
+//        Date inital;
+//        Date finalDate;
+//
+//        inital = Date.from(LocalDateTime.now().minusMonths(3).toInstant(ZoneOffset.UTC));
+//        finalDate = Date.from(LocalDateTime.now().plusMonths(3).toInstant(ZoneOffset.UTC));
+//
+//        ChartDto orders = pedidoService.buscarTodosCriadosEntre(inital, finalDate, 0);
+//        List<HashMap<String, Double>> cards = pedidoService.preencherIndexCards();
+//
+//        mv.addObject("ordersFiltered", orders);
+//        mv.addObject("cards", cards);
+//
+//        return mv;
+//    }
+//
+//    @GetMapping("filterdata")
+//    @ResponseBody
+//    public ChartDto getOrdersFiltered(String initialDateParam, String finalDateParam, Integer searchType) throws ParseException {
+//        Date inital;
+//        Date finalDate;
+//
+//        inital = Date.from(LocalDateTime.now().minusMonths(3).toInstant(ZoneOffset.UTC));
+//        finalDate = Date.from(LocalDateTime.now().plusMonths(3).toInstant(ZoneOffset.UTC));
+//
+//        if(null != initialDateParam && initialDateParam.length() > 0){
+//            inital = new SimpleDateFormat("yyyy-MM-dd").parse(initialDateParam);
+//        }
+//
+//        if(finalDateParam != null && finalDateParam.length() > 0){
+//            finalDate = new SimpleDateFormat("yyyy-MM-dd").parse(finalDateParam);
+//        }else {
+//            Date data = new Date();
+//            finalDate = new SimpleDateFormat("yyyy-MM-dd").parse(data.toInstant().toString());
+//        }
+//
+//        return pedidoService.buscarTodosCriadosEntre(inital, finalDate, searchType);
+//    }
+//
+//    @GetMapping("clientes")
+//    public ModelAndView listaClientes(){
+//        facade = new Facade(clienteRepository, enderecoRepository, cartaoCreditoRepository);
+//        ModelAndView mv = new ModelAndView("admin/cliente/lista");
+//
+//        List<Cliente> clientes = ConverterCliente.converte(facade.listar(new Cliente()).getEntidades());
+//
+//        mv.addObject("clientes", clientes);
+//        mv.addObject("admin", clienteService.atualUsuarioLogado());
+//
+//        return mv;
+//    }
+//
+//    @PostMapping("clientes")
+//    public ModelAndView desativaEAtivaCliente(@RequestParam String id, RedirectAttributes attributes){
+//
+//        ModelAndView mv = new ModelAndView("admin/cliente/lista");
+//
+//        Cliente cliente = clienteService.buscarById(Integer.parseInt(id));
+//
+//        if(cliente.isAtivo()){
+//            cliente.setAtivo(false);
+//        }else{
+//            cliente.setAtivo(true);
+//        }
+//
+//        facade = new Facade(clienteRepository, enderecoRepository, cartaoCreditoRepository);
+//        facade.editar(cliente);
+//
+//        List<Cliente> clientes = ConverterCliente.converte(facade.listar(new Cliente()).getEntidades());
+//        mv.addObject("clientes", clientes);
+//        attributes.addFlashAttribute("mensagem", "Usuário excluído com sucesso!");
+//
+//        return mv;
+//    }
 }

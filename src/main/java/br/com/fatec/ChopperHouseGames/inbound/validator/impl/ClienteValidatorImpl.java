@@ -35,6 +35,11 @@ public class ClienteValidatorImpl implements ClienteValidator {
         return result;
     }
 
+    @Override
+    public Boolean validaRoleUsuario(ClienteDTO dto) {
+        return dto.getRoles().equals("CLIENTE");
+    }
+
     public boolean validaSenha(ClienteDTO dto) {
         Pattern pattern = Pattern.compile("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{8,20}$");
         Matcher matcher = pattern.matcher(dto.getSenha());

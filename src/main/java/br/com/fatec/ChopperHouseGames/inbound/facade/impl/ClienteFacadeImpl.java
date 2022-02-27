@@ -1,7 +1,6 @@
 package br.com.fatec.ChopperHouseGames.inbound.facade.impl;
 
 
-import br.com.fatec.ChopperHouseGames.core.domain.Cliente;
 import br.com.fatec.ChopperHouseGames.core.service.ClienteService;
 import br.com.fatec.ChopperHouseGames.inbound.facade.ClienteFacade;
 import br.com.fatec.ChopperHouseGames.inbound.facade.dto.ClienteDTO;
@@ -50,11 +49,22 @@ public class ClienteFacadeImpl implements ClienteFacade {
 
     @Override
     public Optional<EntidadeDTO> buscarPorId(Integer id) {
-        return Optional.of((ClienteDTO) mapper.toClienteDTO(service.buscarById(id).get()));
+        return Optional.of(mapper.toClienteDTO(service.buscarById(id).get()));
     }
 
     @Override
     public Optional<ClienteDTO> buscarPorEmail(String email) {
-        return Optional.of((ClienteDTO) mapper.toClienteDTO(service.buscarByEmail(email)));
+        return Optional.of(mapper.toClienteDTO(service.buscarByEmail(email)));
     }
+
+    @Override
+    public ClienteDTO atualUsuarioLogado() {
+        return mapper.toClienteDTO(service.atualUsuarioLogado());
+    }
+
+    @Override
+    public Boolean usuarioEstaLogado(Integer id) {
+        return service.usuarioEstaLogado(id);
+    }
+
 }

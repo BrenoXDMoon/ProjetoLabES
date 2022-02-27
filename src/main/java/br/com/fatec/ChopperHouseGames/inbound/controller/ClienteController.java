@@ -65,20 +65,14 @@ public class ClienteController {
     @PostMapping("/novo")
     public ModelAndView salvarCliente(@Valid ClienteDTO dto, BindingResult result) {
 
-        ModelAndView mv = new ModelAndView();
-
+        ModelAndView mv = new ModelAndView("redirect:/");
 
         if (validator.validaFormularioCadastro(dto, result).hasErrors()) {
-            System.out.println(result.getAllErrors());
             mv.addObject("resultados", result);
             return novoCliente(dto, mv);
         }
 
-        facade.salvar(dto);
-
-        mv.setViewName("redirect:/");
-
-        mv.addObject("cliente", dto);
+        mv.addObject("cliente", facade.salvar(dto));
 
         mv.addObject("mensagem", "Usuário criado com sucesso!");
 
@@ -86,17 +80,20 @@ public class ClienteController {
     }
 
     @GetMapping("/perfil/{id}")
-    public ModelAndView perfil(@PathVariable("id") Cliente cliente) {
+    public ModelAndView perfil(@PathVariable("id") Integer id) {
 
         ModelAndView mv = new ModelAndView();
-        cliente = service.atualUsuarioLogado();
-        if (service.validaRoleUsuario(cliente)) {
-            mv.setViewName("/cliente/perfil");
-            mv.addObject("cliente", cliente);
-        } else {
-            mv.setViewName("/admin/dashboard");
-            mv.addObject("admin", cliente);
+        if(facade.usuarioEstaLogado(id)){
+            ClienteDTO dto = facade.atualUsuarioLogado();
+            if (validator.validaRoleUsuario(dto)) {
+                mv.setViewName("/cliente/perfil");
+                mv.addObject("cliente", dto);
+            } else {
+                mv.setViewName("/admin/dashboard");
+                mv.addObject("admin", dto);
+            }
         }
+
         return mv;
     }
 

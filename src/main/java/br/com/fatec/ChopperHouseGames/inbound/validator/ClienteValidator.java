@@ -6,4 +6,5 @@ import org.springframework.validation.BindingResult;
 public interface ClienteValidator {
 
     BindingResult validaFormularioCadastro(ClienteDTO dto, BindingResult result);
+    Boolean validaRoleUsuario(ClienteDTO dto);
 }

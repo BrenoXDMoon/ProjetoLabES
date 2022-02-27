@@ -35,4 +35,6 @@ public class ClienteDTO extends EntidadeDTO {
 
     private TipoCliente tipoCliente;
 
+    private String roles;
+
 }

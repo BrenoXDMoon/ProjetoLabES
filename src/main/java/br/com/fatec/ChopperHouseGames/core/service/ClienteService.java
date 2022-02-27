@@ -10,8 +10,6 @@ public interface ClienteService {
     Cliente salvar(Cliente cliente);
     Cliente buscarByEmail(String email);
     Cliente atualUsuarioLogado();
-    void usuarioLogado(Integer id, ModelAndView mv);
-    boolean usuarioIsLogado(Integer id);
-    boolean validaRoleUsuario(Cliente cliente);
+    boolean usuarioEstaLogado(Integer id);
     Optional<Cliente> buscarById(Integer id);
 }
