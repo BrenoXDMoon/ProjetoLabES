@@ -1,6 +1,7 @@
 package br.com.fatec.ChopperHouseGames.core.service.impl;
 
 import br.com.fatec.ChopperHouseGames.core.domain.Cliente;
+import br.com.fatec.ChopperHouseGames.core.domain.Senha;
 import br.com.fatec.ChopperHouseGames.core.repository.ClienteRepository;
 import br.com.fatec.ChopperHouseGames.core.service.ClienteService;
 import br.com.fatec.ChopperHouseGames.core.service.TipoClienteService;
@@ -80,5 +81,11 @@ public class ClienteServiceImpl implements ClienteService {
     @Override
     public Optional<Cliente> buscarById(Integer id) {
         return repository.findById(id);
+    }
+
+    @Override
+    public Cliente editarSenha(Cliente cliente, Senha senha) {
+        cliente.setSenha(senha);
+        return editar(cliente);
     }
 }

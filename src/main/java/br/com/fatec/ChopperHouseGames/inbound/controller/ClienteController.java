@@ -4,6 +4,7 @@ import br.com.fatec.ChopperHouseGames.core.domain.Cliente;
 import br.com.fatec.ChopperHouseGames.core.service.ClienteService;
 import br.com.fatec.ChopperHouseGames.inbound.facade.ClienteFacade;
 import br.com.fatec.ChopperHouseGames.inbound.facade.dto.ClienteDTO;
+import br.com.fatec.ChopperHouseGames.inbound.facade.dto.SenhaDTO;
 import br.com.fatec.ChopperHouseGames.inbound.validator.ClienteValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -105,49 +106,32 @@ public class ClienteController {
         return mv;
     }
 
-//    @GetMapping("/perfil/{id}/senha")
-//    public ModelAndView editarSenha(@PathVariable("id") Cliente cliente, SenhaDto senhaDto, ModelAndView mv){
-//        if(mv == null){
-//            mv = new ModelAndView();
-//        }
-//
-//        mv.setViewName("/cliente/senha");
-//        cliente = service.atualUsuarioLogado();
-//        mv.addObject(cliente);
-//
-//        return mv;
-//    }
-//
-//    @PostMapping("/perfil/{id}/senha")
-//    public ModelAndView editarSenha(@Valid SenhaDto senhaDto, BindingResult result){
-//        ModelAndView mv = new ModelAndView();
-//        Cliente cliente = service.atualUsuarioLogado();
-//        facade = new Facade(clienteRepository, enderecoRepository, cartaoCreditoRepository);
-//
-//        if(!senhaDto.senhaAntigaCorreta(cliente)){
-//            result.addError(new ObjectError("resultado","A senha antiga não confere"));
-//        }
-//
-//        if(!senhaDto.confirmaSenha()){
-//            result.addError(new ObjectError("resultado","A senha nova não confere com a confirmação"));
-//        }
-//
-//        if(result.hasErrors()){
-//            mv.addObject("resultados", result);
-//            return editarSenha(cliente,senhaDto, mv);
-//        }
-//
-//        cliente.setSenha(senhaDto.toSenha());
-//
-//        cliente = (Cliente) facade.editar(cliente).getEntidade();
-//
-//        mv.setViewName("/cliente/perfil");
-//        mv.addObject("cliente", cliente);
-//
-//        mv.addObject("mensagem", "Senha atualizada com sucesso!");
-//
-//        return mv;
-//    }
+    @GetMapping("/perfil/{id}/senha")
+    public ModelAndView editarSenha(@PathVariable("id") ClienteDTO dto, SenhaDTO senhaDto, ModelAndView mv) {
+        if (mv == null) {
+            mv = new ModelAndView();
+        }
+        mv.setViewName("/cliente/senha");
+        mv.addObject(facade.atualUsuarioLogado());
+
+        return mv;
+    }
+
+    @PostMapping("/perfil/{id}/senha")
+    public ModelAndView editarSenha(@Valid SenhaDTO dto, BindingResult result) {
+        ModelAndView mv = new ModelAndView("/cliente/perfil");
+        ClienteDTO clienteDTO = facade.atualUsuarioLogado();
+
+        if (validator.validaAlteracaoSenha(dto, clienteDTO, result).hasErrors()) {
+            mv.addObject("resultados", result);
+            return editarSenha(clienteDTO, dto, mv);
+        }
+        mv.addObject("cliente", facade.editarSenha(clienteDTO, dto));
+
+        mv.addObject("mensagem", "Senha atualizada com sucesso!");
+
+        return mv;
+    }
 //
 //    @GetMapping("perfil/{id}/devolucao/{idPed}")
 //    public ModelAndView acessarFormularioDevolucao(@PathVariable("id") Cliente cliente, @PathVariable("idPed") Pedido pedido){

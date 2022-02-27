@@ -18,7 +18,8 @@ public class Cliente extends EntidadeDominio {
     private String email;
     private String dataNascimento;
 
-    private String senha;
+    @Embedded
+    private Senha senha;
     private String cpf;
 
     @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY, cascade = CascadeType.ALL)

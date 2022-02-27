@@ -5,8 +5,10 @@ import br.com.fatec.ChopperHouseGames.core.service.ClienteService;
 import br.com.fatec.ChopperHouseGames.inbound.facade.ClienteFacade;
 import br.com.fatec.ChopperHouseGames.inbound.facade.dto.ClienteDTO;
 import br.com.fatec.ChopperHouseGames.inbound.facade.dto.EntidadeDTO;
+import br.com.fatec.ChopperHouseGames.inbound.facade.dto.SenhaDTO;
 import br.com.fatec.ChopperHouseGames.inbound.facade.mapper.ClienteMapper;
 import br.com.fatec.ChopperHouseGames.inbound.facade.mapper.ResultadoMapper;
+import br.com.fatec.ChopperHouseGames.inbound.facade.mapper.SenhaMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -19,6 +21,7 @@ public class ClienteFacadeImpl implements ClienteFacade {
     private final ClienteMapper mapper;
     private final ResultadoMapper resultadoMapper;
     private final ClienteService service;
+    private SenhaMapper senhaMapper;
 
     @Autowired
     public ClienteFacadeImpl(ClienteMapper mapper, ResultadoMapper resultadoMapper, ClienteService service) {
@@ -65,6 +68,11 @@ public class ClienteFacadeImpl implements ClienteFacade {
     @Override
     public Boolean usuarioEstaLogado(Integer id) {
         return service.usuarioEstaLogado(id);
+    }
+
+    @Override
+    public ClienteDTO editarSenha(ClienteDTO clienteDTO, SenhaDTO dto) {
+        return mapper.toClienteDTO(service.editarSenha(mapper.toCliente(clienteDTO), senhaMapper.toSenha(dto)));
     }
 
 }
