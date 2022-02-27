@@ -3,12 +3,11 @@ package br.com.fatec.ChopperHouseGames.inbound.controller;
 import br.com.fatec.ChopperHouseGames.core.domain.*;
 import br.com.fatec.ChopperHouseGames.inbound.facade.dto.CartaoCreditoDto;
 import br.com.fatec.ChopperHouseGames.inbound.facade.dto.ClienteDto;
-import br.com.fatec.ChopperHouseGames.inbound.facade.impl.Facade;
 import br.com.fatec.ChopperHouseGames.core.repository.CartaoCreditoRepository;
 import br.com.fatec.ChopperHouseGames.core.repository.ClienteRepository;
 import br.com.fatec.ChopperHouseGames.core.repository.EnderecoRepository;
-import br.com.fatec.ChopperHouseGames.core.service.ICartaoService;
-import br.com.fatec.ChopperHouseGames.core.service.IClienteService;
+import br.com.fatec.ChopperHouseGames.core.service.CartaoService;
+import br.com.fatec.ChopperHouseGames.core.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -25,7 +24,7 @@ public class CartaoCreditoController {
     private Facade facade;
 
     @Autowired
-    private IClienteService clienteService;
+    private ClienteService clienteService;
 
     @Autowired
     private ClienteRepository clienteRepository;
@@ -37,7 +36,7 @@ public class CartaoCreditoController {
     private CartaoCreditoRepository cartaoCreditoRepository;
 
     @Autowired
-    private ICartaoService cartaoService;
+    private CartaoService cartaoService;
 
     @GetMapping("/{id}/cartoes")
     public ModelAndView listarCartoes(@PathVariable("id") Cliente cliente, CartaoCreditoDto dto) {

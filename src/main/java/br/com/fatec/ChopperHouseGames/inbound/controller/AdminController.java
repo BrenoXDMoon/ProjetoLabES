@@ -3,11 +3,10 @@ package br.com.fatec.ChopperHouseGames.inbound.controller;
 import br.com.fatec.ChopperHouseGames.inbound.converter.ConverterCliente;
 import br.com.fatec.ChopperHouseGames.core.domain.Cliente;
 import br.com.fatec.ChopperHouseGames.inbound.facade.dto.ChartDto;
-import br.com.fatec.ChopperHouseGames.inbound.facade.impl.Facade;
 import br.com.fatec.ChopperHouseGames.core.repository.CartaoCreditoRepository;
 import br.com.fatec.ChopperHouseGames.core.repository.ClienteRepository;
 import br.com.fatec.ChopperHouseGames.core.repository.EnderecoRepository;
-import br.com.fatec.ChopperHouseGames.core.service.IClienteService;
+import br.com.fatec.ChopperHouseGames.core.service.ClienteService;
 import br.com.fatec.ChopperHouseGames.core.service.IPedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,7 +27,7 @@ import java.util.List;
 public class AdminController {
 
     @Autowired
-    IClienteService clienteService;
+    ClienteService clienteService;
 
     @Autowired
     ClienteRepository clienteRepository;

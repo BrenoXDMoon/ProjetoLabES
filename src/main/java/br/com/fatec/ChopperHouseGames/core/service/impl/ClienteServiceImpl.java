@@ -2,18 +2,37 @@ package br.com.fatec.ChopperHouseGames.core.service.impl;
 
 import br.com.fatec.ChopperHouseGames.core.domain.Cliente;
 import br.com.fatec.ChopperHouseGames.core.repository.ClienteRepository;
-import br.com.fatec.ChopperHouseGames.core.service.IClienteService;
+import br.com.fatec.ChopperHouseGames.core.service.ClienteService;
+import br.com.fatec.ChopperHouseGames.core.service.TipoClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
-@Service
-public class ClienteService implements IClienteService {
+import java.util.Optional;
 
-    @Autowired
+@Service
+public class ClienteServiceImpl implements ClienteService {
+
     ClienteRepository repository;
+
+    TipoClienteService tipoClienteService;
+
+    public ClienteServiceImpl(ClienteRepository repository, TipoClienteService tipoClienteService) {
+        this.repository = repository;
+        this.tipoClienteService = tipoClienteService;
+    }
+
+    @Override
+    public Cliente salvar(Cliente cliente) {
+
+        cliente.setTipoCliente(tipoClienteService.buscarById(1));
+
+        cliente.setRoles("CLIENTE");
+
+        return repository.saveAndFlush(cliente);
+    }
 
     @Override
     public Cliente buscarByEmail(String email) {
@@ -60,7 +79,7 @@ public class ClienteService implements IClienteService {
     }
 
     @Override
-    public Cliente buscarById(Integer id) {
-        return repository.findById(id).get();
+    public Optional<Cliente> buscarById(Integer id) {
+        return repository.findById(id);
     }
 }

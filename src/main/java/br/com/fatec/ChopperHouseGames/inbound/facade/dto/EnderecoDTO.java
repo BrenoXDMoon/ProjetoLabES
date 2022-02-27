@@ -7,7 +7,7 @@ import lombok.Data;
 import javax.validation.constraints.NotEmpty;
 
 @Data
-public class EnderecoDto {
+public class EnderecoDTO extends EntidadeDTO {
 
     @NotEmpty(message = "Logradouro não pode estar em branco")
     private String logradouro;

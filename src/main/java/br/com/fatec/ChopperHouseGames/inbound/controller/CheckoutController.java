@@ -17,16 +17,16 @@ import javax.validation.Valid;
 public class CheckoutController {
 
     @Autowired
-    IClienteService clienteService;
+    ClienteService clienteService;
 
     @Autowired
     ICarrinhoService carrinhoService;
 
     @Autowired
-    IEnderecoService enderecoService;
+    EnderecoService enderecoService;
 
     @Autowired
-    ICartaoService cartaoService;
+    CartaoService cartaoService;
 
     @Autowired
     private IPedidoService pedidoService;

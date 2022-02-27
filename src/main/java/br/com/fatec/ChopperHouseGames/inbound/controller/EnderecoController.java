@@ -5,13 +5,12 @@ import br.com.fatec.ChopperHouseGames.core.domain.Endereco;
 import br.com.fatec.ChopperHouseGames.core.domain.TIPO_ENDERECO;
 import br.com.fatec.ChopperHouseGames.inbound.facade.dto.ClienteDto;
 import br.com.fatec.ChopperHouseGames.inbound.facade.dto.EnderecoDto;
-import br.com.fatec.ChopperHouseGames.inbound.facade.IFacade;
-import br.com.fatec.ChopperHouseGames.inbound.facade.impl.Facade;
+import br.com.fatec.ChopperHouseGames.inbound.facade.Facade;
 import br.com.fatec.ChopperHouseGames.core.repository.CartaoCreditoRepository;
 import br.com.fatec.ChopperHouseGames.core.repository.ClienteRepository;
 import br.com.fatec.ChopperHouseGames.core.repository.EnderecoRepository;
-import br.com.fatec.ChopperHouseGames.core.service.IClienteService;
-import br.com.fatec.ChopperHouseGames.core.service.IEnderecoService;
+import br.com.fatec.ChopperHouseGames.core.service.ClienteService;
+import br.com.fatec.ChopperHouseGames.core.service.EnderecoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -26,7 +25,7 @@ import javax.validation.Valid;
 public class EnderecoController {
 
     @Autowired
-    private IClienteService clienteService;
+    private ClienteService clienteService;
 
     @Autowired
     ClienteRepository clienteRepository;
@@ -38,10 +37,10 @@ public class EnderecoController {
     CartaoCreditoRepository cartaoCreditoRepository;
 
     @Autowired
-    private IFacade facade;
+    private Facade facade;
 
     @Autowired
-    private IEnderecoService enderecoService;
+    private EnderecoService enderecoService;
 
     @GetMapping("/{id}/enderecos")
     public ModelAndView listarEnderecos(@PathVariable("id") Cliente cliente) {

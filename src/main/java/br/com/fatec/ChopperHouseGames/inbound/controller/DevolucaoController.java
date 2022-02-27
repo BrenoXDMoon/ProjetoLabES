@@ -2,7 +2,7 @@ package br.com.fatec.ChopperHouseGames.inbound.controller;
 
 import br.com.fatec.ChopperHouseGames.core.domain.Cliente;
 import br.com.fatec.ChopperHouseGames.core.domain.Devolucao;
-import br.com.fatec.ChopperHouseGames.core.service.IClienteService;
+import br.com.fatec.ChopperHouseGames.core.service.ClienteService;
 import br.com.fatec.ChopperHouseGames.core.service.IDevolucaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,7 +18,7 @@ public class DevolucaoController {
     IDevolucaoService devolucaoService;
 
     @Autowired
-    IClienteService clienteService;
+    ClienteService clienteService;
 
     @GetMapping
     public ModelAndView listarDevolucoes(ModelAndView mv){
