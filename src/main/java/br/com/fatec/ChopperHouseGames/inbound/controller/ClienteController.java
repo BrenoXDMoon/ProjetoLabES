@@ -1,7 +1,10 @@
 package br.com.fatec.ChopperHouseGames.inbound.controller;
 
+import br.com.fatec.ChopperHouseGames.core.domain.BANDEIRA;
 import br.com.fatec.ChopperHouseGames.core.service.ClienteService;
+import br.com.fatec.ChopperHouseGames.inbound.facade.CartaoFacade;
 import br.com.fatec.ChopperHouseGames.inbound.facade.ClienteFacade;
+import br.com.fatec.ChopperHouseGames.inbound.facade.dto.CartaoCreditoDTO;
 import br.com.fatec.ChopperHouseGames.inbound.facade.dto.ClienteDTO;
 import br.com.fatec.ChopperHouseGames.inbound.facade.dto.SenhaDTO;
 import br.com.fatec.ChopperHouseGames.inbound.validator.ClienteValidator;
@@ -10,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
@@ -22,31 +26,15 @@ public class ClienteController {
     ClienteService service;
 
     ClienteValidator validator;
+    private CartaoFacade cartaoFacade;
 
     @Autowired
-    public ClienteController(ClienteFacade facade, ClienteService service, ClienteValidator validator) {
+    public ClienteController(ClienteFacade facade, ClienteService service, ClienteValidator validator, CartaoFacade cartaoFacade) {
         this.facade = facade;
         this.service = service;
         this.validator = validator;
+        this.cartaoFacade = cartaoFacade;
     }
-
-    //    @Autowired
-//    ClienteRepository clienteRepository;
-//
-//    @Autowired
-//    EnderecoRepository enderecoRepository;
-//
-//    @Autowired
-//    CartaoCreditoRepository cartaoCreditoRepository;
-//
-//    @Autowired
-//    IPedidoService pedidoService;
-//
-//    @Autowired
-//    ITipoClienteService tipoClienteService;
-//
-//    @Autowired
-//    IDevolucaoService devolucaoService;
 
     @GetMapping("/novo")
     public ModelAndView novoCliente(ClienteDTO dto, ModelAndView mv) {
@@ -128,6 +116,71 @@ public class ClienteController {
         mv.addObject("cliente", facade.editarSenha(clienteDTO, dto));
 
         mv.addObject("mensagem", "Senha atualizada com sucesso!");
+
+        return mv;
+    }
+
+    @GetMapping("perfil/{id}/cartoes")
+    public ModelAndView listarCartoes(@PathVariable("id") ClienteDTO clienteDto) {
+
+        ModelAndView mv = new ModelAndView("/cliente/listaCartoes");
+
+        mv.addObject("cliente", clienteDto);
+        return mv;
+    }
+
+    @GetMapping("perfil/{id}/cartoes/novo")
+    public ModelAndView formularioNovoCartao(@PathVariable("id") ClienteDTO clienteDto, CartaoCreditoDTO dto) {
+
+        ModelAndView mv = new ModelAndView("cliente/cartao/form");
+
+        mv.addObject("cliente", clienteDto);
+        mv.addObject("bandeiras", BANDEIRA.values());
+
+        return mv;
+    }
+
+    @PostMapping("perfil/{id}/cartoes/novo")
+    public ModelAndView salvaCartao(@PathVariable("id") ClienteDTO clienteDto, @Valid CartaoCreditoDTO dto, BindingResult result, RedirectAttributes attributes) {
+        ModelAndView mv = new ModelAndView("cliente/perfil");
+
+        mv.addObject("cliente", cartaoFacade.salvar(clienteDto, dto));
+        mv.addObject("mensagem", "Cartao atualizado com sucesso!");
+
+        return mv;
+    }
+
+
+    @PostMapping("perfil/{id}/cartoes")
+    public ModelAndView excluirCartao(@RequestParam String id, RedirectAttributes attributes) {
+
+        ModelAndView mv = new ModelAndView("/cliente/perfil");
+
+        mv.addObject("cliente", cartaoFacade.excluir(Integer.parseInt(id)));
+
+        mv.addObject("mensagem", "Cartao removido com sucesso!");
+
+        return mv;
+    }
+
+    @GetMapping("perfil/{id}/cartoes/editar/{idCard}")
+    public ModelAndView formularioEditar(@PathVariable("id") ClienteDTO clienteDTO, @PathVariable("idCard") Integer id) {
+
+        ModelAndView mv = new ModelAndView("/cliente/cartao/formEditar");
+
+        mv.addObject("cliente", clienteDTO);
+        mv.addObject("cartao", cartaoFacade.buscarPorId(id));
+        mv.addObject("bandeiras", BANDEIRA.values());
+
+        return mv;
+    }
+
+    @PostMapping("perfil/{id}/cartoes/editar")
+    public ModelAndView editaEndereco(@Valid CartaoCreditoDTO cartaoDto, RedirectAttributes attributes, ClienteDTO dto) {
+
+        ModelAndView mv = new ModelAndView("/cliente/perfil");
+        mv.addObject("cliente", cartaoFacade.editar(cartaoDto));
+        mv.addObject("mensagem", "Cartao atualizado com sucesso!");
 
         return mv;
     }
