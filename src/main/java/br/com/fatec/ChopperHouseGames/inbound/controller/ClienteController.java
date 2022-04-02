@@ -26,6 +26,7 @@ public class ClienteController {
     ClienteService service;
 
     ClienteValidator validator;
+
     private CartaoFacade cartaoFacade;
 
     @Autowired
@@ -94,7 +95,7 @@ public class ClienteController {
     }
 
     @GetMapping("/perfil/{id}/senha")
-    public ModelAndView editarSenha(@PathVariable("id") ClienteDTO dto, SenhaDTO senhaDto, ModelAndView mv) {
+    public ModelAndView editarSenha(@PathVariable("id") Integer id, SenhaDTO senhaDto, ModelAndView mv) {
         if (mv == null) {
             mv = new ModelAndView();
         }
@@ -105,13 +106,13 @@ public class ClienteController {
     }
 
     @PostMapping("/perfil/{id}/senha")
-    public ModelAndView editarSenha(@Valid SenhaDTO dto, BindingResult result) {
+    public ModelAndView editarSenha(@PathVariable("id") Integer id, @Valid SenhaDTO dto, BindingResult result) {
         ModelAndView mv = new ModelAndView("/cliente/perfil");
         ClienteDTO clienteDTO = facade.atualUsuarioLogado();
 
         if (validator.validaAlteracaoSenha(dto, clienteDTO, result).hasErrors()) {
             mv.addObject("resultados", result);
-            return editarSenha(clienteDTO, dto, mv);
+            return editarSenha(clienteDTO.getId(), dto, mv);
         }
         mv.addObject("cliente", facade.editarSenha(clienteDTO, dto));
 
@@ -121,7 +122,7 @@ public class ClienteController {
     }
 
     @GetMapping("perfil/{id}/cartoes")
-    public ModelAndView listarCartoes(@PathVariable("id") ClienteDTO clienteDto) {
+    public ModelAndView listarCartoes(@PathVariable("id") Integer clienteDto) {
 
         ModelAndView mv = new ModelAndView("/cliente/listaCartoes");
 
@@ -130,7 +131,7 @@ public class ClienteController {
     }
 
     @GetMapping("perfil/{id}/cartoes/novo")
-    public ModelAndView formularioNovoCartao(@PathVariable("id") ClienteDTO clienteDto, CartaoCreditoDTO dto) {
+    public ModelAndView formularioNovoCartao(@PathVariable("id") Integer clienteDto, CartaoCreditoDTO dto) {
 
         ModelAndView mv = new ModelAndView("cliente/cartao/form");
 
@@ -141,10 +142,10 @@ public class ClienteController {
     }
 
     @PostMapping("perfil/{id}/cartoes/novo")
-    public ModelAndView salvaCartao(@PathVariable("id") ClienteDTO clienteDto, @Valid CartaoCreditoDTO dto, BindingResult result, RedirectAttributes attributes) {
+    public ModelAndView salvaCartao(@PathVariable("id") Integer id, @Valid CartaoCreditoDTO dto, BindingResult result, RedirectAttributes attributes) {
         ModelAndView mv = new ModelAndView("cliente/perfil");
 
-        mv.addObject("cliente", cartaoFacade.salvar(clienteDto, dto));
+        mv.addObject("cliente", cartaoFacade.salvar(facade.buscarPorId(facade.atualUsuarioLogado().getId()).get(), dto));
         mv.addObject("mensagem", "Cartao atualizado com sucesso!");
 
         return mv;
@@ -164,7 +165,7 @@ public class ClienteController {
     }
 
     @GetMapping("perfil/{id}/cartoes/editar/{idCard}")
-    public ModelAndView formularioEditar(@PathVariable("id") ClienteDTO clienteDTO, @PathVariable("idCard") Integer id) {
+    public ModelAndView formularioEditar(@PathVariable("id") Integer clienteDTO, @PathVariable("idCard") Integer id) {
 
         ModelAndView mv = new ModelAndView("/cliente/cartao/formEditar");
 

@@ -2,11 +2,14 @@ package br.com.fatec.ChopperHouseGames.inbound.facade.dto;
 
 import br.com.fatec.ChopperHouseGames.core.domain.TipoCliente;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.validator.constraints.br.CPF;
 
 import javax.validation.constraints.NotEmpty;
 
-@Data
+@Getter
+@Setter
 public class ClienteDTO extends EntidadeDTO {
 
     private Integer id;
@@ -36,5 +39,7 @@ public class ClienteDTO extends EntidadeDTO {
     private TipoCliente tipoCliente;
 
     private String roles;
+
+    private Boolean ativo;
 
 }

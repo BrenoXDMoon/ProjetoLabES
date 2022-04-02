@@ -44,6 +44,6 @@ public class CartaoFacadeImpl implements CartaoFacade {
 
     @Override
     public ClienteDTO editar(CartaoCreditoDTO cartaoDto) {
-        return clienteMapper.toClienteDTO(service.editar(cartaoDto));
+        return clienteMapper.toClienteDTO(service.editar(mapper.toCartao(cartaoDto)));
     }
 }

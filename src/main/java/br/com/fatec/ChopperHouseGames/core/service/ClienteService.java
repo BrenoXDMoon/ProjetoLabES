@@ -16,7 +16,7 @@ public interface ClienteService {
 
     List<Cliente> listar();
 
-    Cliente buscarPorEmail(String email);
+    Optional<Cliente> buscarPorEmail(String email);
 
     Cliente atualUsuarioLogado();
 

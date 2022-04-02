@@ -5,6 +5,7 @@ import br.com.fatec.ChopperHouseGames.core.domain.Senha;
 import br.com.fatec.ChopperHouseGames.core.repository.ClienteRepository;
 import br.com.fatec.ChopperHouseGames.core.service.ClienteService;
 import br.com.fatec.ChopperHouseGames.core.service.TipoClienteService;
+
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
@@ -51,8 +52,10 @@ public class ClienteServiceImpl implements ClienteService {
     }
 
     @Override
-    public Cliente buscarPorEmail(String email) {
-        return repository.findByEmail(email).get();
+    public Optional<Cliente> buscarPorEmail(String email) {
+        //TODO: Implementar busca por email utilizando Optional
+        return Optional.ofNullable(repository.findByEmail(email)).orElse(null);
+
     }
 
     @Override
@@ -64,7 +67,7 @@ public class ClienteServiceImpl implements ClienteService {
         if(principal != null){
             if (principal instanceof UserDetails) {
                 email = ((UserDetails) principal).getUsername();
-                Cliente cliente = this.buscarPorEmail(email);
+                Cliente cliente = this.buscarPorEmail(email).orElse(null);
                 return cliente;
             }
         }

@@ -146,16 +146,17 @@ public class CheckoutController {
     @PostMapping("/salvarCartao")
     public ModelAndView salvaCartao(@PathVariable("id") Cliente cliente, @Valid CartaoCreditoDTO cartaoCreditoDto, BindingResult result) {
         ModelAndView mv = new ModelAndView();
-        if(result.hasErrors()){
-            mv.addObject("resultados", result);
-            return paginaCriaCartaoCheckout(cliente, cartaoCreditoDto, mv);
-        }
-        mv.setViewName("redirect:/cliente/perfil/" + cliente.getId() + "/checkout");
-        CartaoCredito cartaoCredito = cartaoCreditoDto.toCartao();
-
-        cartaoCredito.setCliente(cliente);
-        CartaoCredito cartaoResponse = cartaoService.salvar(cartaoCredito);
-        mv.addObject("resultados", "Cartao salvo com sucesso!!");
+        //TODO - IMPLEMENTAR
+//        if(result.hasErrors()){
+//            mv.addObject("resultados", result);
+//            return paginaCriaCartaoCheckout(cliente, cartaoCreditoDto, mv);
+//        }
+//        mv.setViewName("redirect:/cliente/perfil/" + cliente.getId() + "/checkout");
+//        CartaoCredito cartaoCredito = cartaoCreditoDto.toCartao();
+//
+//        cartaoCredito.setCliente(cliente);
+//        CartaoCredito cartaoResponse = cartaoService.salvar(cartaoCredito);
+//        mv.addObject("resultados", "Cartao salvo com sucesso!!");
         return mv;
     }
 
