@@ -1,6 +1,6 @@
 package br.com.fatec.ChopperHouseGames.inbound.controller;
 
-import br.com.fatec.ChopperHouseGames.core.service.ICupomService;
+import br.com.fatec.ChopperHouseGames.core.service.CupomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,8 +11,12 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("admin/cupons")
 public class CupomController {
 
+    private final CupomService cupomService;
+
     @Autowired
-    ICupomService cupomService;
+    public CupomController(CupomService cupomService) {
+        this.cupomService = cupomService;
+    }
 
     @GetMapping
     public ModelAndView listaCuponsAdmin(){

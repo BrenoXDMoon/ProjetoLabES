@@ -53,8 +53,7 @@ public class ClienteServiceImpl implements ClienteService {
 
     @Override
     public Optional<Cliente> buscarPorEmail(String email) {
-        //TODO: Implementar busca por email utilizando Optional
-        return Optional.ofNullable(repository.findByEmail(email)).orElse(null);
+        return repository.findByEmail(email);
 
     }
 

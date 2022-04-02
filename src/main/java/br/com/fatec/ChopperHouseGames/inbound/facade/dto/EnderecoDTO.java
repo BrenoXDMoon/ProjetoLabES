@@ -29,26 +29,4 @@ public class EnderecoDTO extends EntidadeDTO {
     @NotEmpty(message = "Estado não pode estar em branco")
     private String estado;
 
-
-    public Endereco toEndereco(){
-
-        Endereco endereco = new Endereco();
-        Cidade cidade = new Cidade();
-        Estado estado = new Estado();
-
-        endereco.setLogradouro(this.logradouro);
-        endereco.setNumero(this.numero);
-        endereco.setCep(this.cep);
-        endereco.setTipoEndereco(this.tipoEndereco);
-        if(this.complemento != null){
-            endereco.setComplemento(this.complemento);
-        }
-        estado.setEstado(this.estado);
-        cidade.setEstado(estado);
-        cidade.setCidade(this.cidade);
-        endereco.setCidade(cidade);
-
-        return endereco;
-    }
-
 }

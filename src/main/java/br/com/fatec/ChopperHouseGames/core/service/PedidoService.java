@@ -9,7 +9,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
-public interface IPedidoService {
+public interface PedidoService {
 
     Pedido buscarById(Integer id);
     Pedido salvar(Pedido pedido, BindingResult result);

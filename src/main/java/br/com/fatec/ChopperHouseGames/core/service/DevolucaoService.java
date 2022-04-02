@@ -5,7 +5,7 @@ import br.com.fatec.ChopperHouseGames.core.domain.Pedido;
 
 import java.util.List;
 
-public interface IDevolucaoService {
+public interface DevolucaoService {
 
     Devolucao salvarSolicitacaoDevolucao(Devolucao devolucao);
     void editar(Devolucao devolucao);

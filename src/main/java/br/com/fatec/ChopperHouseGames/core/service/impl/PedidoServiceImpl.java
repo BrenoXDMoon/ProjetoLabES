@@ -1,11 +1,11 @@
 package br.com.fatec.ChopperHouseGames.core.service.impl;
 
 import br.com.fatec.ChopperHouseGames.core.domain.*;
+import br.com.fatec.ChopperHouseGames.core.repository.*;
+import br.com.fatec.ChopperHouseGames.core.service.PedidoService;
 import br.com.fatec.ChopperHouseGames.inbound.facade.dto.ChartDto;
 import br.com.fatec.ChopperHouseGames.inbound.facade.dto.DataSetDto;
 import br.com.fatec.ChopperHouseGames.inbound.facade.dto.GraficoDto;
-import br.com.fatec.ChopperHouseGames.core.repository.*;
-import br.com.fatec.ChopperHouseGames.core.service.IPedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
@@ -19,30 +19,33 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
-public class PedidoService implements IPedidoService {
+public class PedidoServiceImpl implements PedidoService {
 
-    @Autowired
-    private PedidoRepository repository;
+    private final PedidoRepository repository;
 
-    @Autowired
-    private StatusRepository statusRepository;
+    private final StatusRepository statusRepository;
 
-    @Autowired
-    private CartaoCreditoRepository cartaoRepository;
+    private final CartaoCreditoRepository cartaoRepository;
 
-    @Autowired
-    private ClienteRepository clienteRepository;
+    private final ClienteRepository clienteRepository;
 
-    @Autowired
-    private CupomRepository cupomRepository;
+    private final CupomRepository cupomRepository;
 
-    @Autowired
-    private JogoRepository jogoRepository;
+    private final JogoRepository jogoRepository;
 
-    @Autowired
-    private GeneroRepository generoRepository;
-    @Autowired
-    private TipoCupomRepository tipoCupomRepository;
+    private final GeneroRepository generoRepository;
+    private final TipoCupomRepository tipoCupomRepository;
+
+    public PedidoServiceImpl(PedidoRepository repository, StatusRepository statusRepository, CartaoCreditoRepository cartaoRepository, ClienteRepository clienteRepository, CupomRepository cupomRepository, JogoRepository jogoRepository, GeneroRepository generoRepository, TipoCupomRepository tipoCupomRepository) {
+        this.repository = repository;
+        this.statusRepository = statusRepository;
+        this.cartaoRepository = cartaoRepository;
+        this.clienteRepository = clienteRepository;
+        this.cupomRepository = cupomRepository;
+        this.jogoRepository = jogoRepository;
+        this.generoRepository = generoRepository;
+        this.tipoCupomRepository = tipoCupomRepository;
+    }
 
 
     @Override
@@ -208,10 +211,12 @@ public class PedidoService implements IPedidoService {
         pedido.setStatus(statusRepository.findByStatus("EM PROCESSAMENTO"));
         pedido.setItens(pedido.getCliente().getCarrinho().getItens());
 
-        pedido.getMetodosPagamento().forEach(p -> p.setCartaoCredito(cartaoRepository.findById(p.getCartaoCredito().getId()).get()));
+        //TODO: ALTERAR PARAMETROS DE ONDE SOLICITA ID PARA LONG
+//        pedido.getMetodosPagamento().forEach(p -> p.setCartaoCredito(cartaoRepository.findById(p.getCartaoCredito().getId()).get()));
         pedido.setTotal((pedido.getCliente().getCarrinho().getItens().stream().mapToDouble(i -> i.getJogo().getPreco() * i.getQuantidade().doubleValue()).sum()));
         if(pedido.getCupom() != null && pedido.getCupom().getId() != null){
-            pedido.setCupom(cupomRepository.findById(pedido.getCupom().getId()).get());
+            //TODO: ALTERAR PARAMETROS DE ONDE SOLICITA ID PARA LONG
+//            pedido.setCupom(cupomRepository.findById(pedido.getCupom().getId()).get());
 
             pedido.setTotal(BigDecimal.valueOf(pedido.getTotal() - pedido.getCupom().getValor())
                     .setScale(2, RoundingMode.FLOOR)
@@ -272,7 +277,8 @@ public class PedidoService implements IPedidoService {
             pedido.getCuponsTroca().forEach(c -> c.setQuantidade(c.getQuantidade() - 1));
         }
 
-        pedido.setId(geraIdNovo(pedido));
+        //TODO: ALTERAR PARAMETROS DE ONDE SOLICITA ID PARA LONG
+        //pedido.setId(geraIdNovo(pedido));
 
         return pedido;
     }

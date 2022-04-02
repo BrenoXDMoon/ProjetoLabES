@@ -1,15 +1,15 @@
 package br.com.fatec.ChopperHouseGames.core.service.impl;
 
-import br.com.fatec.ChopperHouseGames.core.service.ICupomService;
 import br.com.fatec.ChopperHouseGames.core.domain.Cupom;
 import br.com.fatec.ChopperHouseGames.core.repository.CupomRepository;
+import br.com.fatec.ChopperHouseGames.core.service.CupomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class CupomService implements ICupomService {
+public class CupomServiceImpl implements CupomService {
 
     @Autowired
     private CupomRepository repository;

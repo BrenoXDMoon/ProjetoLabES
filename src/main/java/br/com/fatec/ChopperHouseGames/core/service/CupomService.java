@@ -4,7 +4,7 @@ import br.com.fatec.ChopperHouseGames.core.domain.Cupom;
 
 import java.util.List;
 
-public interface ICupomService {
+public interface CupomService {
 
     List<Cupom> listarTodos();
 

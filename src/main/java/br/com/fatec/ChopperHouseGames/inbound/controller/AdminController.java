@@ -1,32 +1,21 @@
 package br.com.fatec.ChopperHouseGames.inbound.controller;
 
-import br.com.fatec.ChopperHouseGames.core.domain.Cliente;
-import br.com.fatec.ChopperHouseGames.core.repository.CartaoCreditoRepository;
-import br.com.fatec.ChopperHouseGames.core.repository.ClienteRepository;
-import br.com.fatec.ChopperHouseGames.core.repository.EnderecoRepository;
-import br.com.fatec.ChopperHouseGames.core.service.ClienteService;
-import br.com.fatec.ChopperHouseGames.core.service.IPedidoService;
 import br.com.fatec.ChopperHouseGames.inbound.facade.ClienteFacade;
-import br.com.fatec.ChopperHouseGames.inbound.facade.dto.ChartDto;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
 
 @Controller
 @RequestMapping("admin")
 public class AdminController {
 
     private ClienteFacade facade;
+
+    //TODO: IMPLEMENTAR COISAS RELACIONADAS AO ADMIN E AO CLIENTE
 
     //    @Autowired
 //    ClienteService clienteService;

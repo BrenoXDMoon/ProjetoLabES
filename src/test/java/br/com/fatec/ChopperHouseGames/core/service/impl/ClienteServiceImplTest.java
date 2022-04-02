@@ -26,9 +26,5 @@ class ClienteServiceImplTest {
         clienteService = new ClienteServiceImpl(repository, tipoClienteService);
     }
 
-    @Test
-    void listar() {
-        List<Cliente> clientes = new ArrayList<>();
-        clienteService.listar().stream().filter(cliente -> (cliente.getId() % 2) != 0).forEach(clientes::add);
-    }
+    //TODO - IMPLEMENTAR TESTES
 }

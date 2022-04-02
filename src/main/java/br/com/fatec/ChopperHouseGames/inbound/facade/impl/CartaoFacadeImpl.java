@@ -17,9 +17,10 @@ public class CartaoFacadeImpl implements CartaoFacade {
     private CartaoCreditoMapper mapper;
     private ClienteMapper clienteMapper;
 
-    public CartaoFacadeImpl(CartaoService service, CartaoCreditoMapper mapper) {
+    public CartaoFacadeImpl(CartaoService service, CartaoCreditoMapper mapper, ClienteMapper clienteMapper) {
         this.service = service;
         this.mapper = mapper;
+        this.clienteMapper = clienteMapper;
     }
 
     @Override
