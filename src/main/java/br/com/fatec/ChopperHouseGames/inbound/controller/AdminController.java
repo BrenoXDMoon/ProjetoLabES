@@ -85,7 +85,7 @@ public class AdminController {
     }
 
     @PostMapping("clientes")
-    public ModelAndView desativaEAtivaCliente(@RequestParam Integer id, RedirectAttributes attributes){
+    public ModelAndView desativaEAtivaCliente(@RequestParam Long id, RedirectAttributes attributes){
 
         ModelAndView mv = new ModelAndView("admin/cliente/lista");
         facade.ativaInativa(id);

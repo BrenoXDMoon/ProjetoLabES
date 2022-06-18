@@ -15,17 +15,17 @@ public interface ClienteFacade extends Facade {
 
     ClienteDTO excluir(ClienteDTO ent);
 
-    ClienteDTO ativaInativa(Integer id);
+    void ativaInativa(Long id);
 
     List<ClienteDTO> listar();
 
-    Optional<ClienteDTO> buscarPorId(Integer id);
+    ClienteDTO buscarPorId(Long id);
 
     Optional<ClienteDTO> buscarPorEmail(String email);
 
     ClienteDTO atualUsuarioLogado();
 
-    Boolean usuarioEstaLogado(Integer id);
+    Boolean usuarioEstaLogado(Long id);
 
     ClienteDTO editarSenha(ClienteDTO clienteDTO, SenhaDTO dto);
 }

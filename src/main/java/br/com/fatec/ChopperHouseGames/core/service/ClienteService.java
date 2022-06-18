@@ -20,11 +20,11 @@ public interface ClienteService {
 
     Cliente atualUsuarioLogado();
 
-    boolean usuarioEstaLogado(Integer id);
+    boolean usuarioEstaLogado(Long id);
 
-    Optional<Cliente> buscarPorId(Integer id);
+    Cliente buscarPorId(Long id);
 
     Cliente editarSenha(Cliente cliente, Senha senha);
 
-    Cliente ativaInativa(Integer id);
+    Cliente ativaInativa(Long id);
 }

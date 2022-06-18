@@ -7,13 +7,13 @@ import br.com.fatec.ChopperHouseGames.inbound.facade.dto.CartaoCreditoDTO;
 import java.util.List;
 
 public interface CartaoService {
-    CartaoCredito buscarPorId(Integer id);
+    CartaoCredito buscarPorId(Long id);
 
     List<CartaoCredito> listar();
 
     Cliente salvar(Cliente cliente, CartaoCredito cartao);
 
-    Cliente excluir(Integer id);
+    Cliente excluir(Long id);
 
     Cliente editar(CartaoCredito cartao);
 }

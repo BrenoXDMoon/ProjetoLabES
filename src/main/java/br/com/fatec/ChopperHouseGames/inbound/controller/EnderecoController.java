@@ -30,11 +30,7 @@ public class EnderecoController {
     @GetMapping("/{id}/enderecos")
     public ModelAndView listarEnderecos(@PathVariable("id") ClienteDTO clienteDto) {
         ModelAndView mv = new ModelAndView("/cliente/listaEnderecos");
-
-        clienteDto = clienteFacade.atualUsuarioLogado();
-        enderecoFacade.listarEnderecosCliente(clienteDto);
-
-        mv.addObject("cliente", clienteDto);
+        mv.addObject("cliente", clienteFacade.atualUsuarioLogado());
         return mv;
     }
 

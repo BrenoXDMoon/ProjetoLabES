@@ -1,5 +1,6 @@
 package br.com.fatec.ChopperHouseGames.inbound.facade.impl;
 
+import br.com.fatec.ChopperHouseGames.core.domain.Cliente;
 import br.com.fatec.ChopperHouseGames.core.service.ClienteService;
 import br.com.fatec.ChopperHouseGames.inbound.facade.ClienteFacade;
 import br.com.fatec.ChopperHouseGames.inbound.facade.dto.ClienteDTO;
@@ -17,7 +18,7 @@ public class ClienteFacadeImpl implements ClienteFacade {
 
     private final ClienteMapper mapper;
     private final ClienteService service;
-    private SenhaMapper senhaMapper;
+    private final SenhaMapper senhaMapper;
 
     @Autowired
     public ClienteFacadeImpl(ClienteMapper mapper, ClienteService service, SenhaMapper senhaMapper) {
@@ -42,9 +43,9 @@ public class ClienteFacadeImpl implements ClienteFacade {
     }
 
     @Override
-    public ClienteDTO ativaInativa(Integer id) {
+    public void ativaInativa(Long id) {
 
-        return mapper.toClienteDTO(service.ativaInativa(id));
+        mapper.toClienteDTO(service.ativaInativa(id));
     }
 
     @Override
@@ -53,8 +54,8 @@ public class ClienteFacadeImpl implements ClienteFacade {
     }
 
     @Override
-    public Optional<ClienteDTO> buscarPorId(Integer id) {
-        return Optional.of(mapper.toClienteDTO(service.buscarPorId(id).get()));
+    public ClienteDTO buscarPorId(Long id) {
+        return mapper.toClienteDTO(service.buscarPorId(id));
     }
 
     @Override
@@ -68,7 +69,7 @@ public class ClienteFacadeImpl implements ClienteFacade {
     }
 
     @Override
-    public Boolean usuarioEstaLogado(Integer id) {
+    public Boolean usuarioEstaLogado(Long id) {
         return service.usuarioEstaLogado(id);
     }
 

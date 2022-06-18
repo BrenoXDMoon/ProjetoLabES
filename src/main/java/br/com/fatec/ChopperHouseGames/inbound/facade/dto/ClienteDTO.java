@@ -12,7 +12,7 @@ import javax.validation.constraints.NotEmpty;
 @Setter
 public class ClienteDTO extends EntidadeDTO {
 
-    private Integer id;
+    private Long id;
 
     @NotEmpty(message = "Nome Completo é obrigatório!")
     private String nomeCompleto;

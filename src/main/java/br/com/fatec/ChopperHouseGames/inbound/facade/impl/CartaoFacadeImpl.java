@@ -13,9 +13,9 @@ import java.util.List;
 @Component
 public class CartaoFacadeImpl implements CartaoFacade {
 
-    private CartaoService service;
-    private CartaoCreditoMapper mapper;
-    private ClienteMapper clienteMapper;
+    private final CartaoService service;
+    private final CartaoCreditoMapper mapper;
+    private final ClienteMapper clienteMapper;
 
     public CartaoFacadeImpl(CartaoService service, CartaoCreditoMapper mapper, ClienteMapper clienteMapper) {
         this.service = service;
@@ -34,12 +34,12 @@ public class CartaoFacadeImpl implements CartaoFacade {
     }
 
     @Override
-    public ClienteDTO excluir(Integer id) {
+    public ClienteDTO excluir(Long id) {
         return clienteMapper.toClienteDTO(service.excluir(id));
     }
 
     @Override
-    public CartaoCreditoDTO buscarPorId(Integer id) {
+    public CartaoCreditoDTO buscarPorId(Long id) {
         return mapper.toCartaoDTO(service.buscarPorId(id));
     }
 

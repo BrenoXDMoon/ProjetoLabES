@@ -11,34 +11,33 @@ import java.util.List;
 
 @Component
 public class EnderecoFacadeImpl implements EnderecoFacade {
-    private final EnderecoFacade enderecoFacade;
+    private final EnderecoService enderecoService;
 
-    public EnderecoFacadeImpl(EnderecoService service, EnderecoFacade enderecoFacade) {
-        this.enderecoFacade = enderecoFacade;
+    private final EnderecoMapper enderecoMapper;
+
+
+    public EnderecoFacadeImpl(EnderecoService service, EnderecoService enderecoService, EnderecoMapper enderecoMapper) {
+        this.enderecoService = enderecoService;
+        this.enderecoMapper = enderecoMapper;
     }
 
     @Override
     public EnderecoDTO salvar(ClienteDTO cliente, EnderecoDTO enderecoDto) {
-        return enderecoFacade.salvar(cliente, enderecoDto);
-    }
-
-    @Override
-    public List<EnderecoDTO> listarEnderecosCliente(ClienteDTO cliente) {
-        return enderecoFacade.listarEnderecosCliente(cliente);
+        return enderecoMapper.toDTO(enderecoService.salvar(enderecoMapper.toDomain(enderecoDto)));
     }
 
     @Override
     public void excluir(Long id) {
-        enderecoFacade.excluir(id);
+        enderecoService.excluir(id);
     }
 
     @Override
     public EnderecoDTO buscarPorId(Long id) {
-        return enderecoFacade.buscarPorId(id);
+        return enderecoMapper.toDTO(enderecoService.buscarPorId(id));
     }
 
     @Override
-    public Object editar(ClienteDTO atualUsuarioLogado, EnderecoDTO enderecoForm) {
-        return enderecoFacade.editar(atualUsuarioLogado, enderecoForm);
+    public EnderecoDTO editar(ClienteDTO atualUsuarioLogado, EnderecoDTO enderecoDto) {
+        return enderecoMapper.toDTO(enderecoService.editar(atualUsuarioLogado, enderecoMapper.toDomain(enderecoDto)));
     }
 }

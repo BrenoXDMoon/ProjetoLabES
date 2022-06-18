@@ -10,9 +10,9 @@ public interface CartaoFacade {
 
     ClienteDTO salvar(ClienteDTO clienteDto, CartaoCreditoDTO dto);
 
-    ClienteDTO excluir(Integer id);
+    ClienteDTO excluir(Long id);
 
-    CartaoCreditoDTO buscarPorId(Integer id);
+    CartaoCreditoDTO buscarPorId(Long id);
 
     ClienteDTO editar(CartaoCreditoDTO cartaoDto);
 }
