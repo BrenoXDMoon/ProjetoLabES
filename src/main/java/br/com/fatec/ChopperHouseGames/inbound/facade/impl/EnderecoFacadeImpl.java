@@ -11,39 +11,34 @@ import java.util.List;
 
 @Component
 public class EnderecoFacadeImpl implements EnderecoFacade {
+    private final EnderecoFacade enderecoFacade;
 
-    //TODO: IMPORTAR SERVICE DE ENDERECO
-
-    EnderecoMapper enderecoMapper;
-    EnderecoService service;
-
-    public EnderecoFacadeImpl(EnderecoMapper enderecoMapper, EnderecoService service) {
-        this.enderecoMapper = enderecoMapper;
-        this.service = service;
+    public EnderecoFacadeImpl(EnderecoService service, EnderecoFacade enderecoFacade) {
+        this.enderecoFacade = enderecoFacade;
     }
 
     @Override
     public EnderecoDTO salvar(ClienteDTO cliente, EnderecoDTO enderecoDto) {
-        return null;
+        return enderecoFacade.salvar(cliente, enderecoDto);
     }
 
     @Override
     public List<EnderecoDTO> listarEnderecosCliente(ClienteDTO cliente) {
-        return null;
+        return enderecoFacade.listarEnderecosCliente(cliente);
     }
 
     @Override
     public void excluir(Long id) {
-
+        enderecoFacade.excluir(id);
     }
 
     @Override
     public EnderecoDTO buscarPorId(Long id) {
-        return null;
+        return enderecoFacade.buscarPorId(id);
     }
 
     @Override
     public Object editar(ClienteDTO atualUsuarioLogado, EnderecoDTO enderecoForm) {
-        return null;
+        return enderecoFacade.editar(atualUsuarioLogado, enderecoForm);
     }
 }
