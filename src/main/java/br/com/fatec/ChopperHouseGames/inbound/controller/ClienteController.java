@@ -21,20 +21,14 @@ import javax.validation.Valid;
 @RequestMapping("cliente")
 public class ClienteController {
 
-    ClienteFacade facade;
+    private final ClienteFacade facade;
 
-    ClienteService service;
-
-    ClienteValidator validator;
-
-    private final CartaoFacade cartaoFacade;
+    private final ClienteValidator validator;
 
     @Autowired
-    public ClienteController(ClienteFacade facade, ClienteService service, ClienteValidator validator, CartaoFacade cartaoFacade) {
+    public ClienteController(ClienteFacade facade, ClienteValidator validator) {
         this.facade = facade;
-        this.service = service;
         this.validator = validator;
-        this.cartaoFacade = cartaoFacade;
     }
 
     @GetMapping("/novo")
@@ -117,71 +111,6 @@ public class ClienteController {
         mv.addObject("cliente", facade.editarSenha(clienteDTO, dto));
 
         mv.addObject("mensagem", "Senha atualizada com sucesso!");
-
-        return mv;
-    }
-
-    @GetMapping("perfil/{id}/cartoes")
-    public ModelAndView listarCartoes(@PathVariable("id") Long clienteDto) {
-
-        ModelAndView mv = new ModelAndView("/cliente/listaCartoes");
-
-        mv.addObject("cliente", clienteDto);
-        return mv;
-    }
-
-    @GetMapping("perfil/{id}/cartoes/novo")
-    public ModelAndView formularioNovoCartao(@PathVariable("id") Long clienteDto, CartaoCreditoDTO dto) {
-
-        ModelAndView mv = new ModelAndView("cliente/cartao/form");
-
-        mv.addObject("cliente", clienteDto);
-        mv.addObject("bandeiras", BANDEIRA.values());
-
-        return mv;
-    }
-
-    @PostMapping("perfil/{id}/cartoes/novo")
-    public ModelAndView salvaCartao(@PathVariable("id") Long id, @Valid CartaoCreditoDTO dto, BindingResult result, RedirectAttributes attributes) {
-        ModelAndView mv = new ModelAndView("cliente/perfil");
-
-        mv.addObject("cliente", cartaoFacade.salvar(facade.buscarPorId(facade.atualUsuarioLogado().getId()), dto));
-        mv.addObject("mensagem", "Cartao atualizado com sucesso!");
-
-        return mv;
-    }
-
-
-    @PostMapping("perfil/{id}/cartoes")
-    public ModelAndView excluirCartao(@RequestParam String id, RedirectAttributes attributes) {
-
-        ModelAndView mv = new ModelAndView("/cliente/perfil");
-
-        mv.addObject("cliente", cartaoFacade.excluir(Long.parseLong(id)));
-
-        mv.addObject("mensagem", "Cartao removido com sucesso!");
-
-        return mv;
-    }
-
-    @GetMapping("perfil/{id}/cartoes/editar/{idCard}")
-    public ModelAndView formularioEditar(@PathVariable("id") Long clienteDTO, @PathVariable("idCard") Long id) {
-
-        ModelAndView mv = new ModelAndView("/cliente/cartao/formEditar");
-
-        mv.addObject("cliente", clienteDTO);
-        mv.addObject("cartao", cartaoFacade.buscarPorId(id));
-        mv.addObject("bandeiras", BANDEIRA.values());
-
-        return mv;
-    }
-
-    @PostMapping("perfil/{id}/cartoes/editar")
-    public ModelAndView editaEndereco(@Valid CartaoCreditoDTO cartaoDto, RedirectAttributes attributes, ClienteDTO dto) {
-
-        ModelAndView mv = new ModelAndView("/cliente/perfil");
-        mv.addObject("cliente", cartaoFacade.editar(cartaoDto));
-        mv.addObject("mensagem", "Cartao atualizado com sucesso!");
 
         return mv;
     }

@@ -15,7 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/cliente/perfil")
+@RequestMapping("cliente/perfil")
 public class EnderecoController {
 
     private final EnderecoFacade enderecoFacade;
@@ -27,14 +27,14 @@ public class EnderecoController {
         this.clienteFacade = clienteFacade;
     }
 
-    @GetMapping("/{id}/enderecos")
+    @GetMapping("{id}/enderecos")
     public ModelAndView listarEnderecos(@PathVariable("id") ClienteDTO clienteDto) {
         ModelAndView mv = new ModelAndView("/cliente/listaEnderecos");
         mv.addObject("cliente", clienteFacade.atualUsuarioLogado());
         return mv;
     }
 
-    @GetMapping("/{id}/enderecos/novo")
+    @GetMapping("{id}/enderecos/novo")
     public ModelAndView formularioNovoEndereco(@PathVariable("id") ClienteDTO clienteDto, EnderecoDTO enderecoDto) {
         ModelAndView mv = new ModelAndView("cliente/endereco/form");
         mv.addObject("cliente", clienteDto);
@@ -43,7 +43,7 @@ public class EnderecoController {
         return mv;
     }
 
-    @PostMapping("/{id}/enderecos/novo")
+    @PostMapping("{id}/enderecos/novo")
     public ModelAndView salvaEndereco(@PathVariable("id") ClienteDTO clienteDto, @Valid EnderecoDTO enderecoDto, BindingResult result, RedirectAttributes attributes) {
         ModelAndView mv = new ModelAndView();
 
@@ -57,7 +57,7 @@ public class EnderecoController {
         return mv;
     }
 
-    @PostMapping("/{id}/enderecos")
+    @PostMapping("{id}/enderecos")
     public ModelAndView excluirEndereco(@RequestParam Long id, RedirectAttributes attributes, ClienteDTO clienteDto) {
 
         ModelAndView mv = new ModelAndView("/cliente/perfil");
@@ -70,7 +70,7 @@ public class EnderecoController {
         return mv;
     }
 
-    @GetMapping("/{id}/enderecos/editar/{idEnd}")
+    @GetMapping("{id}/enderecos/editar/{idEnd}")
     public ModelAndView formularioEditar(@PathVariable("id") ClienteDTO clienteDto, @PathVariable("idEnd") Long id) {
 
         ModelAndView mv = new ModelAndView("/cliente/endereco/formEditar");
@@ -82,8 +82,8 @@ public class EnderecoController {
         return mv;
     }
 
-    @PostMapping("/{id}/enderecos/editar")
-    public ModelAndView editaEndereco(@Valid EnderecoDTO enderecoDto) {
+    @PostMapping("{id}/enderecos/editar")
+    public ModelAndView editaEndereco(@Valid EnderecoDTO enderecoDto, @PathVariable String id) {
 
         ClienteDTO clienteDto = clienteFacade.atualUsuarioLogado();
 
