@@ -1,6 +1,7 @@
 package br.com.fatec.ChopperHouseGames.inbound.controller;
 
 import br.com.fatec.ChopperHouseGames.inbound.facade.ClienteFacade;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,21 +14,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping("admin")
 public class AdminController {
 
-    private ClienteFacade facade;
+    private final ClienteFacade facade;
 
-    //TODO: IMPLEMENTAR COISAS RELACIONADAS AO ADMIN E AO CLIENTE
+    @Autowired
+    public AdminController(ClienteFacade facade) {
+        this.facade = facade;
+    }
 
-    //    @Autowired
-//    ClienteService clienteService;
-//
-//    @Autowired
-//    ClienteRepository clienteRepository;
-//
-//    @Autowired
-//    EnderecoRepository enderecoRepository;
-//
-//    @Autowired
-//    CartaoCreditoRepository cartaoCreditoRepository;
+    //TODO: IMPLEMENTAR COISAS RELACIONADAS A PEDIDO
 //
 //    Facade facade;
 //    @Autowired
