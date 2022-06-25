@@ -28,7 +28,7 @@ public class EnderecoController {
     }
 
     @GetMapping("{id}/enderecos")
-    public ModelAndView listarEnderecos(@PathVariable("id") ClienteDTO clienteDto) {
+    public ModelAndView listarEnderecos(@PathVariable("id") String clienteDtoId) {
         ModelAndView mv = new ModelAndView("/cliente/listaEnderecos");
         mv.addObject("cliente", clienteFacade.atualUsuarioLogado());
         return mv;

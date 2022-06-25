@@ -1,10 +1,6 @@
 package br.com.fatec.ChopperHouseGames.inbound.controller;
 
-import br.com.fatec.ChopperHouseGames.core.domain.BANDEIRA;
-import br.com.fatec.ChopperHouseGames.core.service.ClienteService;
-import br.com.fatec.ChopperHouseGames.inbound.facade.CartaoFacade;
 import br.com.fatec.ChopperHouseGames.inbound.facade.ClienteFacade;
-import br.com.fatec.ChopperHouseGames.inbound.facade.dto.CartaoCreditoDTO;
 import br.com.fatec.ChopperHouseGames.inbound.facade.dto.ClienteDTO;
 import br.com.fatec.ChopperHouseGames.inbound.facade.dto.SenhaDTO;
 import br.com.fatec.ChopperHouseGames.inbound.validator.ClienteValidator;
@@ -13,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 

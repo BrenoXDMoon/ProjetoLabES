@@ -7,7 +7,7 @@ import org.mapstruct.Mapping;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = {CartaoCreditoMapper.class, EnderecoMapper.class})
 public interface ClienteMapper {
 
     @Mapping(source = "senha", target = "senha.senha")

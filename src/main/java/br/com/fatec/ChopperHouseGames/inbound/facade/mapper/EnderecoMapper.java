@@ -10,8 +10,7 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface EnderecoMapper {
 
-    @Mapping(target = "id", ignore = true)
-    @Mapping(target = "dataCriacao", ignore = true)//TODO: implementar a atribuição da data de criação e cliente
+    @Mapping(target = "dataCriacao", ignore = true)
     @Mapping(target = "cliente", ignore = true)
     @Mapping(source = "cidade", target = "cidade.cidade")
     @Mapping(source = "estado", target = "cidade.estado.estado")

@@ -3,12 +3,15 @@ package br.com.fatec.ChopperHouseGames.inbound.facade.mapper;
 import br.com.fatec.ChopperHouseGames.core.domain.CartaoCredito;
 import br.com.fatec.ChopperHouseGames.inbound.facade.dto.CartaoCreditoDTO;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface CartaoCreditoMapper {
 
+    @Mapping(target = "dataCriacao", ignore = true)
+    @Mapping(target = "cliente", ignore = true)
     CartaoCredito toCartao(CartaoCreditoDTO dto);
 
     CartaoCreditoDTO toCartaoDTO(CartaoCredito cartaoCredito);

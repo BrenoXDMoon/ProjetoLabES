@@ -7,6 +7,7 @@ import lombok.Setter;
 import org.hibernate.validator.constraints.br.CPF;
 
 import javax.validation.constraints.NotEmpty;
+import java.util.List;
 
 @Getter
 @Setter
@@ -37,6 +38,10 @@ public class ClienteDTO extends EntidadeDTO {
     private String confirmaSenha;
 
     private TipoCliente tipoCliente;
+
+    private List<CartaoCreditoDTO> cartoes;
+
+    private List<EnderecoDTO> enderecos;
 
     private String roles;
 

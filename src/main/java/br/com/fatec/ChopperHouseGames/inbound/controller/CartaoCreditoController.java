@@ -27,11 +27,9 @@ public class CartaoCreditoController {
     }
 
     @GetMapping("{id}/cartoes")
-    public ModelAndView listarCartoes(@PathVariable("id") String clienteDto) {
-        //TODO: IMPLEMENTAR CHAMADA PARA FACADE
+    public ModelAndView listarCartoes(@PathVariable("id") String clienteDtoId) {
         ModelAndView mv = new ModelAndView("cliente/listaCartoes");
-
-        mv.addObject("cliente", clienteDto);
+        mv.addObject("cliente", clienteFacade.atualUsuarioLogado());
         return mv;
     }
 
