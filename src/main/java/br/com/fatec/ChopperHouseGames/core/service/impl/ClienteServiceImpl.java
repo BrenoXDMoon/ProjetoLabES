@@ -5,6 +5,7 @@ import br.com.fatec.ChopperHouseGames.core.domain.Senha;
 import br.com.fatec.ChopperHouseGames.core.repository.ClienteRepository;
 import br.com.fatec.ChopperHouseGames.core.service.ClienteService;
 import br.com.fatec.ChopperHouseGames.core.service.TipoClienteService;
+
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
@@ -51,8 +52,9 @@ public class ClienteServiceImpl implements ClienteService {
     }
 
     @Override
-    public Cliente buscarPorEmail(String email) {
-        return repository.findByEmail(email).get();
+    public Optional<Cliente> buscarPorEmail(String email) {
+        return repository.findByEmail(email);
+
     }
 
     @Override
@@ -61,24 +63,23 @@ public class ClienteServiceImpl implements ClienteService {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String email;
 
-        if(principal != null){
+        if (principal != null) {
             if (principal instanceof UserDetails) {
                 email = ((UserDetails) principal).getUsername();
-                Cliente cliente = this.buscarPorEmail(email);
-                return cliente;
+                return this.buscarPorEmail(email).orElse(new Cliente());
             }
         }
         return null;
     }
 
     @Override
-    public boolean usuarioEstaLogado(Integer id) {
+    public boolean usuarioEstaLogado(Long id) {
         return this.atualUsuarioLogado().getId().equals(id);
     }
 
     @Override
-    public Optional<Cliente> buscarPorId(Integer id) {
-        return repository.findById(id);
+    public Cliente buscarPorId(Long id) {
+        return repository.findById(id).orElse(new Cliente());
     }
 
     @Override
@@ -88,14 +89,11 @@ public class ClienteServiceImpl implements ClienteService {
     }
 
     @Override
-    public Cliente ativaInativa(Integer id) {
+    public Cliente ativaInativa(Long id) {
 
-        Cliente cliente = buscarPorId(id).orElse(new Cliente());
-
-        if(cliente.isAtivo()){
-            cliente.setAtivo(false);
-        }else{
-            cliente.setAtivo(true);
+        Cliente cliente = buscarPorId(id);
+        if (cliente.getId() != null) {
+            cliente.setAtivo(!cliente.isAtivo());
         }
 
         return editar(cliente);

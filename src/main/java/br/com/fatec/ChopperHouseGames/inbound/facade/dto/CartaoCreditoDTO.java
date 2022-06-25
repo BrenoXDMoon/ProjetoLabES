@@ -25,16 +25,4 @@ public class CartaoCreditoDTO extends EntidadeDTO{
 
     @NotBlank(message = "O CVV do cartão não pode ser vazio")
     private String codigoSeguranca;
-
-    public CartaoCredito toCartao(){
-
-        CartaoCredito cartao = new CartaoCredito();
-        cartao.setNumeroCartao(this.numeroCartao);
-        cartao.setBandeira(this.bandeira);
-        cartao.setNomeImpresso(this.nomeImpresso);
-        cartao.setValidade(this.validade);
-        cartao.setCodigoSeguranca(this.codigoSeguranca);
-
-        return cartao;
-    }
 }

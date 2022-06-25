@@ -23,8 +23,8 @@ public class CartaoServiceImpl implements CartaoService {
     }
 
     @Override
-    public CartaoCredito buscarPorId(Integer id) {
-        return repository.findById(id).get();
+    public CartaoCredito buscarPorId(Long id) {
+        return repository.findById(id).orElse(new CartaoCredito());
     }
 
 
@@ -45,7 +45,7 @@ public class CartaoServiceImpl implements CartaoService {
     }
 
     @Override
-    public Cliente excluir(Integer id) {
+    public Cliente excluir(Long id) {
 
         repository.delete(buscarPorId(id));
 

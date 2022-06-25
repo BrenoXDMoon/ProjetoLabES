@@ -1,12 +1,11 @@
 package br.com.fatec.ChopperHouseGames.inbound.facade.impl;
 
-
+import br.com.fatec.ChopperHouseGames.core.domain.Cliente;
 import br.com.fatec.ChopperHouseGames.core.service.ClienteService;
 import br.com.fatec.ChopperHouseGames.inbound.facade.ClienteFacade;
 import br.com.fatec.ChopperHouseGames.inbound.facade.dto.ClienteDTO;
 import br.com.fatec.ChopperHouseGames.inbound.facade.dto.SenhaDTO;
 import br.com.fatec.ChopperHouseGames.inbound.facade.mapper.ClienteMapper;
-import br.com.fatec.ChopperHouseGames.inbound.facade.mapper.ResultadoMapper;
 import br.com.fatec.ChopperHouseGames.inbound.facade.mapper.SenhaMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -18,20 +17,19 @@ import java.util.Optional;
 public class ClienteFacadeImpl implements ClienteFacade {
 
     private final ClienteMapper mapper;
-    private final ResultadoMapper resultadoMapper;
     private final ClienteService service;
-    private SenhaMapper senhaMapper;
+    private final SenhaMapper senhaMapper;
 
     @Autowired
-    public ClienteFacadeImpl(ClienteMapper mapper, ResultadoMapper resultadoMapper, ClienteService service) {
+    public ClienteFacadeImpl(ClienteMapper mapper, ClienteService service, SenhaMapper senhaMapper) {
         this.mapper = mapper;
-        this.resultadoMapper = resultadoMapper;
         this.service = service;
+        this.senhaMapper = senhaMapper;
     }
 
     @Override
     public ClienteDTO salvar(ClienteDTO dto) {
-        return null;
+        return mapper.toClienteDTO(service.salvar(mapper.toCliente(dto)));
     }
 
     @Override
@@ -45,9 +43,9 @@ public class ClienteFacadeImpl implements ClienteFacade {
     }
 
     @Override
-    public ClienteDTO ativaInativa(Integer id) {
+    public void ativaInativa(Long id) {
 
-        return mapper.toClienteDTO(service.ativaInativa(id));
+        mapper.toClienteDTO(service.ativaInativa(id));
     }
 
     @Override
@@ -56,13 +54,13 @@ public class ClienteFacadeImpl implements ClienteFacade {
     }
 
     @Override
-    public Optional<ClienteDTO> buscarPorId(Integer id) {
-        return Optional.of(mapper.toClienteDTO(service.buscarPorId(id).get()));
+    public ClienteDTO buscarPorId(Long id) {
+        return mapper.toClienteDTO(service.buscarPorId(id));
     }
 
     @Override
     public Optional<ClienteDTO> buscarPorEmail(String email) {
-        return Optional.of(mapper.toClienteDTO(service.buscarPorEmail(email)));
+        return Optional.of(mapper.toClienteDTO(service.buscarPorEmail(email).orElse(null)));
     }
 
     @Override
@@ -71,7 +69,7 @@ public class ClienteFacadeImpl implements ClienteFacade {
     }
 
     @Override
-    public Boolean usuarioEstaLogado(Integer id) {
+    public Boolean usuarioEstaLogado(Long id) {
         return service.usuarioEstaLogado(id);
     }
 

@@ -16,15 +16,15 @@ public interface ClienteService {
 
     List<Cliente> listar();
 
-    Cliente buscarPorEmail(String email);
+    Optional<Cliente> buscarPorEmail(String email);
 
     Cliente atualUsuarioLogado();
 
-    boolean usuarioEstaLogado(Integer id);
+    boolean usuarioEstaLogado(Long id);
 
-    Optional<Cliente> buscarPorId(Integer id);
+    Cliente buscarPorId(Long id);
 
     Cliente editarSenha(Cliente cliente, Senha senha);
 
-    Cliente ativaInativa(Integer id);
+    Cliente ativaInativa(Long id);
 }

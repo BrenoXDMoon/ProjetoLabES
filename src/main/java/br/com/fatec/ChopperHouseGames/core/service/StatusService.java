@@ -4,7 +4,7 @@ import br.com.fatec.ChopperHouseGames.core.domain.Status;
 
 import java.util.List;
 
-public interface IStatusService {
+public interface StatusService {
 
     List<Status> listarTodos();
 

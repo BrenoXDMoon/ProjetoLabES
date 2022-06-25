@@ -6,7 +6,7 @@ import br.com.fatec.ChopperHouseGames.core.domain.Item;
 import br.com.fatec.ChopperHouseGames.core.domain.Jogo;
 import br.com.fatec.ChopperHouseGames.core.repository.ClienteRepository;
 import br.com.fatec.ChopperHouseGames.core.repository.JogoRepository;
-import br.com.fatec.ChopperHouseGames.core.service.ICarrinhoService;
+import br.com.fatec.ChopperHouseGames.core.service.CarrinhoService;
 import br.com.fatec.ChopperHouseGames.core.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,16 +15,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class CarrinhoService implements ICarrinhoService {
+public class CarrinhoServiceImpl implements CarrinhoService {
 
-    @Autowired
-    ClienteRepository clienteRepository;
+    private final ClienteRepository clienteRepository;
 
-    @Autowired
-    JogoRepository jogoRepository;
+    private final JogoRepository jogoRepository;
 
-    @Autowired
-    ClienteService clienteService;
+    private final ClienteService clienteService;
+
+    public CarrinhoServiceImpl(ClienteRepository clienteRepository, JogoRepository jogoRepository, ClienteService clienteService) {
+        this.clienteRepository = clienteRepository;
+        this.jogoRepository = jogoRepository;
+        this.clienteService = clienteService;
+    }
 
     @Override
     public void adicionarItemCarrinho(Cliente cliente, Integer idJogo, Integer quantidade) {
