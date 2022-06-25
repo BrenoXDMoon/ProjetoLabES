@@ -5,7 +5,6 @@ import br.com.fatec.ChopperHouseGames.core.domain.Cliente;
 import br.com.fatec.ChopperHouseGames.core.repository.CartaoCreditoRepository;
 import br.com.fatec.ChopperHouseGames.core.service.CartaoService;
 import br.com.fatec.ChopperHouseGames.core.service.ClienteService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -30,33 +29,23 @@ public class CartaoServiceImpl implements CartaoService {
 
     @Override
     public List<CartaoCredito> listar() {
-
         return repository.findAll();
     }
 
     @Override
-    public Cliente salvar(Cliente cliente, CartaoCredito cartao) {
-
-        cliente = clienteService.atualUsuarioLogado();
-        cartao.setCliente(cliente);
-        cliente.getCartoes().add(cartao);
-
-        return null;
+    public CartaoCredito salvar(CartaoCredito cartao) {
+        cartao.setCliente(clienteService.atualUsuarioLogado());
+        return repository.saveAndFlush(cartao);
     }
 
     @Override
-    public Cliente excluir(Long id) {
-
+    public void excluir(Long id) {
         repository.delete(buscarPorId(id));
-
-        return clienteService.atualUsuarioLogado();
     }
 
     @Override
-    public Cliente editar(CartaoCredito cartao) {
-        Cliente cliente = clienteService.atualUsuarioLogado();
-        cartao.setCliente(cliente);
-        repository.saveAndFlush(cartao);
-        return cliente;
+    public CartaoCredito editar(CartaoCredito cartao) {
+        cartao.setCliente(clienteService.atualUsuarioLogado());
+        return repository.saveAndFlush(cartao);
     }
 }

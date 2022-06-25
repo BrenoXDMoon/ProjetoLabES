@@ -3,7 +3,6 @@ package br.com.fatec.ChopperHouseGames.inbound.facade.impl;
 import br.com.fatec.ChopperHouseGames.core.service.CartaoService;
 import br.com.fatec.ChopperHouseGames.inbound.facade.CartaoFacade;
 import br.com.fatec.ChopperHouseGames.inbound.facade.dto.CartaoCreditoDTO;
-import br.com.fatec.ChopperHouseGames.inbound.facade.dto.ClienteDTO;
 import br.com.fatec.ChopperHouseGames.inbound.facade.mapper.CartaoCreditoMapper;
 import br.com.fatec.ChopperHouseGames.inbound.facade.mapper.ClienteMapper;
 import org.springframework.stereotype.Component;
@@ -15,12 +14,10 @@ public class CartaoFacadeImpl implements CartaoFacade {
 
     private final CartaoService service;
     private final CartaoCreditoMapper mapper;
-    private final ClienteMapper clienteMapper;
 
-    public CartaoFacadeImpl(CartaoService service, CartaoCreditoMapper mapper, ClienteMapper clienteMapper) {
+    public CartaoFacadeImpl(CartaoService service, CartaoCreditoMapper mapper) {
         this.service = service;
         this.mapper = mapper;
-        this.clienteMapper = clienteMapper;
     }
 
     @Override
@@ -29,13 +26,13 @@ public class CartaoFacadeImpl implements CartaoFacade {
     }
 
     @Override
-    public ClienteDTO salvar(ClienteDTO clienteDto, CartaoCreditoDTO dto) {
-        return clienteMapper.toClienteDTO(service.salvar(clienteMapper.toCliente(clienteDto), mapper.toCartao(dto)));
+    public CartaoCreditoDTO salvar(CartaoCreditoDTO dto) {
+        return mapper.toCartaoDTO(service.salvar(mapper.toCartao(dto)));
     }
 
     @Override
-    public ClienteDTO excluir(Long id) {
-        return clienteMapper.toClienteDTO(service.excluir(id));
+    public void excluir(Long id) {
+        service.excluir(id);
     }
 
     @Override
@@ -44,7 +41,7 @@ public class CartaoFacadeImpl implements CartaoFacade {
     }
 
     @Override
-    public ClienteDTO editar(CartaoCreditoDTO cartaoDto) {
-        return clienteMapper.toClienteDTO(service.editar(mapper.toCartao(cartaoDto)));
+    public CartaoCreditoDTO editar(CartaoCreditoDTO cartaoDto) {
+        return mapper.toCartaoDTO(service.editar(mapper.toCartao(cartaoDto)));
     }
 }

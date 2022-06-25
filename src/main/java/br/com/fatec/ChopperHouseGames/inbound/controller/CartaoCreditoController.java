@@ -35,20 +35,17 @@ public class CartaoCreditoController {
 
     @GetMapping("{id}/cartoes/novo")
     public ModelAndView formularioNovoCartao(@PathVariable("id") Long clienteDto, CartaoCreditoDTO dto) {
-
-        //TODO: IMPLEMENTAR CHAMADA PARA FACADE
         ModelAndView mv = new ModelAndView("cliente/cartao/form");
-
-        mv.addObject("cliente", clienteDto);
+        mv.addObject("cliente", clienteFacade.atualUsuarioLogado());
         mv.addObject("bandeiras", BANDEIRA.values());
-
+        mv.addObject("cartaoCredito", dto);
         return mv;
     }
 
     @PostMapping("{id}/cartoes/novo")
     public ModelAndView salvaCartao(@PathVariable("id") Long id, @Valid CartaoCreditoDTO dto, BindingResult result, RedirectAttributes attributes) {
         ModelAndView mv = new ModelAndView("cliente/perfil");
-        mv.addObject("cliente", cartaoFacade.salvar(clienteFacade.buscarPorId(clienteFacade.atualUsuarioLogado().getId()), dto));
+        mv.addObject("cliente", cartaoFacade.salvar(dto));
         mv.addObject("mensagem", "Cartao atualizado com sucesso!");
 
         return mv;
@@ -56,12 +53,10 @@ public class CartaoCreditoController {
 
 
     @PostMapping("{id}/cartoes")
-    public ModelAndView excluirCartao(@RequestParam String id, RedirectAttributes attributes) {
-
+    public ModelAndView excluirCartao(@PathVariable String id, RedirectAttributes attributes) {
         ModelAndView mv = new ModelAndView("/cliente/perfil");
-
-        mv.addObject("cliente", cartaoFacade.excluir(Long.parseLong(id)));
-
+        cartaoFacade.excluir(Long.parseLong(id));
+        mv.addObject("cliente", clienteFacade.atualUsuarioLogado());
         mv.addObject("mensagem", "Cartao removido com sucesso!");
 
         return mv;
@@ -69,9 +64,7 @@ public class CartaoCreditoController {
 
     @GetMapping("{id}/cartoes/editar/{idCard}")
     public ModelAndView formularioEditar(@PathVariable("id") Long clienteDTO, @PathVariable("idCard") Long id) {
-
         ModelAndView mv = new ModelAndView("/cliente/cartao/formEditar");
-
         mv.addObject("cliente", clienteDTO);
         mv.addObject("cartao", cartaoFacade.buscarPorId(id));
         mv.addObject("bandeiras", BANDEIRA.values());

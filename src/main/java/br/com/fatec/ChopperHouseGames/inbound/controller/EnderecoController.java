@@ -35,9 +35,9 @@ public class EnderecoController {
     }
 
     @GetMapping("{id}/enderecos/novo")
-    public ModelAndView formularioNovoEndereco(@PathVariable("id") ClienteDTO clienteDto, EnderecoDTO enderecoDto) {
+    public ModelAndView formularioNovoEndereco(@PathVariable("id") String clienteDto, EnderecoDTO enderecoDto) {
         ModelAndView mv = new ModelAndView("cliente/endereco/form");
-        mv.addObject("cliente", clienteDto);
+        mv.addObject("cliente", clienteFacade.atualUsuarioLogado());
         mv.addObject("endereco", enderecoDto);
         mv.addObject("tiposEnd", TIPO_ENDERECO.values());
         return mv;
