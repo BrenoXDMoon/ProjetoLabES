@@ -4,6 +4,6 @@ import br.com.fatec.ChopperHouseGames.core.domain.entity.Editora;
 
 import java.util.List;
 
-public interface IEditoraService {
+public interface EditoraService {
     List<Editora> listar();
 }

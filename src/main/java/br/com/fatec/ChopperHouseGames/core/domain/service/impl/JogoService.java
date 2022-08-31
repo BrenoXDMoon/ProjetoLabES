@@ -2,7 +2,6 @@ package br.com.fatec.ChopperHouseGames.core.domain.service.impl;
 
 import br.com.fatec.ChopperHouseGames.core.domain.entity.Jogo;
 import br.com.fatec.ChopperHouseGames.core.repository.JogoRepository;
-import br.com.fatec.ChopperHouseGames.core.domain.service.IJogoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class JogoService implements IJogoService {
+public class JogoService implements br.com.fatec.ChopperHouseGames.core.domain.service.JogoService {
 
     @Autowired
     JogoRepository repository;

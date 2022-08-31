@@ -1,7 +1,6 @@
 package br.com.fatec.ChopperHouseGames.core.domain.service.impl;
 
 import br.com.fatec.ChopperHouseGames.core.repository.EditoraRepository;
-import br.com.fatec.ChopperHouseGames.core.domain.service.IEditoraService;
 import br.com.fatec.ChopperHouseGames.core.domain.entity.Editora;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class EditoraService implements IEditoraService {
+public class EditoraService implements br.com.fatec.ChopperHouseGames.core.domain.service.EditoraService {
 
     @Autowired
     EditoraRepository repository;

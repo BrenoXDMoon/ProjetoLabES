@@ -4,6 +4,6 @@ import br.com.fatec.ChopperHouseGames.core.domain.entity.Genero;
 
 import java.util.List;
 
-public interface IGeneroService {
+public interface GeneroService {
     List<Genero> listar();
 }

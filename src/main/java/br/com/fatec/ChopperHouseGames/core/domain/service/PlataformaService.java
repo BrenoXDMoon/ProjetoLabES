@@ -4,6 +4,6 @@ import br.com.fatec.ChopperHouseGames.core.domain.entity.Plataforma;
 
 import java.util.List;
 
-public interface IPlataformaService {
+public interface PlataformaService {
     List<Plataforma> listar();
 }

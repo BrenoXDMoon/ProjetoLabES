@@ -2,14 +2,13 @@ package br.com.fatec.ChopperHouseGames.core.domain.service.impl;
 
 import br.com.fatec.ChopperHouseGames.core.domain.entity.Genero;
 import br.com.fatec.ChopperHouseGames.core.repository.GeneroRepository;
-import br.com.fatec.ChopperHouseGames.core.domain.service.IGeneroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class GeneroService implements IGeneroService {
+public class GeneroService implements br.com.fatec.ChopperHouseGames.core.domain.service.GeneroService {
 
     @Autowired
     GeneroRepository repository;

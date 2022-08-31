@@ -4,7 +4,7 @@ import br.com.fatec.ChopperHouseGames.core.domain.entity.Jogo;
 
 import java.util.List;
 
-public interface IJogoService {
+public interface JogoService {
 
     Jogo salvar(Jogo jogo);
     Jogo editar(Jogo jogo);
