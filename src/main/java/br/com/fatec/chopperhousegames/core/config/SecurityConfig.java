@@ -1,8 +1,9 @@
 package br.com.fatec.chopperhousegames.core.config;
 
-import br.com.fatec.chopperhousegames.core.domain.service.impl.UsuarioAcessoImpl;
+import br.com.fatec.chopperhousegames.core.domain.service.UsuarioAcessoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -14,20 +15,21 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
+@ComponentScan(basePackageClasses = UsuarioAcessoService.class)
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    UsuarioAcessoImpl userDetailsService;
+    private final UsuarioAcessoService userDetailsService;
+
 
     @Autowired
-    BCryptPasswordEncoder bCryptPasswordEncoder;
+    public SecurityConfig(UsuarioAcessoService userDetailsService) {
+        this.userDetailsService = userDetailsService;
+    }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-            .userDetailsService(userDetailsService)
-            .passwordEncoder(bCryptPasswordEncoder);
+        auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
     }
 
     @Override
@@ -35,37 +37,37 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.ALWAYS);
 
         http
-            .authorizeRequests()
-                .antMatchers(HttpMethod.GET,"/admin/**")
-                    .permitAll()//.hasRole("ADMIN")
-                .antMatchers(HttpMethod.POST,"/admin/**")
-                    .permitAll()//.hasRole("ADMIN")
-                .antMatchers(HttpMethod.DELETE,"/admin/**")
-                    .permitAll()//.hasRole("ADMIN")
+                .authorizeRequests()
+                .antMatchers(HttpMethod.GET, "/admin/**")
+                .permitAll()//.hasRole("ADMIN")
+                .antMatchers(HttpMethod.POST, "/admin/**")
+                .permitAll()//.hasRole("ADMIN")
+                .antMatchers(HttpMethod.DELETE, "/admin/**")
+                .permitAll()//.hasRole("ADMIN")
 //                .antMatchers(HttpMethod.GET,"/cliente/novo")
 //                    .permitAll()
 //
 //                .antMatchers(HttpMethod.POST,"/cliente/novo")
 //                    .permitAll()
-                .antMatchers(HttpMethod.GET,"/cliente/**")
+                .antMatchers(HttpMethod.GET, "/cliente/**")
                 .permitAll()//.hasAnyRole("ADMIN","CLIENTE")
 
-                .antMatchers(HttpMethod.POST,"/cliente/**")
+                .antMatchers(HttpMethod.POST, "/cliente/**")
                 .permitAll()//.hasAnyRole("ADMIN","CLIENTE")
 
-                .antMatchers(HttpMethod.DELETE,"/cliente/**")
+                .antMatchers(HttpMethod.DELETE, "/cliente/**")
                 .permitAll()//.hasAnyRole("ADMIN","CLIENTE")
 
-                .antMatchers(HttpMethod.GET,"/")
-                    .permitAll()
+                .antMatchers(HttpMethod.GET, "/")
+                .permitAll()
                 .and()
                 .formLogin()
-                    .loginPage("/login").permitAll()
-                        .defaultSuccessUrl("/", true)
-                        .failureUrl("/login")
-                    .and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .loginPage("/login").permitAll()
+                .defaultSuccessUrl("/", true)
+                .failureUrl("/login")
+                .and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .permitAll()
-                    .and().cors().and().csrf().disable();
+                .and().cors().and().csrf().disable();
     }
 
     @Bean
