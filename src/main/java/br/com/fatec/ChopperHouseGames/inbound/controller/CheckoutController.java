@@ -1,14 +1,10 @@
 package br.com.fatec.ChopperHouseGames.inbound.controller;
 
-import br.com.fatec.ChopperHouseGames.core.domain.BANDEIRA;
-import br.com.fatec.ChopperHouseGames.core.domain.Endereco;
-import br.com.fatec.ChopperHouseGames.core.domain.TIPO_ENDERECO;
-import br.com.fatec.ChopperHouseGames.core.service.PedidoService;
+import br.com.fatec.ChopperHouseGames.core.domain.entity.BANDEIRA;
 import br.com.fatec.ChopperHouseGames.inbound.facade.CartaoFacade;
 import br.com.fatec.ChopperHouseGames.inbound.facade.EnderecoFacade;
 import br.com.fatec.ChopperHouseGames.inbound.facade.dto.CartaoCreditoDTO;
 import br.com.fatec.ChopperHouseGames.inbound.facade.dto.ClienteDTO;
-import br.com.fatec.ChopperHouseGames.inbound.facade.dto.EnderecoDTO;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;

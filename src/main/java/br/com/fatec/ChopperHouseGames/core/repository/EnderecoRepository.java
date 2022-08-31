@@ -1,6 +1,6 @@
 package br.com.fatec.ChopperHouseGames.core.repository;
 
-import br.com.fatec.ChopperHouseGames.core.domain.Endereco;
+import br.com.fatec.ChopperHouseGames.core.domain.entity.Endereco;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

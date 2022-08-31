@@ -1,7 +1,6 @@
 package br.com.fatec.ChopperHouseGames.inbound.facade.dto;
 
-import br.com.fatec.ChopperHouseGames.core.domain.TipoCliente;
-import lombok.Data;
+import br.com.fatec.ChopperHouseGames.core.domain.entity.TipoCliente;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.br.CPF;

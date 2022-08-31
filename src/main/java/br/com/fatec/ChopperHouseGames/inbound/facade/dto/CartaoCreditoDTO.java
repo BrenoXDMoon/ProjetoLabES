@@ -1,7 +1,6 @@
 package br.com.fatec.ChopperHouseGames.inbound.facade.dto;
 
-import br.com.fatec.ChopperHouseGames.core.domain.BANDEIRA;
-import br.com.fatec.ChopperHouseGames.core.domain.CartaoCredito;
+import br.com.fatec.ChopperHouseGames.core.domain.entity.BANDEIRA;
 import lombok.Data;
 
 import javax.persistence.EnumType;

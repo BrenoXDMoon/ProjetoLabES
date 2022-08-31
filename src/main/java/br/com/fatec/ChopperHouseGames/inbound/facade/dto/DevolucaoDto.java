@@ -1,7 +1,7 @@
 package br.com.fatec.ChopperHouseGames.inbound.facade.dto;
 
-import br.com.fatec.ChopperHouseGames.core.domain.Pedido;
-import br.com.fatec.ChopperHouseGames.core.domain.StatusDevolucao;
+import br.com.fatec.ChopperHouseGames.core.domain.entity.Pedido;
+import br.com.fatec.ChopperHouseGames.core.domain.entity.StatusDevolucao;
 import lombok.Data;
 
 import javax.persistence.CascadeType;

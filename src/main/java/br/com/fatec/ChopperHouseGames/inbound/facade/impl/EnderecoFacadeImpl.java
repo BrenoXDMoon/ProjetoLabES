@@ -1,13 +1,11 @@
 package br.com.fatec.ChopperHouseGames.inbound.facade.impl;
 
-import br.com.fatec.ChopperHouseGames.core.service.EnderecoService;
+import br.com.fatec.ChopperHouseGames.core.domain.service.EnderecoService;
 import br.com.fatec.ChopperHouseGames.inbound.facade.EnderecoFacade;
 import br.com.fatec.ChopperHouseGames.inbound.facade.dto.ClienteDTO;
 import br.com.fatec.ChopperHouseGames.inbound.facade.dto.EnderecoDTO;
 import br.com.fatec.ChopperHouseGames.inbound.facade.mapper.EnderecoMapper;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
 
 @Component
 public class EnderecoFacadeImpl implements EnderecoFacade {

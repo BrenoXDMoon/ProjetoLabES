@@ -1,6 +1,5 @@
 package br.com.fatec.ChopperHouseGames.inbound.facade.dto;
 
-import br.com.fatec.ChopperHouseGames.core.domain.Cliente;
 import lombok.Data;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 

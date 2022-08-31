@@ -1,6 +1,6 @@
 package br.com.fatec.ChopperHouseGames.inbound.facade.mapper;
 
-import br.com.fatec.ChopperHouseGames.core.domain.Cliente;
+import br.com.fatec.ChopperHouseGames.core.domain.entity.Cliente;
 import br.com.fatec.ChopperHouseGames.inbound.facade.dto.ClienteDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

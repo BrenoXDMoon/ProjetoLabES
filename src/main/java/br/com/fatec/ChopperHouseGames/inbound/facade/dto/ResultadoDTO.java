@@ -1,6 +1,6 @@
 package br.com.fatec.ChopperHouseGames.inbound.facade.dto;
 
-import br.com.fatec.ChopperHouseGames.core.domain.EntidadeDominio;
+import br.com.fatec.ChopperHouseGames.core.domain.entity.EntidadeDominio;
 
 import java.util.ArrayList;
 import java.util.List;

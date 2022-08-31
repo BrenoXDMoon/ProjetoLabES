@@ -1,6 +1,6 @@
 package br.com.fatec.ChopperHouseGames.inbound.controller;
 
-import br.com.fatec.ChopperHouseGames.core.domain.BANDEIRA;
+import br.com.fatec.ChopperHouseGames.core.domain.entity.BANDEIRA;
 import br.com.fatec.ChopperHouseGames.inbound.facade.CartaoFacade;
 import br.com.fatec.ChopperHouseGames.inbound.facade.ClienteFacade;
 import br.com.fatec.ChopperHouseGames.inbound.facade.dto.CartaoCreditoDTO;

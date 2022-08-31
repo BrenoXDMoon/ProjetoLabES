@@ -1,6 +1,6 @@
 package br.com.fatec.ChopperHouseGames.inbound.facade.mapper;
 
-import br.com.fatec.ChopperHouseGames.core.domain.Senha;
+import br.com.fatec.ChopperHouseGames.core.domain.entity.Senha;
 import br.com.fatec.ChopperHouseGames.inbound.facade.dto.SenhaDTO;
 import org.mapstruct.Mapper;
 

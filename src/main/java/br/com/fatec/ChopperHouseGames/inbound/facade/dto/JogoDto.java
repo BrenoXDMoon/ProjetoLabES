@@ -1,6 +1,6 @@
 package br.com.fatec.ChopperHouseGames.inbound.facade.dto;
 
-import br.com.fatec.ChopperHouseGames.core.domain.*;
+import br.com.fatec.ChopperHouseGames.core.domain.entity.*;
 import lombok.Data;
 
 import javax.validation.constraints.Min;

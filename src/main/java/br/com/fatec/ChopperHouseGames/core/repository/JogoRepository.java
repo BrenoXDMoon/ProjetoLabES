@@ -1,6 +1,6 @@
 package br.com.fatec.ChopperHouseGames.core.repository;
 
-import br.com.fatec.ChopperHouseGames.core.domain.Jogo;
+import br.com.fatec.ChopperHouseGames.core.domain.entity.Jogo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

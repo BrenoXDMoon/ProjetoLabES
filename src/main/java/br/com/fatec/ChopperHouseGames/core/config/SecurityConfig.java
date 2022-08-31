@@ -1,6 +1,6 @@
 package br.com.fatec.ChopperHouseGames.core.config;
 
-import br.com.fatec.ChopperHouseGames.core.service.impl.UsuarioAcessoImpl;
+import br.com.fatec.ChopperHouseGames.core.domain.service.impl.UsuarioAcessoImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

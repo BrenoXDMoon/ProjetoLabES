@@ -1,10 +1,9 @@
 package br.com.fatec.ChopperHouseGames.inbound.facade.impl;
 
-import br.com.fatec.ChopperHouseGames.core.service.CartaoService;
+import br.com.fatec.ChopperHouseGames.core.domain.service.CartaoService;
 import br.com.fatec.ChopperHouseGames.inbound.facade.CartaoFacade;
 import br.com.fatec.ChopperHouseGames.inbound.facade.dto.CartaoCreditoDTO;
 import br.com.fatec.ChopperHouseGames.inbound.facade.mapper.CartaoCreditoMapper;
-import br.com.fatec.ChopperHouseGames.inbound.facade.mapper.ClienteMapper;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

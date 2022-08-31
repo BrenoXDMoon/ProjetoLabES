@@ -1,7 +1,6 @@
 package br.com.fatec.ChopperHouseGames.inbound.facade.impl;
 
-import br.com.fatec.ChopperHouseGames.core.domain.Cliente;
-import br.com.fatec.ChopperHouseGames.core.service.ClienteService;
+import br.com.fatec.ChopperHouseGames.core.domain.service.ClienteService;
 import br.com.fatec.ChopperHouseGames.inbound.facade.ClienteFacade;
 import br.com.fatec.ChopperHouseGames.inbound.facade.dto.ClienteDTO;
 import br.com.fatec.ChopperHouseGames.inbound.facade.dto.SenhaDTO;

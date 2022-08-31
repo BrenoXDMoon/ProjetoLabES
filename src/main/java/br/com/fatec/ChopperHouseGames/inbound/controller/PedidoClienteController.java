@@ -1,10 +1,10 @@
 package br.com.fatec.ChopperHouseGames.inbound.controller;
 
-import br.com.fatec.ChopperHouseGames.core.domain.Cliente;
-import br.com.fatec.ChopperHouseGames.core.domain.Pedido;
-import br.com.fatec.ChopperHouseGames.core.service.ClienteService;
-import br.com.fatec.ChopperHouseGames.core.service.PedidoService;
-import br.com.fatec.ChopperHouseGames.core.service.StatusService;
+import br.com.fatec.ChopperHouseGames.core.domain.entity.Cliente;
+import br.com.fatec.ChopperHouseGames.core.domain.entity.Pedido;
+import br.com.fatec.ChopperHouseGames.core.domain.service.ClienteService;
+import br.com.fatec.ChopperHouseGames.core.domain.service.PedidoService;
+import br.com.fatec.ChopperHouseGames.core.domain.service.StatusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

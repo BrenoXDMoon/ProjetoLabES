@@ -1,6 +1,6 @@
 package br.com.fatec.ChopperHouseGames.inbound.facade.mapper;
 
-import br.com.fatec.ChopperHouseGames.core.domain.Endereco;
+import br.com.fatec.ChopperHouseGames.core.domain.entity.Endereco;
 import br.com.fatec.ChopperHouseGames.inbound.facade.dto.EnderecoDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

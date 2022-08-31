@@ -1,15 +1,10 @@
 package br.com.fatec.ChopperHouseGames.core.service.impl;
 
-import br.com.fatec.ChopperHouseGames.core.domain.Cliente;
+import br.com.fatec.ChopperHouseGames.core.domain.service.impl.ClienteServiceImpl;
 import br.com.fatec.ChopperHouseGames.core.repository.ClienteRepository;
-import br.com.fatec.ChopperHouseGames.core.service.TipoClienteService;
-import org.junit.jupiter.api.Test;
+import br.com.fatec.ChopperHouseGames.core.domain.service.TipoClienteService;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-
-import java.util.ArrayList;
-import java.util.List;
 
 class ClienteServiceImplTest {
 
