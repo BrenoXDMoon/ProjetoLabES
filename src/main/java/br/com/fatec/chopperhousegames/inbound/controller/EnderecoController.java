@@ -21,6 +21,10 @@ public class EnderecoController {
     private final EnderecoFacade enderecoFacade;
     private final ClienteFacade clienteFacade;
 
+    private static final String CLIENTE = "cliente";
+
+    private static final String MENSAGEM = "mensagem";
+
     @Autowired
     public EnderecoController(EnderecoFacade enderecoFacade, ClienteFacade clienteFacade) {
         this.enderecoFacade = enderecoFacade;
@@ -30,14 +34,14 @@ public class EnderecoController {
     @GetMapping("{id}/enderecos")
     public ModelAndView listarEnderecos(@PathVariable("id") String clienteDtoId) {
         ModelAndView mv = new ModelAndView("/cliente/listaEnderecos");
-        mv.addObject("cliente", clienteFacade.atualUsuarioLogado());
+        mv.addObject(CLIENTE, clienteFacade.atualUsuarioLogado());
         return mv;
     }
 
     @GetMapping("{id}/enderecos/novo")
     public ModelAndView formularioNovoEndereco(@PathVariable("id") String clienteDto, EnderecoDTO enderecoDto) {
         ModelAndView mv = new ModelAndView("cliente/endereco/form");
-        mv.addObject("cliente", clienteFacade.atualUsuarioLogado());
+        mv.addObject(CLIENTE, clienteFacade.atualUsuarioLogado());
         mv.addObject("endereco", enderecoDto);
         mv.addObject("tiposEnd", TIPO_ENDERECO.values());
         return mv;
@@ -48,11 +52,9 @@ public class EnderecoController {
         ModelAndView mv = new ModelAndView();
 
         enderecoFacade.salvar(clienteFacade.atualUsuarioLogado(), enderecoDto);
-        mv.addObject("cliente", clienteDto);
-
+        mv.addObject(CLIENTE, clienteDto);
         mv.setViewName("/cliente/listaEnderecos");
-
-        mv.addObject("mensagem", "Endereco criado com sucesso!");
+        mv.addObject(MENSAGEM, "Endereco criado com sucesso!");
 
         return mv;
     }
@@ -63,9 +65,8 @@ public class EnderecoController {
         ModelAndView mv = new ModelAndView("/cliente/perfil");
         enderecoFacade.excluir(id);
 
-        mv.addObject("cliente", clienteFacade.atualUsuarioLogado());
-
-        mv.addObject("mensagem", "Endereco removido com sucesso!");
+        mv.addObject(CLIENTE, clienteFacade.atualUsuarioLogado());
+        mv.addObject(MENSAGEM, "Endereco removido com sucesso!");
 
         return mv;
     }
@@ -76,7 +77,7 @@ public class EnderecoController {
         ModelAndView mv = new ModelAndView("/cliente/endereco/formEditar");
 
         mv.addObject("endereco", enderecoFacade.buscarPorId(id));
-        mv.addObject("cliente", clienteFacade.atualUsuarioLogado());
+        mv.addObject(CLIENTE, clienteFacade.atualUsuarioLogado());
         mv.addObject("tiposEnd", TIPO_ENDERECO.values());
 
         return mv;
@@ -90,9 +91,9 @@ public class EnderecoController {
         enderecoFacade.editar(clienteDto, enderecoDto);
 
         ModelAndView mv = new ModelAndView("/cliente/perfil");
-        mv.addObject("cliente", clienteDto);
+        mv.addObject(CLIENTE, clienteDto);
 
-        mv.addObject("mensagem", "Endereco atualizado com sucesso!");
+        mv.addObject(MENSAGEM, "Endereco atualizado com sucesso!");
 
         return mv;
     }
