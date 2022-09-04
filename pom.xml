@@ -14,7 +14,7 @@
 	<name>ChopperHouseGames</name>
 	<description>Trabalho de Conclusão de Curso para Fatec Mogi das Cruzes, com o tema de Ecommerce de Jogos de Mídia Física</description>
 	<properties>
-		<java.version>11</java.version>
+		<java.version>17</java.version>
 		<org.mapstruct.version>1.5.0.Beta2</org.mapstruct.version>
 		<org.mockito.version>2.20.0</org.mockito.version>
 	</properties>
