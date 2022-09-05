@@ -4,9 +4,11 @@ import br.com.fatec.chopperhousegames.core.domain.service.IdiomaService;
 import br.com.fatec.chopperhousegames.inbound.facade.IdiomaFacade;
 import br.com.fatec.chopperhousegames.inbound.facade.dto.IdiomaDTO;
 import br.com.fatec.chopperhousegames.inbound.facade.mapper.IdiomaMapper;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class IdiomaFacadeImpl implements IdiomaFacade {
 
 

@@ -21,7 +21,7 @@ public class JogoController {
     private final GeneroFacade generoFacade;
 
     private final IdiomaFacade idiomaFacade;
-    private PlataformaFacade plataformaFacade;
+    private final PlataformaFacade plataformaFacade;
     private final EditoraFacade editoraFacade;
     private final ClienteFacade clienteFacade;
 
