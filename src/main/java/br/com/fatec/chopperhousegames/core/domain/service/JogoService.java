@@ -12,5 +12,5 @@ public interface JogoService {
     Jogo ativar(Jogo jogo);
     List<Jogo> listar();
     List<Jogo> listarAtivos();
-    Jogo buscarById(Integer id);
+    Jogo buscarById(Long id);
 }

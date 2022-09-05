@@ -1,6 +1,7 @@
 package br.com.fatec.chopperhousegames.inbound.controller;
 
 import br.com.fatec.chopperhousegames.inbound.facade.*;
+import br.com.fatec.chopperhousegames.inbound.facade.dto.ClienteDTO;
 import br.com.fatec.chopperhousegames.inbound.facade.dto.JogoDTO;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -22,13 +23,15 @@ public class JogoController {
     private final IdiomaFacade idiomaFacade;
     private PlataformaFacade plataformaFacade;
     private final EditoraFacade editoraFacade;
+    private final ClienteFacade clienteFacade;
 
-    public JogoController(JogoFacade jogoFacade, GeneroFacade generoFacade, IdiomaFacade idiomaFacade, PlataformaFacade plataformaFacade, EditoraFacade editoraFacade) {
+    public JogoController(JogoFacade jogoFacade, GeneroFacade generoFacade, IdiomaFacade idiomaFacade, PlataformaFacade plataformaFacade, EditoraFacade editoraFacade, ClienteFacade clienteFacade) {
         this.jogoFacade = jogoFacade;
         this.generoFacade = generoFacade;
         this.idiomaFacade = idiomaFacade;
         this.plataformaFacade = plataformaFacade;
         this.editoraFacade = editoraFacade;
+        this.clienteFacade = clienteFacade;
     }
 
     //TODO: refatorar controller de jogo para usar facade
@@ -74,7 +77,7 @@ public class JogoController {
     }
 
     @GetMapping("admin/jogos/editar/{id}")
-    public ModelAndView fomularioEditarJogo(@PathVariable("id") Integer id, ModelAndView mv){
+    public ModelAndView fomularioEditarJogo(@PathVariable("id") Long id, ModelAndView mv){
         if(mv == null){
             mv = new ModelAndView();
         }
@@ -100,25 +103,25 @@ public class JogoController {
         mv.setViewName("admin/jogo/lista");
         return mv;
     }
-//
-//    @GetMapping("jogo/detalhe/{id}")
-//    public ModelAndView detalheJogo(@PathVariable Jogo id){
-//
-//        ModelAndView mv = new ModelAndView("jogo/detalhe");
-//
-//        Jogo jogo = service.buscarById(id.getId());
-//
-//        Cliente cliente = clienteService.atualUsuarioLogado();
-//
-//        if(cliente != null){
-//            mv.addObject("cliente", cliente);
-//        }
-//
-//        mv.addObject("jogo", jogo);
-//
-//        return mv;
-//    }
-//
+
+    @GetMapping("jogo/detalhe/{id}")
+    public ModelAndView detalheJogo(@PathVariable("id") JogoDTO jogo){
+
+        ModelAndView mv = new ModelAndView("jogo/detalhe");
+
+        jogo = jogoFacade.buscarById(jogo.getId());
+
+        ClienteDTO cliente = clienteFacade.atualUsuarioLogado();
+
+        if(cliente != null){
+            mv.addObject("cliente", cliente);
+        }
+
+        mv.addObject("jogo", jogo);
+
+        return mv;
+    }
+
 //    @PostMapping("admin/jogos/desativar/{id}")
 //    public ModelAndView desativarJogo(@PathVariable("id") Jogo jogo){
 //

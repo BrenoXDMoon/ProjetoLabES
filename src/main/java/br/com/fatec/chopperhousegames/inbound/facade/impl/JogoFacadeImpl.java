@@ -33,7 +33,7 @@ public class JogoFacadeImpl implements JogoFacade {
     }
 
     @Override
-    public JogoDTO buscarById(Integer id) {
+    public JogoDTO buscarById(Long id) {
         return mapper.toJogoDTO(jogoService.buscarById(id));
     }
 

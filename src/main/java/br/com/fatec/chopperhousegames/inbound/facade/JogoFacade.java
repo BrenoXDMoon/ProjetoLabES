@@ -9,7 +9,7 @@ public interface JogoFacade {
 
     void salvarJogo(JogoDTO toJogo);
 
-    JogoDTO buscarById(Integer id);
+    JogoDTO buscarById(Long id);
 
     void editar(JogoDTO jogoDto);
 }
