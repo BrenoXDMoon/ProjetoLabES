@@ -1,11 +1,11 @@
 package br.com.fatec.chopperhousegames.core.domain.service.impl;
 
 import br.com.fatec.chopperhousegames.core.domain.entity.*;
-import br.com.fatec.chopperhousegames.core.repository.*;
 import br.com.fatec.chopperhousegames.core.domain.service.PedidoService;
-import br.com.fatec.chopperhousegames.inbound.facade.dto.ChartDto;
-import br.com.fatec.chopperhousegames.inbound.facade.dto.DataSetDto;
-import br.com.fatec.chopperhousegames.inbound.facade.dto.GraficoDto;
+import br.com.fatec.chopperhousegames.core.repository.*;
+import br.com.fatec.chopperhousegames.inbound.facade.dto.ChartDTO;
+import br.com.fatec.chopperhousegames.inbound.facade.dto.DataSetDTO;
+import br.com.fatec.chopperhousegames.inbound.facade.dto.GraficoDTO;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
@@ -24,23 +24,17 @@ public class PedidoServiceImpl implements PedidoService {
 
     private final StatusRepository statusRepository;
 
-    private final CartaoCreditoRepository cartaoRepository;
-
     private final ClienteRepository clienteRepository;
-
-    private final CupomRepository cupomRepository;
 
     private final JogoRepository jogoRepository;
 
     private final GeneroRepository generoRepository;
     private final TipoCupomRepository tipoCupomRepository;
 
-    public PedidoServiceImpl(PedidoRepository repository, StatusRepository statusRepository, CartaoCreditoRepository cartaoRepository, ClienteRepository clienteRepository, CupomRepository cupomRepository, JogoRepository jogoRepository, GeneroRepository generoRepository, TipoCupomRepository tipoCupomRepository) {
+    public PedidoServiceImpl(PedidoRepository repository, StatusRepository statusRepository, ClienteRepository clienteRepository, JogoRepository jogoRepository, GeneroRepository generoRepository, TipoCupomRepository tipoCupomRepository) {
         this.repository = repository;
         this.statusRepository = statusRepository;
-        this.cartaoRepository = cartaoRepository;
         this.clienteRepository = clienteRepository;
-        this.cupomRepository = cupomRepository;
         this.jogoRepository = jogoRepository;
         this.generoRepository = generoRepository;
         this.tipoCupomRepository = tipoCupomRepository;
@@ -78,7 +72,7 @@ public class PedidoServiceImpl implements PedidoService {
     }
 
     @Override
-    public GraficoDto findAllByCreatedAtBetween(Date dateInitial, Date dateFinal, Integer searchType) {
+    public GraficoDTO findAllByCreatedAtBetween(Date dateInitial, Date dateFinal, Integer searchType) {
         return null;
     }
 
@@ -88,7 +82,7 @@ public class PedidoServiceImpl implements PedidoService {
     }
 
     @Override
-    public ChartDto buscarTodosCriadosEntre(Date dataInicial, Date dataFinal, Integer tipoBusca) {
+    public ChartDTO buscarTodosCriadosEntre(Date dataInicial, Date dataFinal, Integer tipoBusca) {
         if (null == tipoBusca){
             tipoBusca = 0;
         }
@@ -112,15 +106,15 @@ public class PedidoServiceImpl implements PedidoService {
 
         List<HashMap<String, Double>> pedidoValor = new ArrayList<>();
 
-        ChartDto chartDTO = new ChartDto();
-        List<DataSetDto> listaDataSet = new ArrayList<>();
+        ChartDTO chartDTO = new ChartDTO();
+        List<DataSetDTO> listaDataSet = new ArrayList<>();
 
         //filtro de jogo
         if (tipoBusca.equals(0)) {
             List<Jogo> jogos = jogoRepository.findAll();
 
             for (Jogo jogo : jogos) {
-                DataSetDto dataSetDTO = new DataSetDto();
+                DataSetDTO dataSetDTO = new DataSetDTO();
                 List<Double> doubleList = new ArrayList<>();
                 dataSetDTO.setLabel(jogo.getTitulo());
 
@@ -142,7 +136,7 @@ public class PedidoServiceImpl implements PedidoService {
         } else {//filtro de genero de jogo
             List<Genero> generos = generoRepository.findAll();
             for (Genero genero : generos) {
-                DataSetDto dataSetDTO = new DataSetDto();
+                DataSetDTO dataSetDTO = new DataSetDTO();
                 List<Double> doubleList = new ArrayList<>();
                 dataSetDTO.setLabel(genero.getNome());
 
@@ -167,7 +161,7 @@ public class PedidoServiceImpl implements PedidoService {
             }
         }
 
-        chartDTO.setLabel(agrupadoPorData.keySet().stream().map(lDate -> lDate.toString()).collect(Collectors.toList()));
+        chartDTO.setLabel(agrupadoPorData.keySet().stream().map(LocalDate::toString).toList());
         chartDTO.setDatasets(listaDataSet);
 
         return chartDTO;
@@ -185,7 +179,7 @@ public class PedidoServiceImpl implements PedidoService {
         Double totalSingleCreditCard = 0d;
         Double totalMultipleCreditCard = 0d;
 
-        totalOrder.put("total das vendas", allOrders.stream().mapToDouble(o -> o.getTotal()).sum());
+        totalOrder.put("total das vendas", allOrders.stream().mapToDouble(Pedido::getTotal).sum());
 
         for (Pedido order : allOrders) {
             if(order.getMetodosPagamento().size() > 1){
@@ -242,7 +236,7 @@ public class PedidoServiceImpl implements PedidoService {
         }
 
         if(!pedido.getCuponsTroca().isEmpty()){
-            Double totalCupom = pedido.getCuponsTroca().stream().mapToDouble(i -> i.getValor()).sum();
+            Double totalCupom = pedido.getCuponsTroca().stream().mapToDouble(Cupom::getValor).sum();
             if(totalCupom > pedido.getTotal()){
                 Cupom cupom = new Cupom();
 

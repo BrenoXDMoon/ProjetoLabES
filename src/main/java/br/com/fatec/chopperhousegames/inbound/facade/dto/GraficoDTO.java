@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class ChartDto {
+public class GraficoDTO {
     private List<String> label;
-    private List<DataSetDto> datasets;
+    private List<DataSetDTO> datasets;
 }

@@ -12,7 +12,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 @Data
-public class DevolucaoDto {
+public class DevolucaoDTO {
     @NotEmpty(message = "O campo Motivo é obrigatório")
     @Size(max = 254)
     private String motivo;

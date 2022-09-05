@@ -1,8 +1,11 @@
 package br.com.fatec.chopperhousegames.inbound.facade.dto;
 
+import lombok.Data;
+
 import java.util.List;
 
-public class GraficoDto {
+@Data
+public class ChartDTO {
     private List<String> label;
-    private List<DataSetDto> datasets;
+    private List<DataSetDTO> datasets;
 }
