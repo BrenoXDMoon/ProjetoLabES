@@ -5,6 +5,7 @@ import br.com.fatec.chopperhousegames.inbound.facade.dto.JogoDTO;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -72,33 +73,33 @@ public class JogoController {
         return mv;
     }
 
-//    @GetMapping("admin/jogos/editar/{id}")
-//    public ModelAndView fomularioEditarJogo(@PathVariable("id") Integer id, ModelAndView mv){
-//        if(mv == null){
-//            mv = new ModelAndView();
-//        }
-//        Jogo jogo = service.buscarById(id);
-//        mv.setViewName("admin/jogo/formEditar");
-//        mv.addObject("jogo", jogo);
-//
-//        return mv;
-//    }
-//
-//    @PostMapping
-//    public ModelAndView editarJogo(@Valid JogoDTO jogoDto, BindingResult result){
-//
-//        ModelAndView mv = new ModelAndView();
-//
-//        if(result.hasErrors()){
-//            mv.addObject("resultados", result);
-//            return formularioNovoJogo(jogoDto, mv);
-//        }
-//
-//        Jogo jogo = service.editar(jogoDto.toJogo());
-//        mv.addObject("mensagem", "Produto editado com sucesso! Id do produto " + jogo.getId() +"");
-//        mv.setViewName("admin/jogo/lista");
-//        return mv;
-//    }
+    @GetMapping("admin/jogos/editar/{id}")
+    public ModelAndView fomularioEditarJogo(@PathVariable("id") Integer id, ModelAndView mv){
+        if(mv == null){
+            mv = new ModelAndView();
+        }
+
+        mv.addObject("jogo", jogoFacade.buscarById(id));
+        mv.setViewName("admin/jogo/formEditar");
+
+        return mv;
+    }
+
+    @PostMapping
+    public ModelAndView editarJogo(@Valid JogoDTO jogoDto, BindingResult result){
+
+        ModelAndView mv = new ModelAndView();
+
+        if(result.hasErrors()){
+            mv.addObject("resultados", result);
+            return formularioNovoJogo(jogoDto, mv);
+        }
+
+        jogoFacade.editar(jogoDto);
+        mv.addObject("mensagem", "Produto editado com sucesso! Id do produto " + jogoDto.getId() +"");
+        mv.setViewName("admin/jogo/lista");
+        return mv;
+    }
 //
 //    @GetMapping("jogo/detalhe/{id}")
 //    public ModelAndView detalheJogo(@PathVariable Jogo id){

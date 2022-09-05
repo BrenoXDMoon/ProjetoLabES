@@ -5,6 +5,7 @@ import br.com.fatec.chopperhousegames.core.domain.entity.Genero;
 import br.com.fatec.chopperhousegames.core.domain.entity.Idioma;
 import br.com.fatec.chopperhousegames.core.domain.entity.Plataforma;
 import lombok.Data;
+import org.springframework.lang.Nullable;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
@@ -13,6 +14,8 @@ import java.util.List;
 @Data
 public class JogoDTO {
 
+    @Nullable
+    private Long id;
     @NotEmpty(message = "O Jogo deve conter um título")
     private String titulo;
     @Min(value = 1, message = "O preço míinimo do jogo deve ser R$1")

@@ -8,4 +8,8 @@ public interface JogoFacade {
     List<JogoDTO> listarJogos();
 
     void salvarJogo(JogoDTO toJogo);
+
+    JogoDTO buscarById(Integer id);
+
+    void editar(JogoDTO jogoDto);
 }

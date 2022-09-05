@@ -11,24 +11,34 @@ import java.util.List;
 @Component
 public class JogoFacadeImpl implements JogoFacade {
 
-    private final JogoMapper jogoMapper;
+    private final JogoMapper mapper;
 
     private final JogoService jogoService;
 
     public JogoFacadeImpl(JogoMapper jogoMapper, JogoService jogoService) {
-        this.jogoMapper = jogoMapper;
+        this.mapper = jogoMapper;
         this.jogoService = jogoService;
     }
 
     @Override
     public List<JogoDTO> listarJogos() {
         return jogoService.listar().stream()
-                .map(jogoMapper::toJogoDTO)
+                .map(mapper::toJogoDTO)
                 .toList();
     }
 
     @Override
     public void salvarJogo(JogoDTO jogo) {
-        jogoService.salvar(jogoMapper.toJogo(jogo));
+        jogoService.salvar(mapper.toJogo(jogo));
+    }
+
+    @Override
+    public JogoDTO buscarById(Integer id) {
+        return mapper.toJogoDTO(jogoService.buscarById(id));
+    }
+
+    @Override
+    public void editar(JogoDTO jogoDto) {
+        jogoService.editar(mapper.toJogo(jogoDto));
     }
 }
