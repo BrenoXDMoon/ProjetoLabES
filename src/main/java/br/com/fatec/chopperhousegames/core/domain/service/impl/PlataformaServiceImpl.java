@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class PlataformaService implements br.com.fatec.chopperhousegames.core.domain.service.PlataformaService {
+public class PlataformaServiceImpl implements br.com.fatec.chopperhousegames.core.domain.service.PlataformaService {
 
     @Autowired
     PlataformaRepository repository;

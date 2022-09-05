@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class EditoraService implements br.com.fatec.chopperhousegames.core.domain.service.EditoraService {
+public class EditoraServiceImpl implements br.com.fatec.chopperhousegames.core.domain.service.EditoraService {
 
     @Autowired
     EditoraRepository repository;

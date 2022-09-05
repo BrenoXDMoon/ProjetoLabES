@@ -1,55 +1,62 @@
 package br.com.fatec.chopperhousegames.inbound.controller;
 
+import br.com.fatec.chopperhousegames.inbound.facade.*;
+import br.com.fatec.chopperhousegames.inbound.facade.dto.JogoDTO;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 @Controller
 @RequestMapping
 public class JogoController {
+    private final JogoFacade jogoFacade;
+    private final GeneroFacade generoFacade;
+
+    private final IdiomaFacade idiomaFacade;
+    private PlataformaFacade plataformaFacade;
+    private final EditoraFacade editoraFacade;
+
+    public JogoController(JogoFacade jogoFacade, GeneroFacade generoFacade, IdiomaFacade idiomaFacade, PlataformaFacade plataformaFacade, EditoraFacade editoraFacade) {
+        this.jogoFacade = jogoFacade;
+        this.generoFacade = generoFacade;
+        this.idiomaFacade = idiomaFacade;
+        this.plataformaFacade = plataformaFacade;
+        this.editoraFacade = editoraFacade;
+    }
 
     //TODO: refatorar controller de jogo para usar facade
 
-//    @Autowired
-//    private IJogoService service;
-//    @Autowired
-//    private ClienteService clienteService;
-//    @Autowired
-//    private IEditoraService editoraService;
-//    @Autowired
-//    private IPlataformaService plataformaService;
-//    @Autowired
-//    private IIdiomaService idiomaService;
-//    @Autowired
-//    private IGeneroService generoService;
-//
-//    @GetMapping("admin/jogos")
-//    public ModelAndView listaJogos(){
-//        ModelAndView mv = new ModelAndView("admin/jogo/lista");
-//
-//        List<Jogo> jogos = service.listar();
-//
-//        mv.addObject("jogos", jogos);
-//
-//        return mv;
-//    }
-//
-//    @GetMapping("admin/jogos/novo")
-//    public ModelAndView formularioNovoJogo(JogoDto jogoDto, ModelAndView mv){
-//
-//        if(mv == null){
-//            mv = new ModelAndView();
-//        }
-//        mv.setViewName("admin/jogo/form");
-//
-//        mv.addObject("generos", generoService.listar());
-//        mv.addObject("idiomas", idiomaService.listar());
-//        mv.addObject("plataformas", plataformaService.listar());
-//        mv.addObject("editoras", editoraService.listar());
-//        return mv;
-//    }
+    @GetMapping("admin/jogos")
+    public ModelAndView listaJogos(){
+        ModelAndView mv = new ModelAndView("admin/jogo/lista");
+
+        List<JogoDTO> jogos = jogoFacade.listarJogos();
+
+        mv.addObject("jogos", jogos);
+
+        return mv;
+    }
+
+    @GetMapping("admin/jogos/novo")
+    public ModelAndView formularioNovoJogo(JogoDTO jogoDto, ModelAndView mv){
+
+        if(mv == null){
+            mv = new ModelAndView();
+        }
+        mv.setViewName("admin/jogo/form");
+
+        mv.addObject("generos", generoFacade.listarGeneros());
+        mv.addObject("idiomas", idiomaFacade.listarIdiomas());
+        mv.addObject("plataformas", plataformaFacade.listarPlataformas());
+        mv.addObject("editoras", editoraFacade.listarEditora());
+        return mv;
+    }
 //
 //    @PostMapping("admin/jogos/novo")
-//    public ModelAndView cadastrarNovoJogo(@Valid JogoDto jogoDto, BindingResult result){
+//    public ModelAndView cadastrarNovoJogo(@Valid JogoDTO jogoDto, BindingResult result){
 //        ModelAndView mv = new ModelAndView("redirect:/admin/jogos");
 //
 //        if(result.hasErrors()){
@@ -75,7 +82,7 @@ public class JogoController {
 //    }
 //
 //    @PostMapping
-//    public ModelAndView editarJogo(@Valid JogoDto jogoDto, BindingResult result){
+//    public ModelAndView editarJogo(@Valid JogoDTO jogoDto, BindingResult result){
 //
 //        ModelAndView mv = new ModelAndView();
 //

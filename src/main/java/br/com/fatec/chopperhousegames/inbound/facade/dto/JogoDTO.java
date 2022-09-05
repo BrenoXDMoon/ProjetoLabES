@@ -10,7 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 @Data
-public class JogoDto {
+public class JogoDTO {
 
     @NotEmpty(message = "O Jogo deve conter um título")
     private String titulo;

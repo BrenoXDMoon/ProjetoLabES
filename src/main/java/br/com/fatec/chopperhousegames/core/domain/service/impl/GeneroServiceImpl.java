@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class GeneroService implements br.com.fatec.chopperhousegames.core.domain.service.GeneroService {
+public class GeneroServiceImpl implements br.com.fatec.chopperhousegames.core.domain.service.GeneroService {
 
     @Autowired
     GeneroRepository repository;

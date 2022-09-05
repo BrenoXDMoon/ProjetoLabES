@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class JogoService implements br.com.fatec.chopperhousegames.core.domain.service.JogoService {
+public class JogoServiceImpl implements br.com.fatec.chopperhousegames.core.domain.service.JogoService {
 
     @Autowired
     JogoRepository repository;
@@ -69,12 +69,8 @@ public class JogoService implements br.com.fatec.chopperhousegames.core.domain.s
 
     @Override
     public Jogo buscarById(Integer id) {
-        Optional optional = repository.findById(id);
+        Optional<Jogo> optional = repository.findById(id);
 
-        if (optional.isPresent()){
-            return (Jogo) optional.get();
-        }else{
-            return null;
-        }
+        return optional.orElse(null);
     }
 }

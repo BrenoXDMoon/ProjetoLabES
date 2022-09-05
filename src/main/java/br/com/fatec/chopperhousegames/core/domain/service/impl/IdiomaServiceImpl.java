@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class IdiomaService implements br.com.fatec.chopperhousegames.core.domain.service.IdiomaService {
+public class IdiomaServiceImpl implements br.com.fatec.chopperhousegames.core.domain.service.IdiomaService {
 
     @Autowired
     IdiomaRepository repository;
