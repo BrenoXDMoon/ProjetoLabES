@@ -26,4 +26,9 @@ public class JogoFacadeImpl implements JogoFacade {
                 .map(jogoMapper::toJogoDTO)
                 .toList();
     }
+
+    @Override
+    public void salvarJogo(JogoDTO jogo) {
+        jogoService.salvar(jogoMapper.toJogo(jogo));
+    }
 }

@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface JogoFacade {
     List<JogoDTO> listarJogos();
+
+    void salvarJogo(JogoDTO toJogo);
 }

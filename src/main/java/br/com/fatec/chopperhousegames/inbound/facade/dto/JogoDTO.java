@@ -1,12 +1,13 @@
 package br.com.fatec.chopperhousegames.inbound.facade.dto;
 
-import br.com.fatec.chopperhousegames.core.domain.entity.*;
+import br.com.fatec.chopperhousegames.core.domain.entity.Editora;
+import br.com.fatec.chopperhousegames.core.domain.entity.Genero;
+import br.com.fatec.chopperhousegames.core.domain.entity.Idioma;
+import br.com.fatec.chopperhousegames.core.domain.entity.Plataforma;
 import lombok.Data;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 @Data
@@ -34,27 +35,4 @@ public class JogoDTO {
     private String motivoInativacao;
     private boolean ativo;
 
-    public Jogo toJogo() {
-        Jogo jogo = new Jogo();
-        jogo.setTitulo(this.titulo);
-        jogo.setPreco(this.preco);
-        jogo.setMultijogador(this.multijogador);
-        jogo.setFaixaEtaria(this.faixaEtaria);
-        jogo.setSinopse(this.sinopse);
-        jogo.setImagem(this.imagem);
-        try {
-            SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
-            jogo.setDataLancamento(fmt.parse(this.dataLancamento));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        jogo.setPlataforma(this.plataforma);
-        jogo.setIdiomas(this.idiomas);
-        jogo.setGeneros(this.generos);
-        jogo.setEditora(this.editora);
-        jogo.setQuantidade(this.quantidade);
-        jogo.setQuantidadeDisponivel(this.quantidade);
-        jogo.setMotivoInativacao(this.motivoInativacao);
-        return jogo;
-    }
 }

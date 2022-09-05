@@ -9,4 +9,5 @@ public interface JogoMapper {
 
     JogoDTO toJogoDTO(Jogo jogo);
 
+    Jogo toJogo(JogoDTO jogo);
 }

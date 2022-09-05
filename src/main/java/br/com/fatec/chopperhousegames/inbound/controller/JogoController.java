@@ -3,10 +3,13 @@ package br.com.fatec.chopperhousegames.inbound.controller;
 import br.com.fatec.chopperhousegames.inbound.facade.*;
 import br.com.fatec.chopperhousegames.inbound.facade.dto.JogoDTO;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -54,21 +57,21 @@ public class JogoController {
         mv.addObject("editoras", editoraFacade.listarEditora());
         return mv;
     }
-//
-//    @PostMapping("admin/jogos/novo")
-//    public ModelAndView cadastrarNovoJogo(@Valid JogoDTO jogoDto, BindingResult result){
-//        ModelAndView mv = new ModelAndView("redirect:/admin/jogos");
-//
-//        if(result.hasErrors()){
-//            mv.addObject("resultados", result);
-//            return formularioNovoJogo(jogoDto, mv);
-//        }
-//        service.salvar(jogoDto.toJogo());
-//
-//        mv.addObject("mensagem", "Jogo salvo com sucesso!");
-//        return mv;
-//    }
-//
+
+    @PostMapping("admin/jogos/novo")
+    public ModelAndView cadastrarNovoJogo(@Valid JogoDTO jogoDto, BindingResult result){
+        ModelAndView mv = new ModelAndView("redirect:/admin/jogos");
+
+        if(result.hasErrors()){
+            mv.addObject("resultados", result);
+            return formularioNovoJogo(jogoDto, mv);
+        }
+        jogoFacade.salvarJogo(jogoDto);
+
+        mv.addObject("mensagem", "Jogo salvo com sucesso!");
+        return mv;
+    }
+
 //    @GetMapping("admin/jogos/editar/{id}")
 //    public ModelAndView fomularioEditarJogo(@PathVariable("id") Integer id, ModelAndView mv){
 //        if(mv == null){
