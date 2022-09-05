@@ -9,7 +9,13 @@ public interface JogoFacade {
 
     void salvarJogo(JogoDTO toJogo);
 
-    JogoDTO buscarById(Long id);
+    JogoDTO buscarJogoPorId(Long id);
 
-    void editar(JogoDTO jogoDto);
+    void editarJogo(JogoDTO jogoDto);
+
+    void excluirJogo(JogoDTO jogo);
+
+    void ativarJogo(JogoDTO jogo);
+
+    List<JogoDTO> listarJogosAtivos();
 }

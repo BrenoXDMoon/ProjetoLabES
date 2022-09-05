@@ -34,8 +34,6 @@ public class JogoController {
         this.clienteFacade = clienteFacade;
     }
 
-    //TODO: refatorar controller de jogo para usar facade
-
     @GetMapping("admin/jogos")
     public ModelAndView listaJogos(){
         ModelAndView mv = new ModelAndView("admin/jogo/lista");
@@ -82,7 +80,7 @@ public class JogoController {
             mv = new ModelAndView();
         }
 
-        mv.addObject("jogo", jogoFacade.buscarById(id));
+        mv.addObject("jogo", jogoFacade.buscarJogoPorId(id));
         mv.setViewName("admin/jogo/formEditar");
 
         return mv;
@@ -98,7 +96,7 @@ public class JogoController {
             return formularioNovoJogo(jogoDto, mv);
         }
 
-        jogoFacade.editar(jogoDto);
+        jogoFacade.editarJogo(jogoDto);
         mv.addObject("mensagem", "Produto editado com sucesso! Id do produto " + jogoDto.getId() +"");
         mv.setViewName("admin/jogo/lista");
         return mv;
@@ -109,7 +107,7 @@ public class JogoController {
 
         ModelAndView mv = new ModelAndView("jogo/detalhe");
 
-        jogo = jogoFacade.buscarById(jogo.getId());
+        jogo = jogoFacade.buscarJogoPorId(jogo.getId());
 
         ClienteDTO cliente = clienteFacade.atualUsuarioLogado();
 
@@ -122,23 +120,21 @@ public class JogoController {
         return mv;
     }
 
-//    @PostMapping("admin/jogos/desativar/{id}")
-//    public ModelAndView desativarJogo(@PathVariable("id") Jogo jogo){
-//
-//       ModelAndView mv = new ModelAndView("redirect:/admin/jogos");
-//       jogo = service.buscarById(jogo.getId());
-//       service.excluir(jogo);
-//
-//       return mv;
-//    }
-//
-//    @PostMapping("admin/jogos/ativar/{id}")
-//    public ModelAndView ativarJogo(@PathVariable("id") Jogo jogo){
-//
-//        ModelAndView mv = new ModelAndView("redirect:/admin/jogos");
-//        jogo = service.buscarById(jogo.getId());
-//        service.ativar(jogo);
-//
-//        return mv;
-//    }
+    @PostMapping("admin/jogos/desativar/{id}")
+    public ModelAndView desativarJogo(@PathVariable("id") JogoDTO jogo){
+
+       ModelAndView mv = new ModelAndView("redirect:/admin/jogos");
+       jogoFacade.excluirJogo(jogo);
+
+       return mv;
+    }
+
+    @PostMapping("admin/jogos/ativar/{id}")
+    public ModelAndView ativarJogo(@PathVariable("id") JogoDTO jogo){
+
+        ModelAndView mv = new ModelAndView("redirect:/admin/jogos");
+        jogoFacade.ativarJogo(jogo);
+
+        return mv;
+    }
 }

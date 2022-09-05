@@ -22,23 +22,40 @@ public class JogoFacadeImpl implements JogoFacade {
 
     @Override
     public List<JogoDTO> listarJogos() {
-        return jogoService.listar().stream()
+        return jogoService.listarJogo().stream()
                 .map(mapper::toJogoDTO)
                 .toList();
     }
 
     @Override
     public void salvarJogo(JogoDTO jogo) {
-        jogoService.salvar(mapper.toJogo(jogo));
+        jogoService.salvarJogo(mapper.toJogo(jogo));
     }
 
     @Override
-    public JogoDTO buscarById(Long id) {
-        return mapper.toJogoDTO(jogoService.buscarById(id));
+    public JogoDTO buscarJogoPorId(Long id) {
+        return jogoService.buscarJogoPorId(id).map(mapper::toJogoDTO).orElse(null);
     }
 
     @Override
-    public void editar(JogoDTO jogoDto) {
-        jogoService.editar(mapper.toJogo(jogoDto));
+    public void editarJogo(JogoDTO jogoDto) {
+        jogoService.editarJogo(mapper.toJogo(jogoDto));
+    }
+
+    @Override
+    public void excluirJogo(JogoDTO jogo) {
+        jogoService.excluirJogo(mapper.toJogo(jogo));
+    }
+
+    @Override
+    public void ativarJogo(JogoDTO jogo) {
+        jogoService.ativarJogo(mapper.toJogo(jogo));
+    }
+
+    @Override
+    public List<JogoDTO> listarJogosAtivos() {
+        return jogoService.listarJogosAtivos().stream()
+                .map(mapper::toJogoDTO)
+                .toList();
     }
 }

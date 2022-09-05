@@ -1,8 +1,8 @@
 package br.com.fatec.chopperhousegames.inbound.controller;
 
-import br.com.fatec.chopperhousegames.core.domain.entity.Jogo;
-import br.com.fatec.chopperhousegames.core.domain.service.ClienteService;
-import br.com.fatec.chopperhousegames.core.domain.service.JogoService;
+import br.com.fatec.chopperhousegames.inbound.facade.ClienteFacade;
+import br.com.fatec.chopperhousegames.inbound.facade.JogoFacade;
+import br.com.fatec.chopperhousegames.inbound.facade.dto.JogoDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,20 +16,19 @@ import java.util.List;
 public class IndexController {
 
     @Autowired
-    ClienteService clienteService;
+    ClienteFacade clienteFacade;
 
     @Autowired
-    JogoService jogoService;
+    JogoFacade jogoFacade;
 
     @GetMapping
     public ModelAndView index() {
 
         ModelAndView mv = new ModelAndView("/index");
-        List<Jogo> jogos = jogoService.listarAtivos();
+        List<JogoDTO> jogos = jogoFacade.listarJogosAtivos();
         mv.addObject("jogos", jogos);
-        if(clienteService.atualUsuarioLogado() == null){
-        }else{
-            mv.addObject("cliente", clienteService.atualUsuarioLogado());
+        if(clienteFacade.atualUsuarioLogado() != null){
+            mv.addObject("cliente", clienteFacade.atualUsuarioLogado());
         }
         return mv;
     }
