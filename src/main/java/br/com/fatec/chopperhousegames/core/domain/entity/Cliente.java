@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Optional;
 
 @Entity
 @Setter
@@ -42,4 +43,9 @@ public class Cliente extends EntidadeDominio {
 
     @OneToMany(mappedBy = "cliente", targetEntity = Pedido.class)
     private List<Pedido> pedidos;
+
+    @Transient
+    public List<Item> getItens() {
+        return Optional.ofNullable(this.carrinho.getItens()).orElse(List.of());
+    }
 }
