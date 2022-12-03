@@ -22,7 +22,7 @@ public class CupomController {
     public ModelAndView listaCuponsAdmin(){
         ModelAndView mv = new ModelAndView("admin/cupom/lista");
 
-        mv.addObject("cupons", cupomService.listarTodos());
+        mv.addObject("cupons", cupomService.listarTodosCupons());
 
         return mv;
     }

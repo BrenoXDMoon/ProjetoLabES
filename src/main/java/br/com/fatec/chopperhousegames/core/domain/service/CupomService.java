@@ -7,13 +7,7 @@ import java.util.Optional;
 
 public interface CupomService {
 
-    List<Cupom> listarTodos();
+    List<Cupom> listarTodosCupons();
 
-    List<Cupom> listarCupomDesconto();
-
-    List<Cupom> listarCupomTroca();
-
-    Cupom buscarCupomZerado();
-
-    Optional<Cupom> buscarPorId(Long id);
+    Optional<Cupom> buscarCupomPorId(Long id);
 }

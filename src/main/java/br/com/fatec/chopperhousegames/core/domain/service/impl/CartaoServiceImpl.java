@@ -1,9 +1,9 @@
 package br.com.fatec.chopperhousegames.core.domain.service.impl;
 
 import br.com.fatec.chopperhousegames.core.domain.entity.CartaoCredito;
+import br.com.fatec.chopperhousegames.core.domain.service.CartaoService;
 import br.com.fatec.chopperhousegames.core.domain.service.ClienteService;
 import br.com.fatec.chopperhousegames.core.repository.CartaoCreditoRepository;
-import br.com.fatec.chopperhousegames.core.domain.service.CartaoService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,30 +21,24 @@ public class CartaoServiceImpl implements CartaoService {
     }
 
     @Override
-    public CartaoCredito buscarPorId(Long id) {
-        return repository.findById(id).orElse(new CartaoCredito());
+    public CartaoCredito buscarCartaoPorId(Long id) {
+        return repository.findById(id).orElseThrow(() -> new RuntimeException("Cartão não encontrado"));
     }
 
 
     @Override
-    public List<CartaoCredito> listar() {
+    public List<CartaoCredito> listarCartoes() {
         return repository.findAll();
     }
 
     @Override
-    public CartaoCredito salvar(CartaoCredito cartao) {
+    public CartaoCredito salvarCartao(CartaoCredito cartao) {
         cartao.setCliente(clienteService.atualUsuarioLogado());
         return repository.saveAndFlush(cartao);
     }
 
     @Override
-    public void excluir(Long id) {
-        repository.delete(buscarPorId(id));
-    }
-
-    @Override
-    public CartaoCredito editar(CartaoCredito cartao) {
-        cartao.setCliente(clienteService.atualUsuarioLogado());
-        return repository.saveAndFlush(cartao);
+    public void excluirCartao(Long id) {
+        repository.delete(buscarCartaoPorId(id));
     }
 }

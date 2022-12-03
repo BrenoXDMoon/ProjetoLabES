@@ -5,13 +5,11 @@ import br.com.fatec.chopperhousegames.core.domain.entity.CartaoCredito;
 import java.util.List;
 
 public interface CartaoService {
-    CartaoCredito buscarPorId(Long id);
+    CartaoCredito buscarCartaoPorId(Long id);
 
-    List<CartaoCredito> listar();
+    List<CartaoCredito> listarCartoes();
 
-    CartaoCredito salvar(CartaoCredito cartao);
+    CartaoCredito salvarCartao(CartaoCredito cartao);
 
-    void excluir(Long id);
-
-    CartaoCredito editar(CartaoCredito cartao);
+    void excluirCartao(Long id);
 }

@@ -21,8 +21,7 @@ public class Cupom extends EntidadeDominio {
     @OneToMany(mappedBy = "cupom", targetEntity = Pedido.class)
     private List<Pedido> pedidos;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "tipo_cupom_ID")
+    @Enumerated(EnumType.STRING)
     private TipoCupom tipoCupom;
 
     @ManyToOne(cascade = CascadeType.ALL)

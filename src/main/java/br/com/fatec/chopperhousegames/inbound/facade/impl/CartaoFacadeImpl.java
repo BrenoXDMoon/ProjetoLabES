@@ -21,26 +21,26 @@ public class CartaoFacadeImpl implements CartaoFacade {
 
     @Override
     public List<CartaoCreditoDTO> listar() {
-        return mapper.toCartaoCreditoDTOList(service.listar());
+        return mapper.toCartaoCreditoDTOList(service.listarCartoes());
     }
 
     @Override
     public CartaoCreditoDTO salvar(CartaoCreditoDTO dto) {
-        return mapper.toCartaoDTO(service.salvar(mapper.toCartao(dto)));
+        return mapper.toCartaoDTO(service.salvarCartao(mapper.toCartao(dto)));
     }
 
     @Override
     public void excluir(Long id) {
-        service.excluir(id);
+        service.excluirCartao(id);
     }
 
     @Override
     public CartaoCreditoDTO buscarPorId(Long id) {
-        return mapper.toCartaoDTO(service.buscarPorId(id));
+        return mapper.toCartaoDTO(service.buscarCartaoPorId(id));
     }
 
     @Override
     public CartaoCreditoDTO editar(CartaoCreditoDTO cartaoDto) {
-        return mapper.toCartaoDTO(service.editar(mapper.toCartao(cartaoDto)));
+        return mapper.toCartaoDTO(service.salvarCartao(mapper.toCartao(cartaoDto)));
     }
 }

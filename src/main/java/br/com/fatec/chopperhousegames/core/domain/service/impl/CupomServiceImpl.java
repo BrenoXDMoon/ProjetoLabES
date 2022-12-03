@@ -16,27 +16,12 @@ public class CupomServiceImpl implements CupomService {
     private CupomRepository repository;
 
     @Override
-    public List<Cupom> listarTodos() {
+    public List<Cupom> listarTodosCupons() {
         return repository.findAll();
     }
 
     @Override
-    public List<Cupom> listarCupomDesconto() {
-        return repository.findAllByTipoCupom_NomeAndQuantidadeIsGreaterThan("DESCONTO", 0);
-    }
-
-    @Override
-    public List<Cupom> listarCupomTroca() {
-        return repository.findAllByTipoCupom_NomeAndQuantidadeIsGreaterThan("TROCA", 0);
-    }
-
-    @Override
-    public Cupom buscarCupomZerado() {
-        return repository.findAllByTipoCupom_Nome("ZERADO");
-    }
-
-    @Override
-    public Optional<Cupom> buscarPorId(Long id) {
+    public Optional<Cupom> buscarCupomPorId(Long id) {
         return repository.findById(id);
     }
 }

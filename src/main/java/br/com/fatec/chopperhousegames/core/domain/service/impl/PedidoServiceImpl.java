@@ -1,11 +1,9 @@
 package br.com.fatec.chopperhousegames.core.domain.service.impl;
 
-import br.com.fatec.chopperhousegames.core.domain.entity.Cupom;
-import br.com.fatec.chopperhousegames.core.domain.entity.MetodoPagamento;
-import br.com.fatec.chopperhousegames.core.domain.entity.Pedido;
-import br.com.fatec.chopperhousegames.core.domain.entity.Status;
+import br.com.fatec.chopperhousegames.core.domain.entity.*;
+import br.com.fatec.chopperhousegames.core.domain.service.CartaoService;
+import br.com.fatec.chopperhousegames.core.domain.service.CupomService;
 import br.com.fatec.chopperhousegames.core.domain.service.PedidoService;
-import br.com.fatec.chopperhousegames.core.domain.service.TipoCupomService;
 import br.com.fatec.chopperhousegames.core.repository.ClienteRepository;
 import br.com.fatec.chopperhousegames.core.repository.PedidoRepository;
 import org.springframework.stereotype.Service;
@@ -24,12 +22,15 @@ public class PedidoServiceImpl implements PedidoService {
     private final PedidoRepository repository;
 
     private final ClienteRepository clienteRepository;
-    private final TipoCupomService tipoCupomService;
 
-    public PedidoServiceImpl(PedidoRepository repository, ClienteRepository clienteRepository, TipoCupomService tipoCupomService) {
+    private final CartaoService cartaoService;
+    private final CupomService cupomService;
+
+    public PedidoServiceImpl(PedidoRepository repository, ClienteRepository clienteRepository, CartaoService cartaoService, CupomService cupomService) {
         this.repository = repository;
         this.clienteRepository = clienteRepository;
-        this.tipoCupomService = tipoCupomService;
+        this.cartaoService = cartaoService;
+        this.cupomService = cupomService;
     }
 
 
@@ -74,12 +75,10 @@ public class PedidoServiceImpl implements PedidoService {
         pedido.setStatus(Status.EM_PROCESSAMENTO);
         pedido.setItens(pedido.getCliente().getCarrinho().getItens());
 
-        //TODO: ALTERAR PARAMETROS DE ONDE SOLICITA ID PARA LONG
-//        pedido.getMetodosPagamento().forEach(p -> p.setCartaoCredito(cartaoRepository.findById(p.getCartaoCredito().getId()).get()));
+        pedido.getMetodosPagamento().forEach(p -> p.setCartaoCredito(cartaoService.buscarCartaoPorId(p.getCartaoCredito().getId())));
         pedido.setTotal((pedido.getCliente().getCarrinho().getItens().stream().mapToDouble(i -> i.getJogo().getPreco() * i.getQuantidade().doubleValue()).sum()));
         if (pedido.getCupom() != null && pedido.getCupom().getId() != null) {
-            //TODO: ALTERAR PARAMETROS DE ONDE SOLICITA ID PARA LONG
-//            pedido.setCupom(cupomRepository.findById(pedido.getCupom().getId()).get());
+            pedido.setCupom(cupomService.buscarCupomPorId(pedido.getCupom().getId()).orElseThrow(() -> new RuntimeException("Não foi possível encontrar o cupom")));
 
             pedido.setTotal(BigDecimal.valueOf(pedido.getTotal() - pedido.getCupom().getValor())
                     .setScale(2, RoundingMode.FLOOR)
@@ -121,7 +120,7 @@ public class PedidoServiceImpl implements PedidoService {
                 cupom.setCodigo(codigo);
                 cupom.setQuantidade(1);
                 cupom.setCliente(pedido.getCliente());
-                cupom.setTipoCupom(tipoCupomService.buscarPorNome("TROCA"));
+                cupom.setTipoCupom(TipoCupom.TROCA);
                 cupom.setValor(totalCupom - pedido.getTotal());
             }
         }
@@ -130,7 +129,7 @@ public class PedidoServiceImpl implements PedidoService {
 
         //diminuindo a quantidade do cupom de desconto quando usado
         if (pedido.getCupom() != null && pedido.getCupom().getId() != null) {
-            if (!pedido.getCupom().getTipoCupom().getNome().equals("ZERADO")) {
+            if (!pedido.getCupom().getTipoCupom().equals(TipoCupom.ZERADO)) {
                 pedido.getCupom().setQuantidade(pedido.getCupom().getQuantidade() - 1);
             }
         }
