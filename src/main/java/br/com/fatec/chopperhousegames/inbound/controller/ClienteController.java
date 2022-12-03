@@ -47,7 +47,7 @@ public class ClienteController {
             return novoCliente(dto, mv);
         }
 
-        mv.addObject("cliente", facade.salvar(dto));
+        mv.addObject("cliente", facade.salvarCliente(dto));
 
         mv.addObject("mensagem", "Usuário criado com sucesso!");
 
@@ -58,8 +58,8 @@ public class ClienteController {
     public ModelAndView perfil(@PathVariable("id") Long id) {
 
         ModelAndView mv = new ModelAndView();
-        if (facade.usuarioEstaLogado(id)) {
-            ClienteDTO dto = facade.atualUsuarioLogado();
+        if (facade.clienteEstaLogado(id)) {
+            ClienteDTO dto = facade.atualClienteLogado();
             if (validator.validaRoleUsuario(dto)) {
                 mv.setViewName("/cliente/perfil");
                 mv.addObject("cliente", dto);
@@ -76,7 +76,7 @@ public class ClienteController {
     public ModelAndView editarCliente(@ModelAttribute("cliente") ClienteDTO dto, BindingResult result) {
 
         ModelAndView mv = new ModelAndView("/cliente/perfil");
-        mv.addObject("cliente", facade.editar(dto));
+        mv.addObject("cliente", facade.editarCliente(dto));
 
         mv.addObject("mensagem", "Usuário atualizado com sucesso!");
 
@@ -89,7 +89,7 @@ public class ClienteController {
             mv = new ModelAndView();
         }
         mv.setViewName("/cliente/senha");
-        mv.addObject(facade.atualUsuarioLogado());
+        mv.addObject(facade.atualClienteLogado());
 
         return mv;
     }
@@ -97,13 +97,13 @@ public class ClienteController {
     @PostMapping("/perfil/{id}/senha")
     public ModelAndView editarSenha(@PathVariable("id") Long id, @Valid SenhaDTO dto, BindingResult result) {
         ModelAndView mv = new ModelAndView("/cliente/perfil");
-        ClienteDTO clienteDTO = facade.atualUsuarioLogado();
+        ClienteDTO clienteDTO = facade.atualClienteLogado();
 
         if (validator.validaAlteracaoSenha(dto, clienteDTO, result).hasErrors()) {
             mv.addObject("resultados", result);
             return editarSenha(clienteDTO.getId(), dto, mv);
         }
-        mv.addObject("cliente", facade.editarSenha(clienteDTO, dto));
+        mv.addObject("cliente", facade.editarSenhaCliente(clienteDTO, dto));
 
         mv.addObject("mensagem", "Senha atualizada com sucesso!");
 

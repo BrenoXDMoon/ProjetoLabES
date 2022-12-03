@@ -8,23 +8,23 @@ import java.util.Optional;
 
 public interface ClienteService {
 
-    Cliente salvar(Cliente cliente);
+    Cliente salvarCliente(Cliente cliente);
 
-    Cliente editar(Cliente cliente);
+    Cliente editarCliente(Cliente cliente);
 
-    Cliente excluir(Cliente cliente);
+    Cliente excluirCliente(Cliente cliente);
 
-    List<Cliente> listar();
+    List<Cliente> listarTodosOsClientes();
 
-    Optional<Cliente> buscarPorEmail(String email);
+    Cliente buscarClientePorId(Long id);
 
-    Cliente atualUsuarioLogado();
+    Optional<Cliente> buscarClientePorEmail(String email);
 
-    boolean usuarioEstaLogado(Long id);
+    Cliente atualClienteLogado();
 
-    Cliente buscarPorId(Long id);
+    boolean clienteEstaLogado(Long id);
 
-    Cliente editarSenha(Cliente cliente, Senha senha);
+    Cliente editarSenhaCliente(Cliente cliente, Senha senha);
 
-    Cliente ativaInativa(Long id);
+    Cliente ativaInativaCliente(Long id);
 }

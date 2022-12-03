@@ -74,7 +74,7 @@ public class ClienteValidatorImpl implements ClienteValidator {
     }
 
     public boolean validaEmail(String email) {
-        return facade.buscarPorEmail(email).isEmpty();
+        return facade.buscarClientePorEmail(email).isEmpty();
     }
 
 }

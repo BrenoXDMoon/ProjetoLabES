@@ -109,7 +109,7 @@ public class JogoController {
 
         jogo = jogoFacade.buscarJogoPorId(jogo.getId());
 
-        ClienteDTO cliente = clienteFacade.atualUsuarioLogado();
+        ClienteDTO cliente = clienteFacade.atualClienteLogado();
 
         if(cliente != null){
             mv.addObject("cliente", cliente);

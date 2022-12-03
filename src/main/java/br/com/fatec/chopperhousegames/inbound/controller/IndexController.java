@@ -27,8 +27,8 @@ public class IndexController {
         ModelAndView mv = new ModelAndView("/index");
         List<JogoDTO> jogos = jogoFacade.listarJogosAtivos();
         mv.addObject("jogos", jogos);
-        if(clienteFacade.atualUsuarioLogado() != null){
-            mv.addObject("cliente", clienteFacade.atualUsuarioLogado());
+        if(clienteFacade.atualClienteLogado() != null){
+            mv.addObject("cliente", clienteFacade.atualClienteLogado());
         }
         return mv;
     }

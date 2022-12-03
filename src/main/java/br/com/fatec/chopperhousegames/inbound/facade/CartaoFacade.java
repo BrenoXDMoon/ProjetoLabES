@@ -5,13 +5,14 @@ import br.com.fatec.chopperhousegames.inbound.facade.dto.CartaoCreditoDTO;
 import java.util.List;
 
 public interface CartaoFacade {
-    List<CartaoCreditoDTO> listar();
 
-    CartaoCreditoDTO salvar(CartaoCreditoDTO dto);
+    CartaoCreditoDTO buscarCartaoPorId(Long id);
 
-    void excluir(Long id);
+    List<CartaoCreditoDTO> listarTodosOsCartoes();
 
-    CartaoCreditoDTO buscarPorId(Long id);
+    CartaoCreditoDTO salvarCartao(CartaoCreditoDTO dto);
 
-    CartaoCreditoDTO editar(CartaoCreditoDTO cartaoDto);
+    void excluirCartao(Long id);
+
+    CartaoCreditoDTO editarCartao(CartaoCreditoDTO cartaoDto);
 }

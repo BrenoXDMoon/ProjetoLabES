@@ -27,54 +27,54 @@ public class ClienteFacadeImpl implements ClienteFacade {
     }
 
     @Override
-    public ClienteDTO salvar(ClienteDTO dto) {
-        return mapper.toClienteDTO(service.salvar(mapper.toCliente(dto)));
+    public ClienteDTO salvarCliente(ClienteDTO dto) {
+        return mapper.toClienteDTO(service.salvarCliente(mapper.toCliente(dto)));
     }
 
     @Override
-    public ClienteDTO editar(ClienteDTO dto) {
-        return mapper.toClienteDTO(service.editar(mapper.toCliente(dto)));
+    public ClienteDTO editarCliente(ClienteDTO dto) {
+        return mapper.toClienteDTO(service.editarCliente(mapper.toCliente(dto)));
     }
 
     @Override
-    public ClienteDTO excluir(ClienteDTO dto) {
-        return mapper.toClienteDTO(service.excluir(mapper.toCliente(dto)));
+    public ClienteDTO excluirCliente(ClienteDTO dto) {
+        return mapper.toClienteDTO(service.excluirCliente(mapper.toCliente(dto)));
     }
 
     @Override
-    public void ativaInativa(Long id) {
+    public void ativaInativaCliente(Long id) {
 
-        mapper.toClienteDTO(service.ativaInativa(id));
+        mapper.toClienteDTO(service.ativaInativaCliente(id));
     }
 
     @Override
-    public List<ClienteDTO> listar() {
-        return mapper.toListDTO(service.listar());
+    public List<ClienteDTO> listarTodosOsClientes() {
+        return mapper.toListDTO(service.listarTodosOsClientes());
     }
 
     @Override
-    public ClienteDTO buscarPorId(Long id) {
-        return mapper.toClienteDTO(service.buscarPorId(id));
+    public ClienteDTO buscarClientePorId(Long id) {
+        return mapper.toClienteDTO(service.buscarClientePorId(id));
     }
 
     @Override
-    public Optional<ClienteDTO> buscarPorEmail(String email) {
-        return Optional.of(mapper.toClienteDTO(service.buscarPorEmail(email).orElse(null)));
+    public Optional<ClienteDTO> buscarClientePorEmail(String email) {
+        return Optional.of(mapper.toClienteDTO(service.buscarClientePorEmail(email).orElse(null)));
     }
 
     @Override
-    public ClienteDTO atualUsuarioLogado() {
-        return mapper.toClienteDTO(service.atualUsuarioLogado());
+    public ClienteDTO atualClienteLogado() {
+        return mapper.toClienteDTO(service.atualClienteLogado());
     }
 
     @Override
-    public Boolean usuarioEstaLogado(Long id) {
-        return service.usuarioEstaLogado(id);
+    public Boolean clienteEstaLogado(Long id) {
+        return service.clienteEstaLogado(id);
     }
 
     @Override
-    public ClienteDTO editarSenha(ClienteDTO clienteDTO, SenhaDTO dto) {
-        return mapper.toClienteDTO(service.editarSenha(mapper.toCliente(clienteDTO), senhaMapper.toSenha(dto)));
+    public ClienteDTO editarSenhaCliente(ClienteDTO clienteDTO, SenhaDTO dto) {
+        return mapper.toClienteDTO(service.editarSenhaCliente(mapper.toCliente(clienteDTO), senhaMapper.toSenha(dto)));
     }
 
 }

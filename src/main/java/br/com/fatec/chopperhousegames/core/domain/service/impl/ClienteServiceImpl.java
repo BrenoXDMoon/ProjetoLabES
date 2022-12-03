@@ -23,7 +23,7 @@ public class ClienteServiceImpl implements ClienteService {
     }
 
     @Override
-    public Cliente salvar(Cliente cliente) {
+    public Cliente salvarCliente(Cliente cliente) {
 
         cliente.setTipoCliente(TipoCliente.BASICO);
 
@@ -33,60 +33,60 @@ public class ClienteServiceImpl implements ClienteService {
     }
 
     @Override
-    public Cliente editar(Cliente cliente) {
+    public Cliente editarCliente(Cliente cliente) {
         return repository.saveAndFlush(cliente);
     }
 
     @Override
-    public Cliente excluir(Cliente cliente) {
+    public Cliente excluirCliente(Cliente cliente) {
         cliente.setAtivo(false);
-        return editar(cliente);
+        return editarCliente(cliente);
     }
 
     @Override
-    public List<Cliente> listar() {
+    public List<Cliente> listarTodosOsClientes() {
         return repository.findAll();
     }
 
     @Override
-    public Optional<Cliente> buscarPorEmail(String email) {
+    public Optional<Cliente> buscarClientePorEmail(String email) {
         return repository.findByEmail(email);
 
     }
 
     @Override
-    public Cliente atualUsuarioLogado() {
+    public Cliente atualClienteLogado() {
 
         if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() instanceof UserDetails user) {
-            return this.buscarPorEmail(user.getUsername()).orElse(new Cliente());
+            return this.buscarClientePorEmail(user.getUsername()).orElse(new Cliente());
         }
         return null;
     }
 
     @Override
-    public boolean usuarioEstaLogado(Long id) {
-        return this.atualUsuarioLogado().getId().equals(id);
+    public boolean clienteEstaLogado(Long id) {
+        return this.atualClienteLogado().getId().equals(id);
     }
 
     @Override
-    public Cliente buscarPorId(Long id) {
+    public Cliente buscarClientePorId(Long id) {
         return repository.findById(id).orElse(new Cliente());
     }
 
     @Override
-    public Cliente editarSenha(Cliente cliente, Senha senha) {
+    public Cliente editarSenhaCliente(Cliente cliente, Senha senha) {
         cliente.setSenha(senha);
-        return editar(cliente);
+        return editarCliente(cliente);
     }
 
     @Override
-    public Cliente ativaInativa(Long id) {
+    public Cliente ativaInativaCliente(Long id) {
 
-        Cliente cliente = buscarPorId(id);
+        Cliente cliente = buscarClientePorId(id);
         if (cliente.getId() != null) {
             cliente.setAtivo(!cliente.isAtivo());
         }
 
-        return editar(cliente);
+        return editarCliente(cliente);
     }
 }

@@ -27,13 +27,13 @@ public class CartaoServiceImpl implements CartaoService {
 
 
     @Override
-    public List<CartaoCredito> listarCartoes() {
+    public List<CartaoCredito> listarTodosOsCartoes() {
         return repository.findAll();
     }
 
     @Override
     public CartaoCredito salvarCartao(CartaoCredito cartao) {
-        cartao.setCliente(clienteService.atualUsuarioLogado());
+        cartao.setCliente(clienteService.atualClienteLogado());
         return repository.saveAndFlush(cartao);
     }
 

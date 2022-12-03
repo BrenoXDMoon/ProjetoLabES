@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
@@ -68,7 +67,7 @@ public class AdminController {
     public ModelAndView listaClientes() {
         ModelAndView mv = new ModelAndView("admin/cliente/lista");
 
-        mv.addObject("clientes", facade.listar());
+        mv.addObject("clientes", facade.listarTodosOsClientes());
 
         return mv;
     }
@@ -77,8 +76,8 @@ public class AdminController {
     public ModelAndView desativaEAtivaCliente(@RequestParam Long id, RedirectAttributes attributes) {
 
         ModelAndView mv = new ModelAndView("admin/cliente/lista");
-        facade.ativaInativa(id);
-        mv.addObject("clientes", facade.listar());
+        facade.ativaInativaCliente(id);
+        mv.addObject("clientes", facade.listarTodosOsClientes());
         attributes.addFlashAttribute("mensagem", "Usuário excluído com sucesso!");
 
         return mv;

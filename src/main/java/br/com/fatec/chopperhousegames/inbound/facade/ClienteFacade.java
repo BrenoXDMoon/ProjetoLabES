@@ -9,23 +9,23 @@ import java.util.Optional;
 
 public interface ClienteFacade extends Facade {
 
-    ClienteDTO salvar(ClienteDTO ent);
+    ClienteDTO salvarCliente(ClienteDTO ent);
 
-    ClienteDTO editar(ClienteDTO ent);
+    ClienteDTO editarCliente(ClienteDTO ent);
 
-    ClienteDTO excluir(ClienteDTO ent);
+    ClienteDTO excluirCliente(ClienteDTO ent);
 
-    void ativaInativa(Long id);
+    void ativaInativaCliente(Long id);
 
-    List<ClienteDTO> listar();
+    List<ClienteDTO> listarTodosOsClientes();
 
-    ClienteDTO buscarPorId(Long id);
+    ClienteDTO buscarClientePorId(Long id);
 
-    Optional<ClienteDTO> buscarPorEmail(String email);
+    Optional<ClienteDTO> buscarClientePorEmail(String email);
 
-    ClienteDTO atualUsuarioLogado();
+    ClienteDTO atualClienteLogado();
 
-    Boolean usuarioEstaLogado(Long id);
+    Boolean clienteEstaLogado(Long id);
 
-    ClienteDTO editarSenha(ClienteDTO clienteDTO, SenhaDTO dto);
+    ClienteDTO editarSenhaCliente(ClienteDTO clienteDTO, SenhaDTO dto);
 }

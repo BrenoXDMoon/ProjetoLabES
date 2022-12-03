@@ -29,14 +29,14 @@ public class CartaoCreditoController {
     @GetMapping("{id}/cartoes")
     public ModelAndView listarCartoes(@PathVariable("id") String clienteDtoId) {
         ModelAndView mv = new ModelAndView("cliente/listaCartoes");
-        mv.addObject("cliente", clienteFacade.atualUsuarioLogado());
+        mv.addObject("cliente", clienteFacade.atualClienteLogado());
         return mv;
     }
 
     @GetMapping("{id}/cartoes/novo")
     public ModelAndView formularioNovoCartao(@PathVariable("id") Long clienteDto, CartaoCreditoDTO dto) {
         ModelAndView mv = new ModelAndView("cliente/cartao/form");
-        mv.addObject("cliente", clienteFacade.atualUsuarioLogado());
+        mv.addObject("cliente", clienteFacade.atualClienteLogado());
         mv.addObject("bandeiras", BANDEIRA.values());
         mv.addObject("cartaoCredito", dto);
         return mv;
@@ -45,7 +45,7 @@ public class CartaoCreditoController {
     @PostMapping("{id}/cartoes/novo")
     public ModelAndView salvaCartao(@PathVariable("id") Long id, @Valid CartaoCreditoDTO dto, BindingResult result, RedirectAttributes attributes) {
         ModelAndView mv = new ModelAndView("cliente/perfil");
-        mv.addObject("cliente", cartaoFacade.salvar(dto));
+        mv.addObject("cliente", cartaoFacade.salvarCartao(dto));
         mv.addObject("mensagem", "Cartao atualizado com sucesso!");
 
         return mv;
@@ -55,8 +55,8 @@ public class CartaoCreditoController {
     @PostMapping("{id}/cartoes")
     public ModelAndView excluirCartao(@PathVariable String id, RedirectAttributes attributes) {
         ModelAndView mv = new ModelAndView("/cliente/perfil");
-        cartaoFacade.excluir(Long.parseLong(id));
-        mv.addObject("cliente", clienteFacade.atualUsuarioLogado());
+        cartaoFacade.excluirCartao(Long.parseLong(id));
+        mv.addObject("cliente", clienteFacade.atualClienteLogado());
         mv.addObject("mensagem", "Cartao removido com sucesso!");
 
         return mv;
@@ -66,7 +66,7 @@ public class CartaoCreditoController {
     public ModelAndView formularioEditar(@PathVariable("id") Long clienteDTO, @PathVariable("idCard") Long id) {
         ModelAndView mv = new ModelAndView("/cliente/cartao/formEditar");
         mv.addObject("cliente", clienteDTO);
-        mv.addObject("cartao", cartaoFacade.buscarPorId(id));
+        mv.addObject("cartao", cartaoFacade.buscarCartaoPorId(id));
         mv.addObject("bandeiras", BANDEIRA.values());
 
         return mv;
@@ -76,7 +76,7 @@ public class CartaoCreditoController {
     public ModelAndView editaCartao(@Valid CartaoCreditoDTO cartaoDto, RedirectAttributes attributes, ClienteDTO dto) {
 
         ModelAndView mv = new ModelAndView("/cliente/perfil");
-        mv.addObject("cliente", cartaoFacade.editar(cartaoDto));
+        mv.addObject("cliente", cartaoFacade.editarCartao(cartaoDto));
         mv.addObject("mensagem", "Cartao atualizado com sucesso!");
 
         return mv;

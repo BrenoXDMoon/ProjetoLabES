@@ -48,7 +48,7 @@ public class PedidoClienteController {
 
         mv.addObject("mensagem", "Solicitação de cancelamento enviada com sucesso!");
 
-        mv.addObject("cliente", clienteService.atualUsuarioLogado());
+        mv.addObject("cliente", clienteService.atualClienteLogado());
 
         return mv;
     }

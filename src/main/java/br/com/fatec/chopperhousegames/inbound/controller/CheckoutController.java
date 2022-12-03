@@ -142,7 +142,7 @@ public class CheckoutController {
             return paginaCriaCartaoCheckout(clienteDto, dto, mv);
         }
 
-        cartaoFacade.salvar(dto);
+        cartaoFacade.salvarCartao(dto);
         mv.addObject("resultados", "Cartao salvo com sucesso!!");
         return mv;
     }

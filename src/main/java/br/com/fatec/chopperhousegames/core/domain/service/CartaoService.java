@@ -7,7 +7,7 @@ import java.util.List;
 public interface CartaoService {
     CartaoCredito buscarCartaoPorId(Long id);
 
-    List<CartaoCredito> listarCartoes();
+    List<CartaoCredito> listarTodosOsCartoes();
 
     CartaoCredito salvarCartao(CartaoCredito cartao);
 

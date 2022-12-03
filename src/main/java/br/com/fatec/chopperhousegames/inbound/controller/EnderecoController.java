@@ -34,14 +34,14 @@ public class EnderecoController {
     @GetMapping("{id}/enderecos")
     public ModelAndView listarEnderecos(@PathVariable("id") String clienteDtoId) {
         ModelAndView mv = new ModelAndView("/cliente/listaEnderecos");
-        mv.addObject(CLIENTE, clienteFacade.atualUsuarioLogado());
+        mv.addObject(CLIENTE, clienteFacade.atualClienteLogado());
         return mv;
     }
 
     @GetMapping("{id}/enderecos/novo")
     public ModelAndView formularioNovoEndereco(@PathVariable("id") String clienteDto, EnderecoDTO enderecoDto) {
         ModelAndView mv = new ModelAndView("cliente/endereco/form");
-        mv.addObject(CLIENTE, clienteFacade.atualUsuarioLogado());
+        mv.addObject(CLIENTE, clienteFacade.atualClienteLogado());
         mv.addObject("endereco", enderecoDto);
         mv.addObject("tiposEnd", TIPO_ENDERECO.values());
         return mv;
@@ -51,7 +51,7 @@ public class EnderecoController {
     public ModelAndView salvaEndereco(@PathVariable("id") ClienteDTO clienteDto, @Valid EnderecoDTO enderecoDto, BindingResult result, RedirectAttributes attributes) {
         ModelAndView mv = new ModelAndView();
 
-        enderecoFacade.salvar(clienteFacade.atualUsuarioLogado(), enderecoDto);
+        enderecoFacade.salvar(clienteFacade.atualClienteLogado(), enderecoDto);
         mv.addObject(CLIENTE, clienteDto);
         mv.setViewName("/cliente/listaEnderecos");
         mv.addObject(MENSAGEM, "Endereco criado com sucesso!");
@@ -65,7 +65,7 @@ public class EnderecoController {
         ModelAndView mv = new ModelAndView("/cliente/perfil");
         enderecoFacade.excluir(id);
 
-        mv.addObject(CLIENTE, clienteFacade.atualUsuarioLogado());
+        mv.addObject(CLIENTE, clienteFacade.atualClienteLogado());
         mv.addObject(MENSAGEM, "Endereco removido com sucesso!");
 
         return mv;
@@ -77,7 +77,7 @@ public class EnderecoController {
         ModelAndView mv = new ModelAndView("/cliente/endereco/formEditar");
 
         mv.addObject("endereco", enderecoFacade.buscarPorId(id));
-        mv.addObject(CLIENTE, clienteFacade.atualUsuarioLogado());
+        mv.addObject(CLIENTE, clienteFacade.atualClienteLogado());
         mv.addObject("tiposEnd", TIPO_ENDERECO.values());
 
         return mv;
@@ -86,7 +86,7 @@ public class EnderecoController {
     @PostMapping("{id}/enderecos/editar")
     public ModelAndView editaEndereco(@Valid EnderecoDTO enderecoDto, @PathVariable String id) {
 
-        ClienteDTO clienteDto = clienteFacade.atualUsuarioLogado();
+        ClienteDTO clienteDto = clienteFacade.atualClienteLogado();
 
         enderecoFacade.editar(clienteDto, enderecoDto);
 
