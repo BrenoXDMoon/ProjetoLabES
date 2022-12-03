@@ -5,5 +5,5 @@ import br.com.fatec.chopperhousegames.core.domain.entity.Genero;
 import java.util.List;
 
 public interface GeneroService {
-    List<Genero> listar();
+    List<Genero> buscarTodosGeneros();
 }

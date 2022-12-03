@@ -14,7 +14,7 @@ public class GeneroServiceImpl implements br.com.fatec.chopperhousegames.core.do
     GeneroRepository repository;
 
     @Override
-    public List<Genero> listar() {
+    public List<Genero> buscarTodosGeneros() {
         return repository.findAll();
     }
 }

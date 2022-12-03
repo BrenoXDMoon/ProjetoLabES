@@ -4,7 +4,7 @@ import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
 
 @MappedSuperclass
 @Data
@@ -16,9 +16,7 @@ public class EntidadeDominio {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.DATE)
-    private Date dataCriacao;
+    private LocalDate dataCriacao;
 
-    public EntidadeDominio(){
-        this.dataCriacao = new Date();
-    }
+    //TODO: IMPLEMENTAR UM PREPERSIST PARA SETAR A DATA DE CRIAÇÃO
 }

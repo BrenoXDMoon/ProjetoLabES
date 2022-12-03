@@ -1,76 +1,71 @@
 package br.com.fatec.chopperhousegames.inbound.controller;
 
 import br.com.fatec.chopperhousegames.inbound.facade.ClienteFacade;
+import br.com.fatec.chopperhousegames.inbound.facade.GraficoFacade;
+import br.com.fatec.chopperhousegames.inbound.facade.dto.ChartDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.text.ParseException;
+import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.List;
 
 @Controller
 @RequestMapping("admin")
 public class AdminController {
 
     private final ClienteFacade facade;
+    private final GraficoFacade graficoFacade;
 
     @Autowired
-    public AdminController(ClienteFacade facade) {
+    public AdminController(ClienteFacade facade, GraficoFacade pedidoService) {
         this.facade = facade;
+        this.graficoFacade = pedidoService;
     }
 
-    //TODO: IMPLEMENTAR COISAS RELACIONADAS A PEDIDO
-//
-//    Facade facade;
-//    @Autowired
-//    private IPedidoService pedidoService;
-//
-//    @GetMapping("/")
-//    public ModelAndView dashboard(){
-//        ModelAndView mv = new ModelAndView("admin/dashboard");
-//
-//        Date inital;
-//        Date finalDate;
-//
-//        inital = Date.from(LocalDateTime.now().minusMonths(3).toInstant(ZoneOffset.UTC));
-//        finalDate = Date.from(LocalDateTime.now().plusMonths(3).toInstant(ZoneOffset.UTC));
-//
-//        ChartDto orders = pedidoService.buscarTodosCriadosEntre(inital, finalDate, 0);
-//        List<HashMap<String, Double>> cards = pedidoService.preencherIndexCards();
-//
-//        mv.addObject("ordersFiltered", orders);
-//        mv.addObject("cards", cards);
-//
-//        return mv;
-//    }
-//
-//    @GetMapping("filterdata")
-//    @ResponseBody
-//    public ChartDto getOrdersFiltered(String initialDateParam, String finalDateParam, Integer searchType) throws ParseException {
-//        Date inital;
-//        Date finalDate;
-//
-//        inital = Date.from(LocalDateTime.now().minusMonths(3).toInstant(ZoneOffset.UTC));
-//        finalDate = Date.from(LocalDateTime.now().plusMonths(3).toInstant(ZoneOffset.UTC));
-//
-//        if(null != initialDateParam && initialDateParam.length() > 0){
-//            inital = new SimpleDateFormat("yyyy-MM-dd").parse(initialDateParam);
-//        }
-//
-//        if(finalDateParam != null && finalDateParam.length() > 0){
-//            finalDate = new SimpleDateFormat("yyyy-MM-dd").parse(finalDateParam);
-//        }else {
-//            Date data = new Date();
-//            finalDate = new SimpleDateFormat("yyyy-MM-dd").parse(data.toInstant().toString());
-//        }
-//
-//        return pedidoService.buscarTodosCriadosEntre(inital, finalDate, searchType);
-//    }
-//
+    @GetMapping("/")
+    public ModelAndView dashboard() {
+        ModelAndView mv = new ModelAndView("admin/dashboard");
+
+        LocalDate inital = LocalDate.now().minusMonths(3);
+        LocalDate finalDate = LocalDate.now().plusMonths(3);
+
+        ChartDTO orders = graficoFacade.buscarTodosCriadosEntre(inital, finalDate, 0);
+        List<HashMap<String, Double>> cards = graficoFacade.preencherIndexCards();
+
+        mv.addObject("ordersFiltered", orders);
+        mv.addObject("cards", cards);
+
+        return mv;
+    }
+
+    @GetMapping("filterdata")
+    @ResponseBody
+    public ChartDTO getOrdersFiltered(String initialDateParam, String finalDateParam, Integer searchType){
+        LocalDate dataInicial;
+        LocalDate dataFinal;
+
+        if (null != initialDateParam && initialDateParam.length() > 0) {
+            dataInicial = LocalDate.parse(initialDateParam);
+        }else {
+            dataInicial = LocalDate.now().minusMonths(3);
+        }
+
+        if (finalDateParam != null && finalDateParam.length() > 0) {
+            dataFinal = LocalDate.parse(finalDateParam);
+        } else {
+            dataFinal = LocalDate.now();
+        }
+
+        return graficoFacade.buscarTodosCriadosEntre(dataInicial, dataFinal, searchType);
+    }
+
     @GetMapping("clientes")
-    public ModelAndView listaClientes(){
+    public ModelAndView listaClientes() {
         ModelAndView mv = new ModelAndView("admin/cliente/lista");
 
         mv.addObject("clientes", facade.listar());
@@ -79,7 +74,7 @@ public class AdminController {
     }
 
     @PostMapping("clientes")
-    public ModelAndView desativaEAtivaCliente(@RequestParam Long id, RedirectAttributes attributes){
+    public ModelAndView desativaEAtivaCliente(@RequestParam Long id, RedirectAttributes attributes) {
 
         ModelAndView mv = new ModelAndView("admin/cliente/lista");
         facade.ativaInativa(id);

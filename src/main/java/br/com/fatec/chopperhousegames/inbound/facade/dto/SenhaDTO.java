@@ -1,7 +1,6 @@
 package br.com.fatec.chopperhousegames.inbound.facade.dto;
 
 import lombok.Data;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.validation.constraints.NotEmpty;
 
@@ -17,18 +16,7 @@ public class SenhaDTO {
     @NotEmpty(message = "A senha antiga não pode estar em branco")
     public String senhaAntiga;
 
-    public boolean confirmaSenha() {
-        System.out.println(this.senha.equals(confirmaSenha));
-        if(this.senha.equals(confirmaSenha)){
-            return true;
-        }else{
-            return false;
-        }
-    }
-
-
-
-    public String toSenha() {
-        return new BCryptPasswordEncoder().encode(this.senha);
+    public boolean confirmarSenha() {
+        return this.senha.equals(confirmaSenha);
     }
 }

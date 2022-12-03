@@ -22,7 +22,7 @@ public class JogoFacadeImpl implements JogoFacade {
 
     @Override
     public List<JogoDTO> listarJogos() {
-        return jogoService.listarJogo().stream()
+        return jogoService.listarTodosJogos().stream()
                 .map(mapper::toJogoDTO)
                 .toList();
     }

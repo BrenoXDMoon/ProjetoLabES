@@ -7,7 +7,6 @@ import br.com.fatec.chopperhousegames.inbound.facade.mapper.GeneroMapper;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
 public class GeneroFacadeImpl implements GeneroFacade {
@@ -23,6 +22,6 @@ public class GeneroFacadeImpl implements GeneroFacade {
 
     @Override
     public List<GeneroDTO> listarGeneros() {
-        return service.listar().stream().map(mapper::toGeneroDTO).toList();
+        return service.buscarTodosGeneros().stream().map(mapper::toGeneroDTO).toList();
     }
 }

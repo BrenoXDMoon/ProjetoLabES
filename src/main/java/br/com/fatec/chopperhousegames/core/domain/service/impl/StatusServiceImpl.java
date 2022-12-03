@@ -1,32 +1,25 @@
 package br.com.fatec.chopperhousegames.core.domain.service.impl;
 
 import br.com.fatec.chopperhousegames.core.domain.entity.Status;
-import br.com.fatec.chopperhousegames.core.repository.StatusRepository;
 import br.com.fatec.chopperhousegames.core.domain.service.StatusService;
+import br.com.fatec.chopperhousegames.core.repository.StatusRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
+//TODO: Refatorar Status para ser um Enum
 public class StatusServiceImpl implements StatusService {
 
     @Autowired
     StatusRepository repository;
 
     @Override
-    public List<Status> listarTodos() {
-        return repository.findAll();
-    }
-
-    @Override
     public Status buscarById(Integer id) {
-        //TODO: Retornar exceção caso não encontre o status
-        return repository.findById(id).get();
+        return repository.findById(id).orElseThrow(() -> new RuntimeException("Status não encontrado"));
     }
 
     @Override
-    public Status buscarByNome(String nome) {
+    public Status buscarStatusPorNome(String nome) {
         return repository.findByStatus(nome);
     }
 }

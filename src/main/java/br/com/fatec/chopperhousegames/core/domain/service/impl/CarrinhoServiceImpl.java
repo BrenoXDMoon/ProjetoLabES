@@ -33,26 +33,26 @@ public class CarrinhoServiceImpl implements CarrinhoService {
 
         boolean validaExistencia = false;
 
-        if(cliente.getCarrinho() == null){//se o cliente não tem carrinho, cria carrinho com uma nova lista de itens
+        if (cliente.getCarrinho() == null) {//se o cliente não tem carrinho, cria carrinho com uma nova lista de itens
             carrinho = new Carrinho();
             itens = new ArrayList<>();
-        }else{  //se ele já tem carrinho, use o carrinho dele com a lista de itens já existentes
+        } else {  //se ele já tem carrinho, use o carrinho dele com a lista de itens já existentes
             carrinho = cliente.getCarrinho();
             itens = cliente.getCarrinho().getItens();
         }
         Jogo jogo = jogoRepository.findById(idJogo).orElseThrow(() -> new RuntimeException("Jogo não encontrado"));
-        jogo.setQuantidadeDisponivel(jogo.getQuantidade()-quantidade);
+        jogo.setQuantidadeDisponivel(jogo.getQuantidade() - quantidade);
 
-        for(Item i : itens){
-            if(i.getJogo().getId().equals(jogo.getId())){
+        for (Item i : itens) {
+            if (i.getJogo().getId().equals(jogo.getId())) {
                 log.info("ENCONTRADA EXISTÊNCIA DE PRODUTO NO CARRINHO");
                 validaExistencia = true;
-                i.setQuantidade(i.getQuantidade()+quantidade);
+                i.setQuantidade(i.getQuantidade() + quantidade);
                 break;
             }
         }
 
-        if(!validaExistencia){  //se o item não existir na lista, criamos uma item novo e adicionamos a lista
+        if (!validaExistencia) {  //se o item não existir na lista, criamos uma item novo e adicionamos a lista
             Item item = new Item();
             item.setJogo(jogo);
             item.setQuantidade(quantidade);

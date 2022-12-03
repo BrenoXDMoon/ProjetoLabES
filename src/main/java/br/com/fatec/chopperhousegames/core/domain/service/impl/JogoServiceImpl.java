@@ -16,49 +16,32 @@ public class JogoServiceImpl implements JogoService {
     JogoRepository repository;
 
     @Override
-    public Jogo salvarJogo(Jogo jogo) {
-
-        try{
-            repository.saveAndFlush(jogo);
-            return jogo;
-        }catch(Exception e){
-            return null;
-        }
+    public void salvarJogo(Jogo jogo) {
+        repository.saveAndFlush(jogo);
     }
 
     @Override
-    public Jogo editarJogo(Jogo jogo) {
-        try{
-            repository.saveAndFlush(jogo);
-            return jogo;
-        }catch(Exception e){
-            return null;
-        }
+    public void editarJogo(Jogo jogo) {
+        repository.saveAndFlush(jogo);
     }
 
     @Override
-    public Jogo excluirJogo(Jogo jogo) {
+    public void excluirJogo(Jogo jogo) {
 
         this.buscarJogoPorId(jogo.getId());
 
-            jogo.setAtivo(false);
-            repository.saveAndFlush(jogo);
-            return jogo;
+        jogo.setAtivo(false);
+        repository.saveAndFlush(jogo);
     }
 
     @Override
-    public Jogo ativarJogo(Jogo jogo) {
-        try{
-            jogo.setAtivo(true);
-            repository.saveAndFlush(jogo);
-            return jogo;
-        }catch(Exception e){
-            return null;
-        }
+    public void ativarJogo(Jogo jogo) {
+        jogo.setAtivo(true);
+        repository.saveAndFlush(jogo);
     }
 
     @Override
-    public List<Jogo> listarJogo() {
+    public List<Jogo> listarTodosJogos() {
         return repository.findAll();
     }
 

@@ -7,11 +7,11 @@ import java.util.Optional;
 
 public interface JogoService {
 
-    Jogo salvarJogo(Jogo jogo);
-    Jogo editarJogo(Jogo jogo);
-    Jogo excluirJogo(Jogo jogo);
-    Jogo ativarJogo(Jogo jogo);
-    List<Jogo> listarJogo();
+    void salvarJogo(Jogo jogo);
+    void editarJogo(Jogo jogo);
+    void excluirJogo(Jogo jogo);
+    void ativarJogo(Jogo jogo);
+    List<Jogo> listarTodosJogos();
     List<Jogo> listarJogosAtivos();
     Optional<Jogo> buscarJogoPorId(Long id);
 }
