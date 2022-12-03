@@ -1,11 +1,7 @@
 package br.com.fatec.chopperhousegames.core.domain.service.impl;
 
-import br.com.fatec.chopperhousegames.core.domain.entity.Cupom;
-import br.com.fatec.chopperhousegames.core.domain.entity.MetodoPagamento;
-import br.com.fatec.chopperhousegames.core.domain.entity.Pedido;
-import br.com.fatec.chopperhousegames.core.domain.entity.Status;
+import br.com.fatec.chopperhousegames.core.domain.entity.*;
 import br.com.fatec.chopperhousegames.core.domain.service.PedidoService;
-import br.com.fatec.chopperhousegames.core.domain.service.TipoCupomService;
 import br.com.fatec.chopperhousegames.core.repository.ClienteRepository;
 import br.com.fatec.chopperhousegames.core.repository.PedidoRepository;
 import org.springframework.stereotype.Service;
@@ -24,12 +20,10 @@ public class PedidoServiceImpl implements PedidoService {
     private final PedidoRepository repository;
 
     private final ClienteRepository clienteRepository;
-    private final TipoCupomService tipoCupomService;
 
-    public PedidoServiceImpl(PedidoRepository repository, ClienteRepository clienteRepository, TipoCupomService tipoCupomService) {
+    public PedidoServiceImpl(PedidoRepository repository, ClienteRepository clienteRepository) {
         this.repository = repository;
         this.clienteRepository = clienteRepository;
-        this.tipoCupomService = tipoCupomService;
     }
 
 
@@ -121,7 +115,7 @@ public class PedidoServiceImpl implements PedidoService {
                 cupom.setCodigo(codigo);
                 cupom.setQuantidade(1);
                 cupom.setCliente(pedido.getCliente());
-                cupom.setTipoCupom(tipoCupomService.buscarPorNome("TROCA"));
+                cupom.setTipoCupom(TipoCupom.TROCA);
                 cupom.setValor(totalCupom - pedido.getTotal());
             }
         }
@@ -130,7 +124,7 @@ public class PedidoServiceImpl implements PedidoService {
 
         //diminuindo a quantidade do cupom de desconto quando usado
         if (pedido.getCupom() != null && pedido.getCupom().getId() != null) {
-            if (!pedido.getCupom().getTipoCupom().getNome().equals("ZERADO")) {
+            if (!pedido.getCupom().getTipoCupom().equals(TipoCupom.ZERADO)) {
                 pedido.getCupom().setQuantidade(pedido.getCupom().getQuantidade() - 1);
             }
         }
