@@ -8,13 +8,13 @@ import java.util.List;
 public interface DevolucaoService {
 
     Devolucao salvarSolicitacaoDevolucao(Devolucao devolucao);
-    void editar(Devolucao devolucao);
-    List<Devolucao> buscarTodos();
-    Devolucao buscaDevolucaoByPedidoId(Pedido pedido);
-    Devolucao buscarById(Integer id);
-    Devolucao aceitar(Devolucao devolucao);
-    Devolucao recusar(Devolucao devolucao);
-    Devolucao processar(Devolucao devolucao);
-    Devolucao receber(Devolucao devolucao);
-    Devolucao finalizar(Devolucao devolucao);
+    void editarDevolucao(Devolucao devolucao);
+    List<Devolucao> buscarTodasDevolucoes();
+    Devolucao buscaDevolucaoPorIdDePedido(Pedido pedido);
+    Devolucao buscarDevolucaoPorId(Long id);
+    Devolucao aceitarDevolucao(Devolucao devolucao);
+    Devolucao recusarDevolucao(Devolucao devolucao);
+    Devolucao processarDevolucao(Devolucao devolucao);
+    Devolucao receberDevolucao(Devolucao devolucao);
+    Devolucao finalizarDevolucao(Devolucao devolucao);
 }
