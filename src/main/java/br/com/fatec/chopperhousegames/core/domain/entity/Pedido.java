@@ -51,4 +51,12 @@ public class Pedido extends EntidadeDominio {
 
     @Transient
     private Integer quantidade;
+
+    public Boolean hasCupom() {
+        return getCupom() != null && getCupom().getId() != null;
+    }
+
+    public Boolean hasCuponsTroca() {
+        return getCuponsTroca() != null && !getCuponsTroca().isEmpty();
+    }
 }

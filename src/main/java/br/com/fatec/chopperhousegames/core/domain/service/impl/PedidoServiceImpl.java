@@ -1,6 +1,8 @@
 package br.com.fatec.chopperhousegames.core.domain.service.impl;
 
 import br.com.fatec.chopperhousegames.core.domain.entity.*;
+import br.com.fatec.chopperhousegames.core.domain.service.CartaoService;
+import br.com.fatec.chopperhousegames.core.domain.service.CupomService;
 import br.com.fatec.chopperhousegames.core.domain.service.PedidoService;
 import br.com.fatec.chopperhousegames.core.repository.ClienteRepository;
 import br.com.fatec.chopperhousegames.core.repository.PedidoRepository;
@@ -20,10 +22,14 @@ public class PedidoServiceImpl implements PedidoService {
     private final PedidoRepository repository;
 
     private final ClienteRepository clienteRepository;
+    private final CartaoService cartaoService;
 
-    public PedidoServiceImpl(PedidoRepository repository, ClienteRepository clienteRepository) {
+    private CupomService cupomService;
+
+    public PedidoServiceImpl(PedidoRepository repository, ClienteRepository clienteRepository, CartaoService cartaoService) {
         this.repository = repository;
         this.clienteRepository = clienteRepository;
+        this.cartaoService = cartaoService;
     }
 
 
@@ -62,25 +68,22 @@ public class PedidoServiceImpl implements PedidoService {
         return repository.buscarPedidosEntre(dataInicial, dataFinal);
     }
 
-    //TODO: Refatorar
     private Pedido preencherPedido(Pedido pedido, BindingResult result) {
 
         pedido.setStatus(Status.EM_PROCESSAMENTO);
         pedido.setItens(pedido.getCliente().getCarrinho().getItens());
 
-        //TODO: ALTERAR PARAMETROS DE ONDE SOLICITA ID PARA LONG
-//        pedido.getMetodosPagamento().forEach(p -> p.setCartaoCredito(cartaoRepository.findById(p.getCartaoCredito().getId()).get()));
+        pedido.getMetodosPagamento().forEach(p -> p.setCartaoCredito(cartaoService.buscarCartaoPorId(p.getCartaoCredito().getId())));
         pedido.setTotal((pedido.getCliente().getCarrinho().getItens().stream().mapToDouble(i -> i.getJogo().getPreco() * i.getQuantidade().doubleValue()).sum()));
-        if (pedido.getCupom() != null && pedido.getCupom().getId() != null) {
-            //TODO: ALTERAR PARAMETROS DE ONDE SOLICITA ID PARA LONG
-//            pedido.setCupom(cupomRepository.findById(pedido.getCupom().getId()).get());
+        if (pedido.hasCupom()) {
+            pedido.setCupom(cupomService.buscarCupomPorId(pedido.getCupom().getId()));
 
             pedido.setTotal(BigDecimal.valueOf(pedido.getTotal() - pedido.getCupom().getValor())
                     .setScale(2, RoundingMode.FLOOR)
                     .doubleValue());
         }
 
-        if (pedido.getCuponsTroca() != null && !pedido.getCuponsTroca().isEmpty()) {
+        if (pedido.hasCuponsTroca()) {
             pedido.getCuponsTroca().forEach(
                     c -> pedido.setTotal(
                             BigDecimal.valueOf(pedido.getTotal() - c.getValor())

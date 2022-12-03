@@ -3,15 +3,13 @@ package br.com.fatec.chopperhousegames.core.domain.service.impl;
 import br.com.fatec.chopperhousegames.core.domain.entity.Cliente;
 import br.com.fatec.chopperhousegames.core.domain.entity.Cupom;
 import br.com.fatec.chopperhousegames.core.domain.entity.TipoCupom;
-import br.com.fatec.chopperhousegames.core.repository.CupomRepository;
 import br.com.fatec.chopperhousegames.core.domain.service.CupomService;
-import org.springframework.beans.factory.annotation.Autowired;
+import br.com.fatec.chopperhousegames.core.repository.CupomRepository;
 import org.springframework.stereotype.Service;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.List;
-import java.util.Optional;
 import java.util.Random;
 
 @Service
@@ -19,7 +17,7 @@ public class CupomServiceImpl implements CupomService {
 
     private final CupomRepository repository;
 
-    private Random random = SecureRandom.getInstanceStrong();
+    private final Random random = SecureRandom.getInstanceStrong();
 
     public CupomServiceImpl(CupomRepository repository) throws NoSuchAlgorithmException {
         this.repository = repository;
@@ -31,8 +29,8 @@ public class CupomServiceImpl implements CupomService {
     }
 
     @Override
-    public Optional<Cupom> buscarCupomPorId(Long id) {
-        return repository.findById(id);
+    public Cupom buscarCupomPorId(Long id) {
+        return repository.findById(id).orElseThrow(() -> new RuntimeException("Cupom não encontrado"));
     }
 
     @Override
