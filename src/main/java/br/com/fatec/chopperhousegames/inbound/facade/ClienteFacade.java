@@ -7,7 +7,7 @@ import br.com.fatec.chopperhousegames.inbound.facade.dto.SenhaDTO;
 import java.util.List;
 import java.util.Optional;
 
-public interface ClienteFacade extends Facade {
+public interface ClienteFacade {
 
     ClienteDTO salvarCliente(ClienteDTO ent);
 
