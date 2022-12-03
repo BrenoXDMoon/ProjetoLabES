@@ -14,23 +14,23 @@ public class EnderecoServiceImpl implements EnderecoService {
     EnderecoRepository repository;
 
     @Override
-    public Endereco buscarPorId(Long id) {
+    public Endereco buscarEnderecoPorId(Long id) {
         return repository.findById(id).orElse(null);
     }
 
     @Override
-    public Endereco salvar(Endereco end) {
+    public Endereco salvarEndereco(Endereco end) {
 
         return repository.saveAndFlush(end);
     }
 
     @Override
-    public void excluir(Long id) {
+    public void excluirEndereco(Long id) {
         repository.deleteById(id);
     }
 
     @Override
-    public Endereco editar(ClienteDTO atualUsuarioLogado, Endereco endereco) {
+    public Endereco editarEndereco(ClienteDTO atualUsuarioLogado, Endereco endereco) {
         return repository.saveAndFlush(endereco);
     }
 }

@@ -9,33 +9,33 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class EnderecoFacadeImpl implements EnderecoFacade {
-    private final EnderecoService enderecoService;
+    private final EnderecoService service;
 
-    private final EnderecoMapper enderecoMapper;
+    private final EnderecoMapper mapper;
 
 
-    public EnderecoFacadeImpl(EnderecoService service, EnderecoService enderecoService, EnderecoMapper enderecoMapper) {
-        this.enderecoService = enderecoService;
-        this.enderecoMapper = enderecoMapper;
+    public EnderecoFacadeImpl(EnderecoService service, EnderecoMapper mapper) {
+        this.service = service;
+        this.mapper = mapper;
     }
 
     @Override
-    public EnderecoDTO salvar(ClienteDTO cliente, EnderecoDTO enderecoDto) {
-        return enderecoMapper.toDTO(enderecoService.salvar(enderecoMapper.toDomain(enderecoDto)));
+    public void salvarEndereco(ClienteDTO cliente, EnderecoDTO enderecoDto) {
+        mapper.toDTO(service.salvarEndereco(mapper.toDomain(enderecoDto)));
     }
 
     @Override
-    public void excluir(Long id) {
-        enderecoService.excluir(id);
+    public void excluirEndereco(Long id) {
+        service.excluirEndereco(id);
     }
 
     @Override
-    public EnderecoDTO buscarPorId(Long id) {
-        return enderecoMapper.toDTO(enderecoService.buscarPorId(id));
+    public EnderecoDTO buscarEnderecoPorId(Long id) {
+        return mapper.toDTO(service.buscarEnderecoPorId(id));
     }
 
     @Override
-    public EnderecoDTO editar(ClienteDTO atualUsuarioLogado, EnderecoDTO enderecoDto) {
-        return enderecoMapper.toDTO(enderecoService.editar(atualUsuarioLogado, enderecoMapper.toDomain(enderecoDto)));
+    public void editarEndereco(ClienteDTO atualUsuarioLogado, EnderecoDTO enderecoDto) {
+        mapper.toDTO(service.editarEndereco(atualUsuarioLogado, mapper.toDomain(enderecoDto)));
     }
 }

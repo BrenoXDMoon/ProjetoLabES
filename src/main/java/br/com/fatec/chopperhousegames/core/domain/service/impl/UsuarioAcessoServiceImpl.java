@@ -18,7 +18,7 @@ public class UsuarioAcessoServiceImpl implements UsuarioAcessoService {
     ClienteService service;
 
     @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String email){
         Optional<Cliente> cliente = service.buscarClientePorEmail(email);
         return new UsuarioAcesso(cliente.orElseThrow(() -> new UsernameNotFoundException("Email não encontrado: " + email)));
     }

@@ -6,11 +6,11 @@ import br.com.fatec.chopperhousegames.inbound.facade.dto.EnderecoDTO;
 public interface EnderecoFacade {
     
     
-    EnderecoDTO salvar(ClienteDTO cliente, EnderecoDTO enderecoDto);
+    void salvarEndereco(ClienteDTO cliente, EnderecoDTO enderecoDto);
 
-    void excluir(Long id);
+    void excluirEndereco(Long id);
 
-    EnderecoDTO buscarPorId(Long id);
+    EnderecoDTO buscarEnderecoPorId(Long id);
 
-    EnderecoDTO editar(ClienteDTO atualUsuarioLogado, EnderecoDTO enderecoForm);
+    void editarEndereco(ClienteDTO atualUsuarioLogado, EnderecoDTO enderecoForm);
 }
