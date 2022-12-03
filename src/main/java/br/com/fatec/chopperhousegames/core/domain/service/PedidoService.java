@@ -8,9 +8,9 @@ import java.util.List;
 
 public interface PedidoService {
 
-    Pedido buscarById(Integer id);
-    Pedido salvar(Pedido pedido, BindingResult result);
-    Pedido editar(Pedido pedido);
+    Pedido buscarPedidoPorId(Integer id);
+    Pedido salvarPedido(Pedido pedido, BindingResult result);
+    Pedido editarPedido(Pedido pedido);
 
     List<Pedido> buscarPedidosEntre(LocalDate dataInicial, LocalDate dataFinal);
 

@@ -22,6 +22,6 @@ public class PlataformaFacadeImpl implements PlataformaFacade {
 
     @Override
     public List<PlataformaDTO> listarPlataformas() {
-        return service.listar().stream().map(mapper::toDTO).toList();
+        return service.listarPlataforma().stream().map(mapper::toDTO).toList();
     }
 }

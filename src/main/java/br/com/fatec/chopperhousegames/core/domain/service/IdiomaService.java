@@ -5,5 +5,5 @@ import br.com.fatec.chopperhousegames.core.domain.entity.Idioma;
 import java.util.List;
 
 public interface IdiomaService {
-    List<Idioma> listar();
+    List<Idioma> listarIdiomas();
 }

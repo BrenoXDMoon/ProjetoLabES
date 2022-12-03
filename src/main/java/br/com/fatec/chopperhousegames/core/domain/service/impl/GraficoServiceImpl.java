@@ -27,7 +27,7 @@ public class GraficoServiceImpl implements GraficoService {
     }
 
     @Override
-    public ChartDTO buscarTodosCriadosEntre(LocalDate dataInicial, LocalDate dataFinal, Integer tipoBusca) {
+    public ChartDTO montarGraficoComValoresCriadosEntre(LocalDate dataInicial, LocalDate dataFinal, Integer tipoBusca) {
         if (null == tipoBusca){
             tipoBusca = 0;
         }

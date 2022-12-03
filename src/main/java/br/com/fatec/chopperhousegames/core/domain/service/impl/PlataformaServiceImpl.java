@@ -14,7 +14,7 @@ public class PlataformaServiceImpl implements br.com.fatec.chopperhousegames.cor
     PlataformaRepository repository;
 
     @Override
-    public List<Plataforma> listar() {
+    public List<Plataforma> listarPlataforma() {
         return repository.findAll();
     }
 }

@@ -14,7 +14,7 @@ public class IdiomaServiceImpl implements br.com.fatec.chopperhousegames.core.do
     IdiomaRepository repository;
 
     @Override
-    public List<Idioma> listar() {
+    public List<Idioma> listarIdiomas() {
         return repository.findAll();
     }
 }

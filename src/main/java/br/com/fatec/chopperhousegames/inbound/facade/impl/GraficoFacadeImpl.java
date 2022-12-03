@@ -13,7 +13,7 @@ public class GraficoFacadeImpl implements GraficoFacade {
 
     @Override
     public ChartDTO buscarTodosCriadosEntre(LocalDate dataInicial, LocalDate dataFinal, Integer tipoBusca) {
-        return service.buscarTodosCriadosEntre(dataInicial, dataFinal, tipoBusca);
+        return service.montarGraficoComValoresCriadosEntre(dataInicial, dataFinal, tipoBusca);
     }
 
     @Override

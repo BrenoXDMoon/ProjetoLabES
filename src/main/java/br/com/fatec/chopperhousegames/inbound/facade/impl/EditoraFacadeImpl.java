@@ -20,6 +20,6 @@ public class EditoraFacadeImpl implements EditoraFacade {
 
     @Override
     public List<EditoraDTO> listarEditora() {
-        return service.listar().stream().map(mapper::toDTO).toList();
+        return service.listarEditoras().stream().map(mapper::toDTO).toList();
     }
 }

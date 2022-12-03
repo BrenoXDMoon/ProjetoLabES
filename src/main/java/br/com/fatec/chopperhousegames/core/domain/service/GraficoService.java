@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public interface GraficoService {
-    ChartDTO buscarTodosCriadosEntre(LocalDate dataInicial, LocalDate dataFinal, Integer tipoBusca);
+    ChartDTO montarGraficoComValoresCriadosEntre(LocalDate dataInicial, LocalDate dataFinal, Integer tipoBusca);
 
     List<HashMap<String, Double>> preencherIndexCards();
 }

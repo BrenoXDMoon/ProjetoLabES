@@ -23,6 +23,6 @@ public class IdiomaFacadeImpl implements IdiomaFacade {
 
     @Override
     public List<IdiomaDTO> listarIdiomas() {
-        return service.listar().stream().map(mapper::toIdiomaDTO).toList();
+        return service.listarIdiomas().stream().map(mapper::toIdiomaDTO).toList();
     }
 }

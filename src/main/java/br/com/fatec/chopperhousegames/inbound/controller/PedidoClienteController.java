@@ -44,7 +44,7 @@ public class PedidoClienteController {
         //TODO: REFATORAR PARA USAR O SERVICE
         pedido.setStatus(Status.CANCELAMENTO_SOLICITADO);
 
-        pedidoService.editar(pedido);
+        pedidoService.editarPedido(pedido);
 
         mv.addObject("mensagem", "Solicitação de cancelamento enviada com sucesso!");
 

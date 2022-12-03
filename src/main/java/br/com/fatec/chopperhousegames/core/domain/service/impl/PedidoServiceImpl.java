@@ -28,12 +28,12 @@ public class PedidoServiceImpl implements PedidoService {
 
 
     @Override
-    public Pedido buscarById(Integer id) {
+    public Pedido buscarPedidoPorId(Integer id) {
         return repository.findById(id).get();
     }
 
     @Override
-    public Pedido salvar(Pedido pedido, BindingResult result) {
+    public Pedido salvarPedido(Pedido pedido, BindingResult result) {
         pedido = preencherPedido(pedido, result);
         if (result.hasErrors()) {
             return pedido;
@@ -53,7 +53,7 @@ public class PedidoServiceImpl implements PedidoService {
     }
 
     @Override
-    public Pedido editar(Pedido pedido) {
+    public Pedido editarPedido(Pedido pedido) {
         return repository.saveAndFlush(pedido);
     }
 

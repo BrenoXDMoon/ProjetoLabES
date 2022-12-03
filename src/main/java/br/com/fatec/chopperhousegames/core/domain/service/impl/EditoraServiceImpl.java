@@ -14,7 +14,7 @@ public class EditoraServiceImpl implements br.com.fatec.chopperhousegames.core.d
     EditoraRepository repository;
 
     @Override
-    public List<Editora> listar() {
+    public List<Editora> listarEditoras() {
         return repository.findAll();
     }
 }
