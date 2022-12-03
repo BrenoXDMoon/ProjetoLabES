@@ -3,8 +3,8 @@ package br.com.fatec.chopperhousegames.core.domain.service.impl;
 import br.com.fatec.chopperhousegames.core.domain.entity.Cupom;
 import br.com.fatec.chopperhousegames.core.domain.entity.MetodoPagamento;
 import br.com.fatec.chopperhousegames.core.domain.entity.Pedido;
+import br.com.fatec.chopperhousegames.core.domain.entity.Status;
 import br.com.fatec.chopperhousegames.core.domain.service.PedidoService;
-import br.com.fatec.chopperhousegames.core.domain.service.StatusService;
 import br.com.fatec.chopperhousegames.core.domain.service.TipoCupomService;
 import br.com.fatec.chopperhousegames.core.repository.ClienteRepository;
 import br.com.fatec.chopperhousegames.core.repository.PedidoRepository;
@@ -24,13 +24,11 @@ public class PedidoServiceImpl implements PedidoService {
     private final PedidoRepository repository;
 
     private final ClienteRepository clienteRepository;
-    private final StatusService statusService;
     private final TipoCupomService tipoCupomService;
 
-    public PedidoServiceImpl(PedidoRepository repository, ClienteRepository clienteRepository, StatusService statusService, TipoCupomService tipoCupomService) {
+    public PedidoServiceImpl(PedidoRepository repository, ClienteRepository clienteRepository, TipoCupomService tipoCupomService) {
         this.repository = repository;
         this.clienteRepository = clienteRepository;
-        this.statusService = statusService;
         this.tipoCupomService = tipoCupomService;
     }
 
@@ -73,7 +71,7 @@ public class PedidoServiceImpl implements PedidoService {
     //TODO: Refatorar
     private Pedido preencherPedido(Pedido pedido, BindingResult result) {
 
-        pedido.setStatus(statusService.buscarStatusPorNome("EM PROCESSAMENTO"));
+        pedido.setStatus(Status.EM_PROCESSAMENTO);
         pedido.setItens(pedido.getCliente().getCarrinho().getItens());
 
         //TODO: ALTERAR PARAMETROS DE ONDE SOLICITA ID PARA LONG

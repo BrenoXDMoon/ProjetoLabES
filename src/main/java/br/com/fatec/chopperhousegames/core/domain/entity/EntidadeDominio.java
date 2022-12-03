@@ -1,5 +1,6 @@
 package br.com.fatec.chopperhousegames.core.domain.entity;
 
+import br.com.fatec.chopperhousegames.core.domain.entity.listener.AuditEntidadeDominioListener;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -8,6 +9,7 @@ import java.time.LocalDate;
 
 @MappedSuperclass
 @Data
+@EntityListeners({AuditEntidadeDominioListener.class})
 public class EntidadeDominio {
 
     @Id
@@ -17,6 +19,4 @@ public class EntidadeDominio {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.DATE)
     private LocalDate dataCriacao;
-
-    //TODO: IMPLEMENTAR UM PREPERSIST PARA SETAR A DATA DE CRIAÇÃO
 }

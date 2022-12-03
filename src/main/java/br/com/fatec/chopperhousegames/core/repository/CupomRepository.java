@@ -7,7 +7,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface CupomRepository extends JpaRepository<Cupom, Integer> {
+//TODO: refatorar para manter o padrão DDD
+public interface CupomRepository extends JpaRepository<Cupom, Long> {
     List<Cupom> findAllByTipoCupom_NomeAndQuantidadeIsGreaterThan(String nome, Integer quantidade);
     Cupom findAllByTipoCupom_Nome(String nome);
 }

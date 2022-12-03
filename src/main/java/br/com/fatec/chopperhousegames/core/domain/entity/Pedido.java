@@ -23,8 +23,7 @@ public class Pedido extends EntidadeDominio {
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
-    @ManyToOne
-    @JoinColumn(name = "status_id")
+    @Enumerated(EnumType.STRING)
     private Status status;
 
     @ManyToOne

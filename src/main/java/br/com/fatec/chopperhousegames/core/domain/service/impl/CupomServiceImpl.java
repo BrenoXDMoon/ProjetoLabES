@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CupomServiceImpl implements CupomService {
@@ -32,5 +33,10 @@ public class CupomServiceImpl implements CupomService {
     @Override
     public Cupom buscarCupomZerado() {
         return repository.findAllByTipoCupom_Nome("ZERADO");
+    }
+
+    @Override
+    public Optional<Cupom> buscarPorId(Long id) {
+        return repository.findById(id);
     }
 }

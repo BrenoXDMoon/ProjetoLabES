@@ -2,9 +2,9 @@ package br.com.fatec.chopperhousegames.inbound.controller;
 
 import br.com.fatec.chopperhousegames.core.domain.entity.Cliente;
 import br.com.fatec.chopperhousegames.core.domain.entity.Pedido;
+import br.com.fatec.chopperhousegames.core.domain.entity.Status;
 import br.com.fatec.chopperhousegames.core.domain.service.ClienteService;
 import br.com.fatec.chopperhousegames.core.domain.service.PedidoService;
-import br.com.fatec.chopperhousegames.core.domain.service.StatusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,15 +17,12 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("cliente/perfil/{id}/pedidos")
 public class PedidoClienteController {
 
-    private final StatusService statusService;
-
     private final ClienteService clienteService;
 
     private final PedidoService pedidoService;
 
     @Autowired
-    public PedidoClienteController(StatusService statusService, ClienteService clienteService, PedidoService pedidoService) {
-        this.statusService = statusService;
+    public PedidoClienteController(ClienteService clienteService, PedidoService pedidoService) {
         this.clienteService = clienteService;
         this.pedidoService = pedidoService;
     }
@@ -44,7 +41,8 @@ public class PedidoClienteController {
 
         ModelAndView mv = new ModelAndView("redirect:/cliente/perfil/" + cliente.getId() + "/pedidos");
 
-        pedido.setStatus(statusService.buscarById(13));
+        //TODO: REFATORAR PARA USAR O SERVICE
+        pedido.setStatus(Status.CANCELAMENTO_SOLICITADO);
 
         pedidoService.editar(pedido);
 
