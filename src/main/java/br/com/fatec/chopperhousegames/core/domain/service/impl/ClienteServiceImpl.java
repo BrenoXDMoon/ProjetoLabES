@@ -2,9 +2,9 @@ package br.com.fatec.chopperhousegames.core.domain.service.impl;
 
 import br.com.fatec.chopperhousegames.core.domain.entity.Cliente;
 import br.com.fatec.chopperhousegames.core.domain.entity.Senha;
+import br.com.fatec.chopperhousegames.core.domain.entity.TipoCliente;
 import br.com.fatec.chopperhousegames.core.domain.service.ClienteService;
 import br.com.fatec.chopperhousegames.core.repository.ClienteRepository;
-import br.com.fatec.chopperhousegames.core.domain.service.TipoClienteService;
 
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,17 +18,14 @@ public class ClienteServiceImpl implements ClienteService {
 
     ClienteRepository repository;
 
-    TipoClienteService tipoClienteService;
-
-    public ClienteServiceImpl(ClienteRepository repository, TipoClienteService tipoClienteService) {
+    public ClienteServiceImpl(ClienteRepository repository) {
         this.repository = repository;
-        this.tipoClienteService = tipoClienteService;
     }
 
     @Override
     public Cliente salvar(Cliente cliente) {
 
-        cliente.setTipoCliente(tipoClienteService.buscarById(1));
+        cliente.setTipoCliente(TipoCliente.BASICO);
 
         cliente.setRoles("CLIENTE");
 
@@ -60,14 +57,8 @@ public class ClienteServiceImpl implements ClienteService {
     @Override
     public Cliente atualUsuarioLogado() {
 
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String email;
-
-        if (principal != null) {
-            if (principal instanceof UserDetails) {
-                email = ((UserDetails) principal).getUsername();
-                return this.buscarPorEmail(email).orElse(new Cliente());
-            }
+        if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() instanceof UserDetails user) {
+            return this.buscarPorEmail(user.getUsername()).orElse(new Cliente());
         }
         return null;
     }

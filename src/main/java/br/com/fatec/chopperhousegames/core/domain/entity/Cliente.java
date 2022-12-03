@@ -29,7 +29,7 @@ public class Cliente extends EntidadeDominio {
     @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<CartaoCredito> cartoes;
 
-    @ManyToOne
+    @Enumerated(EnumType.STRING)
     private TipoCliente tipoCliente;
 
     private String telefone;
